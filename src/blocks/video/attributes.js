@@ -150,7 +150,7 @@ const attributes = {
 		type: "object",
 		default:{
 			"url": "",
-			"alt": "InfoBox placeholder img",
+			"alt": "",
 		}
 	},
 	iconImageSize:{

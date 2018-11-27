@@ -644,14 +644,14 @@ class UAGBVideo extends Component {
 		 		var el = $("#uagb-video-"+id)				
 				el.find(".uagb-video__thumb").hide()
 				el.find(".uagb-video__play-icon").hide()
-				event_this.playVideo( element, src);
+				event_this.uagbPlayVideo( element, src);
 			});
 		}else{
-			event_this.playVideo( element, src)
+			event_this.uagbPlayVideo( element, src)
 		}
 	}
 
-	playVideo(selector, src){
+	uagbPlayVideo(selector, src){
 		selector.find(".uagb-video__vimeo-wrap").hide()
 		selector.find(".uagb-video__iframe").remove()
 		var iframe_html = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>'

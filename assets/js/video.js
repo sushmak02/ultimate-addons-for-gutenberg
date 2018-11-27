@@ -21,15 +21,15 @@
 						var el = $(this);
 						el.find(".uagb-video__thumb").hide();
 						el.find(".uagb-video__play-icon").hide();
-						playVideo( element);						
+						uagbPlayVideo( element);						
 					});
 			}else{				
-				playVideo( element);
+				uagbPlayVideo( element);
 			}
 		})		
 	}
 
-	function playVideo( element ){
+	function uagbPlayVideo( element ){
 		var src = element.find(".uagb-video__play").data('src'),
 			src = src.replace("autoplay=0", "autoplay=1"),
 			iframe_code = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>';
