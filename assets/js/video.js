@@ -1,5 +1,5 @@
 /**
- * Common js file for timeline.
+ * Common js file for video block.
  */
 ( function( $ ) {
 

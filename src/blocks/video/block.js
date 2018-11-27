@@ -63,10 +63,9 @@ registerBlockType( "uagb/video", {
 		} = props.attributes
 
 		const my_block_id = "uagb-video-"+block_id
-
-		var iframe_output = ''
 		var thumbanil_output = ''
 		var play_icon_output = ''
+		var vimeo_output     = ''
 
 		if( !autoplay ){
 
@@ -77,13 +76,10 @@ registerBlockType( "uagb/video", {
 			}
 			
 			play_icon_output = ( source_type == 'icon' ) ? <VideoIcon attributes={props.attributes}/> : <VideoIconImage attributes={props.attributes}/>
+			
+			vimeo_output = <VimeoMeta attributes={props.attributes}/>
 		}
-
-		var vimeo_output = ''
-		
-		if( !autoplay ){
-			vimeo_output = <VimeoMeta attributes={props.attributes}/>	
-		}
+	
 		return (
 			<Fragment>
 				<div className={ classnames(
@@ -98,7 +94,6 @@ registerBlockType( "uagb/video", {
 					) }	>	
 						{ vimeo_output }		
 					   <div className = "uagb-video__play" data-src = { VideoImgSrc(props.attributes)} >
-					      { iframe_output }	
 					      { thumbanil_output }	
 					      { play_icon_output }		      
 					    </div>
