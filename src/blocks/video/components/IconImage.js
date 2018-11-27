@@ -1,4 +1,4 @@
-class VideoIconImage extends React.Component {
+class IconImage extends React.Component {
 
 	render() {
 
@@ -37,4 +37,4 @@ class VideoIconImage extends React.Component {
 	}
 }
 
-export default VideoIconImage
+export default IconImage

@@ -1,4 +1,4 @@
-class VideoThumb extends React.Component {
+class Thumb extends React.Component {
 
 	render() {
 
@@ -50,4 +50,4 @@ class VideoThumb extends React.Component {
 	}
 }
 
-export default VideoThumb
+export default Thumb

@@ -5,9 +5,9 @@ import classnames from "classnames"
 import UAGBIcon from "../../../dist/blocks/uagb-controls/UAGBIcon"
 import FontIconPicker from "@fonticonpicker/react-fonticonpicker"
 
-import VideoIcon from "./components/VideoIcon"
-import VideoIconImage from "./components/VideoIconImage"
-import VideoThumb from "./components/VideoThumb"
+import Icon from "./components/Icon"
+import IconImage from "./components/IconImage"
+import Thumb from "./components/Thumb"
 import VimeoMeta from "./components/VimeoMeta"
 import CustomImage from "./components/CustomImage"
 
@@ -571,10 +571,10 @@ class UAGBVideo extends Component {
 			if( customThumbnail ){
 				thumbanil_output = <CustomImage attributes={attributes}/>
 			}else{
-				thumbanil_output = ( videoType == 'youtube' ) ? <VideoThumb attributes={attributes} setAttributes = {setAttributes} /> : <VideoThumb attributes={attributes} setAttributes = {setAttributes} />
+				thumbanil_output = <Thumb attributes={attributes} setAttributes = {setAttributes} />
 			}
 			
-			play_icon_output = ( sourceType == 'icon' ) ? <VideoIcon attributes={attributes}/> : <VideoIconImage attributes={attributes}/>
+			play_icon_output = ( sourceType == 'icon' ) ? <Icon attributes={attributes}/> : <IconImage attributes={attributes}/>
 		}
 
 		setAttributes( { videoSrc: VideoImgSrc(attributes) } )
@@ -614,7 +614,7 @@ class UAGBVideo extends Component {
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-video-style-" + id )
 		document.head.appendChild( $style )
-		window.addEventListener("load", this.videoIframeContent(id))
+		//window.addEventListener("load", this.videoIframeContent(id))
 	}
 
 	componentDidUpdate(){

@@ -1,6 +1,6 @@
 import classnames from "classnames"
 
-class VideoIcon extends React.Component {
+class Icon extends React.Component {
 
 	render() {
 
@@ -16,4 +16,4 @@ class VideoIcon extends React.Component {
 	}
 }
 
-export default VideoIcon
+export default Icon

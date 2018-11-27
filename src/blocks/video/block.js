@@ -10,9 +10,9 @@ import edit from "./edit"
 import attributes from "./attributes"
 import "./style.scss"
 
-import VideoIcon from "./components/VideoIcon"
-import VideoIconImage from "./components/VideoIconImage"
-import VideoThumb from "./components/VideoThumb"
+import Icon from "./components/Icon"
+import IconImage from "./components/IconImage"
+import Thumb from "./components/Thumb"
 import VimeoMeta from "./components/VimeoMeta"
 import CustomImage from "./components/CustomImage"
 import VideoClasses from "./classes"
@@ -72,10 +72,10 @@ registerBlockType( "uagb/video", {
 			if( customThumbnail ){
 				thumbanil_output = <CustomImage attributes={props.attributes}/>
 			}else{
-				thumbanil_output = ( videoType == 'youtube' ) ? <VideoThumb attributes={props.attributes} setAttributes = "not_set" /> : <VideoThumb attributes={props.attributes} setAttributes = "not_set" />
+				thumbanil_output = <Thumb attributes={props.attributes} setAttributes = "not_set" />
 			}
 			
-			play_icon_output = ( sourceType == 'icon' ) ? <VideoIcon attributes={props.attributes}/> : <VideoIconImage attributes={props.attributes}/>
+			play_icon_output = ( sourceType == 'icon' ) ? <VideoIcon attributes={props.attributes}/> : <IconImage attributes={props.attributes}/>
 			
 			vimeo_output = <VimeoMeta attributes={props.attributes}/>
 		}
