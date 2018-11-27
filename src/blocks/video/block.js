@@ -59,7 +59,7 @@ registerBlockType( "uagb/video", {
 			videoType,
 			autoplay,
 			customThumbnail,
-			source_type,
+			sourceType,
 		} = props.attributes
 
 		const my_block_id = "uagb-video-"+block_id
@@ -75,7 +75,7 @@ registerBlockType( "uagb/video", {
 				thumbanil_output = ( videoType == 'youtube' ) ? <VideoThumb attributes={props.attributes} setAttributes = "not_set" /> : <VideoThumb attributes={props.attributes} setAttributes = "not_set" />
 			}
 			
-			play_icon_output = ( source_type == 'icon' ) ? <VideoIcon attributes={props.attributes}/> : <VideoIconImage attributes={props.attributes}/>
+			play_icon_output = ( sourceType == 'icon' ) ? <VideoIcon attributes={props.attributes}/> : <VideoIconImage attributes={props.attributes}/>
 			
 			vimeo_output = <VimeoMeta attributes={props.attributes}/>
 		}

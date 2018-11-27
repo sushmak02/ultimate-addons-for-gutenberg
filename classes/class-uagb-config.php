@@ -384,7 +384,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'block_id'            => '',
 							'controlsColor'       => '#888888',
 							'overlayColor'        => '',
-							'source_type'         => 'icon',
+							'sourceType'          => 'icon',
 							'iconSize'            => 75,
 							'iconHover'           => '',
 							'iconColor'           => '#333',

@@ -122,8 +122,8 @@ class UAGBVideo extends Component {
 			videoType,
 			startTime,
 			endTime ,
-			youtubeUrl,
-			yotubeThumbnail,
+			youTubeUrl,
+			youTubeThumbnail,
 			vimeoUrl,
 			vimeoThumbnail,
 			vimeoTitle,
@@ -148,7 +148,7 @@ class UAGBVideo extends Component {
 			imageSize,
 			overlayColor,
 			opacity,
-			source_type,
+			sourceType,
 			icon,
 			iconSize,
 			iconColor,	
@@ -181,8 +181,8 @@ class UAGBVideo extends Component {
 				{ videoType == 'youtube' && <Fragment>				
 					<p className="components-base-control__label">{ __( "URL" ) }</p>
 					<URLInput
-						value={ youtubeUrl }
-						onChange= { ( value ) => setAttributes( { youtubeUrl: value } ) }
+						value={ youTubeUrl }
+						onChange= { ( value ) => setAttributes( { youTubeUrl: value } ) }
 					/>	
 					</Fragment>				
 				}
@@ -412,7 +412,7 @@ class UAGBVideo extends Component {
 				    />
 				</Fragment>
 				<RangeControl
-					label={ __( "opacity" ) }
+					label={ __( "Opacity" ) }
 					value={ opacity }
 					onChange={ ( value ) => setAttributes( { opacity: value } ) }
 					min={ 0 }
@@ -529,16 +529,16 @@ class UAGBVideo extends Component {
 					>	
 					<SelectControl
 					label={ __( "Select Source" ) }
-					value={ source_type }
-					onChange={ ( value ) => setAttributes( { source_type: value } ) }
+					value={ sourceType }
+					onChange={ ( value ) => setAttributes( { sourceType: value } ) }
 					options={ [
 						{ value: "icon", label: __( "Icon" ) },
 						{ value: "image", label: __( "Image" ) },
 					] }
 				/>
-				{ ( source_type && source_type == "icon" ) && iconControls }
+				{ ( sourceType && sourceType == "icon" ) && iconControls }
 
-				{ ( source_type && source_type == "image" ) && imageControls }
+				{ ( sourceType && sourceType == "image" ) && imageControls }
 				</PanelBody>
 			</Fragment>
 		)
@@ -570,7 +570,7 @@ class UAGBVideo extends Component {
 				thumbanil_output = ( videoType == 'youtube' ) ? <VideoThumb attributes={attributes} setAttributes = {setAttributes} /> : <VideoThumb attributes={attributes} setAttributes = {setAttributes} />
 			}
 			
-			play_icon_output = ( source_type == 'icon' ) ? <VideoIcon attributes={attributes}/> : <VideoIconImage attributes={attributes}/>
+			play_icon_output = ( sourceType == 'icon' ) ? <VideoIcon attributes={attributes}/> : <VideoIconImage attributes={attributes}/>
 		}
 
 		setAttributes( { videoSrc: VideoImgSrc(attributes) } )

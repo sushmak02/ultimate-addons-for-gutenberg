@@ -12,7 +12,7 @@ function VideoClasses( attributes ) {
 		sourceClass += "uagb-video__autoplay"+" "
 	}
 
-	sourceClass += "uagb-video__"+attributes.source_type+" "
+	sourceClass += "uagb-video__"+attributes.sourceType+" "
 
 	return [
 		sourceClass        

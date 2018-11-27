@@ -16,7 +16,7 @@ const attributes = {
 	endTime :{
 		type: "number",
 	},
-	youtubeUrl: {
+	youTubeUrl: {
 		type: "string",
 		default: "https://www.youtube.com/watch?v=HJRzUQMhJMQ",
 	},
@@ -24,7 +24,7 @@ const attributes = {
 		type: "string",
 		default: "https://vimeo.com/274860274",
 	},
-	yotubeThumbnail: {
+	youTubeThumbnail: {
 		type: "string",
 		default: "",
 	},
@@ -122,7 +122,7 @@ const attributes = {
 		type: "number",
 		default: 50,
 	},
-	source_type :{
+	sourceType :{
 		type: "string",
 		default: "icon",
 	},

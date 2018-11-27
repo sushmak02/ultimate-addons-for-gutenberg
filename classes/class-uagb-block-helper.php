@@ -1289,7 +1289,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				'color'  => $attr['controlsColor'],
 			);
 
-			if( 'icon' === $attr['source_type'] ){
+			if( 'icon' === $attr['sourceType'] ){
 				$selectors[" .uagb-video__play-icon"] = array(
 					"height" => $attr['iconSize']."px",
 					"width" => $attr['iconSize']."px",

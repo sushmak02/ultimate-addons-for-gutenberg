@@ -9,14 +9,14 @@ class VideoThumb extends React.Component {
         if( setAttributes !== 'not_set' ){
 	        if( 'youtube' == attributes.videoType ){
 
-		        var url = attributes.youtubeUrl
+		        var url = attributes.youTubeUrl
 				var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
 		 		var url_id = (url.match(p)) ? RegExp.$1 : false ;
 				
 				// Get image of respected Youtube video with Selected size.
 				video_img = "https://img.youtube.com/vi/"+url_id+"/"+attributes.thumbnailSize+".jpg"
 	            
-	            setAttributes( { yotubeThumbnail: video_img } )		
+	            setAttributes( { youTubeThumbnail: video_img } )		
 
 			}else{
 				var url  = attributes.vimeoUrl
@@ -39,7 +39,7 @@ class VideoThumb extends React.Component {
 				<img className = "uagb-video__thumb" src = {video_img} />		       			
 			)
 		}else{
-			video_img = attributes.yotubeThumbnail
+			video_img = attributes.youTubeThumbnail
 			if( 'vimeo' == attributes.videoType ){
 				video_img = attributes.vimeoThumbnail
 			}

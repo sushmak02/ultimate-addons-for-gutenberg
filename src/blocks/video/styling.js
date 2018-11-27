@@ -8,7 +8,7 @@ function VideoStyle( props ) {
 		block_id,
 		controlsColor,
 		overlayColor,	
-		source_type,
+		sourceType,
 		iconSize,
 		iconHover,
 		iconColor,
@@ -32,7 +32,7 @@ function VideoStyle( props ) {
 		"color": controlsColor,
 	}
 	// Icon css
-	if( source_type == 'icon' ){
+	if( sourceType == 'icon' ){
 		selectors[".uagb-video__play-icon"] = {
 			"height" : iconSize+"px",
 			"width" : iconSize+"px",
