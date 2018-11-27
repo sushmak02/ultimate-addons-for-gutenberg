@@ -1265,5 +1265,70 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			return $desktop . $r_desktop . $tablet . $mobile;
 		}
+
+		/**
+		 * Get Video Block CSS
+		 *
+		 * @since 1.0.2
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
+		public static function get_video_css( $attr, $id ) {
+			// @codingStandardsIgnoreStart
+
+			$defaults = UAGB_Helper::$block_list['uagb/video']['attributes'];
+
+			$attr = array_merge( $defaults, (array) $attr );
+
+			$selectors[" .uagb-video__vimeo-wrap a"] = array(
+				'color'  => $attr['controlsColor'],
+			);
+
+			$selectors[" .uagb-video__vimeo-wrap"] = array(
+				'color'  => $attr['controlsColor'],
+			);
+
+			if( 'icon' === $attr['source_type'] ){
+				$selectors[" .uagb-video__play-icon"] = array(
+					"height" => $attr['iconSize']."px",
+					"width" => $attr['iconSize']."px",
+					"color" => $attr['iconColor'],
+					"line-height" => $attr['iconSize']."px",
+				);
+
+				$selectors[" .uagb-video__play-icon:before"] = array(
+					"font-size" => $attr['iconSize']."px",
+					"line-height" => $attr['iconSize'] . "px",
+				);
+
+				$selectors[" .uagb-video__content-wrap:hover .uagb-video__play-icon"] = array(
+					"color" => $attr['iconHover'],
+				);
+
+			}else{
+
+				$selectors[" .uagb-video__play-icon img"]= array(
+					"max-width" => $attr['iconImageWidth']."px",
+					"width" => $attr['iconImageWidth']."px",
+					"border-radius"=> $attr['iconimgBorderRadius']."%"
+				);
+				$selectors[" .uagb-video__play-icon"]= array(
+					"height" => $attr['iconImageWidth']."px",
+					"width" => $attr['iconImageWidth']."px",
+				);
+
+			}
+
+			$selectors[" .uagb-video__content-wrap:before"] = array(
+				"background-color"  => $attr['overlayColor'],
+				"opacity" => ( $attr['opacity'] != "" ) ? ( 100 - $attr['opacity'] )/100 : 0.5
+			);
+
+			// @codingStandardsIgnoreEnd
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-video-' . $id );
+			return $desktop;
+
+		}
 	}
 }

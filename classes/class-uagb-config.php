@@ -375,6 +375,24 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'arrowColor'           => '#333',
 						),
 					),
+					'uagb/video'            => array(
+						'slug'        => '',
+						'title'       => __( 'Video', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block lets you add beautiful youTube and Vimeo video.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+						'attributes'  => array(
+							'block_id'            => '',
+							'controlsColor'       => '#888888',
+							'overlayColor'        => '',
+							'source_type'         => 'icon',
+							'iconSize'            => 75,
+							'iconHover'           => '',
+							'iconColor'           => '#333',
+							'iconImageWidth'      => 75,
+							'iconimgBorderRadius' => 100,
+							'opacity'             => 50,
+						),
+					),
 				);
 			}
 			return self::$block_attributes;
