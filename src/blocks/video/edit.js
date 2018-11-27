@@ -352,22 +352,26 @@ class UAGBVideo extends Component {
 						title={ __( "Thumbnail & Overlay" ) }
 						initialOpen={ false }
 					>			
-				{ videoType == 'youtube' && <SelectControl
-					label={ __( "Thumbnail Size" ) }
-					value={ thumbnailSize }
-					onChange={ ( value ) => setAttributes( { thumbnailSize: value } ) }
-					options={ [
-						{ value: "maxresdefault", label: __( "Maximum Resolution" ) },
-						{ value: "hqdefault", label: __( "High Quality" ) },
-						{ value: "mqdefault", label: __( "Medium Quality" ) },
-						{ value: "sddefault", label: __( "Standard Quality" ) },						
-					] }
-				/>}
+				
 				<ToggleControl
 					label={ __( "Custom Thumbnail" ) }
 					checked={ customThumbnail }
 					onChange={ ( value ) => setAttributes( { customThumbnail: ! customThumbnail } ) }
-				/>		
+				/>	
+
+				{ (!customThumbnail && videoType == 'youtube') && <SelectControl
+						label={ __( "Thumbnail Size" ) }
+						value={ thumbnailSize }
+						onChange={ ( value ) => setAttributes( { thumbnailSize: value } ) }
+						options={ [
+							{ value: "maxresdefault", label: __( "Maximum Resolution" ) },
+							{ value: "hqdefault", label: __( "High Quality" ) },
+							{ value: "mqdefault", label: __( "Medium Quality" ) },
+							{ value: "sddefault", label: __( "Standard Quality" ) },						
+						] }
+					/>
+				}	
+
 				{ customThumbnail && <BaseControl
 					className="editor-bg-image-control"
 					label={ __( "Image" ) }
@@ -391,7 +395,7 @@ class UAGBVideo extends Component {
 				</BaseControl>	
 				}
 
-				{ ( custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
+				{ ( customThumbnail && custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
 					<Fragment>
 						<SelectControl
 							label={ __( "Image Size" ) }
