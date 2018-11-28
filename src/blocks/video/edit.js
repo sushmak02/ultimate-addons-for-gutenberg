@@ -210,7 +210,7 @@ class UAGBVideo extends Component {
 						value={ YouTubeUrl }
 						onChange= { ( value ) => { 
 							setAttributes( { YouTubeUrl: value } ) 
-							this.getVideoID
+							//this.getVideoID
 						}}
 					/>	
 					</Fragment>				
@@ -220,7 +220,7 @@ class UAGBVideo extends Component {
 					<URLInput
 						value={ vimeoUrl }
 						onChange= { ( value ) => { 
-							this.getVideoID
+							//this.getVideoID
 							setAttributes( { vimeoUrl: value } ) 
 						} }
 					/>	

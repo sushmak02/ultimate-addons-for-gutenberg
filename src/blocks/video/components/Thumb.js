@@ -8,13 +8,21 @@ class Thumb extends React.Component {
 
         if( setAttributes !== 'not_set' ){
 	        if( 'youtube' == attributes.videoType ){
-		 		var url_id = attributes.YouTubeId				
-				video_img = "https://img.youtube.com/vi/"+url_id+"/"+attributes.thumbnailSize+".jpg"
-	            setAttributes( { YouTubeThumbnail: video_img } )
-			}else{
+
+		        var url = attributes.YouTubeUrl
+				var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+		 		var url_id = (url.match(p)) ? RegExp.$1 : false ;
 				
-				var vimeoVideoID = attributes.vimeoId
-				if (vimeoVideoID) {
+				// Get image of respected Youtube video with Selected size.
+				video_img = "https://img.youtube.com/vi/"+url_id+"/"+attributes.thumbnailSize+".jpg"
+	            
+	            setAttributes( { youTubeThumbnail: video_img } )		
+
+			}else{
+				var url  = attributes.vimeoUrl
+				var match = /vimeo.*\/(\d+)/i.exec(url)
+				if (match) {
+	                var vimeoVideoID = match[1]    
 	                            
 	                $.getJSON('http://www.vimeo.com/api/v2/video/' + vimeoVideoID + '.json?callback=?', { format: "json" }, function (data) {
 	                    video_img = data[0].thumbnail_large;    
@@ -31,7 +39,7 @@ class Thumb extends React.Component {
 				<img className = "uagb-video__thumb" src = {video_img} />		       			
 			)
 		}else{
-			video_img = attributes.YouTubeThumbnail
+			video_img = attributes.youTubeThumbnail
 			if( 'vimeo' == attributes.videoType ){
 				video_img = attributes.vimeoThumbnail
 			}
