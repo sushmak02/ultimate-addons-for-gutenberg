@@ -652,9 +652,14 @@ class UAGBVideo extends Component {
 
 	uagbPlayVideo(selector, src){
 		selector.find(".uagb-video__vimeo-wrap").hide()
-		selector.find(".uagb-video__iframe").remove()
-		var iframe_html = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>'
-		selector.find(".uagb-video__play").append( iframe_html )
+		var frame_length = selector.find(".uagb-video__iframe").length
+
+		if( frame_length == 0 ){
+			var iframe_code = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>';
+			selector.find(".uagb-video__play").append(iframe_code);
+		}else{
+			selector.find(".uagb-video__iframe").attr("src", src)
+		}	
 	}	
 }
 
