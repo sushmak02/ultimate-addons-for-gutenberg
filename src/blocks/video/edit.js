@@ -614,7 +614,6 @@ class UAGBVideo extends Component {
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-video-style-" + id )
 		document.head.appendChild( $style )
-		//window.addEventListener("load", this.videoIframeContent(id))
 	}
 
 	componentDidUpdate(){

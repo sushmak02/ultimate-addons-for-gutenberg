@@ -75,7 +75,7 @@ registerBlockType( "uagb/video", {
 				thumbanil_output = <Thumb attributes={props.attributes} setAttributes = "not_set" />
 			}
 			
-			play_icon_output = ( sourceType == 'icon' ) ? <VideoIcon attributes={props.attributes}/> : <IconImage attributes={props.attributes}/>
+			play_icon_output = ( sourceType == 'icon' ) ? <Icon attributes={props.attributes}/> : <IconImage attributes={props.attributes}/>
 			
 			vimeo_output = <VimeoMeta attributes={props.attributes}/>
 		}

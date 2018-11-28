@@ -30,12 +30,19 @@
 	}
 
 	function uagbPlayVideo( element ){
+
 		var src = element.find(".uagb-video__play").data('src'),
-			src = src.replace("autoplay=0", "autoplay=1"),
-			iframe_code = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>';
-			element.find(".uagb-video__iframe").remove();
-			element.find(".uagb-video__play").append(iframe_code);
+			src = src.replace("autoplay=0", "autoplay=1"),	
+			frame_length = element.find(".uagb-video__iframe").length;		
+
 			element.find(".uagb-video__vimeo-wrap").hide();
+			
+		if( frame_length == 0 ){
+			iframe_code = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>';
+			element.find(".uagb-video__play").append(iframe_code);
+		}else{
+			element.find(".uagb-video__iframe").attr("src", src)
+		}			
 	}
 
 } )( jQuery )
