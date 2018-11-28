@@ -15,7 +15,6 @@ import IconImage from "./components/IconImage"
 import Thumb from "./components/Thumb"
 import VimeoMeta from "./components/VimeoMeta"
 import CustomImage from "./components/CustomImage"
-import VideoClasses from "./classes"
 import VideoImgSrc from "./VideoImgSrc"
 
 const { __ } = wp.i18n
@@ -60,6 +59,7 @@ registerBlockType( "uagb/video", {
 			autoplay,
 			customThumbnail,
 			sourceType,
+			aspectRatio,
 		} = props.attributes
 
 		const my_block_id = "uagb-video-"+block_id
@@ -89,9 +89,11 @@ registerBlockType( "uagb/video", {
 					id = { my_block_id }
 					>	
 					<div className = { classnames(					
-						"uagb-video__content-wrap",
-						...VideoClasses(props.attributes),
-					) }	>	
+						'uagb-video__content-wrap',
+						`uagb-video__aspect-ratio-${ aspectRatio }`,
+						`uagb-video__${ sourceType }`,
+						{ 'uagb-video__autoplay' : autoplay },
+					) }	>		
 						{ vimeo_output }		
 					   <div className = "uagb-video__play" data-src = { VideoImgSrc(props.attributes)} >
 					      { thumbanil_output }	

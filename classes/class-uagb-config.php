@@ -378,7 +378,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 					'uagb/video'            => array(
 						'slug'        => '',
 						'title'       => __( 'Video', 'ultimate-addons-for-gutenberg' ),
-						'description' => __( 'This block lets you add beautiful youTube and Vimeo video.', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block lets you add beautiful YouTube and Vimeo video.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
 						'attributes'  => array(
 							'block_id'            => '',

@@ -16,7 +16,7 @@ const attributes = {
 	endTime :{
 		type: "number",
 	},
-	youTubeUrl: {
+	YouTubeUrl: {
 		type: "string",
 		default: "https://www.youtube.com/watch?v=HJRzUQMhJMQ",
 	},
@@ -24,13 +24,21 @@ const attributes = {
 		type: "string",
 		default: "https://vimeo.com/274860274",
 	},
-	youTubeThumbnail: {
+	YouTubeThumbnail: {
 		type: "string",
 		default: "",
 	},
 	vimeoThumbnail: {
 		type: "string",
 		default: "",
+	},
+	YouTubeId: {
+		type: "string",
+		default: "HJRzUQMhJMQ",
+	},
+	vimeoId: {
+		type: "string",
+		default: "274860274",
 	},
 	vimeoTitle: {
 		type: "string",
@@ -94,7 +102,7 @@ const attributes = {
 	},
 	controlsColor: {
 		type: "string",
-		default: "#888888"
+		default: "#fff"
 	},
 	thumbnailSize: {
 		type: "string",

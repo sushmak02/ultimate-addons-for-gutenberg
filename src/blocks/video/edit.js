@@ -11,7 +11,6 @@ import Thumb from "./components/Thumb"
 import VimeoMeta from "./components/VimeoMeta"
 import CustomImage from "./components/CustomImage"
 
-import VideoClasses from "./classes"
 import VideoImgSrc from "./VideoImgSrc"
 import VideoStyle from "./styling"
 
@@ -46,6 +45,7 @@ class UAGBVideo extends Component {
 		this.onSelectImage     = this.onSelectImage.bind( this )
 		this.onRemoveImage     = this.onRemoveImage.bind( this )
 		this.getVideoIcon      = this.getVideoIcon.bind(this)
+		this.getVideoID        = this.getVideoID.bind(this)
 	}
 
 	/*
@@ -112,9 +112,35 @@ class UAGBVideo extends Component {
 		this.props.setAttributes( { icon: value } )
 	}
 
+	getVideoID(){
+
+		const { setAttributes } = this.props
+		const { 
+			YouTubeId,
+			vimeoId,
+			videoType,
+			YouTubeUrl,
+			vimeoUrl
+		} = this.props.attributes
+
+		if( 'youtube' == videoType ){
+		    var url = YouTubeUrl
+			var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+			var url_id = (url.match(p)) ? RegExp.$1 : false ;	
+			this.props.setAttributes( { YouTubeId: url_id } )	
+		}else{
+			var url  = vimeoUrl
+			var match = /vimeo.*\/(\d+)/i.exec(url)
+			if (match) {
+		        var url_id = match[1]    
+		        this.props.setAttributes( { vimeoId: url_id } )		      
+		    }
+		}
+	}
+
 	render() {
 		
-		const { isSelected, className, setAttributes, attributes, mergeBlocks, insertBlocksAfter, onReplace } = this.props
+		const { isSelected, className, setAttributes, attributes } = this.props
 
 		// Setup the attributes.
 		const {
@@ -122,8 +148,8 @@ class UAGBVideo extends Component {
 			videoType,
 			startTime,
 			endTime ,
-			youTubeUrl,
-			youTubeThumbnail,
+			YouTubeUrl,
+			YouTubeThumbnail,
 			vimeoUrl,
 			vimeoThumbnail,
 			vimeoTitle,
@@ -174,15 +200,18 @@ class UAGBVideo extends Component {
 					value={ videoType }
 					onChange={ ( value ) => setAttributes( { videoType: value } ) }
 					options={ [
-						{ value: "youtube", label: __( "youTube" ) },
+						{ value: "youtube", label: __( "YouTube" ) },
 						{ value: "vimeo", label: __( "Vimeo" ) },
 					] }
 				/>
 				{ videoType == 'youtube' && <Fragment>				
 					<p className="components-base-control__label">{ __( "URL" ) }</p>
 					<URLInput
-						value={ youTubeUrl }
-						onChange= { ( value ) => setAttributes( { youTubeUrl: value } ) }
+						value={ YouTubeUrl }
+						onChange= { ( value ) => { 
+							setAttributes( { YouTubeUrl: value } ) 
+							this.getVideoID
+						}}
 					/>	
 					</Fragment>				
 				}
@@ -190,7 +219,10 @@ class UAGBVideo extends Component {
 					<p className="components-base-control__label">{ __( "URL" ) }</p>
 					<URLInput
 						value={ vimeoUrl }
-						onChange= { ( value ) => setAttributes( { vimeoUrl: value } ) }
+						onChange= { ( value ) => { 
+							this.getVideoID
+							setAttributes( { vimeoUrl: value } ) 
+						} }
 					/>	
 					</Fragment>					
 				}
@@ -328,21 +360,21 @@ class UAGBVideo extends Component {
 			{ value: "full", label: __( "Large" ) }
 		]
 
-		let image_name = "Select Image"
+		let image_name = __( "Select Image" )
 		if(custThumbImage){
 			if( custThumbImage.url == null || custThumbImage.url == "" ){
-				image_name = "Select Image"
+				image_name = __( "Select Image" )
 			}else{
-				image_name = "Replace Image"
+				image_name =  __( "Replace Image" )
 			}
 		}
 
-		let icon_image_name = "Select Image"
+		let icon_image_name =  __( "Select Image" )
 		if(iconImage){
 			if( iconImage.url == null || iconImage.url == "" ){
-				icon_image_name = "Select Image"
+				icon_image_name =  __( "Select Image" )
 			}else{
-				icon_image_name = "Replace Image"
+				icon_image_name =  __( "Replace Image" )
 			}
 		}
 
@@ -591,8 +623,10 @@ class UAGBVideo extends Component {
 				id = { my_block_id }
 				>	
 				<div className = { classnames(					
-					"uagb-video__content-wrap",
-					...VideoClasses(attributes),
+					'uagb-video__content-wrap',
+					`uagb-video__aspect-ratio-${ aspectRatio }`,
+					`uagb-video__${ sourceType }`,
+					{ 'uagb-video__autoplay' : autoplay },
 				) }	>	
 					{ vimeo_output }		
 				   <div className = "uagb-video__play" data-src = { VideoImgSrc(attributes)} >
