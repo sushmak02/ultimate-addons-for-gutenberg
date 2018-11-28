@@ -45,7 +45,7 @@ const attributes = {
 		default: "",
 	},
 	aspectRatio: {
-		type: "number",
+		type: "string",
 		default: "16_9",
 	},
 	autoplay: {
