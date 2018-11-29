@@ -382,7 +382,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'default'     => true,
 						'attributes'  => array(
 							'block_id'            => '',
-							'controlsColor'       => '#888888',
+							'controlsColor'       => '#fff',
 							'overlayColor'        => '',
 							'sourceType'          => 'icon',
 							'iconSize'            => 75,

@@ -689,7 +689,11 @@ class UAGBVideo extends Component {
 		var frame_length = selector.find(".uagb-video__iframe").length
 
 		if( frame_length == 0 ){
-			var iframe_code = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>';
+			if( src == ''){
+
+			}else{				
+				var iframe_code = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>';
+			}
 			selector.find(".uagb-video__play").append(iframe_code);
 		}else{
 			selector.find(".uagb-video__iframe").attr("src", src)

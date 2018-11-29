@@ -22,16 +22,17 @@ class Thumb extends React.Component {
 				var url  = attributes.vimeoUrl
 				var match = /vimeo.*\/(\d+)/i.exec(url)
 				if (match) {
-	                var vimeoVideoID = match[1]    
-	                            
+	                var vimeoVideoID = match[1]  
+	               	
 	                $.getJSON('http://www.vimeo.com/api/v2/video/' + vimeoVideoID + '.json?callback=?', { format: "json" }, function (data) {
-	                    video_img = data[0].thumbnail_large;    
+	                    video_img = data[0].thumbnail_large; 
 	                    setAttributes( { vimeoThumbnail: video_img } )	
 	                    setAttributes( { vimeoTitle: data[0].title } )	
 	                    setAttributes( { vimeoUserName: data[0].user_name } )
 	                    setAttributes( { vimeoUserImg: data[0].user_portrait_huge } )
-	                });
-	            }
+	                })	
+	            }	  
+	                      
 	            video_img = attributes.vimeoThumbnail
 			}
 			
