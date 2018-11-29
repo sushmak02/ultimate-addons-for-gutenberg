@@ -23,7 +23,11 @@
 						el.find(".uagb-video__play-icon").hide();
 						uagbPlayVideo( element);						
 					});
-			}else{				
+
+					if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) { 
+						uagbPlayVideo( element);
+					}
+			}else{							
 				uagbPlayVideo( element);
 			}
 		})		
@@ -36,7 +40,7 @@
 			element.find(".uagb-video__vimeo-wrap").hide();
 		if( frame_length == 0 ){
 			iframe_code = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>';
-			element.find(".uagb-video__play").append(iframe_code);
+			element.find(".uagb-video__play").html(iframe_code);
 		}else{
 			element.find(".uagb-video__iframe").attr("src", src)
 		}			
