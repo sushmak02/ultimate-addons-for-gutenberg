@@ -24,7 +24,7 @@
 						uagbPlayVideo( element);						
 					});
 
-					if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) { 
+					if (navigator.userAgent.match(/(iPod|iPhone)/)) { 
 						uagbPlayVideo( element);
 					}
 			}else{							
