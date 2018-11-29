@@ -31,7 +31,7 @@ class Thumb extends React.Component {
 				<img className = "uagb-video__thumb" src = {video_img} />		       			
 			)
 		}else{
-			video_img = attributes.youTubeThumbnail
+			video_img = attributes.YouTubeThumbnail
 			if( 'vimeo' == attributes.videoType ){
 				video_img = attributes.vimeoThumbnail
 			}
