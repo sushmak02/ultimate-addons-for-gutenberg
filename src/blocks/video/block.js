@@ -9,13 +9,12 @@ import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 import edit from "./edit"
 import attributes from "./attributes"
 import "./style.scss"
-
+import VideoId from "./VideoId"
 import Icon from "./components/Icon"
 import IconImage from "./components/IconImage"
 import Thumb from "./components/Thumb"
 import VimeoMeta from "./components/VimeoMeta"
 import CustomImage from "./components/CustomImage"
-import VideoImgSrc from "./VideoImgSrc"
 
 const { __ } = wp.i18n
 
@@ -60,26 +59,28 @@ registerBlockType( "uagb/video", {
 			customThumbnail,
 			sourceType,
 			aspectRatio,
+			videoSrc,
 		} = props.attributes
 
 		const my_block_id = "uagb-video-"+block_id
 		var thumbanil_output = ''
 		var play_icon_output = ''
 		var vimeo_output     = ''
+		var v_id = VideoId(props.attributes)
 
 		if( !autoplay ){
 
 			if( customThumbnail ){
 				thumbanil_output = <CustomImage attributes={props.attributes}/>
 			}else{
-				thumbanil_output = <Thumb attributes={props.attributes} setAttributes = "not_set" />
+				thumbanil_output = <Thumb attributes={props.attributes} setAttributes = "not_set" id ="not_set" />
 			}
 			
 			play_icon_output = ( sourceType == 'icon' ) ? <Icon attributes={props.attributes}/> : <IconImage attributes={props.attributes}/>
 			
 			vimeo_output = <VimeoMeta attributes={props.attributes}/>
-		}
-	
+		}	
+
 		return (
 			<Fragment>
 				<div className={ classnames(
@@ -95,7 +96,7 @@ registerBlockType( "uagb/video", {
 						{ 'uagb-video__autoplay' : autoplay },
 					) }	>		
 						{ vimeo_output }		
-					   <div className = "uagb-video__play" data-src = { VideoImgSrc(props.attributes)} >
+					   <div className = "uagb-video__play" data-src = { videoSrc } >
 					      { thumbanil_output }	
 					      { play_icon_output }		      
 					    </div>

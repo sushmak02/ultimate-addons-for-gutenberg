@@ -5,12 +5,12 @@ import classnames from "classnames"
 import UAGBIcon from "../../../dist/blocks/uagb-controls/UAGBIcon"
 import FontIconPicker from "@fonticonpicker/react-fonticonpicker"
 
+import VideoId from "./VideoId"
 import Icon from "./components/Icon"
 import IconImage from "./components/IconImage"
 import Thumb from "./components/Thumb"
 import VimeoMeta from "./components/VimeoMeta"
 import CustomImage from "./components/CustomImage"
-
 import VideoImgSrc from "./VideoImgSrc"
 import VideoStyle from "./styling"
 
@@ -45,7 +45,6 @@ class UAGBVideo extends Component {
 		this.onSelectImage     = this.onSelectImage.bind( this )
 		this.onRemoveImage     = this.onRemoveImage.bind( this )
 		this.getVideoIcon      = this.getVideoIcon.bind(this)
-		this.getVideoID        = this.getVideoID.bind(this)
 	}
 
 	/*
@@ -112,32 +111,6 @@ class UAGBVideo extends Component {
 		this.props.setAttributes( { icon: value } )
 	}
 
-	getVideoID(){
-
-		const { setAttributes } = this.props
-		const { 
-			YouTubeId,
-			vimeoId,
-			videoType,
-			YouTubeUrl,
-			vimeoUrl
-		} = this.props.attributes
-
-		if( 'youtube' == videoType ){
-		    var url = YouTubeUrl
-			var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-			var url_id = (url.match(p)) ? RegExp.$1 : false ;	
-			this.props.setAttributes( { YouTubeId: url_id } )	
-		}else{
-			var url  = vimeoUrl
-			var match = /vimeo.*\/(\d+)/i.exec(url)
-			if (match) {
-		        var url_id = match[1]    
-		        this.props.setAttributes( { vimeoId: url_id } )		      
-		    }
-		}
-	}
-
 	render() {
 		
 		const { isSelected, className, setAttributes, attributes } = this.props
@@ -183,8 +156,8 @@ class UAGBVideo extends Component {
 			iconImageSize,
 			iconImageWidth,
 			iconimgBorderRadius,
-			videoSrc		
-		} = attributes
+			videoSrc,
+  		} = attributes
 
 		// Add CSS.
 		var element = document.getElementById( "uagb-video-style-" + this.props.clientId )
@@ -208,10 +181,7 @@ class UAGBVideo extends Component {
 					<p className="components-base-control__label">{ __( "URL" ) }</p>
 					<URLInput
 						value={ YouTubeUrl }
-						onChange= { ( value ) => { 
-							setAttributes( { YouTubeUrl: value } ) 
-							//this.getVideoID
-						}}
+						onChange= { ( value ) => setAttributes( { YouTubeUrl: value } ) }
 					/>	
 					</Fragment>				
 				}
@@ -219,10 +189,7 @@ class UAGBVideo extends Component {
 					<p className="components-base-control__label">{ __( "URL" ) }</p>
 					<URLInput
 						value={ vimeoUrl }
-						onChange= { ( value ) => { 
-							//this.getVideoID
-							setAttributes( { vimeoUrl: value } ) 
-						} }
+						onChange= { ( value ) => setAttributes( { vimeoUrl: value } ) } 
 					/>	
 					</Fragment>					
 				}
@@ -597,19 +564,22 @@ class UAGBVideo extends Component {
 
 		var thumbanil_output = ''
 		var play_icon_output = ''
-		
+		var v_id = VideoId(attributes)
+
 		if( !autoplay ){
 
 			if( customThumbnail ){
 				thumbanil_output = <CustomImage attributes={attributes}/>
 			}else{
-				thumbanil_output = <Thumb attributes={attributes} setAttributes = {setAttributes} />
+				thumbanil_output = <Thumb attributes={attributes} setAttributes = {setAttributes} id ={ v_id }/>
 			}
 			
 			play_icon_output = ( sourceType == 'icon' ) ? <Icon attributes={attributes}/> : <IconImage attributes={attributes}/>
 		}
 
-		setAttributes( { videoSrc: VideoImgSrc(attributes) } )
+		var img_url = VideoImgSrc( attributes, v_id )
+
+		setAttributes( { videoSrc: img_url } )
 
 		var vimeo_output = <VimeoMeta attributes={attributes}/>
 
@@ -629,7 +599,7 @@ class UAGBVideo extends Component {
 					{ 'uagb-video__autoplay' : autoplay },
 				) }	>	
 					{ vimeo_output }		
-				   <div className = "uagb-video__play" data-src = { VideoImgSrc(attributes)} >
+				   <div className = "uagb-video__play" data-src = { img_url } >
 				    { thumbanil_output }	
 				    { play_icon_output }		      
 				    </div>

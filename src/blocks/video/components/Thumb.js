@@ -2,29 +2,20 @@ class Thumb extends React.Component {
 
 	render() {
 
-		const { attributes, setAttributes } = this.props     
-        
+		const { attributes, setAttributes, id } = this.props     
         var video_img = ''
-
-        if( setAttributes !== 'not_set' ){
-	        if( 'youtube' == attributes.videoType ){
-
-		        var url = attributes.YouTubeUrl
-				var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-		 		var url_id = (url.match(p)) ? RegExp.$1 : false ;
-				
+        if( setAttributes !== 'not_set' && id !=='not_set' ){
+	        if( 'youtube' == attributes.videoType ){		      			
 				// Get image of respected Youtube video with Selected size.
-				video_img = "https://img.youtube.com/vi/"+url_id+"/"+attributes.thumbnailSize+".jpg"
+				video_img = "https://img.youtube.com/vi/"+id+"/"+attributes.thumbnailSize+".jpg"
 	            
-	            setAttributes( { youTubeThumbnail: video_img } )		
+	            setAttributes( { YouTubeThumbnail: video_img } )		
 
 			}else{
-				var url  = attributes.vimeoUrl
-				var match = /vimeo.*\/(\d+)/i.exec(url)
-				if (match) {
-	                var vimeoVideoID = match[1]  
+
+				if (id) {
 	               	
-	                $.getJSON('http://www.vimeo.com/api/v2/video/' + vimeoVideoID + '.json?callback=?', { format: "json" }, function (data) {
+	                $.getJSON('http://www.vimeo.com/api/v2/video/' + id + '.json?callback=?', { format: "json" }, function (data) {
 	                    video_img = data[0].thumbnail_large; 
 	                    setAttributes( { vimeoThumbnail: video_img } )	
 	                    setAttributes( { vimeoTitle: data[0].title } )	

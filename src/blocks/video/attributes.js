@@ -32,14 +32,6 @@ const attributes = {
 		type: "string",
 		default: "",
 	},
-	YouTubeId: {
-		type: "string",
-		default: "HJRzUQMhJMQ",
-	},
-	vimeoId: {
-		type: "string",
-		default: "274860274",
-	},
 	vimeoTitle: {
 		type: "string",
 		default: "",
@@ -174,8 +166,8 @@ const attributes = {
 		default : 100
 	},
 	videoSrc: {
-		type: "number",
-		default : 0
+		type: "string",
+		default : ""
 	},
 }
 export default attributes
