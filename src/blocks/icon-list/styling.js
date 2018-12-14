@@ -9,7 +9,9 @@ function styling( props ) {
 		icon_layout,
 		size,
 		fontSize,
-		stack
+		stack,
+		bgSize,
+		borderRadius
 	} = props.attributes
 
 	var selectors = {}
@@ -38,19 +40,32 @@ function styling( props ) {
 		selectors[" .uagb-icon-list-repeater-" + index + ":hover .uagb-icon-list__label"] = {
 			"color" : icon.label_hover_color
 		}
+
+		selectors[" .uagb-icon-list-repeater-" + index + " .uagb-icon-list__source-wrap"] = {
+			"background" : icon.icon_bg_color
+		}
+
+		selectors[" .uagb-icon-list-repeater-" + index + ":hover .uagb-icon-list__source-wrap"] = {
+			"background" : icon.icon_bg_hover_color
+		}
 	})
 
 	if ( "right" == align ) {
-		selectors[" .uagb-icon-list__source-wrap"] = {
+		selectors[":not(.uagb-icon-list__no-label) .uagb-icon-list__source-wrap"] = {
 			"margin-left" : inner_gap + "px"
 		}
 		selectors[" .uagb-icon-list__content-wrap"] = {
 			"flex-direction" : "row-reverse"
 		}
 	} else {
-		selectors[" .uagb-icon-list__source-wrap"] = {
+		selectors[":not(.uagb-icon-list__no-label) .uagb-icon-list__source-wrap"] = {
 			"margin-right" : inner_gap + "px"
 		}
+	}
+
+	selectors[" .uagb-icon-list__source-wrap"] = {
+		"padding": bgSize + "px",
+		"border-radius": borderRadius + "px"
 	}
 
 
@@ -95,6 +110,10 @@ function styling( props ) {
 		"width": size + "px",
 		"height": size + "px",
 		"font-size": size + "px"
+	}
+
+	selectors[" .uagb-icon-list__label-wrap"] = {
+		"text-align": align
 	}
 
 	var alignment = ( align == "left" ) ? "flex-start" : ( ( align == "right" ) ? "flex-end" : "center" )

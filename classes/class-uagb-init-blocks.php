@@ -82,10 +82,19 @@ class UAGB_Init_Blocks {
 			UAGB_VER
 		);
 
+		// Scripts.
+		wp_enqueue_script(
+			'uagb-masonry', // Handle.
+			UAGB_URL . 'assets/js/isotope.min.js',
+			array( 'jquery' ), // Dependencies, defined above.
+			UAGB_VER,
+			false // Enqueue the script in the footer.
+		);
+
 		// Font Awsome.
 		wp_enqueue_style(
 			'uagb-fontawesome-css', // Handle.
-			'https://use.fontawesome.com/releases/v5.0.9/css/all.css', // Block style CSS.
+			'https://use.fontawesome.com/releases/v5.6.0/css/all.css', // Block style CSS.
 			UAGB_VER
 		);
 
