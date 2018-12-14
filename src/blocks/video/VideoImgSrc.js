@@ -19,7 +19,7 @@ function VideoImgSrc( attributes, id ) {
 				privacy = "-nocookie"
 			}
 
-			video_url = "https://www.youtube"+privacy+".com/embed/"+url_id+"?rel="+Number(attributes.videoSuggest)+"&start"+start_time+"&end"+end_time+"&controls="+Number(attributes.playerControl)+"&showinfo="+Number(attributes.playerTitleAction)+"&mute="+Number(attributes.videoMute)+"&modestbranding="+Number(attributes.modestBranding)+"&autoplay="+Number(attributes.autoplay)
+			video_url = "https://www.youtube"+privacy+".com/embed/"+url_id+"?rel="+Number(attributes.videoSuggest)+"&start"+start_time+"&end"+end_time+"&controls="+Number(attributes.playerControl)+"&showinfo=1&mute="+Number(attributes.videoMute)+"&modestbranding="+Number(attributes.modestBranding)+"&autoplay="+Number(attributes.autoplay)
 
 		}else{
 			if (url_id) {

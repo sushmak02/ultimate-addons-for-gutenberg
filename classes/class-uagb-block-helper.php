@@ -1685,8 +1685,8 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			return $desktop;
 		}
 
-		 /*
-		  Get Post Grid Block CSS
+		/**
+		 * Get Post Grid Block CSS
 		 *
 		 * @since 1.4.0
 		 * @param array  $attr The block attributes.

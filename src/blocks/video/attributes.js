@@ -59,11 +59,7 @@ const attributes = {
 	playerControl: {
 		type: "boolean",
 		default: true,
-	},
-	playerTitleAction: {
-		type: "boolean",
-		default: true,
-	},
+	},	
 	videoMute: {
 		type: "boolean",
 		default: false,

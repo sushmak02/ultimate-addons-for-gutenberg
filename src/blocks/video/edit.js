@@ -132,7 +132,6 @@ class UAGBVideo extends Component {
 			autoplay,
 			videoSuggest,
 			playerControl,
-			playerTitleAction,
 			videoMute,
 			modestBranding,
 			privacyMode,
@@ -247,12 +246,7 @@ class UAGBVideo extends Component {
 					label={ __( "Player Control" ) }
 					checked={ playerControl }
 					onChange={ ( value ) => setAttributes( { playerControl: ! playerControl } ) }
-				/>
-				<ToggleControl
-					label={ __( "Player Title & Actions" ) }
-					checked={ playerTitleAction }
-					onChange={ ( value ) => setAttributes( { playerTitleAction: ! playerTitleAction } ) }
-				/>
+				/>				
 				<ToggleControl
 					label={ __( "Mute" ) }
 					checked={ videoMute }
@@ -269,6 +263,7 @@ class UAGBVideo extends Component {
 					label={ __( "Privacy Mode" ) }
 					checked={ privacyMode }
 					onChange={ ( value ) => setAttributes( { privacyMode: ! privacyMode } ) }
+					help={ __( "Note: When you turn on privacy mode, YouTube won't store information about visitors on your website unless they play the video." ) }
 				/>
 				</PanelBody>
 			</Fragment>
