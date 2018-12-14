@@ -628,7 +628,7 @@ class UAGBVideo extends Component {
 
 	componentDidUpdate(){
 		var id = this.props.clientId
-		window.addEventListener("load", this.videoIframeContent(id))		
+		window.addEventListener("load", this.videoIframeContent(id))				
 	}
 
 	videoIframeContent( id ){

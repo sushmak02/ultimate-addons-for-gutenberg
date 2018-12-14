@@ -21,12 +21,11 @@ class Thumb extends React.Component {
 	                    setAttributes( { vimeoTitle: data[0].title } )	
 	                    setAttributes( { vimeoUserName: data[0].user_name } )
 	                    setAttributes( { vimeoUserImg: data[0].user_portrait_huge } )
-	                })	
-	            }	  
-	                      
-	            video_img = attributes.vimeoThumbnail
+	                })	              
+
+	                video_img = attributes.vimeoThumbnail
+	            }	
 			}
-			
 			return (
 				<img className = "uagb-video__thumb" src = {video_img} />		       			
 			)
