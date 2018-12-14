@@ -182,3 +182,12 @@
     line-height: normal;
     letter-spacing: normal;
 }
+.uagb-no-content {
+    display: block;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    transform: translate(50%, -50%);
+    color: #fff;
+}

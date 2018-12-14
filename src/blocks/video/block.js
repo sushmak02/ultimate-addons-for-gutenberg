@@ -81,6 +81,20 @@ registerBlockType( "uagb/video", {
 			vimeo_output = <VimeoMeta attributes={props.attributes}/>
 		}	
 
+		var video_desc = ''
+		if( !v_id ){
+			video_desc =<div className = "uagb-no-content">
+						{  __("We are sorry, We could not embed this video") }
+						</div>
+		}else{
+			video_desc = <Fragment>
+							{ vimeo_output }		
+							    <div className = "uagb-video__play" data-src = { videoSrc } >
+							      { thumbanil_output }	
+							      { play_icon_output }		      
+							    </div>
+						</Fragment>
+		}
 		return (
 			<Fragment>
 				<div className={ classnames(
@@ -95,11 +109,7 @@ registerBlockType( "uagb/video", {
 						`uagb-video__${ sourceType }`,
 						{ 'uagb-video__autoplay' : autoplay },
 					) }	>		
-						{ vimeo_output }		
-					   <div className = "uagb-video__play" data-src = { videoSrc } >
-					      { thumbanil_output }	
-					      { play_icon_output }		      
-					    </div>
+						{ video_desc }
 					</div>
 				</div>
 			</Fragment>

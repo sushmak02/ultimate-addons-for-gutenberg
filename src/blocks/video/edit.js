@@ -578,6 +578,21 @@ class UAGBVideo extends Component {
 
 		var vimeo_output = <VimeoMeta attributes={attributes}/>
 
+		var video_desc = ""
+		if( !v_id ){
+			video_desc =<div className = "uagb-no-content">
+						{  __("We are sorry, We could not embed this video") }
+						</div>
+		}else{
+			video_desc =  <Fragment>
+						{ vimeo_output }	
+						<div className = "uagb-video__play" data-src = { img_url } >
+					    	{ thumbanil_output }	
+					    	{ play_icon_output }		      
+					    </div>
+				    </Fragment>
+		}
+
 		return (
 			<Fragment>
 			{inspect_control}
@@ -593,11 +608,7 @@ class UAGBVideo extends Component {
 					`uagb-video__${ sourceType }`,
 					{ 'uagb-video__autoplay' : autoplay },
 				) }	>	
-					{ vimeo_output }		
-				   <div className = "uagb-video__play" data-src = { img_url } >
-				    { thumbanil_output }	
-				    { play_icon_output }		      
-				    </div>
+					{ video_desc }	
 				</div>
 			</div>
 			</Fragment>
