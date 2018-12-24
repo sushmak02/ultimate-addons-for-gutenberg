@@ -32,7 +32,7 @@ function VideoStyle( props ) {
 		"color": controlsColor,
 	}
 	// Icon css
-	if( sourceType == 'icon' ){
+	if( sourceType == "icon" ){
 		selectors[".uagb-video__play-icon"] = {
 			"height" : iconSize+"px",
 			"width" : iconSize+"px",

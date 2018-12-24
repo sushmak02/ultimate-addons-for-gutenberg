@@ -176,21 +176,21 @@ class UAGBVideo extends Component {
 						{ value: "vimeo", label: __( "Vimeo" ) },
 					] }
 				/>
-				{ videoType == 'youtube' && <Fragment>				
+				{ videoType == "youtube" && <Fragment>				
 					<p className="components-base-control__label">{ __( "URL" ) }</p>
 					<URLInput
 						value={ YouTubeUrl }
 						onChange= { ( value ) => setAttributes( { YouTubeUrl: value } ) }
 					/>	
-					</Fragment>				
+				</Fragment>				
 				}
-				{ videoType == 'vimeo' && <Fragment>				
+				{ videoType == "vimeo" && <Fragment>				
 					<p className="components-base-control__label">{ __( "URL" ) }</p>
 					<URLInput
 						value={ vimeoUrl }
 						onChange= { ( value ) => setAttributes( { vimeoUrl: value } ) } 
 					/>	
-					</Fragment>					
+				</Fragment>					
 				}
 				<RangeControl
 					label = { __( "Start time" ) }
@@ -201,7 +201,7 @@ class UAGBVideo extends Component {
 					beforeIcon = ""
 					allowReset
 				/>
-				{ videoType == 'youtube' && 
+				{ videoType == "youtube" && 
 					<RangeControl
 						label = { __( "End time" ) }
 						value = { endTime }
@@ -224,47 +224,47 @@ class UAGBVideo extends Component {
 				/>
 				
 			</Fragment>
-			)
+		)
 
 		const youtube_setting = (
 			<Fragment>
 				<PanelBody
-						title={ __( "Video Options" ) }
-						initialOpen={ true }
-					>
-				<ToggleControl
-					label={ __( "Autoplay" ) }
-					checked={ autoplay }
-					onChange={ ( value ) => setAttributes( { autoplay: ! autoplay } ) }
-				/>
-				<ToggleControl
-					label={ __( "Suggested Videos" ) }
-					checked={ videoSuggest }
-					onChange={ ( value ) => setAttributes( { videoSuggest: ! videoSuggest } ) }
-				/>
-				<ToggleControl
-					label={ __( "Player Control" ) }
-					checked={ playerControl }
-					onChange={ ( value ) => setAttributes( { playerControl: ! playerControl } ) }
-				/>				
-				<ToggleControl
-					label={ __( "Mute" ) }
-					checked={ videoMute }
-					onChange={ ( value ) => setAttributes( { videoMute: ! videoMute } ) }
-				/>
-				{ playerControl && 
+					title={ __( "Video Options" ) }
+					initialOpen={ true }
+				>
+					<ToggleControl
+						label={ __( "Autoplay" ) }
+						checked={ autoplay }
+						onChange={ ( value ) => setAttributes( { autoplay: ! autoplay } ) }
+					/>
+					<ToggleControl
+						label={ __( "Suggested Videos" ) }
+						checked={ videoSuggest }
+						onChange={ ( value ) => setAttributes( { videoSuggest: ! videoSuggest } ) }
+					/>
+					<ToggleControl
+						label={ __( "Player Control" ) }
+						checked={ playerControl }
+						onChange={ ( value ) => setAttributes( { playerControl: ! playerControl } ) }
+					/>				
+					<ToggleControl
+						label={ __( "Mute" ) }
+						checked={ videoMute }
+						onChange={ ( value ) => setAttributes( { videoMute: ! videoMute } ) }
+					/>
+					{ playerControl && 
 					<ToggleControl
 						label={ __( "Modest Branding" ) }
 						checked={ modestBranding }
 						onChange={ ( value ) => setAttributes( { modestBranding: ! modestBranding } ) }
 					/>
-				}
-				<ToggleControl
-					label={ __( "Privacy Mode" ) }
-					checked={ privacyMode }
-					onChange={ ( value ) => setAttributes( { privacyMode: ! privacyMode } ) }
-					help={ __( "Note: When you turn on privacy mode, YouTube won't store information about visitors on your website unless they play the video." ) }
-				/>
+					}
+					<ToggleControl
+						label={ __( "Privacy Mode" ) }
+						checked={ privacyMode }
+						onChange={ ( value ) => setAttributes( { privacyMode: ! privacyMode } ) }
+						help={ __( "Note: When you turn on privacy mode, YouTube won't store information about visitors on your website unless they play the video." ) }
+					/>
 				</PanelBody>
 			</Fragment>
 		)
@@ -272,35 +272,35 @@ class UAGBVideo extends Component {
 		const vimeo_setting = (
 			<Fragment>
 				<PanelBody
-						title={ __( "Video Options" ) }
-						initialOpen={ true }
-					>
-				<ToggleControl
-					label={ __( "Autoplay" ) }
-					checked={ autoplay }
-					onChange={ ( value ) => setAttributes( { autoplay: ! autoplay } ) }
-				/>
-				<ToggleControl
-					label={ __( "Loop" ) }
-					checked={ loop }
-					onChange={ ( value ) => setAttributes( { loop: ! loop } ) }
-				/>
-				<ToggleControl
-					label={ __( "Intro Title" ) }
-					checked={ introTitle }
-					onChange={ ( value ) => setAttributes( { introTitle: ! introTitle } ) }
-				/>
-				<ToggleControl
-					label={ __( "Intro Portrait" ) }
-					checked={ introPortrait }
-					onChange={ ( value ) => setAttributes( { introPortrait: ! introPortrait } ) }
-				/>
-				<ToggleControl
-					label={ __( "Intro Byline" ) }
-					checked={ introByeline }
-					onChange={ ( value ) => setAttributes( { introByeline: ! introByeline } ) }
-				/>
-				<Fragment>
+					title={ __( "Video Options" ) }
+					initialOpen={ true }
+				>
+					<ToggleControl
+						label={ __( "Autoplay" ) }
+						checked={ autoplay }
+						onChange={ ( value ) => setAttributes( { autoplay: ! autoplay } ) }
+					/>
+					<ToggleControl
+						label={ __( "Loop" ) }
+						checked={ loop }
+						onChange={ ( value ) => setAttributes( { loop: ! loop } ) }
+					/>
+					<ToggleControl
+						label={ __( "Intro Title" ) }
+						checked={ introTitle }
+						onChange={ ( value ) => setAttributes( { introTitle: ! introTitle } ) }
+					/>
+					<ToggleControl
+						label={ __( "Intro Portrait" ) }
+						checked={ introPortrait }
+						onChange={ ( value ) => setAttributes( { introPortrait: ! introPortrait } ) }
+					/>
+					<ToggleControl
+						label={ __( "Intro Byline" ) }
+						checked={ introByeline }
+						onChange={ ( value ) => setAttributes( { introByeline: ! introByeline } ) }
+					/>
+					<Fragment>
 				    <p className="uagb-setting-label">{ __( "Controls Color" ) }
 				    <span className="components-base-control__label">
 				    <span className="component-color-indicator" style={{ backgroundColor: controlsColor }} ></span></span></p>
@@ -309,7 +309,7 @@ class UAGBVideo extends Component {
 				        onChange={ ( colorValue ) => setAttributes( { controlsColor: colorValue } ) }
 				        allowReset
 				    />
-				</Fragment>
+					</Fragment>
 				
 				</PanelBody>
 			</Fragment>
@@ -343,17 +343,17 @@ class UAGBVideo extends Component {
 		const thumbnail_setting = (
 			<Fragment>
 				<PanelBody
-						title={ __( "Thumbnail & Overlay" ) }
-						initialOpen={ false }
-					>			
+					title={ __( "Thumbnail & Overlay" ) }
+					initialOpen={ false }
+				>			
 				
-				<ToggleControl
-					label={ __( "Custom Thumbnail" ) }
-					checked={ customThumbnail }
-					onChange={ ( value ) => setAttributes( { customThumbnail: ! customThumbnail } ) }
-				/>	
+					<ToggleControl
+						label={ __( "Custom Thumbnail" ) }
+						checked={ customThumbnail }
+						onChange={ ( value ) => setAttributes( { customThumbnail: ! customThumbnail } ) }
+					/>	
 
-				{ (!customThumbnail && videoType == 'youtube') && <SelectControl
+					{ (!customThumbnail && videoType == "youtube") && <SelectControl
 						label={ __( "Thumbnail Size" ) }
 						value={ thumbnailSize }
 						onChange={ ( value ) => setAttributes( { thumbnailSize: value } ) }
@@ -364,32 +364,32 @@ class UAGBVideo extends Component {
 							{ value: "sddefault", label: __( "Standard Quality" ) },						
 						] }
 					/>
-				}	
+					}	
 
-				{ customThumbnail && <BaseControl
-					className="editor-bg-image-control"
-					label={ __( "Image" ) }
+					{ customThumbnail && <BaseControl
+						className="editor-bg-image-control"
+						label={ __( "Image" ) }
 					>
-					<MediaUpload
-						title={ __( "Select Image" ) }
-						onSelect={ this.onSelectCustImage }
-						allowedTypes= { [ "image" ] }
-						value={ custThumbImage }
-						render={ ( { open } ) => (
-							<Button isDefault onClick={ open }>
-								{ image_name }
-							</Button>
-						) }
-					/>
-					{ ( custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
+						<MediaUpload
+							title={ __( "Select Image" ) }
+							onSelect={ this.onSelectCustImage }
+							allowedTypes= { [ "image" ] }
+							value={ custThumbImage }
+							render={ ( { open } ) => (
+								<Button isDefault onClick={ open }>
+									{ image_name }
+								</Button>
+							) }
+						/>
+						{ ( custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
 						<Button className="uagb-rm-btn" onClick={ this.onRemoveCustImage } isLink isDestructive>
 							{ __( "Remove Image" ) }
 						</Button>
-					}	
-				</BaseControl>	
-				}
+						}	
+					</BaseControl>	
+					}
 
-				{ ( customThumbnail && custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
+					{ ( customThumbnail && custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
 					<Fragment>
 						<SelectControl
 							label={ __( "Image Size" ) }
@@ -398,8 +398,8 @@ class UAGBVideo extends Component {
 							onChange={ ( value ) => setAttributes( { imageSize: value } ) }
 						/>
 					</Fragment>	
-				}
-				<Fragment>
+					}
+					<Fragment>
 				    <p className="uagb-setting-label">{ __( "Overlay Color" ) }
 				    <span className="components-base-control__label">
 				    <span className="component-color-indicator" style={{ backgroundColor: overlayColor }} ></span></span></p>
@@ -408,16 +408,16 @@ class UAGBVideo extends Component {
 				        onChange={ ( colorValue ) => setAttributes( { overlayColor: colorValue } ) }
 				        allowReset
 				    />
-				</Fragment>
-				<RangeControl
-					label={ __( "Opacity" ) }
-					value={ opacity }
-					onChange={ ( value ) => setAttributes( { opacity: value } ) }
-					min={ 0 }
-					max={ 100 }
-					beforeIcon=""
-					allowReset
-				/>
+					</Fragment>
+					<RangeControl
+						label={ __( "Opacity" ) }
+						value={ opacity }
+						onChange={ ( value ) => setAttributes( { opacity: value } ) }
+						min={ 0 }
+						max={ 100 }
+						beforeIcon=""
+						allowReset
+					/>
 				</PanelBody>
 			</Fragment>
 		)
@@ -522,21 +522,21 @@ class UAGBVideo extends Component {
 		const play_buttons = (
 			<Fragment>
 				<PanelBody
-						title={ __( "Play Buttons" ) }
-						initialOpen={ false }
-					>	
+					title={ __( "Play Buttons" ) }
+					initialOpen={ false }
+				>	
 					<SelectControl
-					label={ __( "Select Source" ) }
-					value={ sourceType }
-					onChange={ ( value ) => setAttributes( { sourceType: value } ) }
-					options={ [
-						{ value: "icon", label: __( "Icon" ) },
-						{ value: "image", label: __( "Image" ) },
-					] }
-				/>
-				{ ( sourceType && sourceType == "icon" ) && iconControls }
+						label={ __( "Select Source" ) }
+						value={ sourceType }
+						onChange={ ( value ) => setAttributes( { sourceType: value } ) }
+						options={ [
+							{ value: "icon", label: __( "Icon" ) },
+							{ value: "image", label: __( "Image" ) },
+						] }
+					/>
+					{ ( sourceType && sourceType == "icon" ) && iconControls }
 
-				{ ( sourceType && sourceType == "image" ) && imageControls }
+					{ ( sourceType && sourceType == "image" ) && imageControls }
 				</PanelBody>
 			</Fragment>
 		)
@@ -547,9 +547,9 @@ class UAGBVideo extends Component {
 					<PanelBody
 						title={ __( "Video" ) }
 					>
-					{ video_type_setting }
-					{ videoType == 'youtube' &&  youtube_setting }
-					{ videoType == 'vimeo' && vimeo_setting }
+						{ video_type_setting }
+						{ videoType == "youtube" &&  youtube_setting }
+						{ videoType == "vimeo" && vimeo_setting }
 					</PanelBody>
 					{ thumbnail_setting }
 					{ play_buttons }
@@ -557,8 +557,8 @@ class UAGBVideo extends Component {
 			</Fragment>
 		)
 
-		var thumbanil_output = ''
-		var play_icon_output = ''
+		var thumbanil_output = ""
+		var play_icon_output = ""
 		var v_id = VideoId(attributes)
 
 		if( !autoplay ){
@@ -569,7 +569,7 @@ class UAGBVideo extends Component {
 				thumbanil_output = <Thumb attributes={attributes} setAttributes = {setAttributes} id ={ v_id }/>
 			}
 			
-			play_icon_output = ( sourceType == 'icon' ) ? <Icon attributes={attributes}/> : <IconImage attributes={attributes}/>
+			play_icon_output = ( sourceType == "icon" ) ? <Icon attributes={attributes}/> : <IconImage attributes={attributes}/>
 		}
 
 		var img_url = VideoImgSrc( attributes, v_id )
@@ -581,12 +581,12 @@ class UAGBVideo extends Component {
 		var video_desc = ""
 		if( !v_id ){
 			video_desc =<div className = "uagb-no-content">
-						{  __("We are sorry, We could not embed this video") }
-						</div>
+				{  __("We are sorry, We could not embed this video") }
+			</div>
 		}else{
 			video_desc =  <Fragment>
-						{ vimeo_output }	
-						<div className = "uagb-video__play" data-src = { img_url } >
+				{ vimeo_output }	
+				<div className = "uagb-video__play" data-src = { img_url } >
 					    	{ thumbanil_output }	
 					    	{ play_icon_output }		      
 					    </div>
@@ -595,22 +595,22 @@ class UAGBVideo extends Component {
 
 		return (
 			<Fragment>
-			{inspect_control}
-			<div className={ classnames(
+				{inspect_control}
+				<div className={ classnames(
 					className,
 					"uagb-video__outer-wrap"
 				) }
 				id = { my_block_id }
 				>	
-				<div className = { classnames(					
-					'uagb-video__content-wrap',
-					`uagb-video__aspect-ratio-${ aspectRatio }`,
-					`uagb-video__${ sourceType }`,
-					{ 'uagb-video__autoplay' : autoplay },
-				) }	>	
-					{ video_desc }	
+					<div className = { classnames(					
+						"uagb-video__content-wrap",
+						`uagb-video__aspect-ratio-${ aspectRatio }`,
+						`uagb-video__${ sourceType }`,
+						{ "uagb-video__autoplay" : autoplay },
+					) }	>	
+						{ video_desc }	
+					</div>
 				</div>
-			</div>
 			</Fragment>
 		)
 	}
@@ -640,8 +640,8 @@ class UAGBVideo extends Component {
 		var element = $("#uagb-video-"+id)
 
 		var src = videoSrc.toString()
-		src = src.replace("autoplay=0", "autoplay=1");
-		var event_this = this;
+		src = src.replace("autoplay=0", "autoplay=1")
+		var event_this = this
 
 		if( autoplay ==  false ){
 			element.find(".uagb-video__iframe").remove()
@@ -653,8 +653,8 @@ class UAGBVideo extends Component {
 		 		var el = $("#uagb-video-"+id)				
 				el.find(".uagb-video__thumb").hide()
 				el.find(".uagb-video__play-icon").hide()
-				event_this.uagbPlayVideo( element, src);
-			});
+				event_this.uagbPlayVideo( element, src)
+			})
 		}else{
 			event_this.uagbPlayVideo( element, src)
 		}
@@ -665,12 +665,12 @@ class UAGBVideo extends Component {
 		var frame_length = selector.find(".uagb-video__iframe").length
 
 		if( frame_length == 0 ){
-			if( src == ''){
+			if( src == ""){
 
 			}else{				
-				var iframe_code = '<iframe class ="uagb-video__iframe" src="'+src+'" frameborder="0" allowfullscreen="1" allow="autoplay;encrypted-media;"></iframe>';
+				var iframe_code = "<iframe class =\"uagb-video__iframe\" src=\""+src+"\" frameborder=\"0\" allowfullscreen=\"1\" allow=\"autoplay;encrypted-media;\"></iframe>"
 			}
-			selector.find(".uagb-video__play").append(iframe_code);
+			selector.find(".uagb-video__play").append(iframe_code)
 		}else{
 			selector.find(".uagb-video__iframe").attr("src", src)
 		}	

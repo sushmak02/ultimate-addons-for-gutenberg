@@ -41,6 +41,7 @@ function inlineStyles( props, isEditor ) {
 		"padding-bottom": bottomPadding + "px",
 		"padding-left": leftPadding + "px",
 		"padding-right": rightPadding + "px",
+		"border-radius": borderRadius + "px"
 	}
 
 	if ( "right" == align ) {
@@ -58,12 +59,14 @@ function inlineStyles( props, isEditor ) {
 		style["margin-left"] = "auto"
 		style["margin-top"] = topMargin + "px"
 		style["margin-bottom"] =  bottomMargin + "px"
+	} else {
+		style["margin-top"] = topMargin + "px"
+		style["margin-bottom"] =  bottomMargin + "px"
 	}
 
 	if ( borderStyle != "none" ) {
 		style["border-style"] = borderStyle
 		style["border-width"] = borderWidth + "px"
-		style["border-radius"] = borderRadius + "px"
 		style["border-color"] =  borderColor
 	}
 

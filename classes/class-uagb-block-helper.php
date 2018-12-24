@@ -24,6 +24,8 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			// @codingStandardsIgnoreStart
 
+			global $content_width;
+
 			$defaults = UAGB_Helper::$block_list['uagb/section']['attributes'];
 
 			$attr = array_merge( $defaults, $attr );
@@ -35,6 +37,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				'padding-bottom' => $attr['bottomPadding'] . 'px',
 				'padding-left'   => $attr['leftPadding'] . 'px',
 				'padding-right'  => $attr['rightPadding'] . 'px',
+				'border-radius'  => $attr['borderRadius'] . "px"
 			);
 
 			if ( 'right' == $attr['align'] ) {
@@ -53,8 +56,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				$style['margin-top']    = $attr['topMargin'] . 'px';
 				$style['margin-bottom'] = $attr['bottomMargin'] . 'px';
 			} else {
-				$style['margin-right']  = $attr['rightMargin'] . 'px';
-				$style['margin-left']   = $attr['leftMargin'] . 'px';
 				$style['margin-top']    = $attr['topMargin'] . 'px';
 				$style['margin-bottom'] = $attr['bottomMargin'] . 'px';
 			}
@@ -62,7 +63,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			if ( "none" != $attr['borderStyle'] ) {
 				$style["border-style"] = $attr['borderStyle'];
 				$style["border-width"] = $attr['borderWidth'] . "px";
-				$style["border-radius"] = $attr['borderRadius'] . "px";
 				$style["border-color"] =  $attr['borderColor'];
 			}
 
@@ -79,7 +79,10 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				}
 			}
 
-			$style['max-width'] = $section_width;
+			if ( 'wide' != $attr['align'] && 'full' != $attr['align'] ) {
+				$style['max-width'] = $section_width;
+			}
+
 
 			if ( 'color' === $bg_type ) {
 
@@ -109,8 +112,12 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			if ( isset( $attr['contentWidth'] ) ) {
 				if ( 'boxed' != $attr['contentWidth'] ) {
-					if ( isset( $attr['innerWidth'] ) ) {
-						$inner_width = $attr['innerWidth'] . 'px';
+					if ( isset( $attr['themeWidth'] ) && $attr['themeWidth'] == true ) {
+						$inner_width = $content_width . 'px';
+					} else {
+						if ( isset( $attr['innerWidth'] ) ) {
+							$inner_width = $attr['innerWidth'] . 'px';
+						}
 					}
 				}
 			}
@@ -140,6 +147,8 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'opacity' => ( isset( $attr['backgroundOpacity'] ) && '' != $attr['backgroundOpacity'] ) ? $attr['backgroundOpacity'] / 100 : 0,
 				);
 			}
+
+			$selectors[' > .uagb-section__overlay']["border-radius"] = $attr['borderRadius'] . "px";
 
 			// @codingStandardsIgnoreEnd
 
@@ -261,14 +270,18 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 				$selectors[' .uagb-buttons-repeater-' . $key] = array (
 					'font-size'  => $button['size'] . 'px',
-					'border' => $button['borderWidth'] . 'px ' . $button['borderStyle'] . ' ' . $button['borderColor'],
+					'border-width' => $button['borderWidth'] . 'px',
+					'border-color' => $button['borderColor'],
+					'border-style' => $button['borderStyle'],
 					'border-radius'  => $button['borderRadius'] . 'px',
 					'background' => $button['background']
 				);
 
 				$selectors[' .uagb-buttons-repeater-' . $key . ':hover'] = array (
 					'background' => $button['hBackground'],
-					'border' => $button['borderWidth'] . 'px ' . $button['borderStyle'] . ' ' . $button['borderHColor'],
+					'border-width' => $button['borderWidth'] . 'px',
+					'border-color' => $button['borderHColor'],
+					'border-style' => $button['borderStyle'],
 				);
 
 				$selectors[' .uagb-buttons-repeater-' . $key . ' a.uagb-button__link'] = array (
@@ -487,7 +500,15 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$attr = (object) array_merge( $defaults, (array) $attr );
 
+			$img_align = 'center';
+			if( 'left' === $attr->headingAlign){
+				$img_align = 'flex-start';
+			}else if( 'right' === $attr->headingAlign){
+				$img_align = 'flex-end';
+			}
+
 			$position = str_replace( '-', ' ', $attr->backgroundPosition );
+
 			$selectors = array(
 				' .uagb-testimonial__wrap' => array(
 					'padding-left'   => ( ($attr->columnGap) /2 ) . 'px',
@@ -547,12 +568,21 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				' ul.slick-dots li.slick-active button:before' => array(
 					'color' => $attr->arrowColor,
 				),
+				' .uagb-tm__image-position-top .uagb-tm__image-content' => array(
+					'justify-content' => $img_align,
+				),
 			);
+
+			if( '1' === $attr->test_item_count || $attr->test_item_count === $attr->columns ||  'dots' === $attr->arrowDots ){
+				$selectors['.uagb-slick-carousel'] = array(
+						'padding' => '0px',
+					);
+			}
 
 			$r_selectors = array(
 				' .uagb-tm__content' => array(
 					'text-align' => 'center',
-				),
+				)
 			);
 
 			// @codingStandardsIgnoreEnd.
@@ -708,12 +738,18 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			);
 
 			$selectors[" .uagb-ss__wrapper"] = array(
-				"padding" => $attr['bgSize'] . "px",
 				"border-radius" => $attr['borderRadius'] . "px"
 			);
 
 			$selectors[" .uagb-ss__wrapper .uagb-ss__link"] = array(
-				"width" => $attr['size'] . "px"
+				"width" => $attr['size'] . "px",
+				"height" => $attr['size'] . "px",
+				"padding" => $attr['bgSize'] . "px"
+			);
+
+			$selectors[" .uagb-ss__source-wrap"] = array(
+				"width" => $attr['size'] . "px",
+				"height" => $attr['size'] . "px"
 			);
 
 			$selectors[" .uagb-ss__source-image"] = array(
@@ -1734,11 +1770,15 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$selectors[" .slick-arrow span"] = array(
 				"color" => $attr['arrowColor'],
-				"font-size" => $attr['arrowSize'] . "px"
+				"font-size" => $attr['arrowSize'] . "px",
+				"width" => $attr['arrowSize'] . "px",
+				"height" => $attr['arrowSize'] . "px"
 			);
 
 			$selectors[" .slick-arrow"] = array(
-				"border-color" => $attr['arrowColor']
+				"border-color" => $attr['arrowColor'],
+				"border-width" => $attr['arrowBorderSize'] . "px",
+				"border-radius" => $attr['arrowBorderRadius'] . "px"
 			);
 
 			$selectors[".uagb-post-grid ul.slick-dots li.slick-active button:before"] = array(
@@ -1748,6 +1788,13 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$selectors[".uagb-slick-carousel ul.slick-dots li button:before"] = array(
 				"color" => $attr['arrowColor']
 			);
+
+			if ( isset( $attr['arrowDots'] ) && 'dots' == $attr['arrowDots'] ) {
+
+				$selectors[".uagb-slick-carousel"] = array(
+					"padding" => "0"
+				);
+			}
 
 			// @codingStandardsIgnoreEnd
 
@@ -1836,7 +1883,14 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				" .uagb-post__text .uagb-post__cta" => array(
 					"color"=> $attr['ctaColor'],
 					"font-size"=> $attr['ctaFontSize']  . "px",
-					"background"=> $attr['ctaBgColor']
+					"background"=> $attr['ctaBgColor'],
+					"border-color"=> $attr['borderColor'],
+					"border-width"=> $attr['borderWidth']  . "px",
+					"border-radius"=> $attr['borderRadius']  . "px",
+					"border-style"=> $attr['borderStyle'],
+				),
+				" .uagb-post__text .uagb-post__cta:hover" => array(
+					"border-color"=> $attr['borderHColor']
 				),
 				" .uagb-post__text .uagb-post__cta a" => array(
 					"color"=> $attr['ctaColor'],
@@ -1848,10 +1902,76 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				),
 				" .uagb-post__text .uagb-post__cta:hover a" => array(
 					"color"=> $attr['ctaHColor']
-				)
+				),
+				" .uagb-post__image:before" => array(
+					"background-color" => $attr['bgOverlayColor'],
+					"opacity" => ( $attr['overlayOpacity'] / 100 )
+				),
 			);
 			// @codingStandardsIgnoreEnd			
 
 		}
+
+		/**
+		 * Get Testimonial Js
+		 *
+		 * @since 1.5.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 */
+		public static function get_testimonial_js( $attr, $id ) {
+
+			// @codingStandardsIgnoreStart.
+
+			$defaults = UAGB_Helper::$block_list['uagb/testimonial']['attributes'];
+
+			$attr = array_merge( $defaults, (array) $attr );
+
+			$dots = ( "dots" == $attr['arrowDots'] || "arrowDots" == $attr['arrowDots'] ) ? true : false;
+			$arrows = ( "arrows" == $attr['arrowDots'] || "arrowDots" == $attr['arrowDots'] ) ? true : false;
+
+			$slick_options = [
+				'slidesToShow'   => $attr['columns'],
+				'slidesToScroll' => 1,
+				'autoplaySpeed'  =>  $attr['autoplaySpeed'],
+				'autoplay'       => $attr['autoplay'],
+				'infinite'       => $attr['infiniteLoop'],
+				'pauseOnHover'   => $attr['pauseOnHover'],
+				'speed'          => $attr['transitionSpeed'],
+				'arrows'         => $arrows,
+				'dots'           => $dots,
+				'rtl'            => false,
+				'prevArrow'		 => '<button type="button" data-role="none" class="slick-prev" aria-label="Previous" tabindex="0" role="button" style="border-color: '.$attr["arrowColor"].';border-radius:'.$attr["arrowBorderRadius"].'px;border-width:'.$attr["arrowBorderSize"].'px"><span class="fas fa-angle-left" style= "font-size:'.$attr["arrowSize"].'px;color: '.$attr["arrowColor"].';height:'.$attr["arrowSize"].'px;width:'.$attr["arrowSize"].'px"></span></button>',
+				'nextArrow'		 => '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button" style="border-color: '.$attr["arrowColor"].';border-radius:'.$attr["arrowBorderRadius"].'px;border-width:'.$attr["arrowBorderSize"].'px"><span class="fas fa-angle-right" style= "font-size:'.$attr["arrowSize"].'px;color: '.$attr["arrowColor"].';height:'.$attr["arrowSize"].'px;width:'.$attr["arrowSize"].'px"></span></button>',
+				'responsive'		=> [
+					[
+						'breakpoint' => 1024,
+						'settings' => [
+							'slidesToShow'   => $attr['tcolumns'],
+							'slidesToScroll' => 1,
+						],
+					],
+					[
+						'breakpoint' => 767,
+						'settings' => [
+							'slidesToShow'   => $attr['mcolumns'],
+							'slidesToScroll' => 1,
+						],
+					]
+				]
+			];
+
+			$settings = json_encode($slick_options);
+			$selector =	'#uagb-testimonial-'. $id;
+			?>
+			if( jQuery( ".wp-block-uagb-testimonial" ).length > 0 ){
+				return true
+			} else {
+				jQuery( "<?php echo $selector ?>" ).find( ".is-carousel" ).slick( <?php echo $settings ?> );
+			}
+			<?php
+			// @codingStandardsIgnoreEnd.
+		}
+
 	}
 }

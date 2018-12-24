@@ -3,9 +3,9 @@ class Thumb extends React.Component {
 	render() {
 
 		const { attributes, setAttributes, id } = this.props     
-        var video_img = ''
-        if( setAttributes !== 'not_set' && id !=='not_set' ){
-	        if( 'youtube' == attributes.videoType ){		      			
+		var video_img = ""
+		if( setAttributes !== "not_set" && id !=="not_set" ){
+	        if( "youtube" == attributes.videoType ){		      			
 				// Get image of respected Youtube video with Selected size.
 				video_img = "https://img.youtube.com/vi/"+id+"/"+attributes.thumbnailSize+".jpg"
 	            
@@ -15,8 +15,8 @@ class Thumb extends React.Component {
 
 				if (id) {
 	               	
-	                $.getJSON('http://www.vimeo.com/api/v2/video/' + id + '.json?callback=?', { format: "json" }, function (data) {
-	                    video_img = data[0].thumbnail_large; 
+	                $.getJSON("http://www.vimeo.com/api/v2/video/" + id + ".json?callback=?", { format: "json" }, function (data) {
+	                    video_img = data[0].thumbnail_large 
 	                    setAttributes( { vimeoThumbnail: video_img } )	
 	                    setAttributes( { vimeoTitle: data[0].title } )	
 	                    setAttributes( { vimeoUserName: data[0].user_name } )
@@ -31,7 +31,7 @@ class Thumb extends React.Component {
 			)
 		}else{
 			video_img = attributes.YouTubeThumbnail
-			if( 'vimeo' == attributes.videoType ){
+			if( "vimeo" == attributes.videoType ){
 				video_img = attributes.vimeoThumbnail
 			}
 			return (

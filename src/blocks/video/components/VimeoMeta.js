@@ -6,13 +6,13 @@ class VimeoMeta extends React.Component {
 
 		const { attributes } = this.props    
         
-        if( 'vimeo' == attributes.videoType ){
+		if( "vimeo" == attributes.videoType ){
 		    return ( 
 				<div className = "uagb-video__vimeo-wrap">
 					{ attributes.introPortrait && attributes.vimeoUserImg && 
 						<div className = "uagb-vimeo-portrait">
 							<a href="#" rel = "noopener noreferrer">
-							<img src={ attributes.vimeoUserImg }/></a>
+								<img src={ attributes.vimeoUserImg }/></a>
 						</div>
 					}
 					<div className = "uagb-video__vimeo-headers">

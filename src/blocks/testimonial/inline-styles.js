@@ -32,13 +32,24 @@ function TestimonialStyle( props ) {
 		borderWidth ,
 		borderRadius,
 		borderColor,
-		arrowColor        
+		arrowColor,
+		test_item_count,
+		columns,
+		arrowDots      
 	} = props.attributes        
 
 	if( props.clientId ){
 		var clientId = "uagb-testimonial-"+props.clientId
 	}else{
 		var clientId = "uagb-testimonial-"+block_id
+	}
+
+	var img_align = "center"
+
+	if( headingAlign == "left" ){
+		img_align = "flex-start"
+	}else if( headingAlign == "right" ){
+		img_align = "flex-end"
 	}
 
 	var selectors = {}
@@ -54,6 +65,10 @@ function TestimonialStyle( props ) {
 		"padding-right" : imgHrPadding+"px",                                
 		"padding-top" : imgVrPadding+"px",
 		"padding-bottom" : imgVrPadding+"px",
+	} 
+
+	selectors[".uagb-tm__image-position-top .uagb-tm__image-content"] = {
+		"justify-content" : img_align,
 	} 
 
 	// Image
@@ -120,12 +135,21 @@ function TestimonialStyle( props ) {
 		"color" : arrowColor,
 	} 
 
+	if( test_item_count === 1 || test_item_count === columns || arrowDots === "dots"){
+		selectors[".uagb-slick-carousel.uagb-tm__arrow-outside"] = {
+			"padding" : 0,
+		} 
+	}
+
 	var styling_css = ""
 
 	for( var i in selectors ) {
-           
-		styling_css += "#wpwrap #"+clientId+" "+i + " { "
-            
+       
+		if( i === ".uagb-slick-carousel.uagb-tm__arrow-outside"){
+        	styling_css += "#wpwrap #"+clientId+i + " { "     
+		}else{
+        	styling_css += "#wpwrap #"+clientId+" "+i + " { " 
+		}		       
             
 		var sel = selectors[i]
 		var css = ""

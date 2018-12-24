@@ -63,9 +63,9 @@ registerBlockType( "uagb/video", {
 		} = props.attributes
 
 		const my_block_id = "uagb-video-"+block_id
-		var thumbanil_output = ''
-		var play_icon_output = ''
-		var vimeo_output     = ''
+		var thumbanil_output = ""
+		var play_icon_output = ""
+		var vimeo_output     = ""
 		var v_id = VideoId(props.attributes)
 
 		if( !autoplay ){
@@ -76,38 +76,38 @@ registerBlockType( "uagb/video", {
 				thumbanil_output = <Thumb attributes={props.attributes} setAttributes = "not_set" id ="not_set" />
 			}
 			
-			play_icon_output = ( sourceType == 'icon' ) ? <Icon attributes={props.attributes}/> : <IconImage attributes={props.attributes}/>
+			play_icon_output = ( sourceType == "icon" ) ? <Icon attributes={props.attributes}/> : <IconImage attributes={props.attributes}/>
 			
 			vimeo_output = <VimeoMeta attributes={props.attributes}/>
 		}	
 
-		var video_desc = ''
+		var video_desc = ""
 		if( !v_id ){
 			video_desc =<div className = "uagb-no-content">
-						{  __("We are sorry, We could not embed this video") }
-						</div>
+				{  __("We are sorry, We could not embed this video") }
+			</div>
 		}else{
 			video_desc = <Fragment>
-							{ vimeo_output }		
+				{ vimeo_output }		
 							    <div className = "uagb-video__play" data-src = { videoSrc } >
 							      { thumbanil_output }	
 							      { play_icon_output }		      
 							    </div>
-						</Fragment>
+			</Fragment>
 		}
 		return (
 			<Fragment>
 				<div className={ classnames(
-						className,
-						"uagb-video__outer-wrap"
-					) }
-					id = { my_block_id }
-					>	
+					className,
+					"uagb-video__outer-wrap"
+				) }
+				id = { my_block_id }
+				>	
 					<div className = { classnames(					
-						'uagb-video__content-wrap',
+						"uagb-video__content-wrap",
 						`uagb-video__aspect-ratio-${ aspectRatio }`,
 						`uagb-video__${ sourceType }`,
-						{ 'uagb-video__autoplay' : autoplay },
+						{ "uagb-video__autoplay" : autoplay },
 					) }	>		
 						{ video_desc }
 					</div>

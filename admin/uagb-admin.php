@@ -15,15 +15,14 @@
 					<?php if ( $uagb_icon ) { ?>
 						<img src="<?php echo esc_url( UAGB_URL . 'admin/assets/images/uagb_logo.svg' ); ?>" class="uagb-header-icon" alt="<?php echo UAGB_PLUGIN_NAME; ?> " >
 						<?php
-} else {
-	echo '<h4>' . UAGB_PLUGIN_NAME . '</h4>'; }
-?>
+					} else {
+						echo '<h4>' . UAGB_PLUGIN_NAME . '</h4>'; }
+					?>
 					</a>
 				</div>
 				<div class="uagb-top-links">
-					<?php
-						esc_attr_e( 'Take Gutenberg to The Next Level!', 'ultimate-addons-for-gutenberg' );
-					?>
+					<?php esc_attr_e( 'Take Gutenberg to The Next Level! - ', 'ultimate-addons-for-gutenberg' ); ?>
+					<a href="https://www.ultimategutenberg.com/" target="_blank" rel=""><?php _e( 'View Demos', 'ultimate-addons-for-gutenberg' ); ?></a>
 				</div>
 			</div>
 		</div>
