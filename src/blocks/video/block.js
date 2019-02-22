@@ -6,9 +6,9 @@
 import classnames from "classnames"
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 
+import "./style.scss"
 import edit from "./edit"
 import attributes from "./attributes"
-import "./style.scss"
 import VideoId from "./VideoId"
 import Icon from "./components/Icon"
 import IconImage from "./components/IconImage"
@@ -89,16 +89,16 @@ registerBlockType( "uagb/video", {
 		}else{
 			video_desc = <Fragment>
 				{ vimeo_output }		
-							    <div className = "uagb-video__play" data-src = { videoSrc } >
-							      { thumbanil_output }	
-							      { play_icon_output }		      
-							    </div>
+			    <div className = "uagb-video__play" data-src = { videoSrc } >
+			      { thumbanil_output }	
+			      { play_icon_output }		      
+			    </div>
 			</Fragment>
 		}
 		return (
 			<Fragment>
 				<div className={ classnames(
-					className,
+					props.className,
 					"uagb-video__outer-wrap"
 				) }
 				id = { my_block_id }
