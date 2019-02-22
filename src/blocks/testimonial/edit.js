@@ -1,4 +1,8 @@
-// Import block dependencies and components.
+/**
+ * BLOCK: Testimonial
+ */
+
+
 import classnames from "classnames"
 import AuthorName from "./components/AuthorName"
 import Company from "./components/Company"
@@ -8,6 +12,14 @@ import TestimonialStyle from "./inline-styles"
 import TestimonialImage from "./components/TestimonialImage"
 import times from "lodash/times"
 import Slider from "react-slick"
+import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
+import map from "lodash/map"
+
+// Import all of our Text Options requirements.
+import TypographyControl from "../../components/typography"
+
+// Import Web font loader for google fonts.
+import WebfontLoader from "../../components/typography/fontloader"
 
 const { __ } = wp.i18n
 
@@ -28,9 +40,12 @@ const {
 	ToggleControl,
 	BaseControl,
 	Button,
+	ButtonGroup,
+	Dashicon,
+	TabPanel
 } = wp.components
 
-// Extend component
+
 const { Component, Fragment } = wp.element
 
 class UAGBtestimonial extends Component {
@@ -104,12 +119,12 @@ class UAGBtestimonial extends Component {
 	getImageName( image ){
 		const { test_block } = this.props.attributes
 
-		let image_name = "Select Image"
+		let image_name = __( "Select Image" )
 		if(image){
 			if(image.url == null || image.url == "" ){
-				image_name = "Select Image"
+				image_name = __( "Select Image" )
 			}else{
-				image_name = "Replace Image"
+				image_name = __( "Replace Image" )
 			}
 		}
 		return image_name
@@ -178,10 +193,46 @@ class UAGBtestimonial extends Component {
 			companyColor,
 			descColor,
 			authorColor,
-			prefixTag,
+
+			nameFontSizeType,
 			nameFontSize,
+			nameFontSizeTablet,
+			nameFontSizeMobile,
+			nameFontFamily,
+			nameFontWeight,
+			nameFontSubset,
+			nameLineHeightType,
+			nameLineHeight,
+			nameLineHeightTablet,
+			nameLineHeightMobile,
+			nameLoadGoogleFonts,
+
+			companyFontSizeType,
 			companyFontSize,
+			companyFontSizeTablet,
+			companyFontSizeMobile,
+			companyFontFamily,
+			companyFontWeight,
+			companyFontSubset,
+			companyLineHeightType,
+			companyLineHeight,
+			companyLineHeightTablet,
+			companyLineHeightMobile,
+			companyLoadGoogleFonts,
+
+			descFontSizeType,
 			descFontSize,
+			descFontSizeTablet,
+			descFontSizeMobile,
+			descFontFamily,
+			descFontWeight,
+			descFontSubset,
+			descLineHeightType,
+			descLineHeight,
+			descLineHeightTablet,
+			descLineHeightMobile,
+			descLoadGoogleFonts,
+
 			separatorWidth,
 			separatorSpace,
 			descSpace,
@@ -203,7 +254,7 @@ class UAGBtestimonial extends Component {
 			infiniteLoop,
 			transitionSpeed,
 			arrowDots,
-			arrowSize, 
+			arrowSize,
 			arrowBorderSize,
 			arrowBorderRadius,
 			autoplay,
@@ -224,7 +275,7 @@ class UAGBtestimonial extends Component {
 			borderWidth ,
 			borderRadius,
 			borderColor,
-			stack,			
+			stack,
 		} = attributes
 
 		// Add CSS.
@@ -233,46 +284,119 @@ class UAGBtestimonial extends Component {
 			element.innerHTML = TestimonialStyle( this.props )
 		}
 
-		const my_block_id = "uagb-testimonial-"+this.props.clientId
+		const sizeTypes = [
+			{ key: "px", name: __( "px" ) },
+			{ key: "em", name: __( "em" ) },
+		]
+
+		let loadNameGoogleFonts
+		let loadCompanyGoogleFonts
+		let loadDescGoogleFonts
+
+		if( nameLoadGoogleFonts == true ) {
+					
+			const nameconfig = {
+				google: {
+					families: [ nameFontFamily + ( nameFontWeight ? ":" + nameFontWeight : "" ) ],
+				},
+			}
+
+			loadNameGoogleFonts = (
+				<WebfontLoader config={ nameconfig }>
+				</WebfontLoader>
+			)
+		}
+
+		if( companyLoadGoogleFonts == true ) {
+					
+			const companyconfig = {
+				google: {
+					families: [ companyFontFamily + ( companyFontWeight ? ":" + companyFontWeight : "" ) ],
+				},
+			}
+
+			loadCompanyGoogleFonts = (
+				<WebfontLoader config={ companyconfig }>
+				</WebfontLoader>
+			)
+		}
+
+		if( descLoadGoogleFonts == true ) {
+					
+			const descconfig = {
+				google: {
+					families: [ descFontFamily + ( descFontWeight ? ":" + descFontWeight : "" ) ],
+				},
+			}
+
+			loadDescGoogleFonts = (
+				<WebfontLoader config={ descconfig }>
+				</WebfontLoader>
+			)
+		}
 
 		// Typography settings.
 		const TypographySettings = (
 			<Fragment>
-				<PanelBody
-					title={ __( "Typography" ) }
-					initialOpen={ false }
-				>
-					<RangeControl
-						label={ __( "Testimonial Font Size" ) }
-						value={ descFontSize }
-						onChange={ ( value ) => setAttributes( { descFontSize: value } ) }
-						min={ 10 }
-						max={ 100 }
-						initialPosition={16}
-						beforeIcon="editor-textcolor"
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Name Font Size" ) }
-						value={ nameFontSize }
-						onChange={ ( value ) => setAttributes( { nameFontSize: value } ) }
-						min={ 10 }
-						max={ 100 }
-						initialPosition={30}
-						beforeIcon="editor-textcolor"
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Company Font Size" ) }
-						value={ companyFontSize }
-						onChange={ ( value ) => setAttributes( { companyFontSize: value } ) }
-						min={ 10 }
-						max={ 100 }
-						initialPosition={16}
-						beforeIcon="editor-textcolor"
-						allowReset
+				<PanelBody title={ __( "Typography" ) } initialOpen={ false } >
+					<h2>{ __( "Testimonial" ) }</h2>
+					<TypographyControl
+						label={ __( "Desc Tag" ) }
+						attributes = { attributes }
+						setAttributes = { setAttributes }
+						loadGoogleFonts = { { value: descLoadGoogleFonts, label: __( "descLoadGoogleFonts" ) } }
+						fontFamily = { { value: descFontFamily, label: __( "descFontFamily" ) } }
+						fontWeight = { { value: descFontWeight, label: __( "descFontWeight" ) } }
+						fontSubset = { { value: descFontSubset, label: __( "descFontSubset" ) } }
+						fontSizeType = { { value: descFontSizeType, label: __( "descFontSizeType" ) } }
+						fontSize = { { value: descFontSize, label: __( "descFontSize" ) } }
+						fontSizeMobile = { { value: descFontSizeMobile, label: __( "descFontSizeMobile" ) } }
+						fontSizeTablet= { { value: descFontSizeTablet, label: __( "descFontSizeTablet" ) } }
+						lineHeightType = { { value: descLineHeightType, label: __( "descLineHeightType" ) } }
+						lineHeight = { { value: descLineHeight, label: __( "descLineHeight" ) } }
+						lineHeightMobile = { { value: descLineHeightMobile, label: __( "descLineHeightMobile" ) } }
+						lineHeightTablet= { { value: descLineHeightTablet, label: __( "descLineHeightTablet" ) } }
 					/>
 
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Name" ) }</h2>
+					<TypographyControl
+						label={ __( "Name Tag" ) }
+						attributes = { attributes }
+						setAttributes = { setAttributes }
+						loadGoogleFonts = { { value: nameLoadGoogleFonts, label: __( "nameLoadGoogleFonts" ) } }
+						fontFamily = { { value: nameFontFamily, label: __( "nameFontFamily" ) } }
+						fontWeight = { { value: nameFontWeight, label: __( "nameFontWeight" ) } }
+						fontSubset = { { value: nameFontSubset, label: __( "nameFontSubset" ) } }
+						fontSizeType = { { value: nameFontSizeType, label: __( "nameFontSizeType" ) } }
+						fontSize = { { value: nameFontSize, label: __( "nameFontSize" ) } }
+						fontSizeMobile = { { value: nameFontSizeMobile, label: __( "nameFontSizeMobile" ) } }
+						fontSizeTablet= { { value: nameFontSizeTablet, label: __( "nameFontSizeTablet" ) } }
+						lineHeightType = { { value: nameLineHeightType, label: __( "nameLineHeightType" ) } }
+						lineHeight = { { value: nameLineHeight, label: __( "nameLineHeight" ) } }
+						lineHeightMobile = { { value: nameLineHeightMobile, label: __( "nameLineHeightMobile" ) } }
+						lineHeightTablet= { { value: nameLineHeightTablet, label: __( "nameLineHeightTablet" ) } }
+					/>
+
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Company" ) }</h2>
+					<TypographyControl
+						label={ __( "Company Tag" ) }
+						attributes = { attributes }
+						setAttributes = { setAttributes }
+						loadGoogleFonts = { { value: companyLoadGoogleFonts, label: __( "companyLoadGoogleFonts" ) } }
+						fontFamily = { { value: companyFontFamily, label: __( "companyFontFamily" ) } }
+						fontWeight = { { value: companyFontWeight, label: __( "companyFontWeight" ) } }
+						fontSubset = { { value: companyFontSubset, label: __( "companyFontSubset" ) } }
+						fontSizeType = { { value: companyFontSizeType, label: __( "companyFontSizeType" ) } }
+						fontSize = { { value: companyFontSize, label: __( "companyFontSize" ) } }
+						fontSizeMobile = { { value: companyFontSizeMobile, label: __( "companyFontSizeMobile" ) } }
+						fontSizeTablet= { { value: companyFontSizeTablet, label: __( "companyFontSizeTablet" ) } }
+						lineHeightType = { { value: companyLineHeightType, label: __( "companyLineHeightType" ) } }
+						lineHeight = { { value: companyLineHeight, label: __( "companyLineHeight" ) } }
+						lineHeightMobile = { { value: companyLineHeightMobile, label: __( "companyLineHeightMobile" ) } }
+						lineHeightTablet= { { value: companyLineHeightTablet, label: __( "companyLineHeightTablet" ) } }
+					/>
 				</PanelBody>
 
 				<PanelColorSettings
@@ -307,70 +431,64 @@ class UAGBtestimonial extends Component {
 
 		// Margin Settings.
 		const marginSettings = (
-			<Fragment>
-				<PanelBody
-					title={ __( "Spacing" ) }
-					initialOpen={ false }
-				>
-					<RangeControl
-						label={ __( "Gap Between Content & Dots" ) }
-						value={ rowGap }
-						onChange={ ( value ) => setAttributes( { rowGap: value } ) }
-						min={ 0 }
-						max={ 50 }
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Row Gap" ) }
-						value={ columnGap }
-						onChange={ ( value ) => setAttributes( { columnGap: value } ) }
-						min={ 0 }
-						max={ 50 }
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Content Padding" ) }
-						value={ contentPadding }
-						onChange={ ( value ) => setAttributes( { contentPadding: value } ) }
-						min={ 0 }
-						max={ 50 }
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Testimonial Bottom Margin" ) }
-						value={ descSpace }
-						onChange={ ( value ) => setAttributes( { descSpace: value } ) }
-						min={ 0 }
-						max={ 50 }
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Name Bottom Margin" ) }
-						value={ nameSpace }
-						onChange={ ( value ) => setAttributes( { nameSpace: value } ) }
-						min={ 0 }
-						max={ 50 }
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Image Horizontal Padding" ) }
-						value={ imgHrPadding }
-						onChange={ ( value ) => setAttributes( { imgHrPadding: value } ) }
-						min={ 0 }
-						max={ 50 }
-						allowReset
-					/>
-					<RangeControl
-						label={ __( "Image Vertical Padding" ) }
-						value={ imgVrPadding }
-						onChange={ ( value ) => setAttributes( { imgVrPadding: value } ) }
-						min={ 0 }
-						max={ 50 }
-						allowReset
-					/>
-
-				</PanelBody>
-			</Fragment>
+			<PanelBody title={ __( "Spacing" ) } initialOpen={ false } >
+				<RangeControl
+					label={ __( "Gap Between Content & Dots" ) }
+					value={ rowGap }
+					onChange={ ( value ) => setAttributes( { rowGap: value } ) }
+					min={ 0 }
+					max={ 50 }
+					allowReset
+				/>
+				<RangeControl
+					label={ __( "Row Gap" ) }
+					value={ columnGap }
+					onChange={ ( value ) => setAttributes( { columnGap: value } ) }
+					min={ 0 }
+					max={ 50 }
+					allowReset
+				/>
+				<RangeControl
+					label={ __( "Content Padding" ) }
+					value={ contentPadding }
+					onChange={ ( value ) => setAttributes( { contentPadding: value } ) }
+					min={ 0 }
+					max={ 50 }
+					allowReset
+				/>
+				<RangeControl
+					label={ __( "Testimonial Bottom Margin" ) }
+					value={ descSpace }
+					onChange={ ( value ) => setAttributes( { descSpace: value } ) }
+					min={ 0 }
+					max={ 50 }
+					allowReset
+				/>
+				<RangeControl
+					label={ __( "Name Bottom Margin" ) }
+					value={ nameSpace }
+					onChange={ ( value ) => setAttributes( { nameSpace: value } ) }
+					min={ 0 }
+					max={ 50 }
+					allowReset
+				/>
+				<RangeControl
+					label={ __( "Image Horizontal Padding" ) }
+					value={ imgHrPadding }
+					onChange={ ( value ) => setAttributes( { imgHrPadding: value } ) }
+					min={ 0 }
+					max={ 50 }
+					allowReset
+				/>
+				<RangeControl
+					label={ __( "Image Vertical Padding" ) }
+					value={ imgVrPadding }
+					onChange={ ( value ) => setAttributes( { imgVrPadding: value } ) }
+					min={ 0 }
+					max={ 50 }
+					allowReset
+				/>
+			</PanelBody>
 		)
 
 		const background_settings = (
@@ -508,14 +626,6 @@ class UAGBtestimonial extends Component {
 									max={ 50 }
 									allowReset
 								/>
-								<RangeControl
-									label={ __( "Border Radius" ) }
-									value={ borderRadius }
-									onChange={ ( value ) => setAttributes( { borderRadius: value } ) }
-									min={ 0 }
-									max={ 1000 }
-									allowReset
-								/>
 								<Fragment>
 									<p className="uagb-setting-label">{ __( "Border Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: borderColor }} ></span></span></p>
 									<ColorPalette
@@ -526,6 +636,14 @@ class UAGBtestimonial extends Component {
 								</Fragment>
 							</Fragment>
 					}
+					<RangeControl
+						label={ __( "Border Radius" ) }
+						value={ borderRadius }
+						onChange={ ( value ) => setAttributes( { borderRadius: value } ) }
+						min={ 0 }
+						max={ 1000 }
+						allowReset
+					/>
 				</PanelBody>
 			</Fragment>
 		)
@@ -538,16 +656,16 @@ class UAGBtestimonial extends Component {
 		]
 
 		function NextArrow( props ) {
-
 			return (
-				<button type="button" data-role="none" className="slick-next slick-arrow" aria-label="Next" tabIndex="0" role="button" style={{ "borderColor" : arrowColor, "borderRadius" : arrowBorderRadius, "borderWidth" : arrowBorderSize }}><span className="fas fa-angle-right" style={{ "fontSize" : props.arrowSize, "color" : arrowColor, "height" : props.arrowSize, "width" : props.arrowSize,}}></span></button>
+				<button type="button" data-role="none" className="slick-next slick-arrow" aria-label="Next" tabIndex="0" role="button" style={{ "borderColor" : arrowColor, "borderRadius" : arrowBorderRadius, "borderWidth" : arrowBorderSize }}>
+					{ UAGB_Block_Icons.carousel_right }</button>
 			)
 		}
 
 		function PrevArrow( props ) {
-
 			return (
-				<button type="button" data-role="none" className="slick-prev slick-arrow" aria-label="Previous" tabIndex="0" role="button" style={{ "borderColor" : arrowColor, "borderRadius" : arrowBorderRadius, "borderWidth" : arrowBorderSize }}><span className="fas fa-angle-left" style={{ "fontSize" : props.arrowSize, "color" : arrowColor, "height" : props.arrowSize, "width" : props.arrowSize, }}></span></button>
+				<button type="button" data-role="none" className="slick-prev slick-arrow" aria-label="Previous" tabIndex="0" role="button" style={{ "borderColor" : arrowColor, "borderRadius" : arrowBorderRadius, "borderWidth" : arrowBorderSize }}>
+					{ UAGB_Block_Icons.carousel_left }</button>
 			)
 		}
 
@@ -629,76 +747,74 @@ class UAGBtestimonial extends Component {
 		}
 
 		const carousal_settings = (
-			<Fragment>
-				<PanelBody title={ __( "Carousel" ) } initialOpen={ false }>
-					<ToggleControl
-						label={ __( "Pause On Hover" ) }
-						checked={ pauseOnHover }
-						onChange={ this.togglePauseOnHover }
-					/>
-					<ToggleControl
-						label={ __( "Autoplay" ) }
-						checked={ autoplay }
-						onChange={ this.toggleAutoplay }
-					/>
-					{ autoplay == true &&
-						<RangeControl
-							label={ __( "Autoplay Speed (ms)" ) }
-							value={ autoplaySpeed }
-							onChange={ ( value ) => setAttributes( { autoplaySpeed: value } ) }
-							min={ 100 }
-							max={ 10000 }
-						/>
-					}
-					<ToggleControl
-						label={ __( "Infinite Loop" ) }
-						checked={ infiniteLoop }
-						onChange={ this.toggleInfiniteLoop }
-					/>
+			<PanelBody title={ __( "Carousel" ) } initialOpen={ false }>
+				<ToggleControl
+					label={ __( "Pause On Hover" ) }
+					checked={ pauseOnHover }
+					onChange={ this.togglePauseOnHover }
+				/>
+				<ToggleControl
+					label={ __( "Autoplay" ) }
+					checked={ autoplay }
+					onChange={ this.toggleAutoplay }
+				/>
+				{ autoplay == true &&
 					<RangeControl
-						label={ __( "Transition Speed (ms)" ) }
-						value={ transitionSpeed }
-						onChange={ ( value ) => setAttributes( { transitionSpeed: value } ) }
+						label={ __( "Autoplay Speed (ms)" ) }
+						value={ autoplaySpeed }
+						onChange={ ( value ) => setAttributes( { autoplaySpeed: value } ) }
 						min={ 100 }
-						max={ 5000 }
+						max={ 10000 }
 					/>
-					<SelectControl
-						label={ __( "Show Arrows & Dots" ) }
-						value={ arrowDots }
-						onChange={ ( value ) => setAttributes( { arrowDots: value } ) }
-						options={ [
-							{ value: "arrows", label: __( "Only Arrows" ) },
-							{ value: "dots", label: __( "Only Dots" ) },
-							{ value: "arrows_dots", label: __( "Both Arrows & Dots" ) },
-						] }
-					/>
-					{ "dots" != arrowDots &&
-						<Fragment>
-							<RangeControl
-								label={ __( "Arrow Size" ) }
-								value={ arrowSize }
-								onChange={ ( value ) => setAttributes( { arrowSize: value } ) }
-								min={ 0 }
-								max={ 50 }
-							/>
-							<RangeControl
-								label={ __( "Arrow Border Size" ) }
-								value={ arrowBorderSize }
-								onChange={ ( value ) => setAttributes( { arrowBorderSize: value } ) }
-								min={ 0 }
-								max={ 50 }
-							/>
-							<RangeControl
-								label={ __( "Arrow Border Radius" ) }
-								value={ arrowBorderRadius }
-								onChange={ ( value ) => setAttributes( { arrowBorderRadius: value } ) }
-								min={ 0 }
-								max={ 50 }
-							/>
-						</Fragment>
-					}
-				</PanelBody>
-			</Fragment>
+				}
+				<ToggleControl
+					label={ __( "Infinite Loop" ) }
+					checked={ infiniteLoop }
+					onChange={ this.toggleInfiniteLoop }
+				/>
+				<RangeControl
+					label={ __( "Transition Speed (ms)" ) }
+					value={ transitionSpeed }
+					onChange={ ( value ) => setAttributes( { transitionSpeed: value } ) }
+					min={ 100 }
+					max={ 5000 }
+				/>
+				<SelectControl
+					label={ __( "Show Arrows & Dots" ) }
+					value={ arrowDots }
+					onChange={ ( value ) => setAttributes( { arrowDots: value } ) }
+					options={ [
+						{ value: "arrows", label: __( "Only Arrows" ) },
+						{ value: "dots", label: __( "Only Dots" ) },
+						{ value: "arrows_dots", label: __( "Both Arrows & Dots" ) },
+					] }
+				/>
+				{ "dots" != arrowDots &&
+					<Fragment>
+						<RangeControl
+							label={ __( "Arrow Size" ) }
+							value={ arrowSize }
+							onChange={ ( value ) => setAttributes( { arrowSize: value } ) }
+							min={ 0 }
+							max={ 50 }
+						/>
+						<RangeControl
+							label={ __( "Arrow Border Size" ) }
+							value={ arrowBorderSize }
+							onChange={ ( value ) => setAttributes( { arrowBorderSize: value } ) }
+							min={ 0 }
+							max={ 50 }
+						/>
+						<RangeControl
+							label={ __( "Arrow Border Radius" ) }
+							value={ arrowBorderRadius }
+							onChange={ ( value ) => setAttributes( { arrowBorderRadius: value } ) }
+							min={ 0 }
+							max={ 50 }
+						/>
+					</Fragment>
+				}
+			</PanelBody>
 		)
 
 		let cnt = 0
@@ -714,146 +830,178 @@ class UAGBtestimonial extends Component {
 
 		// Global Controls.
 		const inspect_control = (
-			<Fragment>
-				 <InspectorControls>
-				 	<PanelBody
-						title={ __( "General" ) }
-						initialOpen={ true }
-					>
-				 	<RangeControl
-							label={ __( "Number of Testimonials" ) }
-							value={ test_item_count }
-							onChange={ ( newCount ) => {
-								let cloneTest_block = [ ...test_block ]
-								if ( cloneTest_block.length < newCount ) {
-									const incAmount = Math.abs( newCount - cloneTest_block.length )
+			<InspectorControls>
+			 	<PanelBody title={ __( "General" ) } initialOpen={ true } >
+			 		<RangeControl
+						label={ __( "Number of Testimonials" ) }
+						value={ test_item_count }
+						onChange={ ( newCount ) => {
+							let cloneTest_block = [ ...test_block ]
+							if ( cloneTest_block.length < newCount ) {
+								const incAmount = Math.abs( newCount - cloneTest_block.length )
 
-									{ times( incAmount, n => {
+								{ times( incAmount, n => {
 
-										cloneTest_block.push( {
-											description: "I have been working with these guys since years now! With lots of hard work and timely communication they made sure they delivered the best to me. Highly recommended!" ,
-											name: "John Doe",
-											company: "Company"+ ( cloneTest_block.length + 1 ),
-											image: "",
-										} )
-									} ) }
-									setAttributes( { test_block: cloneTest_block } )
-								}else{
-									const incAmount = Math.abs( newCount - cloneTest_block.length )
-									let data_new = cloneTest_block
-					            for( var i= 0; i < incAmount; i++ ){
-					                data_new.pop()
-					            }
-					            setAttributes({test_block:data_new})
+									cloneTest_block.push( {
+										description: "I have been working with these guys since years now! With lots of hard work and timely communication they made sure they delivered the best to me. Highly recommended!" ,
+										name: "John Doe",
+										company: "Company"+ ( cloneTest_block.length + 1 ),
+										image: "",
+									} )
+								} ) }
+								setAttributes( { test_block: cloneTest_block } )
+							}else{
+								const incAmount = Math.abs( newCount - cloneTest_block.length )
+								let data_new = cloneTest_block
+				            for( var i= 0; i < incAmount; i++ ){
+				                data_new.pop()
+				            }
+				            setAttributes({test_block:data_new})
 
+							}
+							setAttributes( { test_item_count: newCount } )
+						} }
+						min={ 0 }
+						max={ 10 }
+						allowReset
+					/>
+					<TabPanel className="uagb-size-type-field-tabs uagb-without-size-type" activeClass="active-tab"
+						tabs={ [
+							{
+								name: "desktop",
+								title: <Dashicon icon="desktop" />,
+								className: "uagb-desktop-tab uagb-responsive-tabs",
+							},
+							{
+								name: "tablet",
+								title: <Dashicon icon="tablet" />,
+								className: "uagb-tablet-tab uagb-responsive-tabs",
+							},
+							{
+								name: "mobile",
+								title: <Dashicon icon="smartphone" />,
+								className: "uagb-mobile-tab uagb-responsive-tabs",
+							},
+						] }>
+						{
+							( tab ) => {
+								let tabout
+
+								if ( "mobile" === tab.name ) {
+									tabout = (
+										<RangeControl
+											label={ __( "Columns" ) }
+											value={ mcolumns }
+											onChange={ ( value ) => setAttributes( { mcolumns: value } ) }
+											min={ 1 }
+											max={ test_item_count }
+										/>
+									)
+								} else if ( "tablet" === tab.name ) {
+									tabout = (
+										<RangeControl
+											label={ __( "Columns" ) }
+											value={ tcolumns }
+											onChange={ ( value ) => setAttributes( { tcolumns: value } ) }
+											min={ 1 }
+											max={ test_item_count }
+										/>
+									)
+								} else {
+									tabout = (
+										<RangeControl
+											label={ __( "Columns" ) }
+											value={ columns }
+											onChange={ ( value ) => setAttributes( { columns: value } ) }
+											min={ 1 }
+											max={ test_item_count }
+										/>
+									)
 								}
-								setAttributes( { test_item_count: newCount } )
-							} }
-							min={ 0 }
-							max={ 10 }
-							allowReset
-						/>
-						<RangeControl
-							label={ __( "Columns" ) }
-							value={ columns }
-							onChange={ ( value ) => setAttributes( { columns: value } ) }
-							min={ 1 }
-							max={ test_item_count }
-						/>
-						<RangeControl
-							label={ __( "Columns (Tablet)" ) }
-							value={ tcolumns }
-							onChange={ ( value ) => setAttributes( { tcolumns: value } ) }
-							min={ 1 }
-							max={ test_item_count }
-						/>
-						<RangeControl
-							label={ __( "Columns (Mobile)" ) }
-							value={ mcolumns }
-							onChange={ ( value ) => setAttributes( { mcolumns: value } ) }
-							min={ 1 }
-							max={ test_item_count }
-						/>
-					</PanelBody>
-					{ carousal_settings }
 
-					<PanelBody
-						title={ __( "Image" ) }
-						initialOpen={ false }
-					>
-						{ times( test_item_count, n => tmControls( n ) ) }
+								return <div>{ tabout }</div>
+							}
+						}
+					</TabPanel>
+				</PanelBody>
+				{ carousal_settings }
 
-						{  cnt > 0 && <Fragment>
+				<PanelBody
+					title={ __( "Image" ) }
+					initialOpen={ false }
+				>
+					{ times( test_item_count, n => tmControls( n ) ) }
+
+					{  cnt > 0 && <Fragment>
+						<SelectControl
+							label={ __( "Image Position" ) }
+							value={ imagePosition }
+							onChange={ ( value ) => setAttributes( { imagePosition: value } ) }
+							options={ [
+								{ value: "top", label: __( "Top" ) },
+								{ value: "bottom", label: __( "Bottom" ) },
+								{ value: "left", label: __( "Left" ) },
+								{ value: "right", label: __( "Right" ) },
+							] }
+						/>
+						{ (imagePosition == "left" || imagePosition == "right") &&
+						<Fragment>
 							<SelectControl
-								label={ __( "Image Position" ) }
-								value={ imagePosition }
-								onChange={ ( value ) => setAttributes( { imagePosition: value } ) }
+								label={ __( "Vertical ALignment" ) }
+								value={ imageAlignment }
+								onChange={ ( value ) => setAttributes( { imageAlignment: value } ) }
 								options={ [
 									{ value: "top", label: __( "Top" ) },
-									{ value: "bottom", label: __( "Bottom" ) },
-									{ value: "left", label: __( "Left" ) },
-									{ value: "right", label: __( "Right" ) },
+									{ value: "middle", label: __( "Middle" ) },
 								] }
 							/>
-							{ (imagePosition == "left" || imagePosition == "right") &&
-							<Fragment>
-								<SelectControl
-									label={ __( "Vertical ALignment" ) }
-									value={ imageAlignment }
-									onChange={ ( value ) => setAttributes( { imageAlignment: value } ) }
-									options={ [
-										{ value: "top", label: __( "Top" ) },
-										{ value: "middle", label: __( "Middle" ) },
-									] }
-								/>
-								<SelectControl
-									label={ __( "Stack on" ) }
-									value={ stack }
-									options={ [
-										{ value: "none", label: __( "None" ) },
-										{ value: "tablet", label: __( "Tablet" ) },
-										{ value: "mobile", label: __( "Mobile" ) },
-									] }
-									help={ __( "Note: Choose on what breakpoint the Info Box will stack." ) }
-									onChange={ ( value ) => setAttributes( { stack: value } ) }
-								/>
-							</Fragment>
-							}
 							<SelectControl
-								label={ __( "Image Style" ) }
-								value={ iconimgStyle }
-								onChange={ ( value ) => setAttributes( { iconimgStyle: value } ) }
+								label={ __( "Stack on" ) }
+								value={ stack }
 								options={ [
-									{ value: "normal", label: __( "Normal" ) },
-									{ value: "circle", label: __( "Circle" ) },
-									{ value: "square", label: __( "Square" ) },
+									{ value: "none", label: __( "None" ) },
+									{ value: "tablet", label: __( "Tablet" ) },
+									{ value: "mobile", label: __( "Mobile" ) },
 								] }
-							/>
-							<SelectControl
-								label={ __( "Image Size" ) }
-								options={ imageSizeOptions }
-								value={ imageSize }
-								onChange={ ( value ) => setAttributes( { imageSize: value } ) }
-							/>
-						 <RangeControl
-								label={ __( "Width" ) }
-								value={ imageWidth }
-								onChange={ ( value ) => setAttributes( { imageWidth: value } ) }
-								min={ 0 }
-								max={ 500 }
-								allowReset
+								help={ __( "Note: Choose on what breakpoint the Info Box will stack." ) }
+								onChange={ ( value ) => setAttributes( { stack: value } ) }
 							/>
 						</Fragment>
 						}
+						<SelectControl
+							label={ __( "Image Style" ) }
+							value={ iconimgStyle }
+							onChange={ ( value ) => setAttributes( { iconimgStyle: value } ) }
+							options={ [
+								{ value: "normal", label: __( "Normal" ) },
+								{ value: "circle", label: __( "Circle" ) },
+								{ value: "square", label: __( "Square" ) },
+							] }
+						/>
+						<SelectControl
+							label={ __( "Image Size" ) }
+							options={ imageSizeOptions }
+							value={ imageSize }
+							onChange={ ( value ) => setAttributes( { imageSize: value } ) }
+						/>
+					 <RangeControl
+							label={ __( "Width" ) }
+							value={ imageWidth }
+							onChange={ ( value ) => setAttributes( { imageWidth: value } ) }
+							min={ 0 }
+							max={ 500 }
+							allowReset
+						/>
+					</Fragment>
+					}
 
 
-					</PanelBody>
-					{ TypographySettings }
+				</PanelBody>
+				{ TypographySettings }
 
-					{ marginSettings }
-					{ background_settings }
-				</InspectorControls>
-			</Fragment>
+				{ marginSettings }
+				{ background_settings }
+			</InspectorControls>
 		)
 
 		return (
@@ -869,9 +1017,8 @@ class UAGBtestimonial extends Component {
 					className,
 					"uagb-testomonial__outer-wrap uagb-slick-carousel uagb-tm__arrow-outside"
 				) }
-				id = { my_block_id }
+				id = { `uagb-testimonial-${ this.props.clientId }` }
 				>
-
 					<Slider
 						className={ classnames(
 							"is-carousel",
@@ -921,6 +1068,9 @@ class UAGBtestimonial extends Component {
 						)}
 					</Slider>
 				</div>
+				{ loadNameGoogleFonts }
+				{ loadCompanyGoogleFonts }
+				{ loadDescGoogleFonts }
 			</Fragment>
 		)
 	}

@@ -303,12 +303,20 @@
 	right: auto;
 }
 
+.uagb-post-grid .is-grid article,
+.uagb-post-grid .is-masonry article,
+.uagb-post-grid .is-carousel article{
+ -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+ }
+
 /**
  * Post grid styles
  * Loads on front end and back end
  */
 
-@media (max-width: 1024px) {
+@media (max-width: 976px) {
 
 	.uagb-post__arrow-outside.uagb-post-grid .slick-prev {
 		left: 15px;

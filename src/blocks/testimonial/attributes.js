@@ -1,5 +1,5 @@
 /**
- * BLOCK: UAGB Section Attributes
+ * BLOCK: Testimonial - Attributes
  */
 
 const ITEM_COUNT = 3
@@ -57,19 +57,130 @@ const attributes = {
 		type: "string",
 		default: "top"
 	},
-	authorFontSize: {
+
+	nameFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	nameFontSize: {
 		type: "number",
 	},
-	nameFontSize:{
+	nameFontSizeTablet: {
 		type: "number",
+	},
+	nameFontSizeMobile: {
+		type: "number",
+	},
+	nameFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	nameFontWeight: {
+		type: "string",
+	},
+	nameFontSubset: {
+		type: "string",
+	},
+	nameLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	nameLineHeight: {
+		type: "number",
+	},
+	nameLineHeightTablet: {
+		type: "number",
+	},
+	nameLineHeightMobile: {
+		type: "number",
+	},
+	nameLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
+
+	companyFontSizeType: {
+		type: "string",
+		default: "px"
 	},
 	companyFontSize: {
 		type: "number",
-		default: 15
+	},
+	companyFontSizeTablet: {
+		type: "number",
+	},
+	companyFontSizeMobile: {
+		type: "number",
+	},
+	companyFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	companyFontWeight: {
+		type: "string",
+	},
+	companyFontSubset: {
+		type: "string",
+	},
+	companyLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	companyLineHeight: {
+		type: "number",
+	},
+	companyLineHeightTablet: {
+		type: "number",
+	},
+	companyLineHeightMobile: {
+		type: "number",
+	},
+	companyLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
+
+	descFontSizeType: {
+		type: "string",
+		default: "px"
 	},
 	descFontSize: {
 		type: "number",
 	},
+	descFontSizeTablet: {
+		type: "number",
+	},
+	descFontSizeMobile: {
+		type: "number",
+	},
+	descFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	descFontWeight: {
+		type: "string",
+	},
+	descFontSubset: {
+		type: "string",
+	},
+	descLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	descLineHeight: {
+		type: "number",
+	},
+	descLineHeightTablet: {
+		type: "number",
+	},
+	descLineHeightMobile: {
+		type: "number",
+	},
+	descLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
+
 	nameSpace: {
 		type: "number",
 		default : 5
@@ -157,11 +268,11 @@ const attributes = {
 		type: "number",
 		default: 20,
 	},
-	"arrowBorderSize" : {
+	arrowBorderSize : {
 		type: "number",
 		default : 1,
 	},
-	"arrowBorderRadius" : {
+	arrowBorderRadius : {
 		type: "number",
 		default : 0,
 	},

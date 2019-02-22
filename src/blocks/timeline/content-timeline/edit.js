@@ -3,13 +3,21 @@
  */
 
 import classnames from "classnames"
+import map from "lodash/map"
 import times from "lodash/times"
-import UAGBIcon from "../../../../dist/blocks/uagb-controls/UAGBIcon"
+import UAGBIcon from "../../../../dist/blocks/uagb-controls/UAGBIcon.json"
 import FontIconPicker from "@fonticonpicker/react-fonticonpicker"
 import contentTimelineStyle from ".././inline-styles"
 import ContentTmClasses from ".././classes"
 import AlignClass from ".././align-classes"
 import DayAlignClass from ".././day-align-classes"
+import renderSVG from "../../../../dist/blocks/uagb-controls/renderIcon"
+
+// Import all of our Text Options requirements.
+import TypographyControl from "../../../components/typography"
+
+// Import Web font loader for google fonts.
+import WebfontLoader from "../../../components/typography/fontloader"
 
 const { dateI18n, __experimentalGetSettings } = wp.date
 
@@ -43,8 +51,13 @@ const {
 	TextControl,
 	ToggleControl,
 	Toolbar,
+	ButtonGroup,
+	Button,
 	TabPanel,
+	Dashicon,
 } = wp.components
+
+let svg_icons = Object.keys( UAGBIcon )
 
 class UAGBcontentTimeline extends Component {
 
@@ -53,14 +66,7 @@ class UAGBcontentTimeline extends Component {
 
 		this.splitBlock = this.splitBlock.bind( this )
 
-		// Get initial timeline content.
-		this.getTimelinecontent = this.getTimelinecontent.bind(this)
-
-		this.getDatecontent = this.getDatecontent.bind(this)
-
 		this.getTimelineicon = this.getTimelineicon.bind(this)
-
-		this.savedateArray = this.savedateArray.bind(this)
 
 		this.toggleDisplayPostDate    = this.toggleDisplayPostDate.bind( this )
 	}
@@ -113,85 +119,7 @@ class UAGBcontentTimeline extends Component {
 		this.props.setAttributes( { icon: value } )
 	}
 
-	/**
-    * Loading Timeline content.
-    */
-	getTimelinecontent(value) {
-		const { tm_content, timelineItem } = this.props.attributes
-		const { setAttributes } = this.props
-		var item_number = value
-		let data_copy     = [ ...tm_content ]
-		let data_length = data_copy.length
-		if( item_number < data_length ){
-			var diff = data_length - item_number
-			let data_new = data_copy
-			for( var i= 0; i < diff; i++ ){
-				data_new.pop()
-			}
-			setAttributes({tm_content:data_new})
-
-		}if( item_number > data_length ){
-			var diff = item_number - data_length
-
-			for( var i= 0; i < diff; i++ ){
-				var array_length = data_length+i
-				var title_heading_val = "My Heading "+item_number
-				var title_desc_val    = "I am timeline card content. You can change me anytime. Click here to edit this text."
-				data_copy[array_length] = { "time_heading" : title_heading_val,"time_desc":title_desc_val }
-			}
-			setAttributes({tm_content:data_copy})
-		}
-		return this.props.attributes.tm_content
-	}
-
-	getDatecontent(value) {
-
-		const { timelineItem, t_date } = this.props.attributes
-		const { setAttributes } = this.props
-
-		var item_number = value
-		let data_copy     = [ ...t_date ]
-		let data_length = data_copy.length
-
-		if( item_number < data_length ){
-			var diff = data_length - item_number
-			let data_new = data_copy
-
-			for( var i= 0; i < diff; i++ ){
-				data_new.pop()
-			}
-			setAttributes({t_date:data_new})
-
-		}
-
-		if( item_number > data_length ){
-			var diff = item_number - data_length
-
-			var today = new Date()
-			var dd = today.getDate()
-			var mm = today.getMonth()+1
-
-			if(dd<10) {
-				dd = "0"+dd
-			}
-			if(mm<10) {
-				mm = "0"+mm
-			}
-
-			for( var i= 0; i < diff; i++ ){
-				var array_length = data_length + i
-				var yyyy = today.getFullYear() - array_length
-				today = mm + "/" + dd + "/" + yyyy
-
-				data_copy[array_length] = { "title" : today }
-			}
-			setAttributes({t_date:data_copy})
-		}
-
-		return this.props.attributes.t_date
-	}
-
-	savedateArray( value, index ) {
+	saveDate( value, index ) {
 		const { attributes, setAttributes } = this.props
 		const { t_date } = attributes
 
@@ -220,8 +148,6 @@ class UAGBcontentTimeline extends Component {
 			onReplace,
 			attributes: {
 				tm_content,
-				headingTitle,
-				headingDesc,
 				headingAlign,
 				separatorHeight,
 				headSpace,
@@ -235,11 +161,33 @@ class UAGBcontentTimeline extends Component {
 				separatorBorder,
 				borderFocus,
 				headingTag,
+				headFontSizeType,
 				headFontSize,
+				headFontSizeTablet,
+				headFontSizeMobile,
+				headFontFamily,
+				headFontWeight,
+				headFontSubset,
+				headLineHeightType,
+				headLineHeight,
+				headLineHeightTablet,
+				headLineHeightMobile,
+				headLoadGoogleFonts,
 				timelineItem,
 				timelinAlignment,
 				arrowlinAlignment,
+				subHeadFontSizeType,
 				subHeadFontSize,
+				subHeadFontSizeTablet,
+				subHeadFontSizeMobile,
+				subHeadFontFamily,
+				subHeadFontWeight,
+				subHeadFontSubset,
+				subHeadLineHeightType,
+				subHeadLineHeight,
+				subHeadLineHeightTablet,
+				subHeadLineHeightMobile,
+				subHeadLoadGoogleFonts,
 				verticalSpace,
 				horizontalSpace,
 				separatorwidth,
@@ -250,8 +198,18 @@ class UAGBcontentTimeline extends Component {
 				icon,
 				iconColor,
 				dateColor,
+				dateFontsizeType,
 				dateFontsize,
-				authorFontsize,
+				dateFontsizeTablet,
+				dateFontsizeMobile,
+				dateFontFamily,
+				dateFontWeight,
+				dateFontSubset,
+				dateLineHeightType,
+				dateLineHeight,
+				dateLineHeightTablet,
+				dateLineHeightMobile,
+				dateLoadGoogleFonts,
 				iconSize,
 				borderRadius,
 				bgPadding,
@@ -266,192 +224,257 @@ class UAGBcontentTimeline extends Component {
 
 		// Parameters for FontIconPicker
 		const icon_props = {
-			icons: UAGBIcon,
-			renderUsing: "class",
-			theme: "default",
+			icons: svg_icons,
 			value: icon,
 			onChange: this.getTimelineicon,
 			isMulti: false,
+			renderFunc: renderSVG,
+			noSelectedPlaceholder: __( "Select Icon" )
 		}
 
 		const iconColorSettings = (
-			<Fragment>
-				<PanelColorSettings
-					title={ __( "Color Settings" ) }
-					initialOpen={ true }
-					colorSettings={ [
-						{
-							value: separatorColor,
-							onChange: ( colorValue ) => setAttributes( { separatorColor: colorValue } ),
-							label: __( "Line Color" ),
-						},
-						{
-							value: iconColor,
-							onChange: ( colorValue ) => setAttributes( { iconColor: colorValue } ),
-							label: __( "Icon Color" ),
-						},
-						{
-							value: separatorBg,
-							onChange: ( colorValue ) => setAttributes( { separatorBg: colorValue } ),
-							label: __( "Background Color" ),
-						},
-						{
-							value: separatorBorder,
-							onChange: ( colorValue ) => setAttributes( { separatorBorder: colorValue } ),
-							label: __( "Border Color" ),
-						},
-					] }
-				>
-				</PanelColorSettings>
-			</Fragment>
+			<PanelColorSettings title={ __( "Color Settings" ) } initialOpen={ true }
+				colorSettings={ [
+					{
+						value: separatorColor,
+						onChange: ( colorValue ) => setAttributes( { separatorColor: colorValue } ),
+						label: __( "Line Color" ),
+					},
+					{
+						value: iconColor,
+						onChange: ( colorValue ) => setAttributes( { iconColor: colorValue } ),
+						label: __( "Icon Color" ),
+					},
+					{
+						value: separatorBg,
+						onChange: ( colorValue ) => setAttributes( { separatorBg: colorValue } ),
+						label: __( "Background Color" ),
+					},
+					{
+						value: separatorBorder,
+						onChange: ( colorValue ) => setAttributes( { separatorBorder: colorValue } ),
+						label: __( "Border Color" ),
+					},
+				] }
+			>
+			</PanelColorSettings>
 		)
 
 		const iconFocusSettings = (
-			<Fragment>
-				<PanelColorSettings
-					title={ __( "Color Settings" ) }
-					initialOpen={ true }
-					colorSettings={ [
-						{
-							value: separatorFillColor,
-							onChange: ( colorValue ) => setAttributes( { separatorFillColor: colorValue } ),
-							label: __( "Line Color" ),
-						},
-						{
-							value: iconFocus,
-							onChange: ( colorValue ) => setAttributes( { iconFocus: colorValue } ),
-							label: __( "Icon Color" ),
-						},
-						{
-							value: iconBgFocus,
-							onChange: ( colorValue ) => setAttributes( { iconBgFocus: colorValue } ),
-							label: __( "Background Color" ),
-						},
-						{
-							value: borderFocus,
-							onChange: ( colorValue ) => setAttributes( { borderFocus: colorValue } ),
-							label: __( "Border Color" ),
-						},
-					] }
-				>
-				</PanelColorSettings>
-			</Fragment>
+			<PanelColorSettings	title={ __( "Color Settings" ) } initialOpen={ true }
+				colorSettings={ [
+					{
+						value: separatorFillColor,
+						onChange: ( colorValue ) => setAttributes( { separatorFillColor: colorValue } ),
+						label: __( "Line Color" ),
+					},
+					{
+						value: iconFocus,
+						onChange: ( colorValue ) => setAttributes( { iconFocus: colorValue } ),
+						label: __( "Icon Color" ),
+					},
+					{
+						value: iconBgFocus,
+						onChange: ( colorValue ) => setAttributes( { iconBgFocus: colorValue } ),
+						label: __( "Background Color" ),
+					},
+					{
+						value: borderFocus,
+						onChange: ( colorValue ) => setAttributes( { borderFocus: colorValue } ),
+						label: __( "Border Color" ),
+					},
+				] }
+			>
+			</PanelColorSettings>
 		)
 
 		const iconControls = (
-			<Fragment>
-				<PanelBody
-					title={ __( "Connector Color Settings" ) }
-					initialOpen={ true }
-				>
-					<TabPanel className="uagb-inspect-tabs uagb-inspect-tabs-col-2"
-						activeClass="active-tab"
-						tabs={ [
-							{
-								name: "normal",
-								title: __( "Normal" ),
-								className: "uagb-normal-tab",
-							},
-							{
-								name: "focus",
-								title: __( "Focus" ),
-								className: "uagb-focus-tab",
-							},							
-						] }>
+			<PanelBody	title={ __( "Connector Color Settings" ) }	initialOpen={ true }>
+				<TabPanel className="uagb-inspect-tabs uagb-inspect-tabs-col-2"
+					activeClass="active-tab"
+					tabs={ [
 						{
-							( tabName ) => {
-								let tabout
-								if( "focus" === tabName.name ) {
-									tabout = iconFocusSettings
-								}else {
-									tabout = iconColorSettings
-								}
-								return <div>{ tabout }</div>
+							name: "normal",
+							title: __( "Normal" ),
+							className: "uagb-normal-tab",
+						},
+						{
+							name: "focus",
+							title: __( "Focus" ),
+							className: "uagb-focus-tab",
+						},
+					] }>
+					{
+						( tabName ) => {
+							let tabout
+							if( "focus" === tabName.name ) {
+								tabout = iconFocusSettings
+							}else {
+								tabout = iconColorSettings
 							}
+							return <div>{ tabout }</div>
 						}
-					</TabPanel>
-				</PanelBody>
-			</Fragment>
+					}
+				</TabPanel>
+			</PanelBody>
 		)
 
 		const renderDateSettings = ( index ) => {
 			return (
-				<Fragment key = {index} >
+				<Fragment key ={index}>
 					<TextControl
 						label= { __( "Date" ) + " " + ( index + 1 ) + " " + __( "Settings" ) }
 						value= { t_date[ index ].title }
 						onChange={ value => {
-							this.savedateArray( { title: value }, index )
+							this.saveDate( { title: value }, index )
 						} }
 					/>
 				</Fragment>
 			)
 		}
 
+		const sizeTypes = [
+			{ key: "px", name: __( "px" ) },
+			{ key: "em", name: __( "em" ) },
+		]
+
+		let loadHeadGoogleFonts
+		let loadSubHeadGoogleFonts
+		let loadDateGoogleFonts
+
+		if( headLoadGoogleFonts == true ) {
+
+			const headconfig = {
+				google: {
+					families: [ headFontFamily + ( headFontWeight ? ":" + headFontWeight : "" ) ],
+				},
+			}
+
+			loadHeadGoogleFonts = (
+				<WebfontLoader config={ headconfig }>
+				</WebfontLoader>
+			)
+		}
+
+		if( subHeadLoadGoogleFonts == true ) {
+
+			const subHeadconfig = {
+				google: {
+					families: [ subHeadFontFamily + ( subHeadFontWeight ? ":" + subHeadFontWeight : "" ) ],
+				},
+			}
+
+			loadSubHeadGoogleFonts = (
+				<WebfontLoader config={ subHeadconfig }>
+				</WebfontLoader>
+			)
+		}
+
+		if( dateLoadGoogleFonts == true ) {
+
+			const dateconfig = {
+				google: {
+					families: [ dateFontFamily + ( dateFontWeight ? ":" + dateFontWeight : "" ) ],
+				},
+			}
+
+			loadDateGoogleFonts = (
+				<WebfontLoader config={ dateconfig }>
+				</WebfontLoader>
+			)
+		}
+
 		const renderSettings = (
-			<Fragment>
-				<PanelBody
-					title={ __( "Date Settings" ) }
-					initialOpen={ false }
-				>
-					<ToggleControl
-						label={ __( "Display Post Date" ) }
-						checked={ displayPostDate }
-						onChange={ this.toggleDisplayPostDate }
-					/>
+			<PanelBody	title={ __( "Date Settings" ) }	initialOpen={ false } >
+				<ToggleControl
+					label={ __( "Display Post Date" ) }
+					checked={ displayPostDate }
+					onChange={ this.toggleDisplayPostDate }
+				/>
 
-					{ displayPostDate && times( timelineItem, n => renderDateSettings( n ) ) }
+				{ displayPostDate && times( timelineItem, n => renderDateSettings( n ) ) }
 
-					{ displayPostDate && ( timelinAlignment !=="center" ) && <RangeControl
-						label={ __( "Date Bottom Spacing" ) }
-						value={ dateBottomspace }
-						onChange={ ( value ) => setAttributes( { dateBottomspace: value } ) }
-						min={ 0 }
-						max={ 50 }
+				{ displayPostDate && ( timelinAlignment !=="center" ) && <RangeControl
+					label={ __( "Date Bottom Spacing" ) }
+					value={ dateBottomspace }
+					onChange={ ( value ) => setAttributes( { dateBottomspace: value } ) }
+					min={ 0 }
+					max={ 50 }
+					allowReset
+				/>
+				}
+
+				{ displayPostDate &&  <Fragment>
+					<hr className="uagb-editor__separator" />
+					<p className="uagb-setting-label">{ __( "Date Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: dateColor }} ></span></span></p>
+					<ColorPalette
+						value={ dateColor }
+						onChange={ ( colorValue ) => setAttributes( { dateColor: colorValue } ) }
 						allowReset
 					/>
-					}
-
-					{ displayPostDate &&  <Fragment>
-						<Fragment>
-							<p className="uagb-setting-label">{ __( "Date Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: dateColor }} ></span></span></p>
-							<ColorPalette
-								value={ dateColor }
-								onChange={ ( colorValue ) => setAttributes( { dateColor: colorValue } ) }
-								allowReset
-							/>
-						</Fragment>
-						<RangeControl
-							label={ __( "Date Font Size" ) }
-							value={ dateFontsize }
-							onChange={ ( value ) => setAttributes( { dateFontsize: value } ) }
-							min={ 1 }
-							max={ 50 }
-							initialPosition={16}
-							beforeIcon="editor-textcolor"
-							allowReset
-						/>
-					</Fragment>
-					}
-				</PanelBody>
-			</Fragment>
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Date Typography" ) }</h2>
+					<TypographyControl
+						label={ __( "Date Tag" ) }
+						attributes = { this.props.attributes }
+						setAttributes = { setAttributes }
+						loadGoogleFonts = { { value: dateLoadGoogleFonts, label: __( "dateLoadGoogleFonts" ) } }
+						fontFamily = { { value: dateFontFamily, label: __( "dateFontFamily" ) } }
+						fontWeight = { { value: dateFontWeight, label: __( "dateFontWeight" ) } }
+						fontSubset = { { value: dateFontSubset, label: __( "dateFontSubset" ) } }
+						fontSizeType = { { value: dateFontsizeType, label: __( "dateFontsizeType" ) } }
+						fontSize = { { value: dateFontsize, label: __( "dateFontsize" ) } }
+						fontSizeMobile = { { value: dateFontsizeMobile, label: __( "dateFontsizeMobile" ) } }
+						fontSizeTablet= { { value: dateFontsizeTablet, label: __( "dateFontsizeTablet" ) } }
+						lineHeightType = { { value: dateLineHeightType, label: __( "dateLineHeightType" ) } }
+						lineHeight = { { value: dateLineHeight, label: __( "dateLineHeight" ) } }
+						lineHeightMobile = { { value: dateLineHeightMobile, label: __( "dateLineHeightMobile" ) } }
+						lineHeightTablet= { { value: dateLineHeightTablet, label: __( "dateLineHeightTablet" ) } }
+					/>
+				</Fragment>
+				}
+			</PanelBody>
 		)
 
 		const content_control = (
 			<InspectorControls>
-				<PanelBody
-					title={ __( "General" ) }
-					initialOpen={ false }
-				>
+				<PanelBody	title={ __( "General" ) }	initialOpen={ true } >
 					<RangeControl
 						label={ __( "Number of Items" ) }
 						value={ timelineItem }
-						onChange={ ( value ) => {
-							setAttributes( { timelineItem: value } )
-							this.getTimelinecontent(value)
-							this.getDatecontent(value)
-						}
-						}
+						onChange={ ( newCount ) => {
+
+							let cloneDate = [ ...t_date ]
+							let cloneContent = [ ...tm_content ]
+
+							if ( cloneDate.length < newCount ) {
+
+								const incAmount = Math.abs( newCount - cloneDate.length )
+
+								// Save date.
+								{ times( incAmount, n => {
+									cloneDate.push( {
+										title: cloneDate[ 0 ].title,
+									} )
+								} ) }
+
+								setAttributes( { t_date: cloneDate } )
+
+								//Save content
+								{ times( incAmount, n => {
+									cloneContent.push( {
+										time_heading: __( "Timeline Heading " ) + ( cloneContent.length + 1 ),
+										time_desc: cloneContent[ 0 ].time_desc,
+									} )
+								} ) }
+
+								setAttributes( { tm_content: cloneContent } )
+
+							}
+
+							setAttributes( { timelineItem: newCount } )
+
+						} }
 						min={ 1 }
 						max={ 20 }
 						allowReset
@@ -460,10 +483,7 @@ class UAGBcontentTimeline extends Component {
 
 				{ renderSettings }
 
-				<PanelBody
-					title={ __( "Layout" ) }
-					initialOpen={ false }
-				>
+				<PanelBody	title={ __( "Layout" ) } initialOpen={ false }>
 					<SelectControl
 						label={ __( "Orientation" ) }
 						value={ timelinAlignment }
@@ -496,10 +516,7 @@ class UAGBcontentTimeline extends Component {
 						onChange={ ( value ) => setAttributes( { stack: value } ) }
 					/>
 				</PanelBody>
-				<PanelBody
-					title={ __( "Spacing" ) }
-					initialOpen={ false }
-				>
+				<PanelBody title={ __( "Spacing" ) } initialOpen={ false } >
 					<RangeControl
 						label={ __( "Horizontal Space" ) }
 						value={ horizontalSpace }
@@ -525,10 +542,7 @@ class UAGBcontentTimeline extends Component {
 						allowReset
 					/>
 				</PanelBody>
-				<PanelBody
-					title={ __( "Timeline Item" ) }
-					initialOpen={ false }
-				>
+				<PanelBody title={ __( "Timeline Item" ) } initialOpen={ false } >
 					<SelectControl
 						label={ __( "Heading Tag" ) }
 						value={ headingTag }
@@ -541,7 +555,7 @@ class UAGBcontentTimeline extends Component {
 							{ value: "h5", label: __( "H5" ) },
 							{ value: "h6", label: __( "H6" ) },
 						] }
-					/>					
+					/>
 					<RangeControl
 						label={ __( "Rounded Corners" ) }
 						value={ borderRadius }
@@ -560,31 +574,47 @@ class UAGBcontentTimeline extends Component {
 						max={ 50 }
 						allowReset
 					/>
-					<RangeControl
-						label={ __( "Heading Font Size" ) }
-						value={ headFontSize }
-						onChange={ ( value ) => setAttributes( { headFontSize: value } ) }
-						min={ 10 }
-						max={ 50 }
-						initialPosition={30}
-						beforeIcon="editor-textcolor"
-						allowReset
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Heading" ) }</h2>
+					<TypographyControl
+						label={ __( "Title Tag" ) }
+						attributes = { this.props.attributes }
+						setAttributes = { setAttributes }
+						loadGoogleFonts = { { value: headLoadGoogleFonts, label: __( "headLoadGoogleFonts" ) } }
+						fontFamily = { { value: headFontFamily, label: __( "headFontFamily" ) } }
+						fontWeight = { { value: headFontWeight, label: __( "headFontWeight" ) } }
+						fontSubset = { { value: headFontSubset, label: __( "headFontSubset" ) } }
+						fontSizeType = { { value: headFontSizeType, label: __( "headFontSizeType" ) } }
+						fontSize = { { value: headFontSize, label: __( "headFontSize" ) } }
+						fontSizeMobile = { { value: headFontSizeMobile, label: __( "headFontSizeMobile" ) } }
+						fontSizeTablet= { { value: headFontSizeTablet, label: __( "headFontSizeTablet" ) } }
+						lineHeightType = { { value: headLineHeightType, label: __( "headLineHeightType" ) } }
+						lineHeight = { { value: headLineHeight, label: __( "headLineHeight" ) } }
+						lineHeightMobile = { { value: headLineHeightMobile, label: __( "headLineHeightMobile" ) } }
+						lineHeightTablet= { { value: headLineHeightTablet, label: __( "headLineHeightTablet" ) } }
 					/>
-					<RangeControl
-						label={ __( "Content Font Size" ) }
-						value={ subHeadFontSize }
-						onChange={ ( value ) => setAttributes( { subHeadFontSize: value } ) }
-						min={ 10 }
-						max={ 50 }
-						initialPosition={16}
-						beforeIcon="editor-textcolor"
-						allowReset
+
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Content" ) }</h2>
+					<TypographyControl
+						label={ __( "Content Tag" ) }
+						attributes = { this.props.attributes }
+						setAttributes = { setAttributes }
+						loadGoogleFonts = { { value: subHeadLoadGoogleFonts, label: __( "subHeadLoadGoogleFonts" ) } }
+						fontFamily = { { value: subHeadFontFamily, label: __( "subHeadFontFamily" ) } }
+						fontWeight = { { value: subHeadFontWeight, label: __( "subHeadFontWeight" ) } }
+						fontSubset = { { value: subHeadFontSubset, label: __( "subHeadFontSubset" ) } }
+						fontSizeType = { { value: subHeadFontSizeType, label: __( "subHeadFontSizeType" ) } }
+						fontSize = { { value: subHeadFontSize, label: __( "subHeadFontSize" ) } }
+						fontSizeMobile = { { value: subHeadFontSizeMobile, label: __( "subHeadFontSizeMobile" ) } }
+						fontSizeTablet= { { value: subHeadFontSizeTablet, label: __( "subHeadFontSizeTablet" ) } }
+						lineHeightType = { { value: subHeadLineHeightType, label: __( "subHeadLineHeightType" ) } }
+						lineHeight = { { value: subHeadLineHeight, label: __( "subHeadLineHeight" ) } }
+						lineHeightMobile = { { value: subHeadLineHeightMobile, label: __( "subHeadLineHeightMobile" ) } }
+						lineHeightTablet= { { value: subHeadLineHeightTablet, label: __( "subHeadLineHeightTablet" ) } }
 					/>
 				</PanelBody>
-				<PanelBody
-					title={ __( "Connector" ) }
-					initialOpen={ false }
-				>
+				<PanelBody title={ __( "Connector" ) } initialOpen={ false } >
 					<FontIconPicker {...icon_props} />
 					<RangeControl
 						label={ __( "Icon Size" ) }
@@ -645,8 +675,6 @@ class UAGBcontentTimeline extends Component {
 			</InspectorControls>
 		)
 
-		var my_block_id = "uagb-ctm-"+this.props.clientId
-
 		return (
 			<Fragment>
 				{ content_control }
@@ -663,7 +691,7 @@ class UAGBcontentTimeline extends Component {
 					className,
 					"uagb-timeline__outer-wrap"
 				) }
-				id = { my_block_id } >
+				id = { `uagb-ctm-${ this.props.clientId }` } >
 					<div  className = { classnames(
 						"uagb-timeline__content-wrap",
 						...ContentTmClasses( this.props.attributes ),
@@ -678,6 +706,9 @@ class UAGBcontentTimeline extends Component {
 						</div>
 					</div>
 				</div>
+				{ loadHeadGoogleFonts }
+				{ loadSubHeadGoogleFonts }
+				{ loadDateGoogleFonts }
 			</Fragment>
 		)
 	}
@@ -768,7 +799,7 @@ class UAGBcontentTimeline extends Component {
 								day_align_class = DayAlignClass( this.props.attributes, index )
 							}
 							const Tag = this.props.attributes.headingTag
-							var icon_class = "uagb-timeline__icon-new uagb-timeline__out-view-icon "+icon
+							var icon_class = "uagb-timeline__icon-new uagb-timeline__out-view-icon "
 							var post_date = dateI18n( dateFormat, t_date[index].title )
 							if( post_date === "Invalid date" ){
 								post_date = t_date[index].title
@@ -778,7 +809,7 @@ class UAGBcontentTimeline extends Component {
 									<div className = {content_align_class}>
 
 										<div className = "uagb-timeline__marker uagb-timeline__out-view-icon">
-											<span className = {icon_class}></span>
+											<span className = {icon_class}>{ renderSVG(icon) }</span>
 										</div>
 
 										<div className = {day_align_class} >
@@ -907,8 +938,9 @@ class UAGBcontentTimeline extends Component {
 			var num = 0
 			var elementEnd = $last_item + 20
 
-			var viewportHeight = document.documentElement.clientHeight
-			var viewportHeightHalf = viewportHeight/2
+			var connectorHeight = 3 * timeline.find(".uagb-timeline__marker:first").height()
+			var viewportHeight = document.documentElement.clientHeight + connectorHeight
+			var viewportHeightHalf = viewportHeight/2 + connectorHeight
 
 			var elementPos = tm_item.offset().top
 

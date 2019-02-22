@@ -1,11 +1,8 @@
-/**
- * BLOCK: UAGB Section Attributes
- */
 const ITEM_COUNT = 2
 
 const buttons = []
 
-for (var i = 1; i <= ITEM_COUNT; i++) {
+for ( var i = 1; i <= ITEM_COUNT; i++ ) {
 	var label = "Click Here " + "#" + i
 	var link    = "#"
 	buttons.push(
@@ -24,7 +21,14 @@ for (var i = 1; i <= ITEM_COUNT; i++) {
 			"color": "#333",
 			"background": "",
 			"hColor": "#333",
-			"hBackground": ""
+			"hBackground": "",
+			"sizeType": "px",
+			"sizeMobile": "",
+			"sizeTablet": "",
+			"lineHeight": "",
+			"lineHeightType": "em",
+			"lineHeightMobile": "",
+			"lineHeightTablet": "",
 		}
 	)
 }
@@ -52,7 +56,21 @@ const attributes = {
 	stack: {
 		type: "string",
 		default: "none"
-	}
+	},
+	loadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
+	fontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	fontWeight: {
+		type: "string",
+	},
+	fontSubset: {
+		type: "string",
+	},
 }
 
 export default attributes

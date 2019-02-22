@@ -1,10 +1,21 @@
-// Import block dependencies and components.
-import classnames from "classnames"
+/**
+ * BLOCK: Team
+ */
 
-// Import icon.
-import UAGBIcon from "../../../dist/blocks/uagb-controls/UAGBIcon"
+import classnames from "classnames"
+import map from "lodash/map"
+import UAGBIcon from "../../../dist/blocks/uagb-controls/UAGBIcon.json"
 import FontIconPicker from "@fonticonpicker/react-fonticonpicker"
 import styling from "./styling"
+import renderSVG from "../../../dist/blocks/uagb-controls/renderIcon"
+import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
+
+// Import all of our Text Options requirements.
+import TypographyControl from "../../components/typography"
+
+// Import Web font loader for google fonts.
+import WebfontLoader from "../../components/typography/fontloader"
+
 
 const { __ } = wp.i18n
 
@@ -22,13 +33,23 @@ const {
 	SelectControl,
 	RangeControl,
 	Button,
+	ButtonGroup,
+	TabPanel,
+	Dashicon,
 	TextControl,
 	BaseControl,
 	ToggleControl
 } = wp.components
 
-// Extend component
 const { Component, Fragment } = wp.element
+
+let svg_icons = Object.keys( UAGBIcon )
+
+let imageSizeOptions = [
+	{ value: "thumbnail", label: __( "Thumbnail" ) },
+	{ value: "medium", label: __( "Medium" ) },
+	{ value: "full", label: __( "Large" ) }
+]
 
 class UAGBTeam extends Component {
 
@@ -37,8 +58,42 @@ class UAGBTeam extends Component {
 		let target_value =  ( target ) ? "_blank" : "_self"
 
 		return (
-			<li className="uagb-team__social-icon"><a href={link} target={target_value} title="" rel ="noopener noreferrer"><span className={icon}></span></a></li>
+			<li className="uagb-team__social-icon"><a href={link} target={target_value} title="" rel ="noopener noreferrer">{ renderSVG(icon) }</a></li>
 		)
+	}
+
+	constructor() {
+		super( ...arguments )
+		this.onSelectImage    = this.onSelectImage.bind( this )
+	}
+
+
+	getImageSize(sizes) {
+		var size_arr = []
+		$.each(sizes, function (index, item) {
+		  var name = index
+		  	var p = { "value" : name, "label": name }
+		  	size_arr.push(p)
+		})
+		return(size_arr)
+	}
+
+	onSelectImage( media ) {
+
+		const { image } = this.props.attributes
+		const { setAttributes } = this.props
+
+		if ( ! media || ! media.url ) {
+			setAttributes( { image: null } )
+			return
+		}
+		if ( ! media.type || "image" != media.type ) {
+			return
+		}
+		setAttributes( { image: media } )
+
+		var new_img = this.getImageSize(media["sizes"])
+		imageSizeOptions = new_img
 	}
 
 	render() {
@@ -56,10 +111,46 @@ class UAGBTeam extends Component {
 			titleColor,
 			prefixColor,
 			descColor,
+			titleFontFamily,
+			titleFontWeight,
+			titleFontSubset,
+			titleFontSizeType,
 			titleFontSize,
+			titleFontSizeMobile,
+			titleFontSizeTablet,
+			titleLineHeightType,
+			titleLineHeight,
+			titleLineHeightMobile,
+			titleLineHeightTablet,
+			prefixFontFamily,
+			prefixFontWeight,
+			prefixFontSubset,
+			prefixFontSizeType,
 			prefixFontSize,
+			prefixFontSizeMobile,
+			prefixFontSizeTablet,
+			prefixLineHeightType,
+			prefixLineHeight,
+			prefixLineHeightMobile,
+			prefixLineHeightTablet,
+			descFontFamily,
+			descFontWeight,
+			descFontSubset,
+			descFontSizeType,
 			descFontSize,
+			descFontSizeMobile,
+			descFontSizeTablet,
+			descLineHeightType,
+			descLineHeight,
+			descLineHeightMobile,
+			descLineHeightTablet,
 			socialFontSize,
+			socialFontSizeType,
+			socialFontSizeMobile,
+			socialFontSizeTablet,
+			titleLoadGoogleFonts,
+			prefixLoadGoogleFonts,
+			descLoadGoogleFonts,
 			image,
 			imgStyle,
 			imgAlign,
@@ -95,21 +186,58 @@ class UAGBTeam extends Component {
 			element.innerHTML = styling( this.props )
 		}
 
-		// Set image.
-		const onSelectImage = ( media ) => {
-			if ( ! media || ! media.url ) {
-				setAttributes( { image: null } )
-				return
-			}
-			if ( ! media.type || "image" != media.type ) {
-				return
-			}
-			setAttributes( { image: media } )
+		if( typeof attributes.image !== "undefined" && attributes.image !== null && attributes.image !=="" ){
+			imageSizeOptions = this.getImageSize(image["sizes"])
 		}
 
 		// Remove image.
 		const onRemoveImage = ( media ) => {
 			setAttributes( { image: null } )
+		}
+
+		let loadTitleGoogleFonts
+		let loadPrefixGoogleFonts
+		let loadDescGoogleFonts
+
+		if( titleLoadGoogleFonts == true ) {
+			
+			const tconfig = {
+				google: {
+					families: [ titleFontFamily + ( titleFontWeight ? ":" + titleFontWeight : "" ) ],
+				},
+			}
+
+			loadTitleGoogleFonts = (
+				<WebfontLoader config={ tconfig }>
+				</WebfontLoader>
+			)
+		}
+
+		if( prefixLoadGoogleFonts == true ) {
+
+			const pconfig = {
+				google: {
+					families: [ prefixFontFamily + ( prefixFontWeight ? ":" + prefixFontWeight : "" ) ],
+				},
+			}
+
+			loadPrefixGoogleFonts = (
+				<WebfontLoader config={ pconfig }>
+				</WebfontLoader>
+			)
+		}
+		if( descLoadGoogleFonts == true ) {
+
+			const dconfig = {
+				google: {
+					families: [ descFontFamily + ( descFontWeight ? ":" + descFontWeight : "" ) ],
+				},
+			}
+
+			loadDescGoogleFonts = (
+				<WebfontLoader config={ dconfig }>
+				</WebfontLoader>
+			)
 		}
 
 		let size = ""
@@ -141,7 +269,7 @@ class UAGBTeam extends Component {
 				</div>
 			)
 		}
-
+		
 		const team_image = ""
 
 		// Get description and seperator components.
@@ -230,6 +358,79 @@ class UAGBTeam extends Component {
 			</div>
 		)
 
+		const sizeTypes = [
+			{ key: "px", name: __( "px" ) },
+			{ key: "em", name: __( "em" ) },
+		]
+
+		const titleTypesControls = (
+			<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+				{ map( sizeTypes, ( { name, key } ) => (
+					<Button
+						key={ key }
+						className="uagb-size-btn"
+						isSmall
+						isPrimary={ titleFontSizeType === key }
+						aria-pressed={ titleFontSizeType === key }
+						onClick={ () => setAttributes( { titleFontSizeType: key } ) }
+					>
+						{ name }
+					</Button>
+				) ) }
+			</ButtonGroup>
+		)
+
+		const descTypesControls = (
+			<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+				{ map( sizeTypes, ( { name, key } ) => (
+					<Button
+						key={ key }
+						className="uagb-size-btn"
+						isSmall
+						isPrimary={ descFontSizeType === key }
+						aria-pressed={ descFontSizeType === key }
+						onClick={ () => setAttributes( { descFontSizeType: key } ) }
+					>
+						{ name }
+					</Button>
+				) ) }
+			</ButtonGroup>
+		)
+
+		const prefixTypesControls = (
+			<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+				{ map( sizeTypes, ( { name, key } ) => (
+					<Button
+						key={ key }
+						className="uagb-size-btn"
+						isSmall
+						isPrimary={ prefixFontSizeType === key }
+						aria-pressed={ prefixFontSizeType === key }
+						onClick={ () => setAttributes( { prefixFontSizeType: key } ) }
+					>
+						{ name }
+					</Button>
+				) ) }
+			</ButtonGroup>
+		)
+
+		const socialTypesControls = (
+			<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+				{ map( sizeTypes, ( { name, key } ) => (
+					<Button
+						key={ key }
+						className="uagb-size-btn"
+						isSmall
+						isPrimary={ socialFontSizeType === key }
+						aria-pressed={ socialFontSizeType === key }
+						onClick={ () => setAttributes( { socialFontSizeType: key } ) }
+					>
+						{ name }
+					</Button>
+				) ) }
+			</ButtonGroup>
+		)
+
 		return (
 			<Fragment>
 				{ ( imgPosition == "above" ) &&
@@ -249,7 +450,7 @@ class UAGBTeam extends Component {
 							label={ __( "Team Member Image" ) }>
 							<MediaUpload
 								title={ __( "Select Image" ) }
-								onSelect={ onSelectImage }
+								onSelect={ this.onSelectImage }
 								allowedTypes={ [ "image" ] }
 								value={ image }
 								render={ ( { open } ) => (
@@ -317,11 +518,7 @@ class UAGBTeam extends Component {
 							<Fragment>
 								<SelectControl
 									label={ __( "Size" ) }
-									options={[
-										{ value: "thumbnail", label: __( "Thumbnail" ) },
-										{ value: "medium", label: __( "Medium" ) },
-										{ value: "full", label: __( "Large" ) }
-									] }
+									options={ imageSizeOptions }
 									value={ imgSize }
 									onChange={ ( value ) => setAttributes( { imgSize: value } ) }
 								/>
@@ -353,12 +550,13 @@ class UAGBTeam extends Component {
 								<PanelBody title={ __( "Twitter" ) } initialOpen={ false }>
 									<p className="components-base-control__label">{__( "Icon" )}</p>
 									<FontIconPicker
-										icons={UAGBIcon}
-										renderUsing="class"
+										icons={svg_icons}
+										renderFunc={renderSVG}
 										theme="default"
 										value={twitterIcon}
 										onChange={ ( value ) => setAttributes( { twitterIcon: value } ) }
 										isMulti={false}
+										noSelectedPlaceholder={__( "Select Icon" )}
 									/>
 									<p className="components-base-control__label">{__( "URL" )}</p>
 									<TextControl
@@ -367,28 +565,30 @@ class UAGBTeam extends Component {
 										placeholder={__( "Enter Twitter URL" )}
 									/>
 								</PanelBody>
-								<PanelBody title={ __( "FaceBook" ) } initialOpen={ false }>
+								<PanelBody title={ __( "Facebook" ) } initialOpen={ false }>
 									<p className="components-base-control__label">{__( "Icon" )}</p>
 									<FontIconPicker
-										icons={UAGBIcon}
-										renderUsing="class"
+										icons={svg_icons}
+										renderFunc={renderSVG}
 										theme="default"
 										value={fbIcon}
 										onChange={ ( value ) => setAttributes( { fbIcon: value } ) }
 										isMulti={false}
+										noSelectedPlaceholder={__( "Select Icon" )}
 									/>
 									<p className="components-base-control__label">{__( "URL" )}</p>
 									<TextControl
 										value={ fbLink }
 										onChange={ ( value ) => setAttributes( { fbLink: value } ) }
-										placeholder={__( "Enter FaceBook URL" )}
+										placeholder={__( "Enter Facebook URL" )}
 									/>
 								</PanelBody>
 								<PanelBody title={ __( "LinkedIn" ) } initialOpen={ false }>
 									<p className="components-base-control__label">{__( "Icon" )}</p>
 									<FontIconPicker
-										icons={UAGBIcon}
-										renderUsing="class"
+										icons={svg_icons}
+										renderFunc={renderSVG}
+										noSelectedPlaceholder={__( "Select Icon" )}
 										theme="default"
 										value={linkedinIcon}
 										onChange={ ( value ) => setAttributes( { linkedinIcon: value } ) }
@@ -404,8 +604,9 @@ class UAGBTeam extends Component {
 								<PanelBody title={ __( "Pinterest" ) } initialOpen={ false }>
 									<p className="components-base-control__label">{__( "Icon" )}</p>
 									<FontIconPicker
-										icons={UAGBIcon}
-										renderUsing="class"
+										icons={svg_icons}
+										renderFunc={renderSVG}
+										noSelectedPlaceholder={__( "Select Icon" )}
 										theme="default"
 										value={pinIcon}
 										onChange={ ( value ) => setAttributes( { pinIcon: value } ) }
@@ -437,44 +638,75 @@ class UAGBTeam extends Component {
 								{ value: "h6", label: __( "H6" ) },
 							] }
 						/>
-						<RangeControl
-							label={ __( "Title Font Size" ) }
-							value={ titleFontSize }
-							onChange={ ( value ) => setAttributes( { titleFontSize: value } ) }
-							min={ 1 }
-							max={ 100 }
-							beforeIcon="editor-textcolor"
-							allowReset
-							initialPosition={30}
+						<hr className="uagb-editor__separator" />
+						<h2>{ __( "Title" ) }</h2>
+						<TypographyControl
+							label={ __( "Title" ) }
+							attributes = { attributes }
+							setAttributes = { setAttributes }
+							loadGoogleFonts = { { value: titleLoadGoogleFonts, label: __( "titleLoadGoogleFonts" ) } }
+							fontFamily = { { value: titleFontFamily, label: __( "titleFontFamily" ) } }
+							fontWeight = { { value: titleFontWeight, label: __( "titleFontWeight" ) } }
+							fontSubset = { { value: titleFontSubset, label: __( "titleFontSubset" ) } }
+							fontSizeType = { { value: titleFontSizeType, label: __( "titleFontSizeType" ) } }
+							fontSize = { { value: titleFontSize, label: __( "titleFontSize" ) } }
+							fontSizeMobile = { { value: titleFontSizeMobile, label: __( "titleFontSizeMobile" ) } }
+							fontSizeTablet= { { value: titleFontSizeTablet, label: __( "titleFontSizeTablet" ) } }
+							lineHeightType = { { value: titleLineHeightType, label: __( "titleLineHeightType" ) } }
+							lineHeight = { { value: titleLineHeight, label: __( "titleLineHeight" ) } }
+							lineHeightMobile = { { value: titleLineHeightMobile, label: __( "titleLineHeightMobile" ) } }
+							lineHeightTablet= { { value: titleLineHeightTablet, label: __( "titleLineHeightTablet" ) } }
 						/>
-						<RangeControl
-							label={ __( "Designation Font Size" ) }
-							value={ prefixFontSize }
-							onChange={ ( value ) => setAttributes( { prefixFontSize: value } ) }
-							min={ 1 }
-							max={ 100 }
-							beforeIcon="editor-textcolor"
-							allowReset
-							initialPosition={16}
+						<hr className="uagb-editor__separator" />
+						<h2>{ __( "Prefix" ) }</h2>
+						<TypographyControl
+							label={ __( "Prefix" ) }
+							attributes = { attributes }
+							setAttributes = { setAttributes }
+							loadGoogleFonts = { { value: prefixLoadGoogleFonts, label: __( "prefixLoadGoogleFonts" ) } }
+							fontFamily = { { value: prefixFontFamily, label: __( "prefixFontFamily" ) } }
+							fontWeight = { { value: prefixFontWeight, label: __( "prefixFontWeight" ) } }
+							fontSubset = { { value: prefixFontSubset, label: __( "prefixFontSubset" ) } }
+							fontSizeType = { { value: prefixFontSizeType, label: __( "prefixFontSizeType" ) } }
+							fontSize = { { value: prefixFontSize, label: __( "prefixFontSize" ) } }
+							fontSizeMobile = { { value: prefixFontSizeMobile, label: __( "prefixFontSizeMobile" ) } }
+							fontSizeTablet= { { value: prefixFontSizeTablet, label: __( "prefixFontSizeTablet" ) } }
+							lineHeightType = { { value: prefixLineHeightType, label: __( "prefixLineHeightType" ) } }
+							lineHeight = { { value: prefixLineHeight, label: __( "prefixLineHeight" ) } }
+							lineHeightMobile = { { value: prefixLineHeightMobile, label: __( "prefixLineHeightMobile" ) } }
+							lineHeightTablet= { { value: prefixLineHeightTablet, label: __( "prefixLineHeightTablet" ) } }
+						/>						
+						<hr className="uagb-editor__separator" />
+						<h2>{ __( "Description" ) }</h2>
+						<TypographyControl
+							label={ __( "Description" ) }
+							attributes = { attributes }
+							setAttributes = { setAttributes }
+							loadGoogleFonts = { { value: descLoadGoogleFonts, label: __( "descLoadGoogleFonts" ) } }
+							fontFamily = { { value: descFontFamily, label: __( "descFontFamily" ) } }
+							fontWeight = { { value: descFontWeight, label: __( "descFontWeight" ) } }
+							fontSubset = { { value: descFontSubset, label: __( "descFontSubset" ) } }
+							fontSizeType = { { value: descFontSizeType, label: __( "descFontSizeType" ) } }
+							fontSize = { { value: descFontSize, label: __( "descFontSize" ) } }
+							fontSizeMobile = { { value: descFontSizeMobile, label: __( "descFontSizeMobile" ) } }
+							fontSizeTablet= { { value: descFontSizeTablet, label: __( "descFontSizeTablet" ) } }
+							lineHeightType = { { value: descLineHeightType, label: __( "descLineHeightType" ) } }
+							lineHeight = { { value: descLineHeight, label: __( "descLineHeight" ) } }
+							lineHeightMobile = { { value: descLineHeightMobile, label: __( "descLineHeightMobile" ) } }
+							lineHeightTablet= { { value: descLineHeightTablet, label: __( "descLineHeightTablet" ) } }
 						/>
-						<RangeControl
-							label={ __( "Description Font Size" ) }
-							value={ descFontSize }
-							onChange={ ( value ) => setAttributes( { descFontSize: value } ) }
-							min={ 1 }
-							max={ 100 }
-							beforeIcon="editor-textcolor"
-							allowReset
-							initialPosition={16}
-						/>
-						<RangeControl
-							label={ __( "Social Icon Font Size" ) }
-							value={ socialFontSize }
-							onChange={ ( value ) => setAttributes( { socialFontSize: value } ) }
-							min={ 1 }
-							max={ 100 }
-							beforeIcon="editor-textcolor"
-							allowReset
+						<hr className="uagb-editor__separator" />
+						<h2>{ __( "Social Icons" ) }</h2>
+						<TypographyControl
+							label={ __( "Social" ) }
+							attributes = { attributes }
+							setAttributes = { setAttributes }
+							fontSizeType = { { value: socialFontSizeType, label: __( "socialFontSizeType" ) } }
+							fontSize = { { value: socialFontSize, label: __( "socialFontSize" ) } }
+							fontSizeMobile = { { value: socialFontSizeMobile, label: __( "socialFontSizeMobile" ) } }
+							fontSizeTablet= { { value: socialFontSizeTablet, label: __( "socialFontSizeTablet" ) } }
+							disableFontFamily = { true }
+							disableLineHeight = { true }
 						/>
 					</PanelBody>
 					<PanelColorSettings
@@ -489,22 +721,22 @@ class UAGBTeam extends Component {
 							{
 								value: prefixColor,
 								onChange: ( colorValue ) => setAttributes( { prefixColor: colorValue } ),
-								label: __( "Designation" ),
+								label: __( "Designation Color" ),
 							},
 							{
 								value: descColor,
 								onChange: ( colorValue ) => setAttributes( { descColor: colorValue } ),
-								label: __( "Description" ),
+								label: __( "Description Color" ),
 							},
 							{
 								value: socialColor,
 								onChange: ( colorValue ) => setAttributes( { socialColor: colorValue } ),
-								label: __( "Social Icon" ),
+								label: __( "Social Icon Color" ),
 							},
 							{
 								value: socialHoverColor,
 								onChange: ( colorValue ) => setAttributes( { socialHoverColor: colorValue } ),
-								label: __( "Social Icon Hover" ),
+								label: __( "Social Icon Hover Color" ),
 							},
 						] }
 					>
@@ -547,51 +779,52 @@ class UAGBTeam extends Component {
 							max={ 50 }
 							allowReset
 						/>
-						<PanelBody
-							title={ __( "Image Margins" ) }
-							initialOpen={ true }
-						>
-							{  imgPosition != "above" &&
-							<RangeControl
-								label={ __( "Left Margin" ) }
-								value={ imgLeftMargin }
-								onChange={ ( value ) => setAttributes( { imgLeftMargin: value } ) }
-								min={ 0 }
-								max={ 50 }
-								beforeIcon="editor-textcolor"
-								allowReset
-							/>
-							}
-							{  imgPosition != "above" &&
-							<RangeControl
-								label={ __( "Right Margin" ) }
-								value={ imgRightMargin }
-								onChange={ ( value ) => setAttributes( { imgRightMargin: value } ) }
-								min={ 0 }
-								max={ 50 }
-								beforeIcon="editor-textcolor"
-								allowReset
-							/>
-							}
-							<RangeControl
-								label={ __( "Top Margin" ) }
-								value={ imgTopMargin }
-								onChange={ ( value ) => setAttributes( { imgTopMargin: value } ) }
-								min={ 0 }
-								max={ 50 }
-								beforeIcon="editor-textcolor"
-								allowReset
-							/>
-							<RangeControl
-								label={ __( "Bottom Margin" ) }
-								value={ imgBottomMargin }
-								onChange={ ( value ) => setAttributes( { imgBottomMargin: value } ) }
-								min={ 0 }
-								max={ 50 }
-								beforeIcon="editor-textcolor"
-								allowReset
-							/>
-						</PanelBody>
+						{ image &&
+							<Fragment>
+								<hr className="uagb-editor__separator" />
+								<h2>{ __( "Image Margin (px)" ) }</h2>
+								{  imgPosition != "above" &&
+								<RangeControl
+									label={ UAGB_Block_Icons.left_margin }
+									className={ "uagb-margin-control" }
+									value={ imgLeftMargin }
+									onChange={ ( value ) => setAttributes( { imgLeftMargin: value } ) }
+									min={ 0 }
+									max={ 50 }
+									allowReset
+								/>
+								}
+								{  imgPosition != "above" &&
+								<RangeControl
+									label={ UAGB_Block_Icons.right_margin }
+									className={ "uagb-margin-control" }
+									value={ imgRightMargin }
+									onChange={ ( value ) => setAttributes( { imgRightMargin: value } ) }
+									min={ 0 }
+									max={ 50 }
+									allowReset
+								/>
+								}
+								<RangeControl
+									label={ UAGB_Block_Icons.top_margin }
+									className={ "uagb-margin-control" }
+									value={ imgTopMargin }
+									onChange={ ( value ) => setAttributes( { imgTopMargin: value } ) }
+									min={ 0 }
+									max={ 50 }
+									allowReset
+								/>
+								<RangeControl
+									label={ UAGB_Block_Icons.bottom_margin }
+									className={ "uagb-margin-control" }
+									value={ imgBottomMargin }
+									onChange={ ( value ) => setAttributes( { imgBottomMargin: value } ) }
+									min={ 0 }
+									max={ 50 }
+									allowReset
+								/>
+							</Fragment>
+						}
 					</PanelBody>
 				</InspectorControls>
 				<div
@@ -623,6 +856,9 @@ class UAGBTeam extends Component {
 						{ ( imgPosition == "right") && image_html }
 					</div>
 				</div>
+				{ loadTitleGoogleFonts }
+				{ loadPrefixGoogleFonts }
+				{ loadDescGoogleFonts }
 			</Fragment>
 		)
 	}

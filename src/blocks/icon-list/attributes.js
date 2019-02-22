@@ -1,11 +1,12 @@
 /**
- * BLOCK: UAGB Icon List Attributes
+ * BLOCK: Icon List - Attributes
  */
+
 const ITEM_COUNT = 1
 
 const icons = []
 
-for (var i = 1; i <= ITEM_COUNT; i++) {
+for ( var i = 1; i <= ITEM_COUNT; i++ ) {
 	icons.push(
 		{
 			"label": "Label #" + i,
@@ -19,7 +20,8 @@ for (var i = 1; i <= ITEM_COUNT; i++) {
 			"icon_bg_color": "",
 			"icon_bg_hover_color": "",
 			"link": "#",
-			"target": false
+			"target": false,
+			"disableLink": false,
 		}
 	)
 }
@@ -48,9 +50,23 @@ const attributes = {
 		type: "number",
 		default: 15
 	},
+	iconPosition: {
+		type: "string",
+		default: "middle"
+	},
 	size: {
 		type: "number",
 		default: 40
+	},
+	sizeType: {
+		type: "string",
+		default: "px"
+	},
+	sizeMobile: {
+		type: "number"
+	},
+	sizeTablet: {
+		type: "number"
 	},
 	bgSize: {
 		type: "number",
@@ -66,6 +82,43 @@ const attributes = {
 	},
 	fontSize: {
 		type: "number"
+	},
+	fontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	fontSizeMobile: {
+		type: "number"
+	},
+	fontSizeTablet: {
+		type: "number"
+	},
+	fontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	fontWeight: {
+		type: "string",
+	},
+	fontSubset: {
+		type: "string",
+	},
+	lineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	lineHeight: {
+		type: "number",
+	},
+	lineHeightTablet: {
+		type: "number",
+	},
+	lineHeightMobile: {
+		type: "number",
+	},
+	loadGoogleFonts: {
+		type: "boolean",
+		default: false	
 	},
 	icon_layout: {
 		type: "string",

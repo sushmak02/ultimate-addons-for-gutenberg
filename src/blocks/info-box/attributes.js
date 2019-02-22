@@ -1,5 +1,5 @@
 /**
- * BLOCK: UAGB Section Attributes
+ * BLOCK: Info Box - Attributes
  */
 
 const attributes = {
@@ -62,21 +62,126 @@ const attributes = {
 	prefixFontSize: {
 		type: "number",
 	},
+	prefixFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	prefixFontSizeTablet: {
+		type: "number",
+	},
+	prefixFontSizeMobile: {
+		type: "number",
+	},
+	prefixFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	prefixFontWeight: {
+		type: "string",
+	},
+	prefixFontSubset: {
+		type: "string",
+	},
+	prefixLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	prefixLineHeight: {
+		type: "number",
+	},
+	prefixLineHeightTablet: {
+		type: "number",
+	},
+	prefixLineHeightMobile: {
+		type: "number",
+	},
+	prefixLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
 	headingTag: {
 		type: "string",
 		default: "h3"
 	},
-	separatorHeight: {
-		type: "number"
-	},
-	separatorWidth: {
-		type: "number"
-	},
 	headFontSize: {
 		type: "number",
 	},
+	headFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	headFontSizeTablet: {
+		type: "number",
+	},
+	headFontSizeMobile: {
+		type: "number",
+	},
+	headFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	headFontWeight: {
+		type: "string",
+	},
+	headFontSubset: {
+		type: "string",
+	},
+	headLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	headLineHeight: {
+		type: "number",
+	},
+	headLineHeightTablet: {
+		type: "number",
+	},
+	headLineHeightMobile: {
+		type: "number",
+	},
+	headLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
 	subHeadFontSize: {
 		type: "number",
+	},
+	subHeadFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	subHeadFontSizeTablet: {
+		type: "number",
+	},
+	subHeadFontSizeMobile: {
+		type: "number",
+	},
+	subHeadFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	subHeadFontWeight: {
+		type: "string",
+	},
+	subHeadFontSubset: {
+		type: "string",
+	},
+	subHeadLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	subHeadLineHeight: {
+		type: "number",
+	},
+	subHeadLineHeightTablet: {
+		type: "number",
+	},
+	subHeadLineHeightMobile: {
+		type: "number",
+	},
+	subHeadLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
 	},
 	headSpace: {
 		type: "number",
@@ -134,6 +239,10 @@ const attributes = {
 		type: "number",
 		default : 30
 	},
+	separatorWidthType: {
+		type: "string",
+		default: "%"
+	},
 	seperatorThickness :{
 		type: "number",
 		default : 2
@@ -156,6 +265,30 @@ const attributes = {
 	},
 	ctaFontSize :{
 		type: "number",
+	},
+	ctaFontSizeType :{
+		type: "string",
+		default: "px"
+	},
+	ctaFontSizeMobile :{
+		type: "number",
+	},
+	ctaFontSizeTablet :{
+		type: "number",
+	},
+	ctaFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	ctaFontWeight: {
+		type: "string",
+	},
+	ctaFontSubset: {
+		type: "string",
+	},
+	ctaLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
 	},
 	ctaBtnLinkColor :{
 		type: "string",

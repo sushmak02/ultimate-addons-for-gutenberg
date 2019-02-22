@@ -1,8 +1,8 @@
 /**
- * BLOCK: UAGB CTA Attributes
+ * BLOCK: Call To Action - Attributes
  */
 
-const attributes = {	
+const attributes = {
 	ctaTitle: {
 		source: "html",
 		selector: "h1,h2,h3,h4,h5,h6",
@@ -22,20 +22,94 @@ const attributes = {
 	},
 	descColor: {
 		type: "string",
-	},		
+	},
 	ctaPosition: {
 		type: "string",
 		default: "right"
-	},	
+	},
 	titleTag: {
 		type: "string",
 		default: "h3"
-	},	
+	},
 	titleFontSize: {
 		type: "number",
-	},	
+	},
+	titleFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	titleFontSizeMobile: {
+		type: "number",
+	},
+	titleFontSizeTablet: {
+		type: "number",
+	},
+	titleFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	titleFontWeight: {
+		type: "string",
+	},
+	titleFontSubset: {
+		type: "string",
+	},
+	titleLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	titleLineHeight: {
+		type: "number",
+	},
+	titleLineHeightTablet: {
+		type: "number",
+	},
+	titleLineHeightMobile: {
+		type: "number",
+	},
+	titleLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
+	},
 	descFontSize: {
 		type: "number",
+	},
+	descFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	descFontSizeMobile: {
+		type: "number",
+	},
+	descFontSizeTablet: {
+		type: "number",
+	},
+	descFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	descFontWeight: {
+		type: "string",
+	},
+	descFontSubset: {
+		type: "string",
+	},
+	descLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	descLineHeight: {
+		type: "number",
+	},
+	descLineHeightTablet: {
+		type: "number",
+	},
+	descLineHeightMobile: {
+		type: "number",
+	},
+	descLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
 	},
 	titleSpace: {
 		type: "number",
@@ -44,7 +118,7 @@ const attributes = {
 	descSpace: {
 		type: "number",
 		default : 10,
-	},		
+	},
 	block_id :{
 		type : "string",
 		default : "not_set"
@@ -68,7 +142,7 @@ const attributes = {
 	ctaIconSpace :{
 		type: "number",
 		default : 5
-	},	
+	},
 	ctaType: {
 		type: "string",
 		default: "button",
@@ -80,9 +154,33 @@ const attributes = {
 	ctaLink: {
 		type: "string",
 		default: "#",
-	},	
+	},
 	ctaFontSize :{
 		type: "number",
+	},
+	ctaFontSizeType :{
+		type: "string",
+		default: "px"
+	},
+	ctaFontSizeMobile :{
+		type: "number",
+	},
+	ctaFontSizeTablet :{
+		type: "number",
+	},
+	ctaFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	ctaFontWeight: {
+		type: "string",
+	},
+	ctaFontSubset: {
+		type: "string",
+	},
+	ctaLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
 	},
 	contentWidth :{
 		type: "number",
@@ -131,7 +229,7 @@ const attributes = {
 	ctaBorderRadius :{
 		type: "number",
 		default: 0,
-	},		
+	},
 	stack: {
 		type: "string",
 		default: "tablet"

@@ -1,32 +1,43 @@
 /**
  * BLOCK: UAGB Timeline Attributes
  */
+
+const { __ } = wp.i18n
+
 const item = []
 const date_arr = []
 
 for (var i = 1; i <= 5; i++) {
-	var title_heading_val = "Timeline Heading "+i
-	var title_desc_val    = "This is Timeline description, you can change me anytime click here "
-	var temp = []
-	var p = { "time_heading" : title_heading_val,"time_desc":title_desc_val }
-	item.push(p)     
+
+	item.push(
+		{
+			"time_heading": __( "Timeline Heading " ) + i ,
+			"time_desc": __( "This is Timeline description, you can change me anytime click here " ),
+		}
+	)
+
 	var j = i - 1
-	var today = new Date()
+	var today = new Date( "1/1/2019" )
 	var dd = today.getDate()
 	var mm = today.getMonth()+1 //January is 0!
 	var yyyy = today.getFullYear()-j
 
-	if(dd<10) {
-		dd = "0"+dd
-	} 
+	if( dd < 10 ) {
+		dd = "0" + dd
+	}
 
-	if(mm<10) {
-		mm = "0"+mm
-	} 
+	if( mm < 10 ) {
+		mm = "0" + mm
+	}
 
-	today = mm + "/" + dd + "/" + yyyy   
-	var p = { "title" : today }    
-	date_arr.push(p)
+	today = mm + "/" + dd + "/" + yyyy
+	var p = { "title" : today }
+
+	date_arr.push(
+		{
+			"title": today,
+		}
+	)
 }
 
 const attributes = {
@@ -34,16 +45,10 @@ const attributes = {
 		type: "array",
 		default : item,
 	},
-	headingTitle: {
-		type: "string",
-	},
-	headingDesc: {
-		type: "string",
-	},
 	align : {
 		type : "string",
 		default : "center",
-	},          
+	},
 	headingColor : {
 		type : "string",
 	},
@@ -88,7 +93,47 @@ const attributes = {
 	},
 	headFontSize : {
 		type : "number",
-	},          
+	},
+	headFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	headFontSize: {
+		type: "number",
+	},
+	headFontSizeTablet: {
+		type: "number",
+	},
+	headFontSizeMobile: {
+		type: "number",
+	},
+	headFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	headFontWeight: {
+		type: "string",
+	},
+	headFontSubset: {
+		type: "string",
+	},
+	headLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	headLineHeight: {
+		type: "number",
+	},
+	headLineHeightTablet: {
+		type: "number",
+	},
+	headLineHeightMobile: {
+		type: "number",
+	},
+	headLoadGoogleFonts: {
+		type: "boolean",
+		default: false
+	},
 	timelinAlignment : {
 		type : "string",
 		default : "center",
@@ -97,8 +142,45 @@ const attributes = {
 		type : "string",
 		default : "center",
 	},
-	subHeadFontSize : {
-		type : "number",
+	subHeadFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	subHeadFontSize: {
+		type: "number",
+	},
+	subHeadFontSizeTablet: {
+		type: "number",
+	},
+	subHeadFontSizeMobile: {
+		type: "number",
+	},
+	subHeadFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	subHeadFontWeight: {
+		type: "string",
+	},
+	subHeadFontSubset: {
+		type: "string",
+	},
+	subHeadLineHeightType: {
+		type: "string",
+		default: "em",
+	},
+	subHeadLineHeight: {
+		type: "number",
+	},
+	subHeadLineHeightTablet: {
+		type: "number",
+	},
+	subHeadLineHeightMobile: {
+		type: "number",
+	},
+	subHeadLoadGoogleFonts: {
+		type: "boolean",
+		default: false
 	},
 	headSpace : {
 		type : "number",
@@ -123,18 +205,50 @@ const attributes = {
 	iconBgFocus : {
 		type : "string",
 		default : "#61ce70",
-	},   
-	authorFontsize : {
-		type : "number",
-		default : 12,
 	},
 	dateColor : {
 		type : "string",
 		default : "#333",
 	},
-	dateFontsize : {
-		type : "number",
-		default : 12,
+	dateFontsizeType: {
+		type: "string",
+		default: "px"
+	},
+	dateFontsize: {
+		type: "number",
+	},
+	dateFontsizeTablet: {
+		type: "number",
+	},
+	dateFontsizeMobile: {
+		type: "number",
+	},
+	dateFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	dateFontWeight: {
+		type: "string",
+	},
+	dateFontSubset: {
+		type: "string",
+	},
+	dateLineHeightType: {
+		type: "string",
+		default: "em"
+	},
+	dateLineHeight: {
+		type: "number",
+	},
+	dateLineHeightTablet: {
+		type: "number",
+	},
+	dateLineHeightMobile: {
+		type: "number",
+	},
+	dateLoadGoogleFonts: {
+		type: "boolean",
+		default: false
 	},
 	connectorBgsize : {
 		type : "number",
@@ -143,11 +257,11 @@ const attributes = {
 	subHeadSpace : {
 		type : "number",
 		default : 5,
-	},  
+	},
 	dateBottomspace : {
 		type : "number",
 		default : 5,
-	},     
+	},
 	block_id  : {
 		type : "string",
 		default : "0",
@@ -159,7 +273,7 @@ const attributes = {
 	tm_client_id  : {
 		type : "string",
 		default : "not_set",
-	},      
+	},
 	borderRadius : {
 		type : "number",
 		default : 2,
@@ -171,7 +285,7 @@ const attributes = {
 	iconSize : {
 		type : "number",
 		default : 12,
-	}, 
+	},
 	icon : {
 		type : "string",
 		default : "fab fa fa-calendar-alt"
@@ -182,8 +296,8 @@ const attributes = {
 	},
 	displayPostDate:{
 		type: "boolean",
-		default: true,            
-	}, 
+		default: true,
+	},
 	stack: {
 		type: "string",
 		default: "tablet"

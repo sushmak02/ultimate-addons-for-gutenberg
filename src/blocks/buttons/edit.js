@@ -1,11 +1,18 @@
 /**
- * BLOCK: UAGB - Section Edit Class
+ * BLOCK: Multi Buttons
  */
 
-// Import classes
 import classnames from "classnames"
 import times from "lodash/times"
+import map from "lodash/map"
 import styling from "./styling"
+import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
+
+// Import all of our Text Options requirements.
+import TypographyControl from "../../components/typography"
+
+// Import Web font loader for google fonts.
+import WebfontLoader from "../../components/typography/fontloader"
 
 const { __ } = wp.i18n
 
@@ -21,13 +28,18 @@ const {
 	InspectorControls,
 	RichText,
 	PanelColorSettings,
-	URLInput
+	URLInput,
+	ColorPalette
 } = wp.editor
 
 const {
 	PanelBody,
 	SelectControl,
-	RangeControl
+	RangeControl,
+	TabPanel,
+	ButtonGroup,
+	Button,
+	Dashicon
 } = wp.components
 
 
@@ -86,7 +98,11 @@ class UAGBMultiButtonEdit extends Component {
 			btn_count,
 			buttons,
 			gap,
-			stack
+			stack,
+			loadGoogleFonts,
+			fontFamily,
+			fontWeight,
+			fontSubset,
 		} = attributes
 
 		const onMouseOut = () => {
@@ -133,20 +149,301 @@ class UAGBMultiButtonEdit extends Component {
 							this.saveButton( { target: value }, index )
 						} }
 					/>
+					<TabPanel className="uagb-size-type-field-tabs" activeClass="active-tab"
+						tabs={ [
+							{
+								name: "desktop",
+								title: <Dashicon icon="desktop" />,
+								className: "uagb-desktop-tab uagb-responsive-tabs",
+							},
+							{
+								name: "tablet",
+								title: <Dashicon icon="tablet" />,
+								className: "uagb-tablet-tab uagb-responsive-tabs",
+							},
+							{
+								name: "mobile",
+								title: <Dashicon icon="smartphone" />,
+								className: "uagb-mobile-tab uagb-responsive-tabs",
+							},
+						] }>
+						{
+							( tab ) => {
+								let tabout
+
+								if ( "mobile" === tab.name ) {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button
+													key={ "px" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].sizeType === "px" }
+													aria-pressed={ buttons[ index ].sizeType === "px" }
+													onClick={ () => this.saveButton( { sizeType: "px" }, index ) }
+												>
+													{ "px" }
+												</Button>
+												<Button
+													key={ "%" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].sizeType === "%" }
+													aria-pressed={ buttons[ index ].sizeType === "%" }
+													onClick={ () => this.saveButton( { sizeType: "%" }, index ) }
+												>
+													{ "%" }
+												</Button>
+											</ButtonGroup>
+											<RangeControl
+												label={ __( "Font Size" ) }
+												value={ buttons[ index ].sizeMobile }
+												onChange={ value => {
+													this.saveButton( { sizeMobile: value }, index )
+												} }
+												min={ 10 }
+												max={ 100 }
+												beforeIcon="editor-textcolor"
+												allowReset
+												initialPosition={16}
+											/>
+										</Fragment>
+									)
+								} else if ( "tablet" === tab.name ) {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button
+													key={ "px" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].sizeType === "px" }
+													aria-pressed={ buttons[ index ].sizeType === "px" }
+													onClick={ () => this.saveButton( { sizeType: "px" }, index ) }
+												>
+													{ "px" }
+												</Button>
+												<Button
+													key={ "%" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].sizeType === "%" }
+													aria-pressed={ buttons[ index ].sizeType === "%" }
+													onClick={ () => this.saveButton( { sizeType: "%" }, index ) }
+												>
+													{ "%" }
+												</Button>
+											</ButtonGroup>
+											<RangeControl
+												label={ __( "Font Size" ) }
+												value={ buttons[ index ].sizeTablet }
+												onChange={ value => {
+													this.saveButton( { sizeTablet: value }, index )
+												} }
+												min={ 10 }
+												max={ 100 }
+												beforeIcon="editor-textcolor"
+												allowReset
+												initialPosition={16}
+											/>
+										</Fragment>
+									)
+								} else {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button
+													key={ "px" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].sizeType === "px" }
+													aria-pressed={ buttons[ index ].sizeType === "px" }
+													onClick={ () => this.saveButton( { sizeType: "px" }, index ) }
+												>
+													{ "px" }
+												</Button>
+												<Button
+													key={ "%" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].sizeType === "%" }
+													aria-pressed={ buttons[ index ].sizeType === "%" }
+													onClick={ () => this.saveButton( { sizeType: "%" }, index ) }
+												>
+													{ "%" }
+												</Button>
+											</ButtonGroup>
+											<RangeControl
+												label={ __( "Font Size" ) }
+												value={ buttons[ index ].size }
+												onChange={ value => {
+													this.saveButton( { size: value }, index )
+												} }
+												min={ 10 }
+												max={ 100 }
+												beforeIcon="editor-textcolor"
+												allowReset
+												initialPosition={16}
+											/>
+										</Fragment>
+									)
+								}
+
+								return <div>{ tabout }</div>
+							}
+						}
+					</TabPanel>
+					<TabPanel className="uagb-size-type-field-tabs" activeClass="active-tab"
+						tabs={ [
+							{
+								name: "desktop",
+								title: <Dashicon icon="desktop" />,
+								className: "uagb-desktop-tab uagb-responsive-tabs",
+							},
+							{
+								name: "tablet",
+								title: <Dashicon icon="tablet" />,
+								className: "uagb-tablet-tab uagb-responsive-tabs",
+							},
+							{
+								name: "mobile",
+								title: <Dashicon icon="smartphone" />,
+								className: "uagb-mobile-tab uagb-responsive-tabs",
+							},
+						] }>
+						{
+							( tab ) => {
+								let tabout
+
+								if ( "mobile" === tab.name ) {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button
+													key={ "px" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].lineHeightType === "px" }
+													aria-pressed={ buttons[ index ].lineHeightType === "px" }
+													onClick={ () => this.saveButton( { lineHeightType: "px" }, index ) }
+												>
+													{ "px" }
+												</Button>
+												<Button
+													key={ "%" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].lineHeightType === "%" }
+													aria-pressed={ buttons[ index ].lineHeightType === "%" }
+													onClick={ () => this.saveButton( { lineHeightType: "%" }, index ) }
+												>
+													{ "%" }
+												</Button>
+											</ButtonGroup>
+											<RangeControl
+												label={ __( "Line Height" ) }
+												value={ buttons[ index ].lineHeightMobile }
+												onChange={ value => {
+													this.saveButton( { lineHeightMobile: value }, index )
+												} }
+												min={ 10 }
+												max={ 100 }
+												beforeIcon="editor-textcolor"
+												allowReset
+												initialPosition={16}
+											/>
+										</Fragment>
+									)
+								} else if ( "tablet" === tab.name ) {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button
+													key={ "px" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].lineHeightType === "px" }
+													aria-pressed={ buttons[ index ].lineHeightType === "px" }
+													onClick={ () => this.saveButton( { lineHeightType: "px" }, index ) }
+												>
+													{ "px" }
+												</Button>
+												<Button
+													key={ "%" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].lineHeightType === "%" }
+													aria-pressed={ buttons[ index ].lineHeightType === "%" }
+													onClick={ () => this.saveButton( { lineHeightType: "%" }, index ) }
+												>
+													{ "%" }
+												</Button>
+											</ButtonGroup>
+											<RangeControl
+												label={ __( "Line Height" ) }
+												value={ buttons[ index ].lineHeightTablet }
+												onChange={ value => {
+													this.saveButton( { lineHeightTablet: value }, index )
+												} }
+												min={ 10 }
+												max={ 100 }
+												beforeIcon="editor-textcolor"
+												allowReset
+												initialPosition={16}
+											/>
+										</Fragment>
+									)
+								} else {
+									tabout = (
+										<Fragment>
+											<ButtonGroup className="uagb-size-type-field" aria-label={ __( "Size Type" ) }>
+												<Button
+													key={ "px" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].lineHeightType === "px" }
+													aria-pressed={ buttons[ index ].lineHeightType === "px" }
+													onClick={ () => this.saveButton( { lineHeightType: "px" }, index ) }
+												>
+													{ "px" }
+												</Button>
+												<Button
+													key={ "%" }
+													className="uagb-size-btn"
+													isSmall
+													isPrimary={ buttons[ index ].lineHeightType === "%" }
+													aria-pressed={ buttons[ index ].lineHeightType === "%" }
+													onClick={ () => this.saveButton( { lineHeightType: "%" }, index ) }
+												>
+													{ "%" }
+												</Button>
+											</ButtonGroup>
+											<RangeControl
+												label={ __( "Line Height" ) }
+												value={ buttons[ index ].lineHeight }
+												onChange={ value => {
+													this.saveButton( { lineHeight: value }, index )
+												} }
+												min={ 10 }
+												max={ 100 }
+												beforeIcon="editor-textcolor"
+												allowReset
+												initialPosition={16}
+											/>
+										</Fragment>
+									)
+								}
+
+								return <div>{ tabout }</div>
+							}
+						}
+					</TabPanel>
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Button Padding (px)" ) }</h2>
 					<RangeControl
-						beforeIcon="editor-textcolor"
-						afterIcon="editor-textcolor"
-						label={ __( "Button Text Size" ) }
-						value={ buttons[ index ].size }
-						onChange={ value => {
-							this.saveButton( { size: value }, index )
-						} }
-						min={ 10 }
-						max={ 100 }
-						initialPosition={16}
-					/>
-					<RangeControl
-						label={ __( "Top and Bottom Padding" ) }
+						label={ UAGB_Block_Icons.vertical_spacing }
+						className={ "uagb-margin-control" }
 						value={ buttons[ index ].vPadding }
 						onChange={ value => {
 							this.saveButton( { vPadding: value }, index )
@@ -155,7 +452,8 @@ class UAGBMultiButtonEdit extends Component {
 						max={ 100 }
 					/>
 					<RangeControl
-						label={ __( "Left and Right Padding" ) }
+						label={ UAGB_Block_Icons.horizontal_spacing }
+						className={ "uagb-margin-control" }
 						value={ buttons[ index ].hPadding }
 						onChange={ value => {
 							this.saveButton( { hPadding: value }, index )
@@ -163,19 +461,13 @@ class UAGBMultiButtonEdit extends Component {
 						min={ 0 }
 						max={ 100 }
 					/>
-					<RangeControl
-						label={ __( "Border Thickness" ) }
-						value={ buttons[ index ].borderWidth }
-						onChange={ value => {
-							this.saveButton( { borderWidth: value }, index )
-						} }
-						min={ 0 }
-						max={ 20 }
-					/>
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Button Border" ) }</h2>
 					<SelectControl
-						label={ __( "Border Style" ) }
+						label={ __( "Style" ) }
 						value={ buttons[ index ].borderStyle }
 						options={ [
+							{ value: "none", label: __( "None" ) },
 							{ value: "solid", label: __( "Solid" ) },
 							{ value: "dotted", label: __( "Dotted" ) },
 							{ value: "dashed", label: __( "Dashed" ) },
@@ -185,8 +477,19 @@ class UAGBMultiButtonEdit extends Component {
 							this.saveButton( { borderStyle: value }, index )
 						} }
 					/>
+					{ buttons[ index ].borderStyle != "none" &&
+						<RangeControl
+							label={ __( "Thickness" ) }
+							value={ buttons[ index ].borderWidth }
+							onChange={ value => {
+								this.saveButton( { borderWidth: value }, index )
+							} }
+							min={ 0 }
+							max={ 20 }
+						/>
+					}
 					<RangeControl
-						label={ __( "Border Radius" ) }
+						label={ __( "Rounded Corners" ) }
 						value={ buttons[ index ].borderRadius }
 						onChange={ value => {
 							this.saveButton( { borderRadius: value }, index )
@@ -194,42 +497,72 @@ class UAGBMultiButtonEdit extends Component {
 						min={ 0 }
 						max={ 50 }
 					/>
-					<PanelColorSettings
-						title={ __( "Color Settings" ) }
-						colorSettings={ [
+					<hr className="uagb-editor__separator" />
+					<h2>{ __( "Button #" ) + " " + ( index + 1 ) + " " + __( " Color Settings" ) }</h2>
+					<TabPanel className="uagb-inspect-tabs uagb-inspect-tabs-col-2"
+						activeClass="active-tab"
+						tabs={ [
 							{
-								value: buttons[ index ].color,
-								onChange:( value ) => this.saveButton( { color: value }, index ),
-								label: __( "Color" ),
+								name: "normal",
+								title: __( "Normal" ),
+								className: "uagb-normal-tab",
 							},
 							{
-								value: buttons[ index ].background,
-								onChange:( value ) => this.saveButton( { background: value }, index ),
-								label: __( "Background Color" ),
+								name: "hover",
+								title: __( "Hover" ),
+								className: "uagb-hover-tab",
 							},
-							{
-								value: buttons[ index ].borderColor,
-								onChange: ( value ) => this.saveButton( { borderColor: value }, index ),
-								label: __( "Border Color" ),
-							},
-							{
-								value: buttons[ index ].hColor,
-								onChange:( value ) => this.saveButton( { hColor: value }, index ),
-								label: __( "Hover Color" ),
-							},
-							{
-								value: buttons[ index ].hBackground,
-								onChange:( value ) => this.saveButton( { hBackground: value }, index ),
-								label: __( "Background Hover Color" ),
-							},
-							{
-								value: buttons[ index ].borderHColor,
-								onChange: ( value ) => this.saveButton( { borderHColor: value }, index ),
-								label: __( "Border Hover Color" ),
-							},
-						] }
-					>
-					</PanelColorSettings>
+						] }>
+						{
+							( tabName ) => {
+								let btn_color_tab
+								if( "normal" === tabName.name ) {
+									btn_color_tab = <Fragment>
+										<p className="uagb-setting-label">{ __( "Text Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: buttons[ index ].color }} ></span></span></p>
+										<ColorPalette
+											value={ buttons[ index ].color }
+											onChange={ ( value ) => this.saveButton( { color: value }, index ) }
+											allowReset
+										/>
+										<p className="uagb-setting-label">{ __( "Background Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: buttons[ index ].background }} ></span></span></p>
+										<ColorPalette
+											value={ buttons[ index ].background }
+											onChange={ ( value ) => this.saveButton( { background: value }, index ) }
+											allowReset
+										/>
+										<p className="uagb-setting-label">{ __( "Border Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: buttons[ index ].borderColor }} ></span></span></p>
+										<ColorPalette
+											value={ buttons[ index ].borderColor }
+											onChange={ ( value ) => this.saveButton( { borderColor: value }, index ) }
+											allowReset
+										/>
+									</Fragment>
+								}else {
+									btn_color_tab = <Fragment>
+										<p className="uagb-setting-label">{ __( "Text Hover Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: buttons[ index ].hColor }} ></span></span></p>
+										<ColorPalette
+											value={ buttons[ index ].hColor }
+											onChange={ ( value ) => this.saveButton( { hColor: value }, index ) }
+											allowReset
+										/>
+										<p className="uagb-setting-label">{ __( "Background Hover Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: buttons[ index ].hBackground }} ></span></span></p>
+										<ColorPalette
+											value={ buttons[ index ].hBackground }
+											onChange={ ( value ) => this.saveButton( { hBackground: value }, index ) }
+											allowReset
+										/>
+										<p className="uagb-setting-label">{ __( "Border Hover Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: buttons[ index ].borderHColor }} ></span></span></p>
+										<ColorPalette
+											value={ buttons[ index ].borderHColor }
+											onChange={ ( value ) => this.saveButton( { borderHColor: value }, index ) }
+											allowReset
+										/>
+									</Fragment>
+								}
+								return <div>{ btn_color_tab }</div>
+							}
+						}
+					</TabPanel>
 				</PanelBody>
 			)
 		}
@@ -238,6 +571,21 @@ class UAGBMultiButtonEdit extends Component {
 
 		if( null != element && "undefined" != typeof element ) {
 			element.innerHTML = styling( this.props )
+		}
+
+		let loadBtnGoogleFonts
+		if( loadGoogleFonts == true ) {
+
+			const btnconfig = {
+				google: {
+					families: [ fontFamily + ( fontWeight ? ":" + fontWeight : "" ) ],
+				},
+			}
+
+			loadBtnGoogleFonts = (
+				<WebfontLoader config={ btnconfig }>
+				</WebfontLoader>
+			)
 		}
 
 		return (
@@ -252,10 +600,7 @@ class UAGBMultiButtonEdit extends Component {
 					/>
 				</BlockControls>
 				<InspectorControls>
-					<PanelBody
-						title={ __( "Button Count" ) }
-						initialOpen={ true }
-					>
+					<PanelBody title={ __( "Button Count" ) } initialOpen={ true }>
 						<RangeControl
 							label={ __( "Number of Buttons" ) }
 							value={ btn_count }
@@ -296,17 +641,29 @@ class UAGBMultiButtonEdit extends Component {
 						/>
 					</PanelBody>
 					{ times( btn_count, n => buttonControls( n ) ) }
-					<PanelBody
-						title={ __( "Spacing" ) }
-						initialOpen={ false }
-					>
+					<PanelBody title={ __( "General" ) } initialOpen={ false }>
+						<h2>{ __( "Button Typography" ) }</h2>
+						<TypographyControl
+							label={ __( "Typography" ) }
+							attributes = { attributes }
+							setAttributes = { setAttributes }
+							loadGoogleFonts = { { value: loadGoogleFonts, label: __( "loadGoogleFonts" ) } }
+							fontFamily = { { value: fontFamily, label: __( "fontFamily" ) } }
+							fontWeight = { { value: fontWeight, label: __( "fontWeight" ) } }
+							fontSubset = { { value: fontSubset, label: __( "fontSubset" ) } }
+							disableFontSize={true}
+							disableLineHeight={true}
+						/>
+						<hr className="uagb-editor__separator" />
+						<h2>{ __( "Button Spacing" ) }</h2>
 						<RangeControl
-							label={ __( "Gap between Buttons" ) }
+							label={ __( "Gap Between Buttons" ) }
 							value={ gap }
 							onChange={ ( value ) => setAttributes( { gap: value } ) }
 							min={ 0 }
 							max={ 50 }
 						/>
+						<hr className="uagb-editor__separator" />
 						<SelectControl
 							label={ __( "Stack on" ) }
 							value={ stack }
@@ -317,16 +674,15 @@ class UAGBMultiButtonEdit extends Component {
 								{ value: "mobile", label: __( "Mobile" ) },
 							] }
 							onChange={ ( value ) => setAttributes( { stack: value } ) }
+							help={ __( "Note: Choose on what breakpoint the buttons will stack." ) }
 						/>
-						<p className="uagb-note">{ __( "Note: Choose on what breakpoint the buttons will stack." ) }</p>
 					</PanelBody>
 				</InspectorControls>
 				<div className={ classnames(
 					className,
 					"uagb-buttons__outer-wrap"
 				) }
-				id={ `uagb-buttons-${ this.props.clientId }` }
-				>
+				id={ `uagb-buttons-${ this.props.clientId }` }>
 					<div className="uagb-buttons__wrap">
 						{
 							buttons.map( ( button, index ) => {
@@ -362,6 +718,7 @@ class UAGBMultiButtonEdit extends Component {
 						}
 					</div>
 				</div>
+				{ loadBtnGoogleFonts }
 			</Fragment>
 		)
 	}

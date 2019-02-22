@@ -12,6 +12,7 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 	 */
 	final class UAGB_Loader {
 
+
 		/**
 		 * Member Variable
 		 *
@@ -73,10 +74,12 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			define( 'UAGB_BASE', plugin_basename( UAGB_FILE ) );
 			define( 'UAGB_DIR', plugin_dir_path( UAGB_FILE ) );
 			define( 'UAGB_URL', plugins_url( '/', UAGB_FILE ) );
-			define( 'UAGB_VER', '1.7.0' );
+			define( 'UAGB_VER', '1.9.1' );
 			define( 'UAGB_MODULES_DIR', UAGB_DIR . 'modules/' );
 			define( 'UAGB_MODULES_URL', UAGB_URL . 'modules/' );
-			define( 'UAGB_SLUG', 'uagb' );
+			define( 'UAGB_SLUG', 'uag' );
+			define( 'UAGB_TABLET_BREAKPOINT', '976' );
+			define( 'UAGB_MOBILE_BREAKPOINT', '767' );
 		}
 
 		/**
@@ -93,7 +96,7 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 			require( UAGB_DIR . 'classes/class-uagb-core-plugin.php' );
 			require_once UAGB_DIR . 'dist/blocks/post/index.php';
 			require_once UAGB_DIR . 'dist/blocks/post-timeline/index.php';
-
+			require_once UAGB_DIR . 'dist/blocks/cf7-styler/index.php';
 		}
 
 		/**
@@ -182,7 +185,6 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 
 				$action_url   = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
 				$button_label = __( 'Activate Gutenberg', 'ultimate-addons-for-gutenberg' );
-
 			} else {
 				if ( ! current_user_can( 'install_plugins' ) ) {
 					return;
@@ -201,12 +203,14 @@ if ( ! class_exists( 'UAGB_Loader' ) ) {
 		 * Activation Reset
 		 */
 		function activation_reset() {
+			update_option( '__uagb_do_redirect', true );
 		}
 
 		/**
 		 * Deactivation Reset
 		 */
 		function deactivation_reset() {
+			update_option( '__uagb_do_redirect', false );
 		}
 	}
 
