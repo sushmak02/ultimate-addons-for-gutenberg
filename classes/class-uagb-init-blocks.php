@@ -24,6 +24,7 @@ class UAGB_Init_Blocks {
 
 
 
+
 	/**
 	 * Member Variable
 	 *
@@ -176,7 +177,6 @@ class UAGB_Init_Blocks {
 		if ( ! wp_script_is( ' wpcf7-admin', 'enqueued' ) ) {
 			wp_enqueue_script( ' wpcf7-admin' );
 		}
-		>> >> >> > e183632391e10153f474d370e0845e94ddb4a45d
 	} // End function editor_assets().
 
 	/**
