@@ -30,7 +30,8 @@ const {
 	RangeControl,
 	Button,
 	BaseControl,
-	ToggleControl
+	ToggleControl,
+	TextControl
 } = wp.components
 
 // Extend component
@@ -434,7 +435,6 @@ class UAGBVideo extends Component {
 			</Fragment>
 		)
 
-
 		// Icon properties.
 		const icon_props = {
 			icons: svg_icons,
@@ -552,6 +552,65 @@ class UAGBVideo extends Component {
 					{ ( sourceType && sourceType == "image" ) && imageControls }
 				</PanelBody>
 			</Fragment>
+		)
+
+		const subscribe_bar_setting = (			
+			<PanelBody
+				title={ __( "YouTube Subscribe Bar" ) }
+				initialOpen={ false }>
+				<ToggleControl
+					label={ __( "Enable Subscribe Bar" ) }
+					checked={ enableSubscribeBar }
+					onChange={ ( value ) => setAttributes( { enableSubscribeBar: ! enableSubscribeBar } ) }
+				/>
+				<SelectControl
+					label={ __( "Select Channel By" ) }
+					value={ channeltype }
+					onChange={ ( value ) => setAttributes( { channeltype: value } ) }
+					options={ [
+						{ value: "id", label: __( "Id" ) },
+						{ value: "name", label: __( "Name" ) },
+					] }
+				/>
+				{ channeltype == "name" && <TextControl
+					label= { __( "YouTube Channel Name" ) }
+					value= { channelName }
+					onChange={ value => setAttributes( { channelName: value } ) }
+					/>
+				}
+				{ channeltype == "id" && <TextControl
+					label= { __( "YouTube Channel Id" ) }
+					value= { channelId }
+					onChange={ value => setAttributes( { channelId: value } ) }
+					/>
+				}
+				<TextControl
+					label= { __( "Subscribe to Channel Text" ) }
+					value= { channeltext }
+					onChange={ value => setAttributes( { channeltext: value } ) }
+					/>
+				<ToggleControl
+					label={ __( "Show Subscribers Count" ) }
+					checked={ enableSubscribeCount }
+					onChange={ ( value ) => setAttributes( { enableSubscribeCount: ! enableSubscribeCount } ) }
+				/>
+				<p className="uagb-setting-label">{ __( "Text Color" ) }
+			    <span className="components-base-control__label">
+			    <span className="component-color-indicator" style={{ backgroundColor: subTextColor }} ></span></span></p>
+			    <ColorPalette
+			        value={ subTextColor }
+			        onChange={ ( colorValue ) => setAttributes( { subTextColor: colorValue } ) }
+			        allowReset
+			    />
+			    <p className="uagb-setting-label">{ __( "Background Color" ) }
+			    <span className="components-base-control__label">
+			    <span className="component-color-indicator" style={{ backgroundColor: subBgColor }} ></span></span></p>
+			    <ColorPalette
+			        value={ subBgColor }
+			        onChange={ ( colorValue ) => setAttributes( { subBgColor: colorValue } ) }
+			        allowReset
+			    />
+			</PanelBody>
 		)
 
 		const inspect_control = (
