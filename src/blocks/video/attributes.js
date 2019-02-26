@@ -51,10 +51,10 @@ const attributes = {
 	autoplay: {
 		type: "boolean",
 		default: false,
-	},
-	videoSuggest: {
-		type: "boolean",
-		default: false,
+	},	
+	relatedVideo: {
+		type: "string",
+		default: 0,
 	},
 	playerControl: {
 		type: "boolean",

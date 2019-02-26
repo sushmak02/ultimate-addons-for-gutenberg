@@ -130,7 +130,7 @@ class UAGBVideo extends Component {
 			vimeoUserName,
 			aspectRatio,
 			autoplay,
-			videoSuggest,
+			relatedVideo,
 			playerControl,
 			videoMute,
 			modestBranding,
@@ -226,93 +226,91 @@ class UAGBVideo extends Component {
 			</Fragment>
 		)
 
-		const youtube_setting = (
-			<Fragment>
-				<PanelBody
-					title={ __( "Video Options" ) }
-					initialOpen={ true }
-				>
-					<ToggleControl
-						label={ __( "Autoplay" ) }
-						checked={ autoplay }
-						onChange={ ( value ) => setAttributes( { autoplay: ! autoplay } ) }
-					/>
-					<ToggleControl
-						label={ __( "Suggested Videos" ) }
-						checked={ videoSuggest }
-						onChange={ ( value ) => setAttributes( { videoSuggest: ! videoSuggest } ) }
-					/>
-					<ToggleControl
-						label={ __( "Player Control" ) }
-						checked={ playerControl }
-						onChange={ ( value ) => setAttributes( { playerControl: ! playerControl } ) }
-					/>				
-					<ToggleControl
-						label={ __( "Mute" ) }
-						checked={ videoMute }
-						onChange={ ( value ) => setAttributes( { videoMute: ! videoMute } ) }
-					/>
-					{ playerControl && 
-					<ToggleControl
-						label={ __( "Modest Branding" ) }
-						checked={ modestBranding }
-						onChange={ ( value ) => setAttributes( { modestBranding: ! modestBranding } ) }
-					/>
-					}
-					<ToggleControl
-						label={ __( "Privacy Mode" ) }
-						checked={ privacyMode }
-						onChange={ ( value ) => setAttributes( { privacyMode: ! privacyMode } ) }
-						help={ __( "Note: When you turn on privacy mode, YouTube won't store information about visitors on your website unless they play the video." ) }
-					/>
-				</PanelBody>
-			</Fragment>
+		const youtube_setting = (			
+			<PanelBody
+				title={ __( "Video Options" ) }
+				initialOpen={ false }>
+				<ToggleControl
+					label={ __( "Autoplay" ) }
+					checked={ autoplay }
+					onChange={ ( value ) => setAttributes( { autoplay: ! autoplay } ) }
+				/>
+				<SelectControl
+					label={ __( "Related Video From" ) }
+					value={ relatedVideo }
+					onChange={ ( value ) => setAttributes( { relatedVideo: value } ) }
+					options={ [
+						{ value: 0, label: __( "Current Video Channel" ) },
+						{ value: 1, label: __( "Any Random Video" ) },
+					] }
+				/>				
+				<ToggleControl
+					label={ __( "Player Control" ) }
+					checked={ playerControl }
+					onChange={ ( value ) => setAttributes( { playerControl: ! playerControl } ) }
+				/>				
+				<ToggleControl
+					label={ __( "Mute" ) }
+					checked={ videoMute }
+					onChange={ ( value ) => setAttributes( { videoMute: ! videoMute } ) }
+				/>
+				{ playerControl && 
+				<ToggleControl
+					label={ __( "Modest Branding" ) }
+					checked={ modestBranding }
+					onChange={ ( value ) => setAttributes( { modestBranding: ! modestBranding } ) }
+				/>
+				}
+				<ToggleControl
+					label={ __( "Privacy Mode" ) }
+					checked={ privacyMode }
+					onChange={ ( value ) => setAttributes( { privacyMode: ! privacyMode } ) }
+					help={ __( "Note: When you turn on privacy mode, YouTube won't store information about visitors on your website unless they play the video." ) }
+				/>
+			</PanelBody>			
 		)
 
-		const vimeo_setting = (
-			<Fragment>
-				<PanelBody
-					title={ __( "Video Options" ) }
-					initialOpen={ true }
-				>
-					<ToggleControl
-						label={ __( "Autoplay" ) }
-						checked={ autoplay }
-						onChange={ ( value ) => setAttributes( { autoplay: ! autoplay } ) }
-					/>
-					<ToggleControl
-						label={ __( "Loop" ) }
-						checked={ loop }
-						onChange={ ( value ) => setAttributes( { loop: ! loop } ) }
-					/>
-					<ToggleControl
-						label={ __( "Intro Title" ) }
-						checked={ introTitle }
-						onChange={ ( value ) => setAttributes( { introTitle: ! introTitle } ) }
-					/>
-					<ToggleControl
-						label={ __( "Intro Portrait" ) }
-						checked={ introPortrait }
-						onChange={ ( value ) => setAttributes( { introPortrait: ! introPortrait } ) }
-					/>
-					<ToggleControl
-						label={ __( "Intro Byline" ) }
-						checked={ introByeline }
-						onChange={ ( value ) => setAttributes( { introByeline: ! introByeline } ) }
-					/>
-					<Fragment>
-				    <p className="uagb-setting-label">{ __( "Controls Color" ) }
-				    <span className="components-base-control__label">
-				    <span className="component-color-indicator" style={{ backgroundColor: controlsColor }} ></span></span></p>
-				    <ColorPalette
-				        value={ controlsColor }
-				        onChange={ ( colorValue ) => setAttributes( { controlsColor: colorValue } ) }
-				        allowReset
-				    />
-					</Fragment>
-				
-				</PanelBody>
-			</Fragment>
+		const vimeo_setting = (			
+			<PanelBody
+				title={ __( "Video Options" ) }
+				initialOpen={ false } >
+				<ToggleControl
+					label={ __( "Autoplay" ) }
+					checked={ autoplay }
+					onChange={ ( value ) => setAttributes( { autoplay: ! autoplay } ) }
+				/>
+				<ToggleControl
+					label={ __( "Loop" ) }
+					checked={ loop }
+					onChange={ ( value ) => setAttributes( { loop: ! loop } ) }
+				/>
+				<ToggleControl
+					label={ __( "Intro Title" ) }
+					checked={ introTitle }
+					onChange={ ( value ) => setAttributes( { introTitle: ! introTitle } ) }
+				/>
+				<ToggleControl
+					label={ __( "Intro Portrait" ) }
+					checked={ introPortrait }
+					onChange={ ( value ) => setAttributes( { introPortrait: ! introPortrait } ) }
+				/>
+				<ToggleControl
+					label={ __( "Intro Byline" ) }
+					checked={ introByeline }
+					onChange={ ( value ) => setAttributes( { introByeline: ! introByeline } ) }
+				/>
+				<Fragment>
+			    <p className="uagb-setting-label">{ __( "Controls Color" ) }
+			    <span className="components-base-control__label">
+			    <span className="component-color-indicator" style={{ backgroundColor: controlsColor }} ></span></span></p>
+			    <ColorPalette
+			        value={ controlsColor }
+			        onChange={ ( colorValue ) => setAttributes( { controlsColor: colorValue } ) }
+			        allowReset
+			    />
+				</Fragment>
+			
+			</PanelBody>			
 		)
 
 		// Image sizes.
@@ -547,10 +545,10 @@ class UAGBVideo extends Component {
 					<PanelBody
 						title={ __( "Video" ) }
 					>
-						{ video_type_setting }
-						{ videoType == "youtube" &&  youtube_setting }
-						{ videoType == "vimeo" && vimeo_setting }
+					{ video_type_setting }
 					</PanelBody>
+					{ videoType == "youtube" &&  youtube_setting }
+					{ videoType == "vimeo" && vimeo_setting }					
 					{ thumbnail_setting }
 					{ play_buttons }
 				</InspectorControls>
