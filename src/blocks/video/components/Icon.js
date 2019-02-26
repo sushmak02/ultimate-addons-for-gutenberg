@@ -1,4 +1,4 @@
-import classnames from "classnames"
+import renderSVG from "../../../../dist/blocks/uagb-controls/renderIcon"
 
 class Icon extends React.Component {
 
@@ -7,10 +7,8 @@ class Icon extends React.Component {
 		const { attributes } = this.props     
         
 		return (
-			<div className={ classnames(
-				"uagb-video__play-icon",
-				attributes.icon
-			) }>					
+			<div className={ "uagb-video__play-icon"}>	
+			{ renderSVG(attributes.icon) }				
 			</div>			       			
 		)
 	}

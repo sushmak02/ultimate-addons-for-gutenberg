@@ -33,6 +33,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 
 
+
 		/**
 		 * Get Section Block CSS
 		 *
@@ -3597,20 +3598,15 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			);
 
 			if( 'icon' === $attr['sourceType'] ){
-				$selectors[" .uagb-video__play-icon"] = array(
+				$selectors[" .uagb-video__play-icon svg"] = array(
 					"height" => $attr['iconSize']."px",
 					"width" => $attr['iconSize']."px",
-					"color" => $attr['iconColor'],
+					"fill" => $attr['iconColor'],
 					"line-height" => $attr['iconSize']."px",
-				);
+				);				
 
-				$selectors[" .uagb-video__play-icon:before"] = array(
-					"font-size" => $attr['iconSize']."px",
-					"line-height" => $attr['iconSize'] . "px",
-				);
-
-				$selectors[" .uagb-video__content-wrap:hover .uagb-video__play-icon"] = array(
-					"color" => $attr['iconHover'],
+				$selectors[" .uagb-video__content-wrap:hover .uagb-video__play-icon svg"] = array(
+					"fill" => $attr['iconHover'],
 				);
 
 			}else{

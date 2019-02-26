@@ -2,7 +2,7 @@ function VideoImgSrc( attributes, id ) {
 
 	var video_url = ""
 	var url_id = id
-	//console.log(id)
+	
 	if( "youtube" == attributes.videoType ){
 
 		var start_time = ""
@@ -18,7 +18,7 @@ function VideoImgSrc( attributes, id ) {
 		if( attributes.privacyMode ){
 			privacy = "-nocookie"
 		}
-		console.log(attributes.relatedVideo)
+
 		video_url = "https://www.youtube"+privacy+".com/embed/"+url_id+"?rel="+Number(attributes.relatedVideo)+"&start"+start_time+"&end"+end_time+"&controls="+Number(attributes.playerControl)+"&showinfo=1&mute="+Number(attributes.videoMute)+"&modestbranding="+Number(attributes.modestBranding)+"&autoplay="+Number(attributes.autoplay)
 
 	}else{

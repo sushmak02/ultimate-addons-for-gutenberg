@@ -33,20 +33,15 @@ function VideoStyle( props ) {
 	}
 	// Icon css
 	if( sourceType == "icon" ){
-		selectors[".uagb-video__play-icon"] = {
+		selectors[".uagb-video__play-icon svg"] = {
 			"height" : iconSize+"px",
 			"width" : iconSize+"px",
-			"color": iconColor,
+			"fill": iconColor,
 			"line-height" : iconSize+"px",
 		}
-
-		selectors[".uagb-video__play-icon:before"] = {
-			"font-size" : iconSize+"px",
-			"line-height": iconSize + "px",
-		}
-
-		selectors[".uagb-video__content-wrap:hover .uagb-video__play-icon"] = {
-			"color" : iconHover,
+		
+		selectors[".uagb-video__content-wrap:hover .uagb-video__play-icon svg"] = {
+			"fill" : iconHover,
 		}
 	}else{
 		selectors[".uagb-video__play-icon img"] = {

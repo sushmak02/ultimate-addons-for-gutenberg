@@ -2,9 +2,9 @@
 import classnames from "classnames"
 
 // Import icon.
-import UAGBIcon from "../../../dist/blocks/uagb-controls/UAGBIcon"
+import UAGBIcon from "../../../dist/blocks/uagb-controls/UAGBIcon.json"
 import FontIconPicker from "@fonticonpicker/react-fonticonpicker"
-
+import renderSVG from "../../../dist/blocks/uagb-controls/renderIcon"
 import VideoId from "./VideoId"
 import Icon from "./components/Icon"
 import IconImage from "./components/IconImage"
@@ -35,6 +35,8 @@ const {
 
 // Extend component
 const { Component, Fragment } = wp.element
+
+let svg_icons = Object.keys( UAGBIcon )
 
 class UAGBVideo extends Component {
 
@@ -423,13 +425,14 @@ class UAGBVideo extends Component {
 
 		// Icon properties.
 		const icon_props = {
-		  icons: UAGBIcon,
-		  renderUsing: "class",
-		  theme: "default",
-		  value: icon,
-		  onChange: this.getVideoIcon,
-		  isMulti: false,
+			icons: svg_icons,
+			value: icon,
+			onChange: this.getVideoIcon,
+			isMulti: false,
+			renderFunc: renderSVG,
+			noSelectedPlaceholder: __( "Select Icon" )
 		}
+
 		const iconControls = (
 			<Fragment>
 				<FontIconPicker {...icon_props} />
