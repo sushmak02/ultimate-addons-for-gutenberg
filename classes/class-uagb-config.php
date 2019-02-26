@@ -24,6 +24,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 
 
 
+
 		/**
 		 * Block Attributes
 		 *
@@ -1425,16 +1426,28 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'description' => __( 'This block lets you add beautiful YouTube and Vimeo video.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
 						'attributes'  => array(
-							'block_id'            => '',
-							'controlsColor'       => '#fff',
-							'overlayColor'        => '',
-							'sourceType'          => 'icon',
-							'iconSize'            => 75,
-							'iconHover'           => '',
-							'iconColor'           => '#333',
-							'iconImageWidth'      => 75,
-							'iconimgBorderRadius' => 100,
-							'opacity'             => 50,
+							'block_id'             => '',
+							'controlsColor'        => '#fff',
+							'overlayColor'         => '',
+							'sourceType'           => 'icon',
+							'iconSize'             => 75,
+							'iconHover'            => '',
+							'iconColor'            => '#333',
+							'iconImageWidth'       => 75,
+							'iconimgBorderRadius'  => 100,
+							'opacity'              => 50,
+							'enableSubscribeBar'   => false,
+							'channeltype'          => 'id',
+							'channelId'            => 'UCtFCcrvupjyaq2lax_7OQQg',
+							'channelName'          => 'TheBrainstormForce',
+							'channeltext'          => 'Subscribe to our YouTube Channel',
+							'enableSubscribeCount' => false,
+							'subTextColor'         => '#fff',
+							'subBgColor'           => '#333',
+							'subVrPadding'         => '',
+							'subHrPadding'         => '',
+							'stack'                => 'none',
+							'subSpace'             => 10,
 						),
 					),
 				);

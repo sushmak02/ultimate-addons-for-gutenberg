@@ -165,5 +165,53 @@ const attributes = {
 		type: "string",
 		default : ""
 	},
+	enableSubscribeBar: {
+		type: "boolean",
+		default: false,
+	},
+	channeltype: {
+		type: "string",
+		default : "id"
+	},
+	channelId: {
+		type: "string",
+		default : "UCtFCcrvupjyaq2lax_7OQQg"
+	},
+	channelName: {
+		type: "string",
+		default : "TheBrainstormForce"
+	},
+	channeltext: {
+		type: "string",
+		default : "Subscribe to our YouTube Channel"
+	},
+	enableSubscribeCount: {
+		type: "boolean",
+		default: false,
+	},
+	subTextColor: {
+		type: "string",
+		default : "#fff"
+	},
+	subBgColor: {
+		type: "string",
+		default : "#333"
+	},
+	subVrPadding: {
+		type: "number",
+		default : ""
+	},
+	subHrPadding: {
+		type: "number",
+		default : ""
+	},
+	stack: {
+		type: "number",
+		default : "none"
+	},
+	subSpace: {
+		type: "number",
+		default : 10
+	},
 }
 export default attributes

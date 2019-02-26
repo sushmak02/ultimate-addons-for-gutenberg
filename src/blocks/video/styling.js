@@ -15,6 +15,18 @@ function VideoStyle( props ) {
 		iconImageWidth,
 		iconimgBorderRadius,
 		opacity,
+		enableSubscribeBar,
+		channeltype,
+		channelId,
+		channelName,
+		channeltext,
+		enableSubscribeCount,
+		subTextColor,
+		subBgColor,
+		subVrPadding,
+		subHrPadding,
+		stack,
+		subSpace,
 	} = props.attributes
 
 	if( props.clientId ){

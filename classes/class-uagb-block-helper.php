@@ -5,14 +5,12 @@
  * @package UAGB
  */
 
-if (! class_exists('UAGB_Block_Helper')) {
+if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
-    /**
-     * Class UAGB_Block_Helper.
-     */
-    class UAGB_Block_Helper
-    {
-
+	/**
+	 * Class UAGB_Block_Helper.
+	 */
+	class UAGB_Block_Helper {
 
 
 
@@ -35,14 +33,16 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 
 
-        /**
-         * Get Section Block CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+
+
+		/**
+		 * Get Section Block CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_section_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			global $content_width;
@@ -215,23 +215,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-section-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-section-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-section-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-section-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-section-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-section-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Columns Block CSS
-         *
-         * @since 1.8.0
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Columns Block CSS
+		 *
+		 * @since 1.8.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_columns_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			global $content_width;
@@ -366,23 +366,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-columns-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-columns-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-columns-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-columns-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-columns-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-columns-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Single Column Block CSS
-         *
-         * @since 1.8.0
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Single Column Block CSS
+		 *
+		 * @since 1.8.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_column_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			global $content_width;
@@ -502,23 +502,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-column-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-column-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-column-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-column-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-column-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-column-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Advanced Heading Block CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Advanced Heading Block CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_adv_heading_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/advanced-heading']['attributes'];
@@ -591,23 +591,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 			}
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-adv-heading-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-adv-heading-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-adv-heading-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-adv-heading-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-adv-heading-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-adv-heading-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Multi Buttons Block CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Multi Buttons Block CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_buttons_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/buttons']['attributes'];
@@ -753,23 +753,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-buttons-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-buttons-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-buttons-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-buttons-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-buttons-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-buttons-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Info Box CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Info Box CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_info_box_css( $attr, $id ) { 			// @codingStandardsIgnoreStart.
 			$defaults = UAGB_Helper::$block_list['uagb/info-box']['attributes'];
 
@@ -977,23 +977,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd.
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-infobox-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-infobox-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-infobox-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-infobox-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-infobox-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-infobox-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get CTA CSS
-         *
-         * @since 1.7.0
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get CTA CSS
+		 *
+		 * @since 1.7.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_call_to_action_css( $attr, $id ) { 			// @codingStandardsIgnoreStart.
 			$defaults = UAGB_Helper::$block_list['uagb/call-to-action']['attributes'];
 
@@ -1143,21 +1143,21 @@ if (! class_exists('UAGB_Block_Helper')) {
 			);
 
 			// @codingStandardsIgnoreEnd.
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-cta-block-' . $id);
-            $tablet  = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-cta-block-' . $id, 'tablet');
-            $mobile  = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-cta-block-' . $id, 'mobile');
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-cta-block-' . $id );
+			$tablet  = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-cta-block-' . $id, 'tablet' );
+			$mobile  = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-cta-block-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Testimonial CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Testimonial CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_testimonial_css( $attr, $id ) { 			// @codingStandardsIgnoreStart.
 
 			$defaults = UAGB_Helper::$block_list['uagb/testimonial']['attributes'];
@@ -1287,23 +1287,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 
 			// @codingStandardsIgnoreEnd.
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-testimonial-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-testimonial-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-testimonial-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-testimonial-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-testimonial-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-testimonial-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Team Block CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Team Block CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_team_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/team']['attributes'];
@@ -1453,23 +1453,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-team-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-team-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-team-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-team-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-team-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-team-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Social Share Block CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Social Share Block CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_social_share_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/social-share']['attributes'];
@@ -1694,23 +1694,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-social-share-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-social-share-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-social-share-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-social-share-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-social-share-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-social-share-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Icon List Block CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Icon List Block CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_icon_list_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/icon-list']['attributes'];
@@ -1937,23 +1937,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-icon-list-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-icon-list-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-icon-list-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-icon-list-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-icon-list-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-icon-list-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Content Timeline Block CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Content Timeline Block CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_content_timeline_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/content-timeline']['attributes'];
@@ -2031,23 +2031,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-ctm-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-ctm-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-ctm-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-ctm-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-ctm-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-ctm-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Content Timeline Block CSS
-         *
-         * @since 0.0.1
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Content Timeline Block CSS
+		 *
+		 * @since 0.0.1
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_post_timeline_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/post-timeline']['attributes'];
@@ -2182,21 +2182,21 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-ctm-' . $id);
-            $tablet  = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-ctm-' . $id, 'tablet');
-            $mobile  = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-ctm-' . $id, 'mobile');
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-ctm-' . $id );
+			$tablet  = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-ctm-' . $id, 'tablet' );
+			$mobile  = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-ctm-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Restaurant Menu Block CSS
-         *
-         * @since 1.0.2
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Restaurant Menu Block CSS
+		 *
+		 * @since 1.0.2
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_restaurant_menu_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/restaurant-menu']['attributes'];
@@ -2326,21 +2326,21 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-rm-' . $id);
-            $tablet  = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-rm-' . $id, 'tablet');
-            $mobile  = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-rm-' . $id, 'mobile');
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-rm-' . $id );
+			$tablet  = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-rm-' . $id, 'tablet' );
+			$mobile  = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-rm-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Post Grid Block CSS
-         *
-         * @since 1.4.0
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Post Grid Block CSS
+		 *
+		 * @since 1.4.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_post_grid_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/post-grid']['attributes'];
@@ -2355,23 +2355,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-post__grid-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-post__grid-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-post__grid-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-post__grid-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-post__grid-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-post__grid-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Post Carousel Block CSS
-         *
-         * @since 1.4.0
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Post Carousel Block CSS
+		 *
+		 * @since 1.4.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_post_carousel_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/post-carousel']['attributes'];
@@ -2424,23 +2424,23 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-post__carousel-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-post__carousel-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-post__carousel-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-post__carousel-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-post__carousel-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-post__carousel-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Post Masonry Block CSS
-         *
-         * @since 1.4.0
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
+		/**
+		 * Get Post Masonry Block CSS
+		 *
+		 * @since 1.4.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
 		public static function get_post_masonry_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/post-masonry']['attributes'];
@@ -2455,21 +2455,21 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-post__masonry-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-post__masonry-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-post__masonry-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-post__masonry-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-post__masonry-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-post__masonry-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Post Block Selectors CSS
-         *
-         * @param array $attr The block attributes.
-         * @since 1.4.0
-         */
+		/**
+		 * Get Post Block Selectors CSS
+		 *
+		 * @param array $attr The block attributes.
+		 * @since 1.4.0
+		 */
 		public static function get_post_selectors( $attr ) { 			// @codingStandardsIgnoreStart
 			return array(
 				" .uagb-post__items" => array(
@@ -2569,14 +2569,14 @@ if (! class_exists('UAGB_Block_Helper')) {
 				),
 			);
 			// @codingStandardsIgnoreEnd
-        }
+		}
 
-        /**
-         * Get Post Block Selectors CSS for Mobile devices
-         *
-         * @param array $attr The block attributes.
-         * @since 1.6.1
-         */
+		/**
+		 * Get Post Block Selectors CSS for Mobile devices
+		 *
+		 * @param array $attr The block attributes.
+		 * @since 1.6.1
+		 */
 		public static function get_post_mobile_selectors( $attr ) { 			// @codingStandardsIgnoreStart
 
 			return array(
@@ -2617,14 +2617,14 @@ if (! class_exists('UAGB_Block_Helper')) {
 				),
 			);
 			// @codingStandardsIgnoreEnd
-        }
+		}
 
-        /**
-         * Get Post Block Selectors CSS for Tablet devices
-         *
-         * @param array $attr The block attributes.
-         * @since 1.8.2
-         */
+		/**
+		 * Get Post Block Selectors CSS for Tablet devices
+		 *
+		 * @param array $attr The block attributes.
+		 * @since 1.8.2
+		 */
 		public static function get_post_tablet_selectors( $attr ) { 			// @codingStandardsIgnoreStart
 			return array(
 				" .uagb-post__text .uagb-post__title" => array(
@@ -2661,18 +2661,17 @@ if (! class_exists('UAGB_Block_Helper')) {
 				),
 			);
 			// @codingStandardsIgnoreEnd
-        }
+		}
 
-        /**
-         * Get Blockquote CSS
-         *
-         * @since 1.8.2
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
-        public static function get_blockquote_css($attr, $id)
-        {
+		/**
+		 * Get Blockquote CSS
+		 *
+		 * @since 1.8.2
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
+		public static function get_blockquote_css( $attr, $id ) {
 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/blockquote']['attributes'];
@@ -2916,21 +2915,21 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			// @codingStandardsIgnoreEnd
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-blockquote-' . $id);
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-blockquote-' . $id );
 
-            $tablet = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-blockquote-' . $id, 'tablet');
+			$tablet = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-blockquote-' . $id, 'tablet' );
 
-            $mobile = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-blockquote-' . $id, 'mobile');
+			$mobile = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-blockquote-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Timeline Block Desktop Selectors CSS
-         *
-         * @param array $attr The block attributes.
-         * @since 1.8.2
-         */
+		/**
+		 * Get Timeline Block Desktop Selectors CSS
+		 *
+		 * @param array $attr The block attributes.
+		 * @since 1.8.2
+		 */
 		public static function get_timeline_selectors( $attr ) { 			// @codingStandardsIgnoreStart
 			$selectors = array(
 				" .uagb-timeline__heading-text" => array(
@@ -3053,14 +3052,14 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			return $selectors;
 			// @codingStandardsIgnoreEnd
-        }
+		}
 
-        /**
-         * Get Timeline Block Tablet Selectors CSS.
-         *
-         * @param array $attr The block attributes.
-         * @since 1.8.2
-         */
+		/**
+		 * Get Timeline Block Tablet Selectors CSS.
+		 *
+		 * @param array $attr The block attributes.
+		 * @since 1.8.2
+		 */
 		public static function get_timeline_tablet_selectors( $attr ) { 			// @codingStandardsIgnoreStart
 			$tablet_selector = array(
 				" .uagb-timeline-desc-content" => array(
@@ -3104,14 +3103,14 @@ if (! class_exists('UAGB_Block_Helper')) {
 
 			return $tablet_selector;
 			// @codingStandardsIgnoreEnd
-        }
+		}
 
-        /**
-         * Get Timeline Block Mobile Selectors CSS.
-         *
-         * @param array $attr The block attributes.
-         * @since 1.8.2
-         */
+		/**
+		 * Get Timeline Block Mobile Selectors CSS.
+		 *
+		 * @param array $attr The block attributes.
+		 * @since 1.8.2
+		 */
 		public static function get_timeline_mobile_selectors( $attr ) {         	// @codingStandardsIgnoreStart
         	$m_selectors = array(
         		" .uagb-timeline-desc-content" => array(
@@ -3160,433 +3159,431 @@ if (! class_exists('UAGB_Block_Helper')) {
 			);
 			return $m_selectors;
         	// @codingStandardsIgnoreEnd
-        }
+		}
 
-        /**
-         * Get Contact Form 7 CSS
-         *
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @since x.x.x
-         */
-        public static function get_cf7_styler_css($attr, $id)
-        {
-            $defaults = UAGB_Helper::$block_list['uagb/cf7-styler']['attributes'];
+		/**
+		 * Get Contact Form 7 CSS
+		 *
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @since x.x.x
+		 */
+		public static function get_cf7_styler_css( $attr, $id ) {
+			$defaults = UAGB_Helper::$block_list['uagb/cf7-styler']['attributes'];
 
-            $attr = array_merge($defaults, (array) $attr);
+			$attr = array_merge( $defaults, (array) $attr );
 
-            $selectors = array(
-                ' .wpcf7 .wpcf7-form'                 => array(
-                    'text-align' => $attr['align'],
-                ),
-                ' .wpcf7 form.wpcf7-form:not(input)'  => array(
-                    'color' => $attr['fieldLabelColor'],
-                ),
-                ' .wpcf7 input:not([type=submit])'    => array(
-                    'background-color' => $attr['fieldBgColor'],
-                    'color'            => $attr['fieldInputColor'],
-                    'border-style'     => $attr['fieldBorderStyle'],
-                    'border-color'     => $attr['fieldBorderColor'],
-                    'border-width'     => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                    'padding-left'     => $attr['fieldHrPadding'] . 'px',
-                    'padding-right'    => $attr['fieldHrPadding'] . 'px',
-                    'padding-top'      => $attr['fieldVrPadding'] . 'px',
-                    'padding-bottom'   => $attr['fieldVrPadding'] . 'px',
-                    'margin-top'       => $attr['fieldLabelSpacing'] . 'px',
-                    'margin-bottom'    => $attr['fieldSpacing'] . 'px',
-                    'font-size'        => $attr['inputFontSize'] . $attr['inputFontSizeType'],
-                    'font-family'      => $attr['inputFontFamily'],
-                    'font-weight'      => $attr['inputFontWeight'],
-                    'line-height'      => $attr['inputLineHeight'] . $attr['inputLineHeightType'],
-                    'text-align'       => $attr['align'],
-                ),
-                ' .wpcf7 select'                      => array(
-                    'background-color' => $attr['fieldBgColor'],
-                    'color'            => $attr['fieldLabelColor'],
-                    'border-style'     => $attr['fieldBorderStyle'],
-                    'border-color'     => $attr['fieldBorderColor'],
-                    'border-width'     => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                    'margin-top'       => $attr['fieldLabelSpacing'] . 'px',
-                    'margin-bottom'    => $attr['fieldSpacing'] . 'px',
-                    'font-size'        => $attr['labelFontSize'] . $attr['labelFontSizeType'],
-                    'font-family'      => $attr['labelFontFamily'],
-                    'font-weight'      => $attr['labelFontWeight'],
-                    'line-height'      => $attr['labelLineHeight'] . $attr['labelLineHeightType'],
-                    'text-align'       => $attr['align'],
-                ),
-                ' .wpcf7 select.wpcf7-form-control.wpcf7-select:not([multiple="multiple"])' => array(
-                    'padding-left'   => $attr['fieldHrPadding'] . 'px',
-                    'padding-right'  => $attr['fieldHrPadding'] . 'px',
-                    'padding-top'    => $attr['fieldVrPadding'] . 'px',
-                    'padding-bottom' => $attr['fieldVrPadding'] . 'px',
-                ),
-                ' .wpcf7 select.wpcf7-select[multiple="multiple"] option' => array(
-                    'padding-left'   => $attr['fieldHrPadding'] . 'px',
-                    'padding-right'  => $attr['fieldHrPadding'] . 'px',
-                    'padding-top'    => $attr['fieldVrPadding'] . 'px',
-                    'padding-bottom' => $attr['fieldVrPadding'] . 'px',
-                ),
-                ' .wpcf7 textarea'                    => array(
-                    'background-color' => $attr['fieldBgColor'],
-                    'color'            => $attr['fieldInputColor'],
-                    'border-color'     => $attr['fieldBorderColor'],
-                    'border-width'     => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                    'border-style'     => $attr['fieldBorderStyle'],
-                    'padding-left'     => $attr['fieldHrPadding'] . 'px',
-                    'padding-right'    => $attr['fieldHrPadding'] . 'px',
-                    'padding-top'      => $attr['fieldVrPadding'] . 'px',
-                    'padding-bottom'   => $attr['fieldVrPadding'] . 'px',
-                    'margin-top'       => $attr['fieldLabelSpacing'] . 'px',
-                    'margin-bottom'    => $attr['fieldSpacing'] . 'px',
-                    'font-size'        => $attr['inputFontSize'] . $attr['inputFontSizeType'],
-                    'font-family'      => $attr['inputFontFamily'],
-                    'font-weight'      => $attr['inputFontWeight'],
-                    'line-height'      => $attr['inputLineHeight'] . $attr['inputLineHeightType'],
-                    'text-align'       => $attr['align'],
-                ),
-                ' .wpcf7 textarea::placeholder'       => array(
-                    'color'      => $attr['fieldInputColor'],
-                    'text-align' => $attr['align'],
-                ),
-                ' .wpcf7 input::placeholder'          => array(
-                    'color'      => $attr['fieldInputColor'],
-                    'text-align' => $attr['align'],
-                ),
-                ' .wpcf7 form label'                  => array(
-                    'font-size'   => $attr['labelFontSize'] . $attr['labelFontSizeType'],
-                    'font-family' => $attr['labelFontFamily'],
-                    'font-weight' => $attr['labelFontWeight'],
-                    'line-height' => $attr['labelLineHeight'] . $attr['labelLineHeightType'],
-                ),
-                ' .wpcf7 form .wpcf7-list-item-label' => array(
-                    'font-size'   => $attr['labelFontSize'] . $attr['labelFontSizeType'],
-                    'font-family' => $attr['labelFontFamily'],
-                    'font-weight' => $attr['labelFontWeight'],
-                    'line-height' => $attr['labelLineHeight'] . $attr['labelLineHeightType'],
-                ),
+			$selectors = array(
+				' .wpcf7 .wpcf7-form'                 => array(
+					'text-align' => $attr['align'],
+				),
+				' .wpcf7 form.wpcf7-form:not(input)'  => array(
+					'color' => $attr['fieldLabelColor'],
+				),
+				' .wpcf7 input:not([type=submit])'    => array(
+					'background-color' => $attr['fieldBgColor'],
+					'color'            => $attr['fieldInputColor'],
+					'border-style'     => $attr['fieldBorderStyle'],
+					'border-color'     => $attr['fieldBorderColor'],
+					'border-width'     => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+					'padding-left'     => $attr['fieldHrPadding'] . 'px',
+					'padding-right'    => $attr['fieldHrPadding'] . 'px',
+					'padding-top'      => $attr['fieldVrPadding'] . 'px',
+					'padding-bottom'   => $attr['fieldVrPadding'] . 'px',
+					'margin-top'       => $attr['fieldLabelSpacing'] . 'px',
+					'margin-bottom'    => $attr['fieldSpacing'] . 'px',
+					'font-size'        => $attr['inputFontSize'] . $attr['inputFontSizeType'],
+					'font-family'      => $attr['inputFontFamily'],
+					'font-weight'      => $attr['inputFontWeight'],
+					'line-height'      => $attr['inputLineHeight'] . $attr['inputLineHeightType'],
+					'text-align'       => $attr['align'],
+				),
+				' .wpcf7 select'                      => array(
+					'background-color' => $attr['fieldBgColor'],
+					'color'            => $attr['fieldLabelColor'],
+					'border-style'     => $attr['fieldBorderStyle'],
+					'border-color'     => $attr['fieldBorderColor'],
+					'border-width'     => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+					'margin-top'       => $attr['fieldLabelSpacing'] . 'px',
+					'margin-bottom'    => $attr['fieldSpacing'] . 'px',
+					'font-size'        => $attr['labelFontSize'] . $attr['labelFontSizeType'],
+					'font-family'      => $attr['labelFontFamily'],
+					'font-weight'      => $attr['labelFontWeight'],
+					'line-height'      => $attr['labelLineHeight'] . $attr['labelLineHeightType'],
+					'text-align'       => $attr['align'],
+				),
+				' .wpcf7 select.wpcf7-form-control.wpcf7-select:not([multiple="multiple"])' => array(
+					'padding-left'   => $attr['fieldHrPadding'] . 'px',
+					'padding-right'  => $attr['fieldHrPadding'] . 'px',
+					'padding-top'    => $attr['fieldVrPadding'] . 'px',
+					'padding-bottom' => $attr['fieldVrPadding'] . 'px',
+				),
+				' .wpcf7 select.wpcf7-select[multiple="multiple"] option' => array(
+					'padding-left'   => $attr['fieldHrPadding'] . 'px',
+					'padding-right'  => $attr['fieldHrPadding'] . 'px',
+					'padding-top'    => $attr['fieldVrPadding'] . 'px',
+					'padding-bottom' => $attr['fieldVrPadding'] . 'px',
+				),
+				' .wpcf7 textarea'                    => array(
+					'background-color' => $attr['fieldBgColor'],
+					'color'            => $attr['fieldInputColor'],
+					'border-color'     => $attr['fieldBorderColor'],
+					'border-width'     => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+					'border-style'     => $attr['fieldBorderStyle'],
+					'padding-left'     => $attr['fieldHrPadding'] . 'px',
+					'padding-right'    => $attr['fieldHrPadding'] . 'px',
+					'padding-top'      => $attr['fieldVrPadding'] . 'px',
+					'padding-bottom'   => $attr['fieldVrPadding'] . 'px',
+					'margin-top'       => $attr['fieldLabelSpacing'] . 'px',
+					'margin-bottom'    => $attr['fieldSpacing'] . 'px',
+					'font-size'        => $attr['inputFontSize'] . $attr['inputFontSizeType'],
+					'font-family'      => $attr['inputFontFamily'],
+					'font-weight'      => $attr['inputFontWeight'],
+					'line-height'      => $attr['inputLineHeight'] . $attr['inputLineHeightType'],
+					'text-align'       => $attr['align'],
+				),
+				' .wpcf7 textarea::placeholder'       => array(
+					'color'      => $attr['fieldInputColor'],
+					'text-align' => $attr['align'],
+				),
+				' .wpcf7 input::placeholder'          => array(
+					'color'      => $attr['fieldInputColor'],
+					'text-align' => $attr['align'],
+				),
+				' .wpcf7 form label'                  => array(
+					'font-size'   => $attr['labelFontSize'] . $attr['labelFontSizeType'],
+					'font-family' => $attr['labelFontFamily'],
+					'font-weight' => $attr['labelFontWeight'],
+					'line-height' => $attr['labelLineHeight'] . $attr['labelLineHeightType'],
+				),
+				' .wpcf7 form .wpcf7-list-item-label' => array(
+					'font-size'   => $attr['labelFontSize'] . $attr['labelFontSizeType'],
+					'font-family' => $attr['labelFontFamily'],
+					'font-weight' => $attr['labelFontWeight'],
+					'line-height' => $attr['labelLineHeight'] . $attr['labelLineHeightType'],
+				),
 
-                // Focus.
-                ' .wpcf7 form input:not([type=submit]):focus' => array(
-                    'border-color' => $attr['fieldBorderFocusColor'],
-                ),
-                ' .wpcf7 form select:focus'           => array(
-                    'border-color' => $attr['fieldBorderFocusColor'],
-                ),
-                ' .wpcf7 textarea:focus'              => array(
-                    'border-color' => $attr['fieldBorderFocusColor'],
-                ),
+				// Focus.
+				' .wpcf7 form input:not([type=submit]):focus' => array(
+					'border-color' => $attr['fieldBorderFocusColor'],
+				),
+				' .wpcf7 form select:focus'           => array(
+					'border-color' => $attr['fieldBorderFocusColor'],
+				),
+				' .wpcf7 textarea:focus'              => array(
+					'border-color' => $attr['fieldBorderFocusColor'],
+				),
 
-                // Submit button.
-                ' .wpcf7 input.wpcf7-form-control.wpcf7-submit' => array(
-                    'color'            => $attr['buttonTextColor'],
-                    'background-color' => $attr['buttonBgColor'],
-                    'font-size'        => $attr['buttonFontSize'] . $attr['buttonFontSizeType'],
-                    'font-family'      => $attr['buttonFontFamily'],
-                    'font-weight'      => $attr['buttonFontWeight'],
-                    'line-height'      => $attr['buttonLineHeight'] . $attr['buttonLineHeightType'],
-                    'border-color'     => $attr['buttonBorderColor'],
-                    'border-style'     => $attr['buttonBorderStyle'],
-                    'border-width'     => $attr['buttonBorderWidth'] . 'px',
-                    'border-radius'    => $attr['buttonBorderRadius'] . $attr['buttonBorderRadiusType'],
-                    'padding-left'     => $attr['buttonHrPadding'] . 'px',
-                    'padding-right'    => $attr['buttonHrPadding'] . 'px',
-                    'padding-top'      => $attr['buttonVrPadding'] . 'px',
-                    'padding-bottom'   => $attr['buttonVrPadding'] . 'px',
-                ),
+				// Submit button.
+				' .wpcf7 input.wpcf7-form-control.wpcf7-submit' => array(
+					'color'            => $attr['buttonTextColor'],
+					'background-color' => $attr['buttonBgColor'],
+					'font-size'        => $attr['buttonFontSize'] . $attr['buttonFontSizeType'],
+					'font-family'      => $attr['buttonFontFamily'],
+					'font-weight'      => $attr['buttonFontWeight'],
+					'line-height'      => $attr['buttonLineHeight'] . $attr['buttonLineHeightType'],
+					'border-color'     => $attr['buttonBorderColor'],
+					'border-style'     => $attr['buttonBorderStyle'],
+					'border-width'     => $attr['buttonBorderWidth'] . 'px',
+					'border-radius'    => $attr['buttonBorderRadius'] . $attr['buttonBorderRadiusType'],
+					'padding-left'     => $attr['buttonHrPadding'] . 'px',
+					'padding-right'    => $attr['buttonHrPadding'] . 'px',
+					'padding-top'      => $attr['buttonVrPadding'] . 'px',
+					'padding-bottom'   => $attr['buttonVrPadding'] . 'px',
+				),
 
-                // Check box Radio.
-                ' .wpcf7 .wpcf7-checkbox input[type="checkbox"]:checked + span:before' => array(
-                    'background-color' => $attr['fieldBgColor'],
-                    'color'            => $attr['fieldInputColor'],
-                    'font-size'        => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
-                    'border-color'     => $attr['fieldBorderFocusColor'],
-                ),
-                ' .wpcf7 .wpcf7-checkbox input[type="checkbox"] + span:before' => array(
-                    'background-color' => $attr['fieldBgColor'],
-                    'color'            => $attr['fieldInputColor'],
-                    'height'           => $attr['fieldVrPadding'] . 'px',
-                    'width'            => $attr['fieldVrPadding'] . 'px',
-                    'border-style'     => $attr['fieldBorderStyle'],
-                    'border-color'     => $attr['fieldBorderColor'],
-                    'border-width'     => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                    'font-size'        => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
-                ),
-                ' .wpcf7 .wpcf7-acceptance input[type="checkbox"]:checked + span:before' => array(
-                    'background-color' => $attr['fieldBgColor'],
-                    'color'            => $attr['fieldInputColor'],
-                    'font-size'        => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
-                    'border-color'     => $attr['fieldBorderFocusColor'],
-                ),
-                ' .wpcf7 .wpcf7-acceptance input[type="checkbox"] + span:before' => array(
-                    'background-color' => $attr['fieldBgColor'],
-                    'color'            => $attr['fieldInputColor'],
-                    'height'           => $attr['fieldVrPadding'] . 'px',
-                    'width'            => $attr['fieldVrPadding'] . 'px',
-                    'font-size'        => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
-                    'border-color'     => $attr['fieldBorderColor'],
-                    'border-style'     => $attr['fieldBorderStyle'],
-                    'border-width'     => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                ),
-                ' .wpcf7 .wpcf7-radio input[type="radio"] + span:before' => array(
-                    'background-color' => $attr['fieldBgColor'],
-                    'color'            => $attr['fieldInputColor'],
-                    'height'           => $attr['fieldVrPadding'] . 'px',
-                    'width'            => $attr['fieldVrPadding'] . 'px',
-                    'border-style'     => $attr['fieldBorderStyle'],
-                    'border-color'     => $attr['fieldBorderColor'],
-                    'border-width'     => $attr['fieldBorderWidth'] . 'px',
-                ),
-                ' .wpcf7 .wpcf7-radio input[type="radio"]:checked + span:before' => array(
-                    'border-color' => $attr['fieldBorderFocusColor'],
-                ),
+				// Check box Radio.
+				' .wpcf7 .wpcf7-checkbox input[type="checkbox"]:checked + span:before' => array(
+					'background-color' => $attr['fieldBgColor'],
+					'color'            => $attr['fieldInputColor'],
+					'font-size'        => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
+					'border-color'     => $attr['fieldBorderFocusColor'],
+				),
+				' .wpcf7 .wpcf7-checkbox input[type="checkbox"] + span:before' => array(
+					'background-color' => $attr['fieldBgColor'],
+					'color'            => $attr['fieldInputColor'],
+					'height'           => $attr['fieldVrPadding'] . 'px',
+					'width'            => $attr['fieldVrPadding'] . 'px',
+					'border-style'     => $attr['fieldBorderStyle'],
+					'border-color'     => $attr['fieldBorderColor'],
+					'border-width'     => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+					'font-size'        => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
+				),
+				' .wpcf7 .wpcf7-acceptance input[type="checkbox"]:checked + span:before' => array(
+					'background-color' => $attr['fieldBgColor'],
+					'color'            => $attr['fieldInputColor'],
+					'font-size'        => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
+					'border-color'     => $attr['fieldBorderFocusColor'],
+				),
+				' .wpcf7 .wpcf7-acceptance input[type="checkbox"] + span:before' => array(
+					'background-color' => $attr['fieldBgColor'],
+					'color'            => $attr['fieldInputColor'],
+					'height'           => $attr['fieldVrPadding'] . 'px',
+					'width'            => $attr['fieldVrPadding'] . 'px',
+					'font-size'        => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
+					'border-color'     => $attr['fieldBorderColor'],
+					'border-style'     => $attr['fieldBorderStyle'],
+					'border-width'     => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+				),
+				' .wpcf7 .wpcf7-radio input[type="radio"] + span:before' => array(
+					'background-color' => $attr['fieldBgColor'],
+					'color'            => $attr['fieldInputColor'],
+					'height'           => $attr['fieldVrPadding'] . 'px',
+					'width'            => $attr['fieldVrPadding'] . 'px',
+					'border-style'     => $attr['fieldBorderStyle'],
+					'border-color'     => $attr['fieldBorderColor'],
+					'border-width'     => $attr['fieldBorderWidth'] . 'px',
+				),
+				' .wpcf7 .wpcf7-radio input[type="radio"]:checked + span:before' => array(
+					'border-color' => $attr['fieldBorderFocusColor'],
+				),
 
-                // Underline border.
-                ' .uagb-cf7-styler__field-style-underline .wpcf7 input:not([type=submit])' => array(
-                    'border-style'        => 'none',
-                    'border-bottom-color' => $attr['fieldBorderColor'],
-                    'border-bottom-style' => 'solid',
-                    'border-bottom-width' => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'       => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                ),
-                ' .uagb-cf7-styler__field-style-underline textarea' => array(
-                    'border-style'        => 'none',
-                    'border-bottom-color' => $attr['fieldBorderColor'],
-                    'border-bottom-style' => 'solid',
-                    'border-bottom-width' => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'       => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                ),
-                ' .uagb-cf7-styler__field-style-underline select' => array(
-                    'border-style'        => 'none',
-                    'border-bottom-color' => $attr['fieldBorderColor'],
-                    'border-bottom-style' => 'solid',
-                    'border-bottom-width' => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'       => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                ),
-                ' .uagb-cf7-styler__field-style-underline textarea' => array(
-                    'border-style'        => 'none',
-                    'border-bottom-color' => $attr['fieldBorderColor'],
-                    'border-bottom-style' => 'solid',
-                    'border-bottom-width' => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius'       => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                ),
-                ' .uagb-cf7-styler__field-style-underline .wpcf7-checkbox input[type="checkbox"] + span:before' => array(
-                    'border-style' => 'solid',
-                ),
-                ' .uagb-cf7-styler__field-style-underline .wpcf7 input[type="radio"] + span:before' => array(
-                    'border-style' => 'solid',
-                ),
-                ' .uagb-cf7-styler__field-style-underline .wpcf7-acceptance input[type="checkbox"] + span:before' => array(
-                    'border-style' => 'solid',
-                ),
-                ' .uagb-cf7-styler__field-style-box .wpcf7-checkbox input[type="checkbox"]:checked + span:before' => array(
-                    'border-style'  => $attr['fieldBorderStyle'],
-                    'border-width'  => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius' => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                    'font-size'     => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
-                ),
-                ' .uagb-cf7-styler__field-style-box .wpcf7-acceptance input[type="checkbox"]:checked + span:before' => array(
-                    'border-style'  => $attr['fieldBorderStyle'],
-                    'border-width'  => $attr['fieldBorderWidth'] . 'px',
-                    'border-radius' => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
-                    'font-size'     => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
-                ),
-                ' .wpcf7-radio input[type="radio"]:checked + span:before' => array(
-                    'background-color' => $attr['fieldInputColor'],
-                ),
+				// Underline border.
+				' .uagb-cf7-styler__field-style-underline .wpcf7 input:not([type=submit])' => array(
+					'border-style'        => 'none',
+					'border-bottom-color' => $attr['fieldBorderColor'],
+					'border-bottom-style' => 'solid',
+					'border-bottom-width' => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'       => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+				),
+				' .uagb-cf7-styler__field-style-underline textarea' => array(
+					'border-style'        => 'none',
+					'border-bottom-color' => $attr['fieldBorderColor'],
+					'border-bottom-style' => 'solid',
+					'border-bottom-width' => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'       => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+				),
+				' .uagb-cf7-styler__field-style-underline select' => array(
+					'border-style'        => 'none',
+					'border-bottom-color' => $attr['fieldBorderColor'],
+					'border-bottom-style' => 'solid',
+					'border-bottom-width' => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'       => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+				),
+				' .uagb-cf7-styler__field-style-underline textarea' => array(
+					'border-style'        => 'none',
+					'border-bottom-color' => $attr['fieldBorderColor'],
+					'border-bottom-style' => 'solid',
+					'border-bottom-width' => $attr['fieldBorderWidth'] . 'px',
+					'border-radius'       => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+				),
+				' .uagb-cf7-styler__field-style-underline .wpcf7-checkbox input[type="checkbox"] + span:before' => array(
+					'border-style' => 'solid',
+				),
+				' .uagb-cf7-styler__field-style-underline .wpcf7 input[type="radio"] + span:before' => array(
+					'border-style' => 'solid',
+				),
+				' .uagb-cf7-styler__field-style-underline .wpcf7-acceptance input[type="checkbox"] + span:before' => array(
+					'border-style' => 'solid',
+				),
+				' .uagb-cf7-styler__field-style-box .wpcf7-checkbox input[type="checkbox"]:checked + span:before' => array(
+					'border-style'  => $attr['fieldBorderStyle'],
+					'border-width'  => $attr['fieldBorderWidth'] . 'px',
+					'border-radius' => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+					'font-size'     => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
+				),
+				' .uagb-cf7-styler__field-style-box .wpcf7-acceptance input[type="checkbox"]:checked + span:before' => array(
+					'border-style'  => $attr['fieldBorderStyle'],
+					'border-width'  => $attr['fieldBorderWidth'] . 'px',
+					'border-radius' => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
+					'font-size'     => 'calc( ' . $attr['fieldVrPadding'] . 'px / 1.2 )',
+				),
+				' .wpcf7-radio input[type="radio"]:checked + span:before' => array(
+					'background-color' => $attr['fieldInputColor'],
+				),
 
-                // Override check box.
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7 .wpcf7-checkbox input[type="checkbox"] + span:before' => array(
-                    'background-color' => $attr['radioCheckBgColor'],
-                    'color'            => $attr['radioCheckSelectColor'],
-                    'height'           => $attr['radioCheckSize'] . 'px',
-                    'width'            => $attr['radioCheckSize'] . 'px',
-                    'font-size'        => 'calc( ' . $attr['radioCheckSize'] . 'px / 1.2 )',
-                    'border-color'     => $attr['radioCheckBorderColor'],
-                    'border-width'     => $attr['radioCheckBorderWidth'] . 'px',
-                    'border-radius'    => $attr['radioCheckBorderRadius'] . $attr['radioCheckBorderRadiusType'],
-                ),
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7 .wpcf7-checkbox input[type="checkbox"]:checked + span:before' => array(
-                    'border-color' => $attr['fieldBorderFocusColor'],
-                ),
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7 .wpcf7-acceptance input[type="checkbox"] + span:before' => array(
-                    'background-color' => $attr['radioCheckBgColor'],
-                    'color'            => $attr['radioCheckSelectColor'],
-                    'height'           => $attr['radioCheckSize'] . 'px',
-                    'width'            => $attr['radioCheckSize'] . 'px',
-                    'font-size'        => 'calc( ' . $attr['radioCheckSize'] . 'px / 1.2 )',
-                    'border-color'     => $attr['radioCheckBorderColor'],
-                    'border-width'     => $attr['radioCheckBorderWidth'] . 'px',
-                    'border-radius'    => $attr['radioCheckBorderRadius'] . $attr['radioCheckBorderRadiusType'],
-                ),
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7 .wpcf7-acceptance input[type="checkbox"]:checked + span:before' => array(
-                    'border-color' => $attr['fieldBorderFocusColor'],
-                ),
+				// Override check box.
+				' .uagb-cf7-styler__check-style-enabled .wpcf7 .wpcf7-checkbox input[type="checkbox"] + span:before' => array(
+					'background-color' => $attr['radioCheckBgColor'],
+					'color'            => $attr['radioCheckSelectColor'],
+					'height'           => $attr['radioCheckSize'] . 'px',
+					'width'            => $attr['radioCheckSize'] . 'px',
+					'font-size'        => 'calc( ' . $attr['radioCheckSize'] . 'px / 1.2 )',
+					'border-color'     => $attr['radioCheckBorderColor'],
+					'border-width'     => $attr['radioCheckBorderWidth'] . 'px',
+					'border-radius'    => $attr['radioCheckBorderRadius'] . $attr['radioCheckBorderRadiusType'],
+				),
+				' .uagb-cf7-styler__check-style-enabled .wpcf7 .wpcf7-checkbox input[type="checkbox"]:checked + span:before' => array(
+					'border-color' => $attr['fieldBorderFocusColor'],
+				),
+				' .uagb-cf7-styler__check-style-enabled .wpcf7 .wpcf7-acceptance input[type="checkbox"] + span:before' => array(
+					'background-color' => $attr['radioCheckBgColor'],
+					'color'            => $attr['radioCheckSelectColor'],
+					'height'           => $attr['radioCheckSize'] . 'px',
+					'width'            => $attr['radioCheckSize'] . 'px',
+					'font-size'        => 'calc( ' . $attr['radioCheckSize'] . 'px / 1.2 )',
+					'border-color'     => $attr['radioCheckBorderColor'],
+					'border-width'     => $attr['radioCheckBorderWidth'] . 'px',
+					'border-radius'    => $attr['radioCheckBorderRadius'] . $attr['radioCheckBorderRadiusType'],
+				),
+				' .uagb-cf7-styler__check-style-enabled .wpcf7 .wpcf7-acceptance input[type="checkbox"]:checked + span:before' => array(
+					'border-color' => $attr['fieldBorderFocusColor'],
+				),
 
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7 input[type="radio"] + span:before' => array(
-                    'background-color' => $attr['radioCheckBgColor'],
-                    'color'            => $attr['radioCheckSelectColor'],
-                    'height'           => $attr['radioCheckSize'] . 'px',
-                    'width'            => $attr['radioCheckSize'] . 'px',
-                    'font-size'        => 'calc( ' . $attr['radioCheckSize'] . 'px / 1.2 )',
-                    'border-color'     => $attr['radioCheckBorderColor'],
-                    'border-width'     => $attr['radioCheckBorderWidth'] . 'px',
-                ),
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7-radio input[type="radio"]:checked + span:before' => array(
-                    'background-color' => $attr['radioCheckSelectColor'],
-                ),
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7 form .wpcf7-list-item-label' => array(
-                    'font-size'   => $attr['radioCheckFontSize'] . $attr['radioCheckFontSizeType'],
-                    'font-family' => $attr['radioCheckFontFamily'],
-                    'font-weight' => $attr['radioCheckFontWeight'],
-                    'line-height' => $attr['radioCheckLineHeight'] . $attr['radioCheckLineHeightType'],
-                    'color'       => $attr['radioCheckLableColor'],
-                ),
-                ' span.wpcf7-not-valid-tip'           => array(
-                    'color'       => $attr['validationMsgColor'],
-                    'font-size'   => $attr['validationMsgFontSize'] . $attr['validationMsgFontSizeType'],
-                    'font-family' => $attr['validationMsgFontFamily'],
-                    'font-weight' => $attr['validationMsgFontWeight'],
-                    'line-height' => $attr['validationMsgLineHeight'] . $attr['validationMsgLineHeightType'],
-                ),
-                ' .uagb-cf7-styler__highlight-border input.wpcf7-form-control.wpcf7-not-valid' => array(
-                    'border-color' => $attr['highlightBorderColor'],
-                ),
-                ' .uagb-cf7-styler__highlight-border .wpcf7-form-control.wpcf7-not-valid .wpcf7-list-item-label:before' => array(
-                    'border-color' => $attr['highlightBorderColor'] . '!important',
-                ),
-                ' .uagb-cf7-styler__highlight-style-bottom_right .wpcf7-not-valid-tip' => array(
-                    'background-color' => $attr['validationMsgBgColor'],
-                ),
-                ' .wpcf7-response-output'             => array(
-                    'border-width'   => $attr['msgBorderSize'] . 'px',
-                    'border-radius'  => $attr['msgBorderRadius'] . $attr['msgBorderRadiusType'],
-                    'font-size'      => $attr['msgFontSize'] . $attr['msgFontSizeType'],
-                    'font-family'    => $attr['msgFontFamily'],
-                    'font-weight'    => $attr['msgFontWeight'],
-                    'line-height'    => $attr['msgLineHeight'] . $attr['msgLineHeightType'],
-                    'padding-top'    => $attr['msgVrPadding'] . 'px',
-                    'padding-bottom' => $attr['msgVrPadding'] . 'px',
-                    'padding-left'   => $attr['msgHrPadding'] . 'px',
-                    'padding-right'  => $attr['msgHrPadding'] . 'px',
-                ),
-                ' .wpcf7-response-output.wpcf7-validation-errors' => array(
-                    'background-color' => $attr['errorMsgBgColor'],
-                    'border-color'     => $attr['errorMsgBorderColor'],
-                    'color'            => $attr['errorMsgColor'],
-                ),
-                ' .wpcf7-response-output.wpcf7-validation- success' => array(
-                    'background-color' => $attr['successMsgBgColor'],
-                    'border-color'     => $attr['successMsgBorderColor'],
-                    'color'            => $attr['successMsgColor'],
-                ),
+				' .uagb-cf7-styler__check-style-enabled .wpcf7 input[type="radio"] + span:before' => array(
+					'background-color' => $attr['radioCheckBgColor'],
+					'color'            => $attr['radioCheckSelectColor'],
+					'height'           => $attr['radioCheckSize'] . 'px',
+					'width'            => $attr['radioCheckSize'] . 'px',
+					'font-size'        => 'calc( ' . $attr['radioCheckSize'] . 'px / 1.2 )',
+					'border-color'     => $attr['radioCheckBorderColor'],
+					'border-width'     => $attr['radioCheckBorderWidth'] . 'px',
+				),
+				' .uagb-cf7-styler__check-style-enabled .wpcf7-radio input[type="radio"]:checked + span:before' => array(
+					'background-color' => $attr['radioCheckSelectColor'],
+				),
+				' .uagb-cf7-styler__check-style-enabled .wpcf7 form .wpcf7-list-item-label' => array(
+					'font-size'   => $attr['radioCheckFontSize'] . $attr['radioCheckFontSizeType'],
+					'font-family' => $attr['radioCheckFontFamily'],
+					'font-weight' => $attr['radioCheckFontWeight'],
+					'line-height' => $attr['radioCheckLineHeight'] . $attr['radioCheckLineHeightType'],
+					'color'       => $attr['radioCheckLableColor'],
+				),
+				' span.wpcf7-not-valid-tip'           => array(
+					'color'       => $attr['validationMsgColor'],
+					'font-size'   => $attr['validationMsgFontSize'] . $attr['validationMsgFontSizeType'],
+					'font-family' => $attr['validationMsgFontFamily'],
+					'font-weight' => $attr['validationMsgFontWeight'],
+					'line-height' => $attr['validationMsgLineHeight'] . $attr['validationMsgLineHeightType'],
+				),
+				' .uagb-cf7-styler__highlight-border input.wpcf7-form-control.wpcf7-not-valid' => array(
+					'border-color' => $attr['highlightBorderColor'],
+				),
+				' .uagb-cf7-styler__highlight-border .wpcf7-form-control.wpcf7-not-valid .wpcf7-list-item-label:before' => array(
+					'border-color' => $attr['highlightBorderColor'] . '!important',
+				),
+				' .uagb-cf7-styler__highlight-style-bottom_right .wpcf7-not-valid-tip' => array(
+					'background-color' => $attr['validationMsgBgColor'],
+				),
+				' .wpcf7-response-output'             => array(
+					'border-width'   => $attr['msgBorderSize'] . 'px',
+					'border-radius'  => $attr['msgBorderRadius'] . $attr['msgBorderRadiusType'],
+					'font-size'      => $attr['msgFontSize'] . $attr['msgFontSizeType'],
+					'font-family'    => $attr['msgFontFamily'],
+					'font-weight'    => $attr['msgFontWeight'],
+					'line-height'    => $attr['msgLineHeight'] . $attr['msgLineHeightType'],
+					'padding-top'    => $attr['msgVrPadding'] . 'px',
+					'padding-bottom' => $attr['msgVrPadding'] . 'px',
+					'padding-left'   => $attr['msgHrPadding'] . 'px',
+					'padding-right'  => $attr['msgHrPadding'] . 'px',
+				),
+				' .wpcf7-response-output.wpcf7-validation-errors' => array(
+					'background-color' => $attr['errorMsgBgColor'],
+					'border-color'     => $attr['errorMsgBorderColor'],
+					'color'            => $attr['errorMsgColor'],
+				),
+				' .wpcf7-response-output.wpcf7-validation- success' => array(
+					'background-color' => $attr['successMsgBgColor'],
+					'border-color'     => $attr['successMsgBorderColor'],
+					'color'            => $attr['successMsgColor'],
+				),
 
-            );
+			);
 
-            $t_selectors = array(
-                ' .wpcf7 form.wpcf7-form:not(input)'  => array(
-                    'color' => $attr['fieldLabelColor'],
-                ),
-                ' .wpcf7 input:not([type=submit])'    => array(
-                    'font-size'   => $attr['inputFontSizeTablet'] . $attr['inputFontSizeType'],
-                    'line-height' => $attr['inputLineHeightTablet'] . $attr['inputLineHeightType'],
-                ),
-                ' .wpcf7 select'                      => array(
-                    'font-size'   => $attr['labelFontSizeTablet'] . $attr['labelFontSizeType'],
-                    'line-height' => $attr['labelLineHeightTablet'] . $attr['labelLineHeightType'],
-                ),
-                ' .wpcf7 textarea'                    => array(
-                    'font-size'   => $attr['inputFontSizeTablet'] . $attr['inputFontSizeType'],
-                    'line-height' => $attr['inputLineHeightTablet'] . $attr['inputLineHeightType'],
-                ),
-                ' .wpcf7 form label'                  => array(
-                    'font-size'   => $attr['labelFontSizeTablet'] . $attr['labelFontSizeType'],
-                    'line-height' => $attr['labelLineHeightTablet'] . $attr['labelLineHeightType'],
-                ),
+			$t_selectors = array(
+				' .wpcf7 form.wpcf7-form:not(input)'  => array(
+					'color' => $attr['fieldLabelColor'],
+				),
+				' .wpcf7 input:not([type=submit])'    => array(
+					'font-size'   => $attr['inputFontSizeTablet'] . $attr['inputFontSizeType'],
+					'line-height' => $attr['inputLineHeightTablet'] . $attr['inputLineHeightType'],
+				),
+				' .wpcf7 select'                      => array(
+					'font-size'   => $attr['labelFontSizeTablet'] . $attr['labelFontSizeType'],
+					'line-height' => $attr['labelLineHeightTablet'] . $attr['labelLineHeightType'],
+				),
+				' .wpcf7 textarea'                    => array(
+					'font-size'   => $attr['inputFontSizeTablet'] . $attr['inputFontSizeType'],
+					'line-height' => $attr['inputLineHeightTablet'] . $attr['inputLineHeightType'],
+				),
+				' .wpcf7 form label'                  => array(
+					'font-size'   => $attr['labelFontSizeTablet'] . $attr['labelFontSizeType'],
+					'line-height' => $attr['labelLineHeightTablet'] . $attr['labelLineHeightType'],
+				),
 
-                ' .wpcf7 form .wpcf7-list-item-label' => array(
-                    'font-size'   => $attr['labelFontSizeTablet'] . $attr['labelFontSizeType'],
-                    'line-height' => $attr['labelLineHeightTablet'] . $attr['labelLineHeightType'],
-                ),
-                ' .wpcf7 input.wpcf7-form-control.wpcf7-submit' => array(
-                    'font-size'   => $attr['buttonFontSizeTablet'] . $attr['buttonFontSizeType'],
-                    'line-height' => $attr['buttonLineHeightTablet'] . $attr['buttonLineHeightType'],
-                ),
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7 form .wpcf7-list-item-label' => array(
-                    'font-size'   => $attr['radioCheckFontSizeTablet'] . $attr['radioCheckFontSizeType'],
-                    'line-height' => $attr['radioCheckLineHeightTablet'] . $attr['radioCheckLineHeightType'],
-                ),
-                ' span.wpcf7-not-valid-tip'           => array(
-                    'font-size'   => $attr['validationMsgFontSizeTablet'] . $attr['validationMsgFontSizeType'],
-                    'line-height' => $attr['validationMsgLineHeightTablet'] . $attr['validationMsgLineHeightType'],
-                ),
-                ' .wpcf7-response-output'             => array(
-                    'font-size'   => $attr['msgFontSizeTablet'] . $attr['msgFontSizeType'],
-                    'line-height' => $attr['msgLineHeightTablet'] . $attr['msgLineHeightType'],
-                ),
-            );
+				' .wpcf7 form .wpcf7-list-item-label' => array(
+					'font-size'   => $attr['labelFontSizeTablet'] . $attr['labelFontSizeType'],
+					'line-height' => $attr['labelLineHeightTablet'] . $attr['labelLineHeightType'],
+				),
+				' .wpcf7 input.wpcf7-form-control.wpcf7-submit' => array(
+					'font-size'   => $attr['buttonFontSizeTablet'] . $attr['buttonFontSizeType'],
+					'line-height' => $attr['buttonLineHeightTablet'] . $attr['buttonLineHeightType'],
+				),
+				' .uagb-cf7-styler__check-style-enabled .wpcf7 form .wpcf7-list-item-label' => array(
+					'font-size'   => $attr['radioCheckFontSizeTablet'] . $attr['radioCheckFontSizeType'],
+					'line-height' => $attr['radioCheckLineHeightTablet'] . $attr['radioCheckLineHeightType'],
+				),
+				' span.wpcf7-not-valid-tip'           => array(
+					'font-size'   => $attr['validationMsgFontSizeTablet'] . $attr['validationMsgFontSizeType'],
+					'line-height' => $attr['validationMsgLineHeightTablet'] . $attr['validationMsgLineHeightType'],
+				),
+				' .wpcf7-response-output'             => array(
+					'font-size'   => $attr['msgFontSizeTablet'] . $attr['msgFontSizeType'],
+					'line-height' => $attr['msgLineHeightTablet'] . $attr['msgLineHeightType'],
+				),
+			);
 
-            $m_selectors = array(
-                ' .wpcf7 input:not([type=submit])'    => array(
-                    'font-size'   => $attr['inputFontSizeMobile'] . $attr['inputFontSizeType'],
-                    'line-height' => $attr['inputLineHeightMobile'] . $attr['inputLineHeightType'],
-                ),
-                ' .wpcf7 select'                      => array(
-                    'font-size'   => $attr['labelFontSizeMobile'] . $attr['labelFontSizeType'],
-                    'line-height' => $attr['labelLineHeightMobile'] . $attr['labelLineHeightType'],
-                ),
-                ' .wpcf7 textarea'                    => array(
-                    'font-size'   => $attr['inputFontSizeMobile'] . $attr['inputFontSizeType'],
-                    'line-height' => $attr['inputLineHeightMobile'] . $attr['inputLineHeightType'],
-                ),
-                ' .wpcf7 form label'                  => array(
-                    'font-size'   => $attr['labelFontSizeMobile'] . $attr['labelFontSizeType'],
-                    'line-height' => $attr['labelLineHeightMobile'] . $attr['labelLineHeightType'],
-                ),
+			$m_selectors = array(
+				' .wpcf7 input:not([type=submit])'    => array(
+					'font-size'   => $attr['inputFontSizeMobile'] . $attr['inputFontSizeType'],
+					'line-height' => $attr['inputLineHeightMobile'] . $attr['inputLineHeightType'],
+				),
+				' .wpcf7 select'                      => array(
+					'font-size'   => $attr['labelFontSizeMobile'] . $attr['labelFontSizeType'],
+					'line-height' => $attr['labelLineHeightMobile'] . $attr['labelLineHeightType'],
+				),
+				' .wpcf7 textarea'                    => array(
+					'font-size'   => $attr['inputFontSizeMobile'] . $attr['inputFontSizeType'],
+					'line-height' => $attr['inputLineHeightMobile'] . $attr['inputLineHeightType'],
+				),
+				' .wpcf7 form label'                  => array(
+					'font-size'   => $attr['labelFontSizeMobile'] . $attr['labelFontSizeType'],
+					'line-height' => $attr['labelLineHeightMobile'] . $attr['labelLineHeightType'],
+				),
 
-                ' .wpcf7 form .wpcf7-list-item-label' => array(
-                    'font-size'   => $attr['labelFontSizeMobile'] . $attr['labelFontSizeType'],
-                    'line-height' => $attr['labelLineHeightMobile'] . $attr['labelLineHeightType'],
-                ),
-                ' .wpcf7 input.wpcf7-form-control.wpcf7-submit' => array(
-                    'font-size'   => $attr['buttonFontSizeMobile'] . $attr['buttonFontSizeType'],
-                    'line-height' => $attr['buttonLineHeightMobile'] . $attr['buttonLineHeightType'],
-                ),
-                ' .uagb-cf7-styler__check-style-enabled .wpcf7 form .wpcf7-list-item-label' => array(
-                    'font-size'   => $attr['radioCheckFontSizeMobile'] . $attr['radioCheckFontSizeType'],
-                    'line-height' => $attr['radioCheckLineHeightMobile'] . $attr['radioCheckLineHeightType'],
-                ),
-                ' span.wpcf7-not-valid-tip'           => array(
-                    'font-size'   => $attr['validationMsgFontSizeMobile'] . $attr['validationMsgFontSizeType'],
-                    'line-height' => $attr['validationMsgLineHeightMobile'] . $attr['validationMsgLineHeightType'],
-                ),
-                ' .wpcf7-response-output'             => array(
-                    'font-size'   => $attr['msgFontSizeMobile'] . $attr['msgFontSizeType'],
-                    'line-height' => $attr['msgLineHeightMobile'] . $attr['msgLineHeightType'],
-                ),
-            );
+				' .wpcf7 form .wpcf7-list-item-label' => array(
+					'font-size'   => $attr['labelFontSizeMobile'] . $attr['labelFontSizeType'],
+					'line-height' => $attr['labelLineHeightMobile'] . $attr['labelLineHeightType'],
+				),
+				' .wpcf7 input.wpcf7-form-control.wpcf7-submit' => array(
+					'font-size'   => $attr['buttonFontSizeMobile'] . $attr['buttonFontSizeType'],
+					'line-height' => $attr['buttonLineHeightMobile'] . $attr['buttonLineHeightType'],
+				),
+				' .uagb-cf7-styler__check-style-enabled .wpcf7 form .wpcf7-list-item-label' => array(
+					'font-size'   => $attr['radioCheckFontSizeMobile'] . $attr['radioCheckFontSizeType'],
+					'line-height' => $attr['radioCheckLineHeightMobile'] . $attr['radioCheckLineHeightType'],
+				),
+				' span.wpcf7-not-valid-tip'           => array(
+					'font-size'   => $attr['validationMsgFontSizeMobile'] . $attr['validationMsgFontSizeType'],
+					'line-height' => $attr['validationMsgLineHeightMobile'] . $attr['validationMsgLineHeightType'],
+				),
+				' .wpcf7-response-output'             => array(
+					'font-size'   => $attr['msgFontSizeMobile'] . $attr['msgFontSizeType'],
+					'line-height' => $attr['msgLineHeightMobile'] . $attr['msgLineHeightType'],
+				),
+			);
 
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-cf7-styler-' . $id);
-            $tablet  = UAGB_Helper::generate_responsive_css($t_selectors, '#uagb-cf7-styler-' . $id, 'tablet');
-            $mobile  = UAGB_Helper::generate_responsive_css($m_selectors, '#uagb-cf7-styler-' . $id, 'mobile');
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-cf7-styler-' . $id );
+			$tablet  = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-cf7-styler-' . $id, 'tablet' );
+			$mobile  = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-cf7-styler-' . $id, 'mobile' );
 
-            return $desktop . $tablet . $mobile;
-        }
+			return $desktop . $tablet . $mobile;
+		}
 
-        /**
-         * Get Video Block CSS
-         *
-         * @since 1.4.0
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         * @return array The Widget List.
-         */
-        public static function get_video_css($attr, $id)
-        {
+		/**
+		 * Get Video Block CSS
+		 *
+		 * @since 1.4.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
+		public static function get_video_css( $attr, $id ) {
 			// @codingStandardsIgnoreStart
 
 			$defaults = UAGB_Helper::$block_list['uagb/video']['attributes'];
@@ -3637,17 +3634,17 @@ if (! class_exists('UAGB_Block_Helper')) {
 			);
 
 			// @codingStandardsIgnoreEnd
-            $desktop = UAGB_Helper::generate_css($selectors, '#uagb-video-' . $id);
-            return $desktop;
-        }
+			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-video-' . $id );
+			return $desktop;
+		}
 
-        /**
-         * Get Testimonial Js
-         *
-         * @since 1.6.0
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         */
+		/**
+		 * Get Testimonial Js
+		 *
+		 * @since 1.6.0
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 */
 		public static function get_testimonial_js( $attr, $id ) { 			// @codingStandardsIgnoreStart.
 
 			$defaults = UAGB_Helper::$block_list['uagb/testimonial']['attributes'];
@@ -3698,17 +3695,16 @@ if (! class_exists('UAGB_Block_Helper')) {
 			}
 			<?php
 			// @codingStandardsIgnoreEnd.
-        }
+		}
 
-        /**
-         * Get Blockquote Js
-         *
-         * @since 1.8.2
-         * @param array  $attr The block attributes.
-         * @param string $id The selector ID.
-         */
-        public static function get_blockquote_js($attr, $id)
-        {
+		/**
+		 * Get Blockquote Js
+		 *
+		 * @since 1.8.2
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 */
+		public static function get_blockquote_js( $attr, $id ) {
 			// @codingStandardsIgnoreStart.
 
 			$defaults = UAGB_Helper::$block_list['uagb/blockquote']['attributes'];
@@ -3739,400 +3735,386 @@ if (! class_exists('UAGB_Block_Helper')) {
 			<?php
 
 			// @codingStandardsIgnoreEnd.
-        }
-
-        /**
-         * Get Social Share JS
-         *
-         * @since 1.8.1
-         * @param string $id The selector ID.
-         */
-        public static function get_social_share_js($id)
-        {
-            $selector = '#uagb-social-share-' . $id;
-            ?>
-                jQuery( "<?php echo $selector; ?>" ).find( ".uagb-ss__link" ).click(function(){
-                    var social_url = jQuery( this ).data( "href" );
-                    var request_url = social_url + window.location.href ;
-                    window.open( request_url );
-                });
-            <?php
-        }
-
-        /**
-         * Adds Google fonts for Advanced Heading block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_advanced_heading_gfont($attr)
-        {
-
-            $head_load_google_font = isset($attr['headLoadGoogleFonts']) ? $attr['headLoadGoogleFonts'] : '';
-            $head_font_family      = isset($attr['headFontFamily']) ? $attr['headFontFamily'] : '';
-            $head_font_weight      = isset($attr['headFontWeight']) ? $attr['headFontWeight'] : '';
-            $head_font_subset      = isset($attr['headFontSubset']) ? $attr['headFontSubset'] : '';
-
-            $subhead_load_google_font = isset($attr['subHeadLoadGoogleFonts']) ? $attr['subHeadLoadGoogleFonts'] : '';
-            $subhead_font_family      = isset($attr['subHeadFontFamily']) ? $attr['subHeadFontFamily'] : '';
-            $subhead_font_weight      = isset($attr['subHeadFontWeight']) ? $attr['subHeadFontWeight'] : '';
-            $subhead_font_subset      = isset($attr['subHeadFontSubset']) ? $attr['subHeadFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($head_load_google_font, $head_font_family, $head_font_weight, $head_font_subset);
-            UAGB_Helper::blocks_google_font($subhead_load_google_font, $subhead_font_family, $subhead_font_weight, $subhead_font_subset);
-        }
-
-
-        /**
-         * Adds Google fonts for CF7 Styler block.
-         *
-         * @since x.x.x
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_cf7_styler_gfont($attr)
-        {
-
-            $label_load_google_font = isset($attr['labelLoadGoogleFonts']) ? $attr['labelLoadGoogleFonts'] : '';
-            $label_font_family      = isset($attr['labelFontFamily']) ? $attr['labelFontFamily'] : '';
-            $label_font_weight      = isset($attr['labelFontWeight']) ? $attr['labelFontWeight'] : '';
-            $label_font_subset      = isset($attr['labelFontSubset']) ? $attr['labelFontSubset'] : '';
-
-            $input_load_google_font = isset($attr['inputLoadGoogleFonts']) ? $attr['inputLoadGoogleFonts'] : '';
-            $input_font_family      = isset($attr['inputFontFamily']) ? $attr['inputFontFamily'] : '';
-            $input_font_weight      = isset($attr['inputFontWeight']) ? $attr['inputFontWeight'] : '';
-            $input_font_subset      = isset($attr['inputFontSubset']) ? $attr['inputFontSubset'] : '';
-
-            $radio_check_load_google_font = isset($attr['radioCheckLoadGoogleFonts']) ? $attr['radioCheckLoadGoogleFonts'] : '';
-            $radio_check_font_family      = isset($attr['radioCheckFontFamily']) ? $attr['radioCheckFontFamily'] : '';
-            $radio_check_font_weight      = isset($attr['radioCheckFontWeight']) ? $attr['radioCheckFontWeight'] : '';
-            $radio_check_font_subset      = isset($attr['radioCheckFontSubset']) ? $attr['radioCheckFontSubset'] : '';
-
-            $button_load_google_font = isset($attr['buttonLoadGoogleFonts']) ? $attr['buttonLoadGoogleFonts'] : '';
-            $button_font_family      = isset($attr['buttonFontFamily']) ? $attr['buttonFontFamily'] : '';
-            $button_font_weight      = isset($attr['buttonFontWeight']) ? $attr['buttonFontWeight'] : '';
-            $button_font_subset      = isset($attr['buttonFontSubset']) ? $attr['buttonFontSubset'] : '';
-
-            $msg_font_load_google_font = isset($attr['msgLoadGoogleFonts']) ? $attr['msgLoadGoogleFonts'] : '';
-            $msg_font_family           = isset($attr['msgFontFamily']) ? $attr['msgFontFamily'] : '';
-            $msg_font_weight           = isset($attr['msgFontWeight']) ? $attr['msgFontWeight'] : '';
-            $msg_font_subset           = isset($attr['msgFontSubset']) ? $attr['msgFontSubset'] : '';
-
-            $validation_msg_load_google_font = isset($attr['validationMsgLoadGoogleFonts']) ? $attr['validationMsgLoadGoogleFonts'] : '';
-            $validation_msg_font_family      = isset($attr['validationMsgFontFamily']) ? $attr['validationMsgFontFamily'] : '';
-            $validation_msg_font_weight      = isset($attr['validationMsgFontWeight']) ? $attr['validationMsgFontWeight'] : '';
-            $validation_msg_font_subset      = isset($attr['validationMsgFontSubset']) ? $attr['validationMsgFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($msg_font_load_google_font, $msg_font_family, $msg_font_weight, $msg_font_subset);
-            UAGB_Helper::blocks_google_font($validation_msg_load_google_font, $validation_msg_font_family, $validation_msg_font_weight, $validation_msg_font_subset);
-
-            UAGB_Helper::blocks_google_font($radio_check_load_google_font, $radio_check_font_family, $radio_check_font_weight, $radio_check_font_subset);
-            UAGB_Helper::blocks_google_font($button_load_google_font, $button_font_family, $button_font_weight, $button_font_subset);
-
-            UAGB_Helper::blocks_google_font($label_load_google_font, $label_font_family, $label_font_weight, $label_font_subset);
-            UAGB_Helper::blocks_google_font($input_load_google_font, $input_font_family, $input_font_weight, $input_font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Blockquote.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_blockquote_gfont($attr)
-        {
-
-            $desc_load_google_font = isset($attr['descLoadGoogleFonts']) ? $attr['descLoadGoogleFonts'] : '';
-            $desc_font_family      = isset($attr['descFontFamily']) ? $attr['descFontFamily'] : '';
-            $desc_font_weight      = isset($attr['descFontWeight']) ? $attr['descFontWeight'] : '';
-            $desc_font_subset      = isset($attr['descFontSubset']) ? $attr['descFontSubset'] : '';
-
-            $author_load_google_font = isset($attr['authorLoadGoogleFonts']) ? $attr['authorLoadGoogleFonts'] : '';
-            $author_font_family      = isset($attr['authorFontFamily']) ? $attr['authorFontFamily'] : '';
-            $author_font_weight      = isset($attr['authorFontWeight']) ? $attr['authorFontWeight'] : '';
-            $author_font_subset      = isset($attr['authorFontSubset']) ? $attr['authorFontSubset'] : '';
-
-            $tweet_btn_load_google_font = isset($attr['tweetBtnLoadGoogleFonts']) ? $attr['tweetBtnLoadGoogleFonts'] : '';
-            $tweet_btn_font_family      = isset($attr['tweetBtnFontFamily']) ? $attr['tweetBtnFontFamily'] : '';
-            $tweet_btn_font_weight      = isset($attr['tweetBtnFontWeight']) ? $attr['tweetBtnFontWeight'] : '';
-            $tweet_btn_font_subset      = isset($attr['tweetBtnFontSubset']) ? $attr['tweetBtnFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset);
-            UAGB_Helper::blocks_google_font($author_load_google_font, $author_font_family, $author_font_weight, $author_font_subset);
-            UAGB_Helper::blocks_google_font($tweet_btn_load_google_font, $tweet_btn_font_family, $tweet_btn_font_weight, $tweet_btn_font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Testimonial block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_testimonial_gfont($attr)
-        {
-            $desc_load_google_fonts = isset($attr['descLoadGoogleFonts']) ? $attr['descLoadGoogleFonts'] : '';
-            $desc_font_family       = isset($attr['descFontFamily']) ? $attr['descFontFamily'] : '';
-            $desc_font_weight       = isset($attr['descFontWeight']) ? $attr['descFontWeight'] : '';
-            $desc_font_subset       = isset($attr['descFontSubset']) ? $attr['descFontSubset'] : '';
-
-            $name_load_google_fonts = isset($attr['nameLoadGoogleFonts']) ? $attr['nameLoadGoogleFonts'] : '';
-            $name_font_family       = isset($attr['nameFontFamily']) ? $attr['nameFontFamily'] : '';
-            $name_font_weight       = isset($attr['nameFontWeight']) ? $attr['nameFontWeight'] : '';
-            $name_font_subset       = isset($attr['nameFontSubset']) ? $attr['nameFontSubset'] : '';
-
-            $company_load_google_fonts = isset($attr['companyLoadGoogleFonts']) ? $attr['companyLoadGoogleFonts'] : '';
-            $company_font_family       = isset($attr['companyFontFamily']) ? $attr['companyFontFamily'] : '';
-            $company_font_weight       = isset($attr['companyFontWeight']) ? $attr['companyFontWeight'] : '';
-            $company_font_subset       = isset($attr['companyFontSubset']) ? $attr['companyFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($desc_load_google_fonts, $desc_font_family, $desc_font_weight, $desc_font_subset);
-            UAGB_Helper::blocks_google_font($name_load_google_fonts, $name_font_family, $name_font_family, $name_font_subset);
-            UAGB_Helper::blocks_google_font($company_load_google_fonts, $company_font_family, $company_font_family, $company_font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Advanced Heading block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_team_gfont($attr)
-        {
-
-            $title_load_google_font = isset($attr['titleLoadGoogleFonts']) ? $attr['titleLoadGoogleFonts'] : '';
-            $title_font_family      = isset($attr['titleFontFamily']) ? $attr['titleFontFamily'] : '';
-            $title_font_weight      = isset($attr['titleFontWeight']) ? $attr['titleFontWeight'] : '';
-            $title_font_subset      = isset($attr['titleFontSubset']) ? $attr['titleFontSubset'] : '';
-
-            $prefix_load_google_font = isset($attr['prefixLoadGoogleFonts']) ? $attr['prefixLoadGoogleFonts'] : '';
-            $prefix_font_family      = isset($attr['prefixFontFamily']) ? $attr['prefixFontFamily'] : '';
-            $prefix_font_weight      = isset($attr['prefixFontWeight']) ? $attr['prefixFontWeight'] : '';
-            $prefix_font_subset      = isset($attr['prefixFontSubset']) ? $attr['prefixFontSubset'] : '';
-
-            $desc_load_google_font = isset($attr['descLoadGoogleFonts']) ? $attr['descLoadGoogleFonts'] : '';
-            $desc_font_family      = isset($attr['descFontFamily']) ? $attr['descFontFamily'] : '';
-            $desc_font_weight      = isset($attr['descFontWeight']) ? $attr['descFontWeight'] : '';
-            $desc_font_subset      = isset($attr['descFontSubset']) ? $attr['descFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset);
-            UAGB_Helper::blocks_google_font($prefix_load_google_font, $prefix_font_family, $prefix_font_weight, $prefix_font_subset);
-            UAGB_Helper::blocks_google_font($desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset);
-        }
-
-        /**
-         *
-         * Adds Google fonts for Restaurant Menu block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_restaurant_menu_gfont($attr)
-        {
-            $title_load_google_fonts = isset($attr['titleLoadGoogleFonts']) ? $attr['titleLoadGoogleFonts'] : '';
-            $title_font_family       = isset($attr['titleFontFamily']) ? $attr['titleFontFamily'] : '';
-            $title_font_weight       = isset($attr['titleFontWeight']) ? $attr['titleFontWeight'] : '';
-            $title_font_subset       = isset($attr['titleFontSubset']) ? $attr['titleFontSubset'] : '';
-
-            $price_load_google_fonts = isset($attr['priceLoadGoogleFonts']) ? $attr['priceLoadGoogleFonts'] : '';
-            $price_font_family       = isset($attr['priceFontFamily']) ? $attr['priceFontFamily'] : '';
-            $price_font_weight       = isset($attr['priceFontWeight']) ? $attr['priceFontWeight'] : '';
-            $price_font_subset       = isset($attr['priceFontSubset']) ? $attr['priceFontSubset'] : '';
-
-            $desc_load_google_fonts = isset($attr['descLoadGoogleFonts']) ? $attr['descLoadGoogleFonts'] : '';
-            $desc_font_family       = isset($attr['descFontFamily']) ? $attr['descFontFamily'] : '';
-            $desc_font_weight       = isset($attr['descFontWeight']) ? $attr['descFontWeight'] : '';
-            $desc_font_subset       = isset($attr['descFontSubset']) ? $attr['descFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($title_load_google_fonts, $title_font_family, $title_font_weight, $title_font_subset);
-            UAGB_Helper::blocks_google_font($price_load_google_fonts, $price_font_family, $price_font_weight, $price_font_subset);
-            UAGB_Helper::blocks_google_font($desc_load_google_fonts, $desc_font_family, $desc_font_weight, $desc_font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Content Timeline block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_content_timeline_gfont($attr)
-        {
-            $head_load_google_fonts = isset($attr['headLoadGoogleFonts']) ? $attr['headLoadGoogleFonts'] : '';
-            $head_font_family       = isset($attr['headFontFamily']) ? $attr['headFontFamily'] : '';
-            $head_font_weight       = isset($attr['headFontWeight']) ? $attr['headFontWeight'] : '';
-            $head_font_subset       = isset($attr['headFontSubset']) ? $attr['headFontSubset'] : '';
-
-            $subheadload_google_fonts = isset($attr['subHeadLoadGoogleFonts']) ? $attr['subHeadLoadGoogleFonts'] : '';
-            $subheadfont_family       = isset($attr['subHeadFontFamily']) ? $attr['subHeadFontFamily'] : '';
-            $subheadfont_weight       = isset($attr['subHeadFontWeight']) ? $attr['subHeadFontWeight'] : '';
-            $subheadfont_subset       = isset($attr['subHeadFontSubset']) ? $attr['subHeadFontSubset'] : '';
-
-            $date_load_google_fonts = isset($attr['dateLoadGoogleFonts']) ? $attr['dateLoadGoogleFonts'] : '';
-            $date_font_family       = isset($attr['dateFontFamily']) ? $attr['dateFontFamily'] : '';
-            $date_font_weight       = isset($attr['dateFontWeight']) ? $attr['dateFontWeight'] : '';
-            $date_font_subset       = isset($attr['dateFontSubset']) ? $attr['dateFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($head_load_google_fonts, $head_font_family, $head_font_weight, $head_font_subset);
-            UAGB_Helper::blocks_google_font($subheadload_google_fonts, $subheadfont_family, $subheadfont_weight, $subheadfont_subset);
-            UAGB_Helper::blocks_google_font($date_load_google_fonts, $date_font_family, $date_font_weight, $date_font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Post Timeline block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_post_timeline_gfont($attr)
-        {
-            self::blocks_content_timeline_gfont($attr);
-
-            $author_load_google_fonts = isset($attr['authorLoadGoogleFonts']) ? $attr['authorLoadGoogleFonts'] : '';
-            $author_font_family       = isset($attr['authorFontFamily']) ? $attr['authorFontFamily'] : '';
-            $author_font_weight       = isset($attr['authorFontWeight']) ? $attr['authorFontWeight'] : '';
-            $author_font_subset       = isset($attr['authorFontSubset']) ? $attr['authorFontSubset'] : '';
-
-            $cta_load_google_fonts = isset($attr['ctaLoadGoogleFonts']) ? $attr['ctaLoadGoogleFonts'] : '';
-            $cta_font_family       = isset($attr['ctaFontFamily']) ? $attr['ctaFontFamily'] : '';
-            $cta_font_weight       = isset($attr['ctaFontWeight']) ? $attr['ctaFontWeight'] : '';
-            $cta_font_subset       = isset($attr['ctaFontSubset']) ? $attr['ctaFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($author_load_google_fonts, $author_font_family, $author_font_weight, $author_font_subset);
-            UAGB_Helper::blocks_google_font($cta_load_google_fonts, $cta_font_family, $cta_font_weight, $cta_font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Mulit Button's block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_buttons_gfont($attr)
-        {
-
-            $load_google_font = isset($attr['loadGoogleFonts']) ? $attr['loadGoogleFonts'] : '';
-            $font_family      = isset($attr['fontFamily']) ? $attr['fontFamily'] : '';
-            $font_weight      = isset($attr['fontWeight']) ? $attr['fontWeight'] : '';
-            $font_subset      = isset($attr['fontSubset']) ? $attr['fontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($load_google_font, $font_family, $font_weight, $font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Icon List block
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_icon_list_gfont($attr)
-        {
-
-            $load_google_font = isset($attr['loadGoogleFonts']) ? $attr['loadGoogleFonts'] : '';
-            $font_family      = isset($attr['fontFamily']) ? $attr['fontFamily'] : '';
-            $font_weight      = isset($attr['fontWeight']) ? $attr['fontWeight'] : '';
-            $font_subset      = isset($attr['fontSubset']) ? $attr['fontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($load_google_font, $font_family, $font_weight, $font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Post block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_post_gfont($attr)
-        {
-
-            $title_load_google_font = isset($attr['titleLoadGoogleFonts']) ? $attr['titleLoadGoogleFonts'] : '';
-            $title_font_family      = isset($attr['titleFontFamily']) ? $attr['titleFontFamily'] : '';
-            $title_font_weight      = isset($attr['titleFontWeight']) ? $attr['titleFontWeight'] : '';
-            $title_font_subset      = isset($attr['titleFontSubset']) ? $attr['titleFontSubset'] : '';
-
-            $meta_load_google_font = isset($attr['metaLoadGoogleFonts']) ? $attr['metaLoadGoogleFonts'] : '';
-            $meta_font_family      = isset($attr['metaFontFamily']) ? $attr['metaFontFamily'] : '';
-            $meta_font_weight      = isset($attr['metaFontWeight']) ? $attr['metaFontWeight'] : '';
-            $meta_font_subset      = isset($attr['metaFontSubset']) ? $attr['metaFontSubset'] : '';
-
-            $excerpt_load_google_font = isset($attr['excerptLoadGoogleFonts']) ? $attr['excerptLoadGoogleFonts'] : '';
-            $excerpt_font_family      = isset($attr['excerptFontFamily']) ? $attr['excerptFontFamily'] : '';
-            $excerpt_font_weight      = isset($attr['excerptFontWeight']) ? $attr['excerptFontWeight'] : '';
-            $excerpt_font_subset      = isset($attr['excerptFontSubset']) ? $attr['excerptFontSubset'] : '';
-
-            $cta_load_google_font = isset($attr['ctaLoadGoogleFonts']) ? $attr['ctaLoadGoogleFonts'] : '';
-            $cta_font_family      = isset($attr['ctaFontFamily']) ? $attr['ctaFontFamily'] : '';
-            $cta_font_weight      = isset($attr['ctaFontWeight']) ? $attr['ctaFontWeight'] : '';
-            $cta_font_subset      = isset($attr['ctaFontSubset']) ? $attr['ctaFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset);
-
-            UAGB_Helper::blocks_google_font($meta_load_google_font, $meta_font_family, $meta_font_weight, $meta_font_subset);
-
-            UAGB_Helper::blocks_google_font($excerpt_load_google_font, $excerpt_font_family, $excerpt_font_weight, $excerpt_font_subset);
-
-            UAGB_Helper::blocks_google_font($cta_load_google_font, $cta_font_family, $cta_font_weight, $cta_font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Advanced Heading block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_info_box_gfont($attr)
-        {
-
-            $head_load_google_font = isset($attr['headLoadGoogleFonts']) ? $attr['headLoadGoogleFonts'] : '';
-            $head_font_family      = isset($attr['headFontFamily']) ? $attr['headFontFamily'] : '';
-            $head_font_weight      = isset($attr['headFontWeight']) ? $attr['headFontWeight'] : '';
-            $head_font_subset      = isset($attr['headFontSubset']) ? $attr['headFontSubset'] : '';
-
-            $prefix_load_google_font = isset($attr['prefixLoadGoogleFonts']) ? $attr['prefixLoadGoogleFonts'] : '';
-            $prefix_font_family      = isset($attr['prefixFontFamily']) ? $attr['prefixFontFamily'] : '';
-            $prefix_font_weight      = isset($attr['prefixFontWeight']) ? $attr['prefixFontWeight'] : '';
-            $prefix_font_subset      = isset($attr['prefixFontSubset']) ? $attr['prefixFontSubset'] : '';
-
-            $subhead_load_google_font = isset($attr['subHeadLoadGoogleFonts']) ? $attr['subHeadLoadGoogleFonts'] : '';
-            $subhead_font_family      = isset($attr['subHeadFontFamily']) ? $attr['subHeadFontFamily'] : '';
-            $subhead_font_weight      = isset($attr['subHeadFontWeight']) ? $attr['subHeadFontWeight'] : '';
-            $subhead_font_subset      = isset($attr['subHeadFontSubset']) ? $attr['subHeadFontSubset'] : '';
-
-            $cta_load_google_font = isset($attr['ctaLoadGoogleFonts']) ? $attr['ctaLoadGoogleFonts'] : '';
-            $cta_font_family      = isset($attr['ctaFontFamily']) ? $attr['ctaFontFamily'] : '';
-            $cta_font_weight      = isset($attr['ctaFontWeight']) ? $attr['ctaFontWeight'] : '';
-            $cta_font_subset      = isset($attr['ctaFontSubset']) ? $attr['ctaFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($cta_load_google_font, $cta_font_family, $cta_font_weight, $cta_font_subset);
-            UAGB_Helper::blocks_google_font($head_load_google_font, $head_font_family, $head_font_weight, $head_font_subset);
-            UAGB_Helper::blocks_google_font($prefix_load_google_font, $prefix_font_family, $prefix_font_weight, $prefix_font_subset);
-            UAGB_Helper::blocks_google_font($subhead_load_google_font, $subhead_font_family, $subhead_font_weight, $subhead_font_subset);
-        }
-
-        /**
-         * Adds Google fonts for Call To Action block.
-         *
-         * @since 1.9.1
-         * @param array $attr the blocks attr.
-         */
-        public static function blocks_call_to_action_gfont($attr)
-        {
-
-            $title_load_google_font = isset($attr['titleLoadGoogleFonts']) ? $attr['titleLoadGoogleFonts'] : '';
-            $title_font_family      = isset($attr['titleFontFamily']) ? $attr['titleFontFamily'] : '';
-            $title_font_weight      = isset($attr['titleFontWeight']) ? $attr['titleFontWeight'] : '';
-            $title_font_subset      = isset($attr['titleFontSubset']) ? $attr['titleFontSubset'] : '';
-
-            $desc_load_google_font = isset($attr['descLoadGoogleFonts']) ? $attr['descLoadGoogleFonts'] : '';
-            $desc_font_family      = isset($attr['descFontFamily']) ? $attr['descFontFamily'] : '';
-            $desc_font_weight      = isset($attr['descFontWeight']) ? $attr['descFontWeight'] : '';
-            $desc_font_subset      = isset($attr['descFontSubset']) ? $attr['descFontSubset'] : '';
-
-            $cta_load_google_font = isset($attr['ctaLoadGoogleFonts']) ? $attr['ctaLoadGoogleFonts'] : '';
-            $cta_font_family      = isset($attr['ctaFontFamily']) ? $attr['ctaFontFamily'] : '';
-            $cta_font_weight      = isset($attr['ctaFontWeight']) ? $attr['ctaFontWeight'] : '';
-            $cta_font_subset      = isset($attr['ctaFontSubset']) ? $attr['ctaFontSubset'] : '';
-
-            UAGB_Helper::blocks_google_font($cta_load_google_font, $cta_font_family, $cta_font_weight, $cta_font_subset);
-            UAGB_Helper::blocks_google_font($title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset);
-            UAGB_Helper::blocks_google_font($desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset);
-        }
-    }
+		}
+
+		/**
+		 * Get Social Share JS
+		 *
+		 * @since 1.8.1
+		 * @param string $id The selector ID.
+		 */
+		public static function get_social_share_js( $id ) {
+			$selector = '#uagb-social-share-' . $id;
+			?>
+				jQuery( "<?php echo $selector; ?>" ).find( ".uagb-ss__link" ).click(function(){
+					var social_url = jQuery( this ).data( "href" );
+					var request_url = social_url + window.location.href ;
+					window.open( request_url );
+				});
+			<?php
+		}
+
+		/**
+		 * Adds Google fonts for Advanced Heading block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_advanced_heading_gfont( $attr ) {
+
+			$head_load_google_font = isset( $attr['headLoadGoogleFonts'] ) ? $attr['headLoadGoogleFonts'] : '';
+			$head_font_family      = isset( $attr['headFontFamily'] ) ? $attr['headFontFamily'] : '';
+			$head_font_weight      = isset( $attr['headFontWeight'] ) ? $attr['headFontWeight'] : '';
+			$head_font_subset      = isset( $attr['headFontSubset'] ) ? $attr['headFontSubset'] : '';
+
+			$subhead_load_google_font = isset( $attr['subHeadLoadGoogleFonts'] ) ? $attr['subHeadLoadGoogleFonts'] : '';
+			$subhead_font_family      = isset( $attr['subHeadFontFamily'] ) ? $attr['subHeadFontFamily'] : '';
+			$subhead_font_weight      = isset( $attr['subHeadFontWeight'] ) ? $attr['subHeadFontWeight'] : '';
+			$subhead_font_subset      = isset( $attr['subHeadFontSubset'] ) ? $attr['subHeadFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $head_load_google_font, $head_font_family, $head_font_weight, $head_font_subset );
+			UAGB_Helper::blocks_google_font( $subhead_load_google_font, $subhead_font_family, $subhead_font_weight, $subhead_font_subset );
+		}
+
+
+		/**
+		 * Adds Google fonts for CF7 Styler block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_cf7_styler_gfont( $attr ) {
+
+			$label_load_google_font = isset( $attr['labelLoadGoogleFonts'] ) ? $attr['labelLoadGoogleFonts'] : '';
+			$label_font_family      = isset( $attr['labelFontFamily'] ) ? $attr['labelFontFamily'] : '';
+			$label_font_weight      = isset( $attr['labelFontWeight'] ) ? $attr['labelFontWeight'] : '';
+			$label_font_subset      = isset( $attr['labelFontSubset'] ) ? $attr['labelFontSubset'] : '';
+
+			$input_load_google_font = isset( $attr['inputLoadGoogleFonts'] ) ? $attr['inputLoadGoogleFonts'] : '';
+			$input_font_family      = isset( $attr['inputFontFamily'] ) ? $attr['inputFontFamily'] : '';
+			$input_font_weight      = isset( $attr['inputFontWeight'] ) ? $attr['inputFontWeight'] : '';
+			$input_font_subset      = isset( $attr['inputFontSubset'] ) ? $attr['inputFontSubset'] : '';
+
+			$radio_check_load_google_font = isset( $attr['radioCheckLoadGoogleFonts'] ) ? $attr['radioCheckLoadGoogleFonts'] : '';
+			$radio_check_font_family      = isset( $attr['radioCheckFontFamily'] ) ? $attr['radioCheckFontFamily'] : '';
+			$radio_check_font_weight      = isset( $attr['radioCheckFontWeight'] ) ? $attr['radioCheckFontWeight'] : '';
+			$radio_check_font_subset      = isset( $attr['radioCheckFontSubset'] ) ? $attr['radioCheckFontSubset'] : '';
+
+			$button_load_google_font = isset( $attr['buttonLoadGoogleFonts'] ) ? $attr['buttonLoadGoogleFonts'] : '';
+			$button_font_family      = isset( $attr['buttonFontFamily'] ) ? $attr['buttonFontFamily'] : '';
+			$button_font_weight      = isset( $attr['buttonFontWeight'] ) ? $attr['buttonFontWeight'] : '';
+			$button_font_subset      = isset( $attr['buttonFontSubset'] ) ? $attr['buttonFontSubset'] : '';
+
+			$msg_font_load_google_font = isset( $attr['msgLoadGoogleFonts'] ) ? $attr['msgLoadGoogleFonts'] : '';
+			$msg_font_family           = isset( $attr['msgFontFamily'] ) ? $attr['msgFontFamily'] : '';
+			$msg_font_weight           = isset( $attr['msgFontWeight'] ) ? $attr['msgFontWeight'] : '';
+			$msg_font_subset           = isset( $attr['msgFontSubset'] ) ? $attr['msgFontSubset'] : '';
+
+			$validation_msg_load_google_font = isset( $attr['validationMsgLoadGoogleFonts'] ) ? $attr['validationMsgLoadGoogleFonts'] : '';
+			$validation_msg_font_family      = isset( $attr['validationMsgFontFamily'] ) ? $attr['validationMsgFontFamily'] : '';
+			$validation_msg_font_weight      = isset( $attr['validationMsgFontWeight'] ) ? $attr['validationMsgFontWeight'] : '';
+			$validation_msg_font_subset      = isset( $attr['validationMsgFontSubset'] ) ? $attr['validationMsgFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $msg_font_load_google_font, $msg_font_family, $msg_font_weight, $msg_font_subset );
+			UAGB_Helper::blocks_google_font( $validation_msg_load_google_font, $validation_msg_font_family, $validation_msg_font_weight, $validation_msg_font_subset );
+
+			UAGB_Helper::blocks_google_font( $radio_check_load_google_font, $radio_check_font_family, $radio_check_font_weight, $radio_check_font_subset );
+			UAGB_Helper::blocks_google_font( $button_load_google_font, $button_font_family, $button_font_weight, $button_font_subset );
+
+			UAGB_Helper::blocks_google_font( $label_load_google_font, $label_font_family, $label_font_weight, $label_font_subset );
+			UAGB_Helper::blocks_google_font( $input_load_google_font, $input_font_family, $input_font_weight, $input_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Blockquote.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_blockquote_gfont( $attr ) {
+
+			$desc_load_google_font = isset( $attr['descLoadGoogleFonts'] ) ? $attr['descLoadGoogleFonts'] : '';
+			$desc_font_family      = isset( $attr['descFontFamily'] ) ? $attr['descFontFamily'] : '';
+			$desc_font_weight      = isset( $attr['descFontWeight'] ) ? $attr['descFontWeight'] : '';
+			$desc_font_subset      = isset( $attr['descFontSubset'] ) ? $attr['descFontSubset'] : '';
+
+			$author_load_google_font = isset( $attr['authorLoadGoogleFonts'] ) ? $attr['authorLoadGoogleFonts'] : '';
+			$author_font_family      = isset( $attr['authorFontFamily'] ) ? $attr['authorFontFamily'] : '';
+			$author_font_weight      = isset( $attr['authorFontWeight'] ) ? $attr['authorFontWeight'] : '';
+			$author_font_subset      = isset( $attr['authorFontSubset'] ) ? $attr['authorFontSubset'] : '';
+
+			$tweet_btn_load_google_font = isset( $attr['tweetBtnLoadGoogleFonts'] ) ? $attr['tweetBtnLoadGoogleFonts'] : '';
+			$tweet_btn_font_family      = isset( $attr['tweetBtnFontFamily'] ) ? $attr['tweetBtnFontFamily'] : '';
+			$tweet_btn_font_weight      = isset( $attr['tweetBtnFontWeight'] ) ? $attr['tweetBtnFontWeight'] : '';
+			$tweet_btn_font_subset      = isset( $attr['tweetBtnFontSubset'] ) ? $attr['tweetBtnFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset );
+			UAGB_Helper::blocks_google_font( $author_load_google_font, $author_font_family, $author_font_weight, $author_font_subset );
+			UAGB_Helper::blocks_google_font( $tweet_btn_load_google_font, $tweet_btn_font_family, $tweet_btn_font_weight, $tweet_btn_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Testimonial block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_testimonial_gfont( $attr ) {
+			$desc_load_google_fonts = isset( $attr['descLoadGoogleFonts'] ) ? $attr['descLoadGoogleFonts'] : '';
+			$desc_font_family       = isset( $attr['descFontFamily'] ) ? $attr['descFontFamily'] : '';
+			$desc_font_weight       = isset( $attr['descFontWeight'] ) ? $attr['descFontWeight'] : '';
+			$desc_font_subset       = isset( $attr['descFontSubset'] ) ? $attr['descFontSubset'] : '';
+
+			$name_load_google_fonts = isset( $attr['nameLoadGoogleFonts'] ) ? $attr['nameLoadGoogleFonts'] : '';
+			$name_font_family       = isset( $attr['nameFontFamily'] ) ? $attr['nameFontFamily'] : '';
+			$name_font_weight       = isset( $attr['nameFontWeight'] ) ? $attr['nameFontWeight'] : '';
+			$name_font_subset       = isset( $attr['nameFontSubset'] ) ? $attr['nameFontSubset'] : '';
+
+			$company_load_google_fonts = isset( $attr['companyLoadGoogleFonts'] ) ? $attr['companyLoadGoogleFonts'] : '';
+			$company_font_family       = isset( $attr['companyFontFamily'] ) ? $attr['companyFontFamily'] : '';
+			$company_font_weight       = isset( $attr['companyFontWeight'] ) ? $attr['companyFontWeight'] : '';
+			$company_font_subset       = isset( $attr['companyFontSubset'] ) ? $attr['companyFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $desc_load_google_fonts, $desc_font_family, $desc_font_weight, $desc_font_subset );
+			UAGB_Helper::blocks_google_font( $name_load_google_fonts, $name_font_family, $name_font_family, $name_font_subset );
+			UAGB_Helper::blocks_google_font( $company_load_google_fonts, $company_font_family, $company_font_family, $company_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Advanced Heading block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_team_gfont( $attr ) {
+
+			$title_load_google_font = isset( $attr['titleLoadGoogleFonts'] ) ? $attr['titleLoadGoogleFonts'] : '';
+			$title_font_family      = isset( $attr['titleFontFamily'] ) ? $attr['titleFontFamily'] : '';
+			$title_font_weight      = isset( $attr['titleFontWeight'] ) ? $attr['titleFontWeight'] : '';
+			$title_font_subset      = isset( $attr['titleFontSubset'] ) ? $attr['titleFontSubset'] : '';
+
+			$prefix_load_google_font = isset( $attr['prefixLoadGoogleFonts'] ) ? $attr['prefixLoadGoogleFonts'] : '';
+			$prefix_font_family      = isset( $attr['prefixFontFamily'] ) ? $attr['prefixFontFamily'] : '';
+			$prefix_font_weight      = isset( $attr['prefixFontWeight'] ) ? $attr['prefixFontWeight'] : '';
+			$prefix_font_subset      = isset( $attr['prefixFontSubset'] ) ? $attr['prefixFontSubset'] : '';
+
+			$desc_load_google_font = isset( $attr['descLoadGoogleFonts'] ) ? $attr['descLoadGoogleFonts'] : '';
+			$desc_font_family      = isset( $attr['descFontFamily'] ) ? $attr['descFontFamily'] : '';
+			$desc_font_weight      = isset( $attr['descFontWeight'] ) ? $attr['descFontWeight'] : '';
+			$desc_font_subset      = isset( $attr['descFontSubset'] ) ? $attr['descFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset );
+			UAGB_Helper::blocks_google_font( $prefix_load_google_font, $prefix_font_family, $prefix_font_weight, $prefix_font_subset );
+			UAGB_Helper::blocks_google_font( $desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset );
+		}
+
+		/**
+		 *
+		 * Adds Google fonts for Restaurant Menu block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_restaurant_menu_gfont( $attr ) {
+			$title_load_google_fonts = isset( $attr['titleLoadGoogleFonts'] ) ? $attr['titleLoadGoogleFonts'] : '';
+			$title_font_family       = isset( $attr['titleFontFamily'] ) ? $attr['titleFontFamily'] : '';
+			$title_font_weight       = isset( $attr['titleFontWeight'] ) ? $attr['titleFontWeight'] : '';
+			$title_font_subset       = isset( $attr['titleFontSubset'] ) ? $attr['titleFontSubset'] : '';
+
+			$price_load_google_fonts = isset( $attr['priceLoadGoogleFonts'] ) ? $attr['priceLoadGoogleFonts'] : '';
+			$price_font_family       = isset( $attr['priceFontFamily'] ) ? $attr['priceFontFamily'] : '';
+			$price_font_weight       = isset( $attr['priceFontWeight'] ) ? $attr['priceFontWeight'] : '';
+			$price_font_subset       = isset( $attr['priceFontSubset'] ) ? $attr['priceFontSubset'] : '';
+
+			$desc_load_google_fonts = isset( $attr['descLoadGoogleFonts'] ) ? $attr['descLoadGoogleFonts'] : '';
+			$desc_font_family       = isset( $attr['descFontFamily'] ) ? $attr['descFontFamily'] : '';
+			$desc_font_weight       = isset( $attr['descFontWeight'] ) ? $attr['descFontWeight'] : '';
+			$desc_font_subset       = isset( $attr['descFontSubset'] ) ? $attr['descFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $title_load_google_fonts, $title_font_family, $title_font_weight, $title_font_subset );
+			UAGB_Helper::blocks_google_font( $price_load_google_fonts, $price_font_family, $price_font_weight, $price_font_subset );
+			UAGB_Helper::blocks_google_font( $desc_load_google_fonts, $desc_font_family, $desc_font_weight, $desc_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Content Timeline block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_content_timeline_gfont( $attr ) {
+			$head_load_google_fonts = isset( $attr['headLoadGoogleFonts'] ) ? $attr['headLoadGoogleFonts'] : '';
+			$head_font_family       = isset( $attr['headFontFamily'] ) ? $attr['headFontFamily'] : '';
+			$head_font_weight       = isset( $attr['headFontWeight'] ) ? $attr['headFontWeight'] : '';
+			$head_font_subset       = isset( $attr['headFontSubset'] ) ? $attr['headFontSubset'] : '';
+
+			$subheadload_google_fonts = isset( $attr['subHeadLoadGoogleFonts'] ) ? $attr['subHeadLoadGoogleFonts'] : '';
+			$subheadfont_family       = isset( $attr['subHeadFontFamily'] ) ? $attr['subHeadFontFamily'] : '';
+			$subheadfont_weight       = isset( $attr['subHeadFontWeight'] ) ? $attr['subHeadFontWeight'] : '';
+			$subheadfont_subset       = isset( $attr['subHeadFontSubset'] ) ? $attr['subHeadFontSubset'] : '';
+
+			$date_load_google_fonts = isset( $attr['dateLoadGoogleFonts'] ) ? $attr['dateLoadGoogleFonts'] : '';
+			$date_font_family       = isset( $attr['dateFontFamily'] ) ? $attr['dateFontFamily'] : '';
+			$date_font_weight       = isset( $attr['dateFontWeight'] ) ? $attr['dateFontWeight'] : '';
+			$date_font_subset       = isset( $attr['dateFontSubset'] ) ? $attr['dateFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $head_load_google_fonts, $head_font_family, $head_font_weight, $head_font_subset );
+			UAGB_Helper::blocks_google_font( $subheadload_google_fonts, $subheadfont_family, $subheadfont_weight, $subheadfont_subset );
+			UAGB_Helper::blocks_google_font( $date_load_google_fonts, $date_font_family, $date_font_weight, $date_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Post Timeline block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_post_timeline_gfont( $attr ) {
+			self::blocks_content_timeline_gfont( $attr );
+
+			$author_load_google_fonts = isset( $attr['authorLoadGoogleFonts'] ) ? $attr['authorLoadGoogleFonts'] : '';
+			$author_font_family       = isset( $attr['authorFontFamily'] ) ? $attr['authorFontFamily'] : '';
+			$author_font_weight       = isset( $attr['authorFontWeight'] ) ? $attr['authorFontWeight'] : '';
+			$author_font_subset       = isset( $attr['authorFontSubset'] ) ? $attr['authorFontSubset'] : '';
+
+			$cta_load_google_fonts = isset( $attr['ctaLoadGoogleFonts'] ) ? $attr['ctaLoadGoogleFonts'] : '';
+			$cta_font_family       = isset( $attr['ctaFontFamily'] ) ? $attr['ctaFontFamily'] : '';
+			$cta_font_weight       = isset( $attr['ctaFontWeight'] ) ? $attr['ctaFontWeight'] : '';
+			$cta_font_subset       = isset( $attr['ctaFontSubset'] ) ? $attr['ctaFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $author_load_google_fonts, $author_font_family, $author_font_weight, $author_font_subset );
+			UAGB_Helper::blocks_google_font( $cta_load_google_fonts, $cta_font_family, $cta_font_weight, $cta_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Mulit Button's block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_buttons_gfont( $attr ) {
+
+			$load_google_font = isset( $attr['loadGoogleFonts'] ) ? $attr['loadGoogleFonts'] : '';
+			$font_family      = isset( $attr['fontFamily'] ) ? $attr['fontFamily'] : '';
+			$font_weight      = isset( $attr['fontWeight'] ) ? $attr['fontWeight'] : '';
+			$font_subset      = isset( $attr['fontSubset'] ) ? $attr['fontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $load_google_font, $font_family, $font_weight, $font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Icon List block
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_icon_list_gfont( $attr ) {
+
+			$load_google_font = isset( $attr['loadGoogleFonts'] ) ? $attr['loadGoogleFonts'] : '';
+			$font_family      = isset( $attr['fontFamily'] ) ? $attr['fontFamily'] : '';
+			$font_weight      = isset( $attr['fontWeight'] ) ? $attr['fontWeight'] : '';
+			$font_subset      = isset( $attr['fontSubset'] ) ? $attr['fontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $load_google_font, $font_family, $font_weight, $font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Post block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_post_gfont( $attr ) {
+
+			$title_load_google_font = isset( $attr['titleLoadGoogleFonts'] ) ? $attr['titleLoadGoogleFonts'] : '';
+			$title_font_family      = isset( $attr['titleFontFamily'] ) ? $attr['titleFontFamily'] : '';
+			$title_font_weight      = isset( $attr['titleFontWeight'] ) ? $attr['titleFontWeight'] : '';
+			$title_font_subset      = isset( $attr['titleFontSubset'] ) ? $attr['titleFontSubset'] : '';
+
+			$meta_load_google_font = isset( $attr['metaLoadGoogleFonts'] ) ? $attr['metaLoadGoogleFonts'] : '';
+			$meta_font_family      = isset( $attr['metaFontFamily'] ) ? $attr['metaFontFamily'] : '';
+			$meta_font_weight      = isset( $attr['metaFontWeight'] ) ? $attr['metaFontWeight'] : '';
+			$meta_font_subset      = isset( $attr['metaFontSubset'] ) ? $attr['metaFontSubset'] : '';
+
+			$excerpt_load_google_font = isset( $attr['excerptLoadGoogleFonts'] ) ? $attr['excerptLoadGoogleFonts'] : '';
+			$excerpt_font_family      = isset( $attr['excerptFontFamily'] ) ? $attr['excerptFontFamily'] : '';
+			$excerpt_font_weight      = isset( $attr['excerptFontWeight'] ) ? $attr['excerptFontWeight'] : '';
+			$excerpt_font_subset      = isset( $attr['excerptFontSubset'] ) ? $attr['excerptFontSubset'] : '';
+
+			$cta_load_google_font = isset( $attr['ctaLoadGoogleFonts'] ) ? $attr['ctaLoadGoogleFonts'] : '';
+			$cta_font_family      = isset( $attr['ctaFontFamily'] ) ? $attr['ctaFontFamily'] : '';
+			$cta_font_weight      = isset( $attr['ctaFontWeight'] ) ? $attr['ctaFontWeight'] : '';
+			$cta_font_subset      = isset( $attr['ctaFontSubset'] ) ? $attr['ctaFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset );
+
+			UAGB_Helper::blocks_google_font( $meta_load_google_font, $meta_font_family, $meta_font_weight, $meta_font_subset );
+
+			UAGB_Helper::blocks_google_font( $excerpt_load_google_font, $excerpt_font_family, $excerpt_font_weight, $excerpt_font_subset );
+
+			UAGB_Helper::blocks_google_font( $cta_load_google_font, $cta_font_family, $cta_font_weight, $cta_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Advanced Heading block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_info_box_gfont( $attr ) {
+
+			$head_load_google_font = isset( $attr['headLoadGoogleFonts'] ) ? $attr['headLoadGoogleFonts'] : '';
+			$head_font_family      = isset( $attr['headFontFamily'] ) ? $attr['headFontFamily'] : '';
+			$head_font_weight      = isset( $attr['headFontWeight'] ) ? $attr['headFontWeight'] : '';
+			$head_font_subset      = isset( $attr['headFontSubset'] ) ? $attr['headFontSubset'] : '';
+
+			$prefix_load_google_font = isset( $attr['prefixLoadGoogleFonts'] ) ? $attr['prefixLoadGoogleFonts'] : '';
+			$prefix_font_family      = isset( $attr['prefixFontFamily'] ) ? $attr['prefixFontFamily'] : '';
+			$prefix_font_weight      = isset( $attr['prefixFontWeight'] ) ? $attr['prefixFontWeight'] : '';
+			$prefix_font_subset      = isset( $attr['prefixFontSubset'] ) ? $attr['prefixFontSubset'] : '';
+
+			$subhead_load_google_font = isset( $attr['subHeadLoadGoogleFonts'] ) ? $attr['subHeadLoadGoogleFonts'] : '';
+			$subhead_font_family      = isset( $attr['subHeadFontFamily'] ) ? $attr['subHeadFontFamily'] : '';
+			$subhead_font_weight      = isset( $attr['subHeadFontWeight'] ) ? $attr['subHeadFontWeight'] : '';
+			$subhead_font_subset      = isset( $attr['subHeadFontSubset'] ) ? $attr['subHeadFontSubset'] : '';
+
+			$cta_load_google_font = isset( $attr['ctaLoadGoogleFonts'] ) ? $attr['ctaLoadGoogleFonts'] : '';
+			$cta_font_family      = isset( $attr['ctaFontFamily'] ) ? $attr['ctaFontFamily'] : '';
+			$cta_font_weight      = isset( $attr['ctaFontWeight'] ) ? $attr['ctaFontWeight'] : '';
+			$cta_font_subset      = isset( $attr['ctaFontSubset'] ) ? $attr['ctaFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $cta_load_google_font, $cta_font_family, $cta_font_weight, $cta_font_subset );
+			UAGB_Helper::blocks_google_font( $head_load_google_font, $head_font_family, $head_font_weight, $head_font_subset );
+			UAGB_Helper::blocks_google_font( $prefix_load_google_font, $prefix_font_family, $prefix_font_weight, $prefix_font_subset );
+			UAGB_Helper::blocks_google_font( $subhead_load_google_font, $subhead_font_family, $subhead_font_weight, $subhead_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Call To Action block.
+		 *
+		 * @since 1.9.1
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_call_to_action_gfont( $attr ) {
+
+			$title_load_google_font = isset( $attr['titleLoadGoogleFonts'] ) ? $attr['titleLoadGoogleFonts'] : '';
+			$title_font_family      = isset( $attr['titleFontFamily'] ) ? $attr['titleFontFamily'] : '';
+			$title_font_weight      = isset( $attr['titleFontWeight'] ) ? $attr['titleFontWeight'] : '';
+			$title_font_subset      = isset( $attr['titleFontSubset'] ) ? $attr['titleFontSubset'] : '';
+
+			$desc_load_google_font = isset( $attr['descLoadGoogleFonts'] ) ? $attr['descLoadGoogleFonts'] : '';
+			$desc_font_family      = isset( $attr['descFontFamily'] ) ? $attr['descFontFamily'] : '';
+			$desc_font_weight      = isset( $attr['descFontWeight'] ) ? $attr['descFontWeight'] : '';
+			$desc_font_subset      = isset( $attr['descFontSubset'] ) ? $attr['descFontSubset'] : '';
+
+			$cta_load_google_font = isset( $attr['ctaLoadGoogleFonts'] ) ? $attr['ctaLoadGoogleFonts'] : '';
+			$cta_font_family      = isset( $attr['ctaFontFamily'] ) ? $attr['ctaFontFamily'] : '';
+			$cta_font_weight      = isset( $attr['ctaFontWeight'] ) ? $attr['ctaFontWeight'] : '';
+			$cta_font_subset      = isset( $attr['ctaFontSubset'] ) ? $attr['ctaFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $cta_load_google_font, $cta_font_family, $cta_font_weight, $cta_font_subset );
+			UAGB_Helper::blocks_google_font( $title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset );
+			UAGB_Helper::blocks_google_font( $desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset );
+		}
+	}
 }

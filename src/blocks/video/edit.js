@@ -158,6 +158,18 @@ class UAGBVideo extends Component {
 			iconImageWidth,
 			iconimgBorderRadius,
 			videoSrc,
+			enableSubscribeBar,
+			channeltype,
+			channelId,
+			channelName,
+			channeltext,
+			enableSubscribeCount,
+			subTextColor,
+			subBgColor,
+			subVrPadding,
+			subHrPadding,
+			stack,
+			subSpace,
   		} = attributes
 
 		// Add CSS.
