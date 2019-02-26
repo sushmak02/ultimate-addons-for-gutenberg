@@ -20,11 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class UAGB_Init_Blocks {
 
 
-
-
-
-
-
 	/**
 	 * Member Variable
 	 *
