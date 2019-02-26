@@ -4,7 +4,7 @@
  * @return {object} The inline background type CSS.
  */
 import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
- 
+
 function VideoStyle( props ) {
 	const {
 		block_id,
@@ -42,41 +42,41 @@ function VideoStyle( props ) {
 
 	var selectors = {}	
 
-	selectors[".uagb-video__vimeo-wrap a"] = {
+	selectors[" .uagb-video__vimeo-wrap a"] = {
 		"color": controlsColor,
 	}
-	selectors[".uagb-video__vimeo-wrap"] = {
+	selectors[" .uagb-video__vimeo-wrap"] = {
 		"color": controlsColor,
 	}
 	// Icon css
 	if( sourceType == "icon" ){
-		selectors[".uagb-video__play-icon"] = {
+		selectors[" .uagb-video__play-icon"] = {
 			"height" : iconSize+"px",
 			"width" : iconSize+"px",			
 		}
-		selectors[".uagb-video__play-icon svg"] = {
+		selectors[" .uagb-video__play-icon svg"] = {
 			"height" : iconSize+"px",
 			"width" : iconSize+"px",
 			"fill": iconColor,
 			"line-height" : iconSize+"px",
 		}
 		
-		selectors[".uagb-video__content-wrap:hover .uagb-video__play-icon svg"] = {
+		selectors[" .uagb-video__content-wrap:hover .uagb-video__play-icon svg"] = {
 			"fill" : iconHover,
 		}
 	}else{
-		selectors[".uagb-video__play-icon img"] = {
+		selectors[" .uagb-video__play-icon img"] = {
 			"max-width" : iconImageWidth+"px",
 			"width" : iconImageWidth+"px",
 			"border-radius": iconimgBorderRadius+"%"
 		}
-		selectors[".uagb-video__play-icon"] = {
+		selectors[" .uagb-video__play-icon"] = {
 			"height" : iconImageWidth+"px",
 			"width" : iconImageWidth+"px",
 		}
 	}
 	
-	selectors[".uagb-video__content-wrap:before"] = {
+	selectors[" .uagb-video__content-wrap:before"] = {
 		"background-color" : overlayColor,
 		"opacity": ( typeof opacity != "undefined" ) ? ( 100 - opacity )/100 : 0.5
 	}
