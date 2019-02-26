@@ -33,6 +33,10 @@ function VideoStyle( props ) {
 	}
 	// Icon css
 	if( sourceType == "icon" ){
+		selectors[".uagb-video__play-icon"] = {
+			"height" : iconSize+"px",
+			"width" : iconSize+"px",			
+		}
 		selectors[".uagb-video__play-icon svg"] = {
 			"height" : iconSize+"px",
 			"width" : iconSize+"px",
