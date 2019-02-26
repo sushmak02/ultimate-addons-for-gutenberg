@@ -13,6 +13,7 @@ import VimeoMeta from "./components/VimeoMeta"
 import CustomImage from "./components/CustomImage"
 import VideoImgSrc from "./VideoImgSrc"
 import VideoStyle from "./styling"
+import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 
 const { __ } = wp.i18n
 
@@ -159,18 +160,26 @@ class UAGBVideo extends Component {
 			iconImageWidth,
 			iconimgBorderRadius,
 			videoSrc,
-			enableSubscribeBar,
-			channeltype,
-			channelId,
-			channelName,
-			channeltext,
-			enableSubscribeCount,
-			subTextColor,
-			subBgColor,
-			subVrPadding,
-			subHrPadding,
-			stack,
-			subSpace,
+			enableStickyVideo,
+			videoWidth,
+			stickyAlignment,
+			videoTopSpace,
+			videoBottomSpace,
+			videoLeftSpace,
+			videoRightSpace,
+			videoBgVrSpace,
+			videoBgHrSpace,
+			stickyBgColor,	
+			hideStickyVideo,
+			enableClose,
+			closeIconColor,
+			closeIconBgColor,
+			enableInfoBar,
+			infoBarText,
+			infoBarTextColor,
+			infoBarBgColor,
+			infoBarTextVrSpace,
+			infoBarTextHrSpace,			
   		} = attributes
 
 		// Add CSS.
@@ -353,86 +362,83 @@ class UAGBVideo extends Component {
 			}
 		}
 
-		const thumbnail_setting = (
-			<Fragment>
-				<PanelBody
-					title={ __( "Thumbnail & Overlay" ) }
-					initialOpen={ false }
-				>			
-				
-					<ToggleControl
-						label={ __( "Custom Thumbnail" ) }
-						checked={ customThumbnail }
-						onChange={ ( value ) => setAttributes( { customThumbnail: ! customThumbnail } ) }
-					/>	
+		const thumbnail_setting = (		
+			<PanelBody
+				title={ __( "Thumbnail & Overlay" ) }
+				initialOpen={ false }>			
+			
+				<ToggleControl
+					label={ __( "Custom Thumbnail" ) }
+					checked={ customThumbnail }
+					onChange={ ( value ) => setAttributes( { customThumbnail: ! customThumbnail } ) }
+				/>	
 
-					{ (!customThumbnail && videoType == "youtube") && <SelectControl
-						label={ __( "Thumbnail Size" ) }
-						value={ thumbnailSize }
-						onChange={ ( value ) => setAttributes( { thumbnailSize: value } ) }
-						options={ [
-							{ value: "maxresdefault", label: __( "Maximum Resolution" ) },
-							{ value: "hqdefault", label: __( "High Quality" ) },
-							{ value: "mqdefault", label: __( "Medium Quality" ) },
-							{ value: "sddefault", label: __( "Standard Quality" ) },						
-						] }
+				{ (!customThumbnail && videoType == "youtube") && <SelectControl
+					label={ __( "Thumbnail Size" ) }
+					value={ thumbnailSize }
+					onChange={ ( value ) => setAttributes( { thumbnailSize: value } ) }
+					options={ [
+						{ value: "maxresdefault", label: __( "Maximum Resolution" ) },
+						{ value: "hqdefault", label: __( "High Quality" ) },
+						{ value: "mqdefault", label: __( "Medium Quality" ) },
+						{ value: "sddefault", label: __( "Standard Quality" ) },						
+					] }
+				/>
+				}	
+
+				{ customThumbnail && <BaseControl
+					className="editor-bg-image-control"
+					label={ __( "Image" ) }
+				>
+					<MediaUpload
+						title={ __( "Select Image" ) }
+						onSelect={ this.onSelectCustImage }
+						allowedTypes= { [ "image" ] }
+						value={ custThumbImage }
+						render={ ( { open } ) => (
+							<Button isDefault onClick={ open }>
+								{ image_name }
+							</Button>
+						) }
 					/>
+					{ ( custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
+					<Button className="uagb-rm-btn" onClick={ this.onRemoveCustImage } isLink isDestructive>
+						{ __( "Remove Image" ) }
+					</Button>
 					}	
+				</BaseControl>	
+				}
 
-					{ customThumbnail && <BaseControl
-						className="editor-bg-image-control"
-						label={ __( "Image" ) }
-					>
-						<MediaUpload
-							title={ __( "Select Image" ) }
-							onSelect={ this.onSelectCustImage }
-							allowedTypes= { [ "image" ] }
-							value={ custThumbImage }
-							render={ ( { open } ) => (
-								<Button isDefault onClick={ open }>
-									{ image_name }
-								</Button>
-							) }
-						/>
-						{ ( custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
-						<Button className="uagb-rm-btn" onClick={ this.onRemoveCustImage } isLink isDestructive>
-							{ __( "Remove Image" ) }
-						</Button>
-						}	
-					</BaseControl>	
-					}
-
-					{ ( customThumbnail && custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
-					<Fragment>
-						<SelectControl
-							label={ __( "Image Size" ) }
-							options={ imageSizeOptions }
-							value={ imageSize }
-							onChange={ ( value ) => setAttributes( { imageSize: value } ) }
-						/>
-					</Fragment>	
-					}
-					<Fragment>
-				    <p className="uagb-setting-label">{ __( "Overlay Color" ) }
-				    <span className="components-base-control__label">
-				    <span className="component-color-indicator" style={{ backgroundColor: overlayColor }} ></span></span></p>
-				    <ColorPalette
-				        value={ overlayColor }
-				        onChange={ ( colorValue ) => setAttributes( { overlayColor: colorValue } ) }
-				        allowReset
-				    />
-					</Fragment>
-					<RangeControl
-						label={ __( "Opacity" ) }
-						value={ opacity }
-						onChange={ ( value ) => setAttributes( { opacity: value } ) }
-						min={ 0 }
-						max={ 100 }
-						beforeIcon=""
-						allowReset
+				{ ( customThumbnail && custThumbImage && custThumbImage.url !=="null" && custThumbImage.url !== "" ) &&
+				<Fragment>
+					<SelectControl
+						label={ __( "Image Size" ) }
+						options={ imageSizeOptions }
+						value={ imageSize }
+						onChange={ ( value ) => setAttributes( { imageSize: value } ) }
 					/>
-				</PanelBody>
-			</Fragment>
+				</Fragment>	
+				}
+				<Fragment>
+			    <p className="uagb-setting-label">{ __( "Overlay Color" ) }
+			    <span className="components-base-control__label">
+			    <span className="component-color-indicator" style={{ backgroundColor: overlayColor }} ></span></span></p>
+			    <ColorPalette
+			        value={ overlayColor }
+			        onChange={ ( colorValue ) => setAttributes( { overlayColor: colorValue } ) }
+			        allowReset
+			    />
+				</Fragment>
+				<RangeControl
+					label={ __( "Opacity" ) }
+					value={ opacity }
+					onChange={ ( value ) => setAttributes( { opacity: value } ) }
+					min={ 0 }
+					max={ 100 }
+					beforeIcon=""
+					allowReset
+				/>
+			</PanelBody>			
 		)
 
 		// Icon properties.
@@ -554,62 +560,203 @@ class UAGBVideo extends Component {
 			</Fragment>
 		)
 
-		const subscribe_bar_setting = (			
+		const sticky_video_setting = (		
 			<PanelBody
-				title={ __( "YouTube Subscribe Bar" ) }
-				initialOpen={ false }>
+				title={ __( "Sticky Video" ) }
+				initialOpen={ false }>	
 				<ToggleControl
-					label={ __( "Enable Subscribe Bar" ) }
-					checked={ enableSubscribeBar }
-					onChange={ ( value ) => setAttributes( { enableSubscribeBar: ! enableSubscribeBar } ) }
-				/>
-				<SelectControl
-					label={ __( "Select Channel By" ) }
-					value={ channeltype }
-					onChange={ ( value ) => setAttributes( { channeltype: value } ) }
-					options={ [
-						{ value: "id", label: __( "Id" ) },
-						{ value: "name", label: __( "Name" ) },
-					] }
-				/>
-				{ channeltype == "name" && <TextControl
-					label= { __( "YouTube Channel Name" ) }
-					value= { channelName }
-					onChange={ value => setAttributes( { channelName: value } ) }
+					label={ __( "Enable Sticky Video" ) }
+					checked={ enableStickyVideo }
+					onChange={ ( value ) => setAttributes( { enableStickyVideo: ! enableStickyVideo } ) }
+				/>	
+				{ enableStickyVideo && <Fragment>
+					<RangeControl
+						label = { __( "Video Width" ) }
+						value = { videoWidth }
+						onChange = { ( value ) => setAttributes( { videoWidth: value } ) }
+						min = { 0 }
+						max = { 1000 }
+						beforeIcon = ""
+						allowReset
+					/>	
+					<SelectControl
+						label={ __( "Sticky Alignment" ) }
+						value={ stickyAlignment }
+						onChange={ ( value ) => setAttributes( { stickyAlignment: value } ) }
+						options={ [
+							{ value: "top_left", label: __( "Top Left" ) },
+							{ value: "top_right", label: __( "Top Right" ) },
+							{ value: "bottom_left", label: __( "Bottom Left" ) },
+							{ value: "bottom_right", label: __( "Bottom Right" ) },
+							{ value: "center_left", label: __( "Center Left" ) },
+							{ value: "center_right", label: __( "Center Right" ) },
+						] }
 					/>
-				}
-				{ channeltype == "id" && <TextControl
-					label= { __( "YouTube Channel Id" ) }
-					value= { channelId }
-					onChange={ value => setAttributes( { channelId: value } ) }
+					<hr className="uagb-editor__separator" />
+					<h2>{ __(" Spacing from Edges") }</h2>
+					<RangeControl
+						label={ UAGB_Block_Icons.left_margin }
+						className={ "uagb-margin-control" }
+						value = { videoLeftSpace }
+						onChange = { ( value ) => setAttributes( { videoLeftSpace: value } ) }
+						min = { 0 }
+						max = { 1000 }
+						beforeIcon = ""
+						allowReset
+					/>	
+					<RangeControl
+						label={ UAGB_Block_Icons.right_margin }
+						className={ "uagb-margin-control" }
+						value = { videoRightSpace }
+						onChange = { ( value ) => setAttributes( { videoRightSpace: value } ) }
+						min = { 0 }
+						max = { 1000 }
+						beforeIcon = ""
+						allowReset
+					/>	
+					<RangeControl
+						label={ UAGB_Block_Icons.top_margin }
+						className={ "uagb-margin-control" }
+						value = { videoTopSpace }
+						onChange = { ( value ) => setAttributes( { videoTopSpace: value } ) }
+						min = { 0 }
+						max = { 1000 }
+						beforeIcon = ""
+						allowReset
+					/>	
+					<RangeControl
+						label={ UAGB_Block_Icons.bottom_margin }
+						className={ "uagb-margin-control" }
+						value = { videoBottomSpace }
+						onChange = { ( value ) => setAttributes( { videoBottomSpace: value } ) }
+						min = { 0 }
+						max = { 1000 }
+						beforeIcon = ""
+						allowReset
+					/>	
+					<hr className="uagb-editor__separator" />
+					<h2>{ __("Background Size") } </h2>
+					<RangeControl
+						label={ UAGB_Block_Icons.vertical_spacing }
+						className={ "uagb-margin-control" }
+						value = { videoBgVrSpace }
+						onChange = { ( value ) => setAttributes( { videoBgVrSpace: value } ) }
+						min = { 0 }
+						max = { 1000 }
+						beforeIcon = ""
+						allowReset
+					/>	
+					<RangeControl
+						label={ UAGB_Block_Icons.horizontal_spacing }
+						className={ "uagb-margin-control" }
+						value = { videoBgHrSpace }
+						onChange = { ( value ) => setAttributes( { videoBgHrSpace: value } ) }
+						min = { 0 }
+						max = { 1000 }
+						beforeIcon = ""
+						allowReset
+					/>	
+					<hr className="uagb-editor__separator" />
+					<p className="uagb-setting-label">{ __( "Background Color" ) }
+				    <span className="components-base-control__label">
+				    <span className="component-color-indicator" style={{ backgroundColor: stickyBgColor }} ></span></span></p>
+				    <ColorPalette
+				        value={ stickyBgColor }
+				        onChange={ ( colorValue ) => setAttributes( { stickyBgColor: colorValue } ) }
+				        allowReset
+				    />
+				    <SelectControl
+						label={ __( "Hide Sticky Video On" ) }
+						value={ hideStickyVideo }
+						onChange={ ( value ) => setAttributes( { hideStickyVideo: value } ) }
+						options={ [
+							{ value: "none", label: __( "None" ) },
+							{ value: "desktop", label: __( "Desktop" ) },
+							{ value: "tablet", label: __( "Tablet" ) },
+							{ value: "mobile", label: __( "Mobile" ) },
+						] }
 					/>
-				}
-				<TextControl
-					label= { __( "Subscribe to Channel Text" ) }
-					value= { channeltext }
-					onChange={ value => setAttributes( { channeltext: value } ) }
-					/>
-				<ToggleControl
-					label={ __( "Show Subscribers Count" ) }
-					checked={ enableSubscribeCount }
-					onChange={ ( value ) => setAttributes( { enableSubscribeCount: ! enableSubscribeCount } ) }
-				/>
-				<p className="uagb-setting-label">{ __( "Text Color" ) }
-			    <span className="components-base-control__label">
-			    <span className="component-color-indicator" style={{ backgroundColor: subTextColor }} ></span></span></p>
-			    <ColorPalette
-			        value={ subTextColor }
-			        onChange={ ( colorValue ) => setAttributes( { subTextColor: colorValue } ) }
-			        allowReset
-			    />
-			    <p className="uagb-setting-label">{ __( "Background Color" ) }
-			    <span className="components-base-control__label">
-			    <span className="component-color-indicator" style={{ backgroundColor: subBgColor }} ></span></span></p>
-			    <ColorPalette
-			        value={ subBgColor }
-			        onChange={ ( colorValue ) => setAttributes( { subBgColor: colorValue } ) }
-			        allowReset
-			    />
+					<hr className="uagb-editor__separator" />
+					<h2>{ __("Close Button") } </h2>
+					<ToggleControl
+						label={ __( "Enable Clsoe Button" ) }
+						checked={ enableClose }
+						onChange={ ( value ) => setAttributes( { enableClose: ! enableClose } ) }
+					/>	
+					{ enableClose && <Fragment>
+						<p className="uagb-setting-label">{ __( "Icon Color" ) }
+					    <span className="components-base-control__label">
+					    <span className="component-color-indicator" style={{ backgroundColor: closeIconColor }} ></span></span></p>
+					    <ColorPalette
+					        value={ closeIconColor }
+					        onChange={ ( colorValue ) => setAttributes( { closeIconColor: colorValue } ) }
+					        allowReset
+					    />
+					    <p className="uagb-setting-label">{ __( "Background Color" ) }
+					    <span className="components-base-control__label">
+					    <span className="component-color-indicator" style={{ backgroundColor: closeIconBgColor }} ></span></span></p>
+					    <ColorPalette
+					        value={ closeIconBgColor }
+					        onChange={ ( colorValue ) => setAttributes( { closeIconBgColor: colorValue } ) }
+					        allowReset
+					    />
+						</Fragment>
+					}
+					<hr className="uagb-editor__separator" />
+					<h2>{ __("Info Bar") } </h2>
+					<ToggleControl
+						label={ __( "Enable Info Bar" ) }
+						checked={ enableInfoBar }
+						onChange={ ( value ) => setAttributes( { enableInfoBar: ! enableInfoBar } ) }
+					/>	
+					{ enableInfoBar && <Fragment>
+						<TextControl
+							label= { __( "Text" ) }
+							value= { infoBarText }
+							onChange={ value => setAttributes( { infoBarText: value } ) }
+						/>
+						<p className="uagb-setting-label">{ __( "Text Color" ) }
+					    <span className="components-base-control__label">
+					    <span className="component-color-indicator" style={{ backgroundColor: infoBarTextColor }} ></span></span></p>
+					    <ColorPalette
+					        value={ infoBarTextColor }
+					        onChange={ ( colorValue ) => setAttributes( { infoBarTextColor: colorValue } ) }
+					        allowReset
+					    />
+					    <p className="uagb-setting-label">{ __( "Background Color" ) }
+					    <span className="components-base-control__label">
+					    <span className="component-color-indicator" style={{ backgroundColor: infoBarBgColor }} ></span></span></p>
+					    <ColorPalette
+					        value={ infoBarBgColor }
+					        onChange={ ( colorValue ) => setAttributes( { infoBarBgColor: colorValue } ) }
+					        allowReset
+					    />
+					    <hr className="uagb-editor__separator" />
+					    <h2>{ __("Info Bar Spcing") } </h2>
+					    <RangeControl
+							label={ UAGB_Block_Icons.vertical_spacing }
+							className={ "uagb-margin-control" }
+							value = { infoBarTextVrSpace }
+							onChange = { ( value ) => setAttributes( { infoBarTextVrSpace: value } ) }
+							min = { 0 }
+							max = { 1000 }
+							beforeIcon = ""
+							allowReset
+						/>	
+						<RangeControl
+							label={ UAGB_Block_Icons.horizontal_spacing }
+							className={ "uagb-margin-control" }
+							value = { infoBarTextHrSpace }
+							onChange = { ( value ) => setAttributes( { infoBarTextHrSpace: value } ) }
+							min = { 0 }
+							max = { 1000 }
+							beforeIcon = ""
+							allowReset
+						/>
+						</Fragment>
+					}
+				</Fragment>
+			}
 			</PanelBody>
 		)
 
@@ -625,6 +772,7 @@ class UAGBVideo extends Component {
 					{ videoType == "vimeo" && vimeo_setting }					
 					{ thumbnail_setting }
 					{ play_buttons }
+					{ sticky_video_setting }
 				</InspectorControls>
 			</Fragment>
 		)

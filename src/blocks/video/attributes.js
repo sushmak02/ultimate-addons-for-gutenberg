@@ -165,53 +165,86 @@ const attributes = {
 		type: "string",
 		default : ""
 	},
-	enableSubscribeBar: {
+	enableStickyVideo: {
 		type: "boolean",
 		default: false,
 	},
-	channeltype: {
+	videoWidth: {
+		type: "number",
+		default : "300"
+	},
+	stickyAlignment: {
 		type: "string",
-		default : "id"
+		default : "top_left"
 	},
-	channelId: {
-		type: "string",
-		default : "UCtFCcrvupjyaq2lax_7OQQg"
-	},
-	channelName: {
-		type: "string",
-		default : "TheBrainstormForce"
-	},
-	channeltext: {
-		type: "string",
-		default : "Subscribe to our YouTube Channel"
-	},
-	enableSubscribeCount: {
-		type: "boolean",
-		default: false,
-	},
-	subTextColor: {
-		type: "string",
-		default : "#fff"
-	},
-	subBgColor: {
-		type: "string",
-		default : "#333"
-	},
-	subVrPadding: {
+	videoTopSpace: {
 		type: "number",
 		default : ""
 	},
-	subHrPadding: {
+	videoBottomSpace: {
+		type: "number",
+		default : "300"
+	},
+	videoLeftSpace: {
 		type: "number",
 		default : ""
 	},
-	stack: {
+	videoRightSpace: {
+		type: "number",
+		default : ""
+	},
+	videoBgVrSpace: {
+		type: "number",
+		default : ""
+	},
+	videoBgHrSpace: {
+		type: "number",
+		default : ""
+	},
+	stickyBgColor: {
+		type: "string",
+		default : ""
+	},	
+	hideStickyVideo: {
 		type: "number",
 		default : "none"
 	},
-	subSpace: {
-		type: "number",
-		default : 10
+	enableClose: {
+		type: "boolean",
+		default: true,
 	},
+	closeIconColor: {
+		type: "string",
+		default : ""
+	},
+	closeIconBgColor: {
+		type: "string",
+		default : ""
+	},
+	enableInfoBar: {
+		type: "boolean",
+		default: false,
+	},
+	infoBarText: {
+		type: "string",
+		default : ""
+	},
+	infoBarTextColor: {
+		type: "string",
+		default : ""
+	},
+	infoBarBgColor:{
+		type: "string",
+		default : ""
+	},
+	infoBarTextVrSpace: {
+		type: "number",
+		default : ""
+	},
+	infoBarTextHrSpace: {
+		type: "number",
+		default : ""
+	},
+
 }
 export default attributes
