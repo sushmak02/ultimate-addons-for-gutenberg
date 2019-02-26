@@ -3,6 +3,8 @@
  * @param  {object} props - The block object.
  * @return {object} The inline background type CSS.
  */
+import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
+ 
 function VideoStyle( props ) {
 	const {
 		block_id,
@@ -14,26 +16,29 @@ function VideoStyle( props ) {
 		iconColor,
 		iconImageWidth,
 		iconimgBorderRadius,
-		opacity,
-		enableSubscribeBar,
-		channeltype,
-		channelId,
-		channelName,
-		channeltext,
-		enableSubscribeCount,
-		subTextColor,
-		subBgColor,
-		subVrPadding,
-		subHrPadding,
-		stack,
-		subSpace,
+		opacity,		
+		enableStickyVideo,
+		videoWidth,
+		stickyAlignment,
+		videoTopSpace,
+		videoBottomSpace,
+		videoLeftSpace,
+		videoRightSpace,
+		videoBgVrSpace,
+		videoBgHrSpace,
+		stickyBgColor,	
+		hideStickyVideo,
+		enableClose,
+		closeIconColor,
+		closeIconBgColor,
+		enableInfoBar,
+		infoBarText,
+		infoBarFontSize,
+		infoBarTextColor,
+		infoBarBgColor,
+		infoBarTextVrSpace,
+		infoBarTextHrSpace,
 	} = props.attributes
-
-	if( props.clientId ){
-		var clientId = "uagb-video-"+props.clientId
-	}else{
-		var clientId = "uagb-video-"+block_id
-	}
 
 	var selectors = {}	
 
@@ -76,23 +81,7 @@ function VideoStyle( props ) {
 		"opacity": ( typeof opacity != "undefined" ) ? ( 100 - opacity )/100 : 0.5
 	}
 
-	var styling_css = ""
-
-	for( var i in selectors ) {
-
-		styling_css += " .block-editor-page #wpwrap #"+clientId+" "+i + " { "
-
-
-		var sel = selectors[i]
-		var css = ""
-
-		for( var j in sel ) {
-
-			css += j + ": " + sel[j] + ";"
-		}
-
-		styling_css += css + " } "
-	}
+	var styling_css = generateCSS( selectors, `.block-editor-page #wpwrap #uagb-video-${ props.clientId }` )
 
 	return styling_css
 

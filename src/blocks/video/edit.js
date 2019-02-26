@@ -176,6 +176,7 @@ class UAGBVideo extends Component {
 			closeIconBgColor,
 			enableInfoBar,
 			infoBarText,
+			infoBarFontSize,
 			infoBarTextColor,
 			infoBarBgColor,
 			infoBarTextVrSpace,
@@ -715,6 +716,15 @@ class UAGBVideo extends Component {
 							value= { infoBarText }
 							onChange={ value => setAttributes( { infoBarText: value } ) }
 						/>
+						<RangeControl
+							label={ __("Font Size") }
+							value = { infoBarFontSize }
+							onChange = { ( value ) => setAttributes( { infoBarFontSize: value } ) }
+							min = { 0 }
+							max = { 1000 }
+							beforeIcon = ""
+							allowReset
+						/>	
 						<p className="uagb-setting-label">{ __( "Text Color" ) }
 					    <span className="components-base-control__label">
 					    <span className="component-color-indicator" style={{ backgroundColor: infoBarTextColor }} ></span></span></p>
@@ -827,6 +837,9 @@ class UAGBVideo extends Component {
 						`uagb-video__aspect-ratio-${ aspectRatio }`,
 						`uagb-video__${ sourceType }`,
 						{ "uagb-video__autoplay" : autoplay },
+						{ "uagb-video__sticky-enable" : enableStickyVideo },
+						{ "uagb-video__sticky-infobar-wrap" : enableStickyVideo && enableInfoBar },
+						( enableStickyVideo ? `uagb-video__sticky-${ stickyAlignment }` : '' ),
 					) }	>	
 						{ video_desc }	
 					</div>

@@ -229,6 +229,10 @@ const attributes = {
 		type: "string",
 		default : ""
 	},
+	infoBarFontSize: {
+		type: "number",
+		default : ""
+	},
 	infoBarTextColor: {
 		type: "string",
 		default : ""
