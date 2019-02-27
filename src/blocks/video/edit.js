@@ -846,10 +846,10 @@ class UAGBVideo extends Component {
 							{ video_desc }
 							{ enableStickyVideo &&
 								<Fragment>
-									<div class="uagb-video__sticky-close">
+									<div className="uagb-video__sticky-close">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z"></path></svg>
 									</div>	
-									<div class="uagb-video__sticky-infobar"><b>Now Playing:</b> Sticky Video</div>
+									<div className="uagb-video__sticky-infobar"><b>Now Playing:</b> Sticky Video</div>
 								</Fragment>
 							}							
 						</div>
@@ -867,14 +867,45 @@ class UAGBVideo extends Component {
 		// Pushing Style tag for this block css.
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-video-style-" + id )
-		document.head.appendChild( $style )
+		document.head.appendChild( $style )	
 	}
 
 	componentDidUpdate(){
 		var id = this.props.clientId
-		window.addEventListener("load", this.videoIframeContent(id))				
+		window.addEventListener("load", this.videoIframeContent(id))
+		var $window = $('.edit-post-layout__content');
+		var wrapper   = $("#block-"+id)
+		var $videoWrap = wrapper.find('.uagb-video__outer-wrap');
+		var $video = wrapper.find('.uagb-video__content-wrap');	
+		var event_this = this
+		$(".edit-post-layout__content").scroll( function(event) {
+			event_this.apply_stiky_function(id, $video, $window, $videoWrap )
+		})
+		window.addEventListener("load", event_this.apply_stiky_function(id, $video, $window, $videoWrap ))
+		window.addEventListener("resize", event_this.apply_stiky_function(id, $video, $window, $videoWrap ))
 	}
 
+	apply_stiky_function (id, $video, $window, $videoWrap){		
+
+		if( $video.hasClass("uagb-video__sticky-enable") ){
+			var videoHeight = $video.outerHeight();
+			var windowScrollTop = $window.scrollTop();
+			var videoBottom = videoHeight + $videoWrap.offset().top;
+			if (windowScrollTop > videoBottom) {
+				var check_class_exist = $video.hasClass( "uagb-video__sticky-apply" );	
+				if( check_class_exist == false ){				
+					$video.addClass('uagb-video__sticky-apply');
+					$videoWrap.height(videoHeight);
+					$videoWrap.css('visibility','hidden');
+				}
+			} else {
+				$video.removeClass('uagb-video__sticky-apply');
+				$videoWrap.height('auto');
+				$videoWrap.css('visibility','visible');
+			}
+		}
+	}
+	
 	videoIframeContent( id ){
 		const {
 			autoplay,	

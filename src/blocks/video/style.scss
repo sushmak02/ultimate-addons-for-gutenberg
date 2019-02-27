@@ -35,15 +35,15 @@
     background: #000;
     cursor: pointer;
 }
-.uagb-video__content-wrap.uagb-video__aspect-ratio-4_3 {
+.uagb-video__content-wrap.uagb-video__aspect-ratio-4_3:not(.uagb-video__sticky-apply){
 	padding-bottom: 75%;
 }
 
-.uagb-video__content-wrap.uagb-video__aspect-ratio-16_9{
+.uagb-video__content-wrap.uagb-video__aspect-ratio-16_9:not(.uagb-video__sticky-apply){
 	padding-bottom: 56.25%;
 }
 
-.uagb-video__content-wrap.uagb-video__aspect-ratio-3_2  {
+.uagb-video__content-wrap.uagb-video__aspect-ratio-3_2:not(.uagb-video__sticky-apply){
 	padding-bottom: 66.6666%;
 }
 
@@ -191,3 +191,82 @@
     transform: translate(50%, -50%);
     color: #fff;
 }
+/* Sticky video*/
+.uagb-video__sticky-top_left.uagb-video__sticky-apply {
+    position: fixed;
+    top: 20%;
+    left: 10%;
+    width: 260px;
+    height: 145px;
+    transform: translateY(100%);
+    animation: fade-in-up .25s ease forwards;
+  }
+
+.uagb-video__sticky-top_right.uagb-video__sticky-apply {
+    position: fixed;
+    top: 20%;
+    right: 20%;
+    width: 260px;
+    height: 145px;
+    transform: translateY(100%);
+    animation: fade-in-up .25s ease forwards;
+  }
+
+.uagb-video__sticky-bottom_right.uagb-video__sticky-apply {
+    position: fixed;
+    bottom: 20px;
+    right: 20%;
+    width: 260px;
+    height: 145px;
+    transform: translateY(100%);
+    animation: fade-in-up .25s ease forwards;
+  }
+
+.uagb-video__sticky-bottom_left.uagb-video__sticky-apply {
+    position: fixed;
+    bottom: 20px;
+    left: 10%;
+    width: 260px;
+    height: 145px;
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+    animation: fade-in-up .25s ease forwards;
+  }
+
+  .uagb-video__sticky-center_left.uagb-video__sticky-apply {
+    position: fixed;
+    top: 50%;
+    left: 10%;
+    width: 260px;
+    height: 145px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-animation: fade-in-up .25s ease forwards;
+    animation: fade-in-up .25s ease forwards;
+  }
+
+  .uagb-video__sticky-center_right.uagb-video__sticky-apply {
+    position: fixed;
+    top: 50%;
+    right: 20%;
+    width: 260px;
+    height: 145px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-animation: fade-in-up .25s ease forwards;
+    animation: fade-in-up .25s ease forwards;
+  }
+
+  .uagb-video__content-wrap.uagb-video__sticky-apply{
+    visibility: visible;
+    z-index:9999;
+  }
+
+@keyframes fade-in-up {
+  0% { opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
