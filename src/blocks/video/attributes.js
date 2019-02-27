@@ -184,7 +184,7 @@ const attributes = {
 	},
 	videoBottomSpace: {
 		type: "number",
-		default : "300"
+		default : ""
 	},
 	videoLeftSpace: {
 		type: "number",

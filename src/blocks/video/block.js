@@ -61,6 +61,11 @@ registerBlockType( "uagb/video", {
 			sourceType,
 			aspectRatio,
 			videoSrc,
+			enableClose,
+			enableStickyVideo,
+			infoBarText,
+			enableInfoBar,
+			stickyAlignment
 		} = props.attributes
 
 		const my_block_id = "uagb-video-"+block_id
@@ -96,6 +101,23 @@ registerBlockType( "uagb/video", {
 			    </div>
 			</Fragment>
 		}
+
+		var close_button =  ""
+		if( enableClose ){
+		close_button = <Fragment>
+				<div className="uagb-video__sticky-close">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M14.95 6.46L11.41 10l3.54 3.54-1.41 1.41L10 11.42l-3.53 3.53-1.42-1.42L8.58 10 5.05 6.47l1.42-1.42L10 8.58l3.54-3.53z"></path></svg>
+				</div>	
+			</Fragment>
+		}
+
+		var infobar = ""
+		if( enableInfoBar ){
+			infobar = <Fragment>
+				<div className="uagb-video__sticky-infobar">{infoBarText}</div>
+			</Fragment>
+		}
+
 		return (
 			<Fragment>
 				<div className={ classnames(
@@ -109,8 +131,13 @@ registerBlockType( "uagb/video", {
 						`uagb-video__aspect-ratio-${ aspectRatio }`,
 						`uagb-video__${ sourceType }`,
 						{ "uagb-video__autoplay" : autoplay },
+						{ "uagb-video__sticky-enable" : enableStickyVideo },
+						{ "uagb-video__sticky-infobar-wrap" : enableStickyVideo && enableInfoBar },
+						( enableStickyVideo ? `uagb-video__sticky-${ stickyAlignment }` : '' ),
 					) }	>		
 						{ video_desc }
+						{ enableStickyVideo && close_button	}	
+						{ enableStickyVideo && infobar }			
 					</div>
 				</div>
 			</Fragment>

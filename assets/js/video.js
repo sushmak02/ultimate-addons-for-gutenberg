@@ -5,6 +5,7 @@
 
 	// Listen for events.
 	window.addEventListener("load", uagbVideoInit)
+	window.addEventListener("resize", uagbVideoInit)	
 
 	// Callback function for all event listeners.
 	function uagbVideoInit() {
@@ -13,7 +14,10 @@
     	
 		video_cotnainer.each(function() {
 			var id 		= $(this).attr("id"),
-				element = $("#"+id)
+				element    = $("#"+id),				
+				$window    = $(window),
+				$videoWrap = element;
+				$video     = element.find('.uagb-video__content-wrap');
 				
 			if(element.find(".uagb-video__autoplay").length == 0 ){
 				// Play video on click event
@@ -30,6 +34,14 @@
 			}else{							
 				uagbPlayVideo( element)
 			}
+
+			$(window).scroll( function(event) {
+				uagbstickyVideoInit(id, $video, $window, $videoWrap )
+			})
+			// For Sticky video			
+			window.addEventListener("load", uagbstickyVideoInit(id, $video, $window, $videoWrap ));
+			window.addEventListener("resize", uagbstickyVideoInit(id, $video, $window, $videoWrap ));
+
 		})		
 	}
 
@@ -45,5 +57,27 @@
 			element.find(".uagb-video__iframe").attr("src", src)
 		}			
 	}
+
+	function uagbstickyVideoInit(id, $video, $window, $videoWrap) {		
+		if( $video.hasClass("uagb-video__sticky-enable") ){			
+			var videoHeight = $video.outerHeight();
+			var windowScrollTop = $window.scrollTop();
+			var videoBottom = videoHeight + $videoWrap.offset().top;
+
+			if (windowScrollTop > videoBottom) {
+				var check_class_exist = $video.hasClass( "uagb-video__sticky-apply" );	
+				if( check_class_exist == false ){				
+					$video.addClass('uagb-video__sticky-apply');
+					$videoWrap.height(videoHeight);
+					$videoWrap.css('visibility','hidden');
+				}
+			} else {
+				$video.removeClass('uagb-video__sticky-apply');
+				$videoWrap.height('auto');
+				$videoWrap.css('visibility','visible');
+			}
+		}
+	}
+
 
 } )( jQuery )
