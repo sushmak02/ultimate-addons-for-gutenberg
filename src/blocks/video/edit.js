@@ -835,7 +835,7 @@ class UAGBVideo extends Component {
 		var infobar = ""
 		if( enableInfoBar ){
 			infobar = <Fragment>
-				<div className="uagb-video__sticky-infobar"><b>Now Playing:</b> Sticky Video</div>
+				<div className="uagb-video__sticky-infobar">{infoBarText}</div>
 			</Fragment>
 		}
 

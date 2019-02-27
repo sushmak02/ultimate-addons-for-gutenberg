@@ -1,6 +1,7 @@
 /**
  * BLOCK: UAGB Video Block Attributes
  */
+const { __ } = wp.i18n
 const attributes = {
 	block_id :{
 		type : "string"
@@ -227,7 +228,7 @@ const attributes = {
 	},
 	infoBarText: {
 		type: "string",
-		default : ""
+		default : __("Now Playing: Sticky Video")
 	},
 	infoBarFontSize: {
 		type: "number",
