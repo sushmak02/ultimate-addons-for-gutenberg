@@ -680,7 +680,7 @@ class UAGBVideo extends Component {
 					<hr className="uagb-editor__separator" />
 					<h2>{ __("Close Button") } </h2>
 					<ToggleControl
-						label={ __( "Enable Clsoe Button" ) }
+						label={ __( "Enable Close Button" ) }
 						checked={ enableClose }
 						onChange={ ( value ) => setAttributes( { enableClose: ! enableClose } ) }
 					/>	
@@ -823,6 +823,21 @@ class UAGBVideo extends Component {
 				    </Fragment>
 		}
 
+		var close_button =  ""
+		if( enableClose ){
+		close_button = <Fragment>
+				<div className="uagb-video__sticky-close">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M14.95 6.46L11.41 10l3.54 3.54-1.41 1.41L10 11.42l-3.53 3.53-1.42-1.42L8.58 10 5.05 6.47l1.42-1.42L10 8.58l3.54-3.53z"></path></svg>
+				</div>	
+			</Fragment>
+		}
+
+		var infobar = ""
+		if( enableInfoBar ){
+			infobar = <Fragment>
+				<div className="uagb-video__sticky-infobar"><b>Now Playing:</b> Sticky Video</div>
+			</Fragment>
+		}
 
 		return (
 			<Fragment>
@@ -844,14 +859,8 @@ class UAGBVideo extends Component {
 					) }	>	
 						<div className = { "uagb-video__inner-wrap"} >
 							{ video_desc }
-							{ enableStickyVideo &&
-								<Fragment>
-									<div className="uagb-video__sticky-close">
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z"></path></svg>
-									</div>	
-									<div className="uagb-video__sticky-infobar"><b>Now Playing:</b> Sticky Video</div>
-								</Fragment>
-							}							
+							{ enableStickyVideo && close_button	}	
+							{ enableStickyVideo && infobar }						
 						</div>
 					</div>
 				</div>
@@ -883,6 +892,19 @@ class UAGBVideo extends Component {
 		})
 		window.addEventListener("load", event_this.apply_stiky_function(id, $video, $window, $videoWrap ))
 		window.addEventListener("resize", event_this.apply_stiky_function(id, $video, $window, $videoWrap ))
+		
+		//Close Event
+		$(".uagb-video__sticky-close").click( function(event) {
+			$('.uagb-video__content-wrap').removeClass("uagb-video__sticky-enable")
+			$('.uagb-video__content-wrap').removeClass("uagb-video__sticky-apply")				
+			$('.uagb-video__outer-wrap').height('auto');
+			$('.uagb-video__outer-wrap').css('visibility','visible');
+		})
+
+		if( ! this.props.attributes.enableStickyVideo ){
+			$('.uagb-video__outer-wrap').height('auto');
+			$('.uagb-video__outer-wrap').css('visibility','visible');
+		}
 	}
 
 	apply_stiky_function (id, $video, $window, $videoWrap){		

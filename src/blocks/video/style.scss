@@ -4,266 +4,330 @@
  * CSS for both Frontend+Backend.
  */
 .uagb-video__outer-wrap {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-    cursor: pointer;
-}
-.uagb-video__outer-wrap img {
-    bottom: 0;
-    display: block;
-    left: 0;
-    margin: auto;
-    max-width: 100%;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    border: none;
-    height: auto;
-    cursor: pointer;
-    -webkit-transition: .2s all;
-    transition: .2s all;
-}
-.uagb-video__content-wrap{
-	position: relative;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-    cursor: pointer;
-}
-.uagb-video__content-wrap.uagb-video__aspect-ratio-4_3:not(.uagb-video__sticky-apply){
-	padding-bottom: 75%;
-}
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        max-width: 100%;
+        background: #000;
+        cursor: pointer;
 
-.uagb-video__content-wrap.uagb-video__aspect-ratio-16_9:not(.uagb-video__sticky-apply){
-	padding-bottom: 56.25%;
+     img {
+        bottom: 0;
+        display: block;
+        left: 0;
+        margin: auto;
+        max-width: 100%;
+        width: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: none;
+        height: auto;
+        cursor: pointer;
+        -webkit-transition: .2s all;
+        transition: .2s all;
+    }
+
+    .uagb-video__content-wrap{
+    	position: relative;
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+        background: #000;
+        cursor: pointer;
+    }
+    .uagb-video__content-wrap.uagb-video__aspect-ratio-4_3:not(.uagb-video__sticky-apply){
+    	padding-bottom: 75%;
+    }
+
+    .uagb-video__content-wrap.uagb-video__aspect-ratio-16_9:not(.uagb-video__sticky-apply){
+    	padding-bottom: 56.25%;
+    }
+
+    .uagb-video__content-wrap.uagb-video__aspect-ratio-3_2:not(.uagb-video__sticky-apply){
+    	padding-bottom: 66.6666%;
+    }
+
+    .uagb-video__play-icon:before { 
+        font-size: 76px;
+        line-height: 76px;
+    }
+    .uagb-video__play-icon {
+    	width: 76px;
+        height: 76px;
+    	left: 50%;
+    	top: 50%;
+    	position: absolute;
+    	cursor: pointer;
+    	-webkit-transform: translate(-50%, -50%);
+    	-ms-transform: translate(-50%, -50%);
+    	transform: translate(-50%, -50%);
+    	text-align: center;
+    	-webkit-transition: text-shadow ease .2s, color ease .2s;
+    	transition: text-shadow ease .2s, color ease .2s;
+    	z-index: 5;
+    }
+    .uagb-video__content-wrap iframe {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	width: 100%;
+    	height: 100%;
+    	z-index: 2;
+    	background: transparent;
+    }
+    .uagb-video__vimeo-wrap {
+    	-js-display: flex;
+    	display: -webkit-box;
+    	display: -webkit-flex;
+    	display: -moz-box;
+    	display: -ms-flexbox;
+    	display: flex;
+    	position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        margin: 10px;
+        -webkit-transition: opacity 200ms ease-out;
+        transition: opacity 200ms ease-out;
+        margin-right: 4.6em;
+    }
+
+    .uagb-video__vimeo-headers {
+    	font-size: 10px;
+    }
+
+    .uagb-video__vimeo-byline {
+    	font-size: 1.2em!important;
+    	font-weight: 400;
+    	color: #fff;
+    	margin-top: .1em;
+    	padding: .2em .5em;
+    	background: rgba(23,35,34,.75);
+        text-transform: none;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+    .uagb-vimeo-title {
+    	max-width: 100%;
+    	font-size: 2em!important;
+    	font-weight: 700;
+    	margin: 0;
+    	padding: .1em .2em;
+    	background: rgba(23,35,34,.75);
+        display: inline-block;
+        text-transform: none;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+    .uagb-video__content-wrap:before {
+    	content:'';
+    	z-index:2;
+    	height: 100%;
+    	width:100%;
+    	position:absolute;
+    	top:0;
+    	left:0;
+    }
+
+    .uagb-vimeo-portrait {
+        width: 60px;
+        height: 60px;
+        background: rgba(23,35,34,.75);
+        margin-right: 1px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        -moz-box-flex: 1;
+        flex: 1 0 auto;
+        padding: 0;
+    }
+
+    .uagb-vimeo-portrait img {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        padding: 0;
+        border: 0;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+
+    .uagb-video__vimeo-headers {
+    	font-size: 10px;
+    }
+
+    .uagb-video__vimeo-byline {
+    	font-size: 1.2em!important;
+    	font-weight: 400;
+    	color: #fff;
+    	margin-top: .1em;
+    	padding: .2em .5em;
+    	background: rgba(23,35,34,.75);
+        text-transform: none;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+    .uagb-vimeo-title {
+    	max-width: 100%;
+    	font-size: 2em!important;
+    	font-weight: 700;
+    	margin: 0;
+    	padding: .1em .2em;
+    	background: rgba(23,35,34,.75);
+        display: inline-block;
+        text-transform: none;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+    .uagb-no-content {
+        display: block;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(50%, -50%);
+        -ms-transform: translate(50%, -50%);
+        transform: translate(50%, -50%);
+        color: #fff;
+    }
+    /* Sticky video*/
+    .uagb-video__sticky-top_left.uagb-video__sticky-apply {
+        position: fixed;
+        top: 20%;
+        left: 10%;
+        width: 260px;
+        height: 145px;
+        transform: translateY(100%);
+        animation: fade-in-up .25s ease forwards;
+      }
+
+    .uagb-video__sticky-top_right.uagb-video__sticky-apply {
+        position: fixed;
+        top: 20%;
+        right: 20%;
+        width: 260px;
+        height: 145px;
+        transform: translateY(100%);
+        animation: fade-in-up .25s ease forwards;
+      }
+
+    .uagb-video__sticky-bottom_right.uagb-video__sticky-apply {
+        position: fixed;
+        bottom: 20px;
+        right: 20%;
+        width: 260px;
+        height: 145px;
+        transform: translateY(100%);
+        animation: fade-in-up .25s ease forwards;
+      }
+
+    .uagb-video__sticky-bottom_left.uagb-video__sticky-apply {
+        position: fixed;
+        bottom: 20px;
+        left: 10%;
+        width: 260px;
+        height: 145px;
+        -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        transform: translateY(100%);
+        animation: fade-in-up .25s ease forwards;
+      }
+
+      .uagb-video__sticky-center_left.uagb-video__sticky-apply {
+        position: fixed;
+        top: 50%;
+        left: 10%;
+        width: 260px;
+        height: 145px;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-animation: fade-in-up .25s ease forwards;
+        animation: fade-in-up .25s ease forwards;
+      }
+
+      .uagb-video__sticky-center_right.uagb-video__sticky-apply {
+        position: fixed;
+        top: 50%;
+        right: 20%;
+        width: 260px;
+        height: 145px;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-animation: fade-in-up .25s ease forwards;
+        animation: fade-in-up .25s ease forwards;
+    }
+
+    .uagb-video__content-wrap.uagb-video__sticky-apply{
+        visibility: visible;
+        z-index:9999;        
+        -webkit-box-shadow: 0 0 10px rgba(0,0,0,.5);
+        box-shadow: 0 0 10px rgba(0,0,0,.5);
+        overflow: visible;
+    }
+    .uagb-video__sticky-apply iframe.uagb-video__iframe {
+        padding: 4px;
+        background: #fff;
+    }
+    .uagb-video__inner-wrap {
+        height: 100%;
+        display: block;
+    }
+    .uagb-video__sticky-apply .uagb-video__sticky-close {
+        display: block;
+        position: absolute;
+        padding: 7px;
+        color: #000;
+        background: #fff;
+        -webkit-border-radius: 100%;
+        border-radius: 100%;
+        cursor: pointer;
+        z-index: 99999;
+        height: 14px;
+        width: 14px;
+        line-height: 14px;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    .uagb-video__sticky-apply .uagb-video__sticky-close svg{
+        height:14px;
+        width: 14px;
+    }
+    .uagb-video__sticky-top_right .uagb-video__sticky-close,
+    .uagb-video__sticky-bottom_right .uagb-video__sticky-close,
+    .uagb-video__sticky-center_right .uagb-video__sticky-close{
+        top: -10px;
+        left: -10px;
+    }
+    .uagb-video__sticky-top_left .uagb-video__sticky-close,
+    .uagb-video__sticky-bottom_left .uagb-video__sticky-close,
+    .uagb-video__sticky-center_left .uagb-video__sticky-close{
+        top: -10px;
+        right: -10px;
+    }
+
+    .uagb-video__sticky-infobar {
+        display: none;
+    }
+    .uagb-video__sticky-apply .uagb-video__sticky-infobar {
+        display: block;
+        position: relative;
+        top: 100%;
+        width: 100%;
+        padding: 5px;
+        color: #000;
+        background: #fff;
+        text-align: center;
+        z-index: 9999;
+        margin-top: -1px;
+        webkit-box-shadow: 0 5px 10px -5px #333;
+        box-shadow: 0 5px 10px -5px #333;
+    }
 }
-
-.uagb-video__content-wrap.uagb-video__aspect-ratio-3_2:not(.uagb-video__sticky-apply){
-	padding-bottom: 66.6666%;
-}
-
-.uagb-video__play-icon:before { 
-    font-size: 76px;
-    line-height: 76px;
-}
-.uagb-video__play-icon {
-	width: 76px;
-    height: 76px;
-	left: 50%;
-	top: 50%;
-	position: absolute;
-	cursor: pointer;
-	-webkit-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	text-align: center;
-	-webkit-transition: text-shadow ease .2s, color ease .2s;
-	transition: text-shadow ease .2s, color ease .2s;
-	z-index: 5;
-}
-.uagb-video__content-wrap iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 2;
-	background: transparent;
-}
-.uagb-video__vimeo-wrap {
-	-js-display: flex;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    margin: 10px;
-    -webkit-transition: opacity 200ms ease-out;
-    transition: opacity 200ms ease-out;
-    margin-right: 4.6em;
-}
-
-.uagb-video__vimeo-headers {
-	font-size: 10px;
-}
-
-.uagb-video__vimeo-byline {
-	font-size: 1.2em!important;
-	font-weight: 400;
-	color: #fff;
-	margin-top: .1em;
-	padding: .2em .5em;
-	background: rgba(23,35,34,.75);
-    text-transform: none;
-    line-height: normal;
-    letter-spacing: normal;
-}
-
-.uagb-vimeo-title {
-	max-width: 100%;
-	font-size: 2em!important;
-	font-weight: 700;
-	margin: 0;
-	padding: .1em .2em;
-	background: rgba(23,35,34,.75);
-    display: inline-block;
-    text-transform: none;
-    line-height: normal;
-    letter-spacing: normal;
-}
-
-.uagb-video__content-wrap:before {
-	content:'';
-	z-index:2;
-	height: 100%;
-	width:100%;
-	position:absolute;
-	top:0;
-	left:0;
-}
-
-.uagb-vimeo-portrait {
-    width: 60px;
-    height: 60px;
-    background: rgba(23,35,34,.75);
-    margin-right: 1px;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 0 auto;
-    -ms-flex: 1 0 auto;
-    -moz-box-flex: 1;
-    flex: 1 0 auto;
-    padding: 0;
-}
-
-.uagb-vimeo-portrait img {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    padding: 0;
-    border: 0;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-
-.uagb-video__vimeo-headers {
-	font-size: 10px;
-}
-
-.uagb-video__vimeo-byline {
-	font-size: 1.2em!important;
-	font-weight: 400;
-	color: #fff;
-	margin-top: .1em;
-	padding: .2em .5em;
-	background: rgba(23,35,34,.75);
-    text-transform: none;
-    line-height: normal;
-    letter-spacing: normal;
-}
-
-.uagb-vimeo-title {
-	max-width: 100%;
-	font-size: 2em!important;
-	font-weight: 700;
-	margin: 0;
-	padding: .1em .2em;
-	background: rgba(23,35,34,.75);
-    display: inline-block;
-    text-transform: none;
-    line-height: normal;
-    letter-spacing: normal;
-}
-.uagb-no-content {
-    display: block;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(50%, -50%);
-    -ms-transform: translate(50%, -50%);
-    transform: translate(50%, -50%);
-    color: #fff;
-}
-/* Sticky video*/
-.uagb-video__sticky-top_left.uagb-video__sticky-apply {
-    position: fixed;
-    top: 20%;
-    left: 10%;
-    width: 260px;
-    height: 145px;
-    transform: translateY(100%);
-    animation: fade-in-up .25s ease forwards;
-  }
-
-.uagb-video__sticky-top_right.uagb-video__sticky-apply {
-    position: fixed;
-    top: 20%;
-    right: 20%;
-    width: 260px;
-    height: 145px;
-    transform: translateY(100%);
-    animation: fade-in-up .25s ease forwards;
-  }
-
-.uagb-video__sticky-bottom_right.uagb-video__sticky-apply {
-    position: fixed;
-    bottom: 20px;
-    right: 20%;
-    width: 260px;
-    height: 145px;
-    transform: translateY(100%);
-    animation: fade-in-up .25s ease forwards;
-  }
-
-.uagb-video__sticky-bottom_left.uagb-video__sticky-apply {
-    position: fixed;
-    bottom: 20px;
-    left: 10%;
-    width: 260px;
-    height: 145px;
-    -webkit-transform: translateY(100%);
-    -ms-transform: translateY(100%);
-    transform: translateY(100%);
-    animation: fade-in-up .25s ease forwards;
-  }
-
-  .uagb-video__sticky-center_left.uagb-video__sticky-apply {
-    position: fixed;
-    top: 50%;
-    left: 10%;
-    width: 260px;
-    height: 145px;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    -webkit-animation: fade-in-up .25s ease forwards;
-    animation: fade-in-up .25s ease forwards;
-  }
-
-  .uagb-video__sticky-center_right.uagb-video__sticky-apply {
-    position: fixed;
-    top: 50%;
-    right: 20%;
-    width: 260px;
-    height: 145px;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    -webkit-animation: fade-in-up .25s ease forwards;
-    animation: fade-in-up .25s ease forwards;
-  }
-
-  .uagb-video__content-wrap.uagb-video__sticky-apply{
-    visibility: visible;
-    z-index:9999;
-  }
 
 @keyframes fade-in-up {
   0% { opacity: 0; }
