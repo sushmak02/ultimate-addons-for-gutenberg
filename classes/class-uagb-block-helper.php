@@ -17,6 +17,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 
 
+
 		/**
 		 * Get Section Block CSS
 		 *
@@ -3634,9 +3635,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$attr['videoBgVrSpace'] = isset( $attr['videoBgVrSpace'] ) ? $attr['videoBgVrSpace'] : 0;
 
-			$height = $attr['videoWidth']+ $attr['videoBgVrSpace'];
-			$height = "calc( ".$height."px * ".$calc_percetage." )";
-			
 			if( $attr['enableStickyVideo'] ){
 				$selectors[" .uagb-video__sticky-apply .uagb-video__inner-wrap"] = array(
 					"width" => $attr['videoWidth']."px",

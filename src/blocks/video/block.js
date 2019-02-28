@@ -65,7 +65,8 @@ registerBlockType( "uagb/video", {
 			enableStickyVideo,
 			infoBarText,
 			enableInfoBar,
-			stickyAlignment
+			stickyAlignment,
+			hideStickyVideo
 		} = props.attributes
 
 		const my_block_id = "uagb-video-"+block_id
@@ -134,6 +135,7 @@ registerBlockType( "uagb/video", {
 						{ "uagb-video__sticky-enable" : enableStickyVideo },
 						{ "uagb-video__sticky-infobar-wrap" : enableStickyVideo && enableInfoBar },
 						( enableStickyVideo ? `uagb-video__sticky-${ stickyAlignment }` : '' ),
+						( enableStickyVideo ? `uagb-video__hide-sticky-${ hideStickyVideo }` : '' ),
 					) }	>	
 					<div className = { "uagb-video__inner-wrap"} >	
 						{ video_desc }

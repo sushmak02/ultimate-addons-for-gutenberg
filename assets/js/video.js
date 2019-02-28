@@ -34,7 +34,7 @@
 			}else{							
 				uagbPlayVideo( element)
 			}
-
+			
 			$(window).scroll( function(event) {
 				uagbstickyVideoInit(id, $video, $window, $videoWrap )
 			})
@@ -59,24 +59,66 @@
 	}
 
 	function uagbstickyVideoInit(id, $video, $window, $videoWrap) {		
-		if( $video.hasClass("uagb-video__sticky-enable") ){			
-			var videoHeight = $video.outerHeight();
-			var windowScrollTop = $window.scrollTop();
-			var videoBottom = $videoWrap.offset().top;			
-			if (windowScrollTop > videoBottom) {
-				var check_class_exist = $video.hasClass( "uagb-video__sticky-apply" );	
-				if( check_class_exist == false ){				
-					$video.addClass('uagb-video__sticky-apply');
-					$videoWrap.height(videoHeight);
-					$videoWrap.css('visibility','hidden');
+		if( $video.hasClass("uagb-video__sticky-enable") ){	
+			var current_device = uagb_device_type();
+			var check_device = "uagb-video__hide-sticky-"+current_device;
+			if( !$video.hasClass(check_device) ){	 
+				var videoHeight = $video.outerHeight();
+				var windowScrollTop = $window.scrollTop();
+				var videoBottom = $videoWrap.offset().top;			
+				if (windowScrollTop > videoBottom) {
+					var check_class_exist = $video.hasClass( "uagb-video__sticky-apply" );	
+					if( check_class_exist == false ){				
+						$video.addClass('uagb-video__sticky-apply');
+						$videoWrap.height(videoHeight);
+						$videoWrap.css('visibility','hidden');
+					}
+				} else {
+					$video.removeClass('uagb-video__sticky-apply');
+					$videoWrap.height('auto');
+					$videoWrap.css('visibility','visible');
 				}
-			} else {
-				$video.removeClass('uagb-video__sticky-apply');
+			}else{
 				$videoWrap.height('auto');
 				$videoWrap.css('visibility','visible');
 			}
+
+			//Close Sticky video
+			$videoWrap.find(".uagb-video__sticky-close").click( function(event) {
+				$video.removeClass("uagb-video__sticky-enable")
+				$video.removeClass("uagb-video__sticky-apply")				
+				$videoWrap.height('auto');
+				$videoWrap.css('visibility','visible');
+			})
 		}
 	}
 
+
+
+	function uagb_device_type() 
+	{
+	    var Return_Device; 
+	    if(/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone|android|iemobile|w3c|acs\-|alav|alca|amoi|audi|avan|benq|bird|blac|blaz|brew|cell|cldc|cmd\-|dang|doco|eric|hipt|inno|ipaq|java|jigs|kddi|keji|leno|lg\-c|lg\-d|lg\-g|lge\-|maui|maxo|midp|mits|mmef|mobi|mot\-|moto|mwbp|nec\-|newt|noki|palm|pana|pant|phil|play|port|prox|qwap|sage|sams|sany|sch\-|sec\-|send|seri|sgh\-|shar|sie\-|siem|smal|smar|sony|sph\-|symb|t\-mo|teli|tim\-|tosh|tsm\-|upg1|upsi|vk\-v|voda|wap\-|wapa|wapi|wapp|wapr|webc|winw|winw|xda|xda\-) /i.test(navigator.userAgent))
+	    {
+	        if(/(tablet|ipad|playbook)|(android(?!.*(mobi|opera mini)))/i.test(navigator.userAgent)) 
+	        {
+	            Return_Device = 'tablet';
+	        }
+	        else
+	        {
+	            Return_Device = 'mobile';
+	        }
+	    }
+	    else if(/(tablet|ipad|playbook)|(android(?!.*(mobi|opera mini)))/i.test(navigator.userAgent)) 
+	    {
+	        Return_Device = 'tablet';
+	    }
+	    else
+	    {
+	        Return_Device = 'desktop';
+	    }
+
+	    return Return_Device;
+	}
 
 } )( jQuery )

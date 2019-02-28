@@ -238,27 +238,25 @@
       }
 
        .uagb-video__sticky-apply.uagb-video__sticky-center_left .uagb-video__inner-wrap {
-        position: fixed;        
+        position: fixed;  
+        top:50%;      
         left: 20px;
         width: 260px;
         height: 145px;
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
-        -webkit-animation: uagb-fade-in-up .05s ease forwards;
-        animation: uagb-fade-in-up .05s ease forwards;
       }
 
        .uagb-video__sticky-apply.uagb-video__sticky-center_right .uagb-video__inner-wrap {
         position: fixed;       
         right: 20px;
+        top:50%;      
         width: 260px;
         height: 145px;
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
-        -webkit-animation: uagb-fade-in-up .05s ease forwards;
-        animation: uagb-fade-in-up .05s ease forwards;
     }
 
     .uagb-video__content-wrap.uagb-video__sticky-apply{
