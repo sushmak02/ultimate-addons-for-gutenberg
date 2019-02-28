@@ -10,6 +10,8 @@
         max-width: 100%;
         background: #000;
         cursor: pointer;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
 
      img {
         bottom: 0;
@@ -193,49 +195,49 @@
         color: #fff;
     }
     /* Sticky video*/
-    .uagb-video__sticky-top_left.uagb-video__sticky-apply {
+     .uagb-video__sticky-apply.uagb-video__sticky-top_left .uagb-video__inner-wrap {
         position: fixed;
-        top: 20%;
+        top: 10%;
         left: 20px;
         width: 260px;
         height: 145px;
         transform: translateY(100%);
-        animation: fade-in-up .25s ease forwards;
+        animation: uagb-fade-in-up .05s ease forwards;
       }
 
-    .uagb-video__sticky-top_right.uagb-video__sticky-apply {
+     .uagb-video__sticky-apply.uagb-video__sticky-top_right .uagb-video__inner-wrap {
         position: fixed;
-        top: 20%;
+        top: 10%;
         right: 20px;
         width: 260px;
         height: 145px;
         transform: translateY(100%);
-        animation: fade-in-up .25s ease forwards;
+        animation: uagb-fade-in-up .05s ease forwards;
       }
 
-    .uagb-video__sticky-bottom_right.uagb-video__sticky-apply {
+     .uagb-video__sticky-apply.uagb-video__sticky-bottom_right .uagb-video__inner-wrap {
         position: fixed;
-        bottom: 20px;
+        bottom: 10%;
         right: 20px;
         width: 260px;
         height: 145px;
         transform: translateY(100%);
-        animation: fade-in-up .25s ease forwards;
+        animation: uagb-fade-in-up .05s ease forwards;
       }
 
-    .uagb-video__sticky-bottom_left.uagb-video__sticky-apply {
+     .uagb-video__sticky-apply.uagb-video__sticky-bottom_left .uagb-video__inner-wrap {
         position: fixed;
-        bottom: 20px;
+        bottom: 10%;
         left: 20px;
         width: 260px;
         height: 145px;
         -webkit-transform: translateY(100%);
         -ms-transform: translateY(100%);
         transform: translateY(100%);
-        animation: fade-in-up .25s ease forwards;
+        animation: uagb-fade-in-up .05s ease forwards;
       }
 
-      .uagb-video__sticky-center_left.uagb-video__sticky-apply {
+       .uagb-video__sticky-apply.uagb-video__sticky-center_left .uagb-video__inner-wrap {
         position: fixed;        
         left: 20px;
         width: 260px;
@@ -243,11 +245,11 @@
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
-        -webkit-animation: fade-in-up .25s ease forwards;
-        animation: fade-in-up .25s ease forwards;
+        -webkit-animation: uagb-fade-in-up .05s ease forwards;
+        animation: uagb-fade-in-up .05s ease forwards;
       }
 
-      .uagb-video__sticky-center_right.uagb-video__sticky-apply {
+       .uagb-video__sticky-apply.uagb-video__sticky-center_right .uagb-video__inner-wrap {
         position: fixed;       
         right: 20px;
         width: 260px;
@@ -255,8 +257,8 @@
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
-        -webkit-animation: fade-in-up .25s ease forwards;
-        animation: fade-in-up .25s ease forwards;
+        -webkit-animation: uagb-fade-in-up .05s ease forwards;
+        animation: uagb-fade-in-up .05s ease forwards;
     }
 
     .uagb-video__content-wrap.uagb-video__sticky-apply{
@@ -273,7 +275,7 @@
     .uagb-video__sticky-apply img{
         padding: 4px;
         background: #fff;
-        position: relative;
+        /*position: relative;*/
     }
     .uagb-video__sticky-apply .uagb-video__inner-wrap {
         height: 100%;
@@ -313,11 +315,16 @@
         right: -10px;
     }
 
-    .uagb-video__sticky-infobar {
+    .uagb-video__sticky-infobar,
+    .uagb-video__sticky-close {
         display: none;
+    }
+    .uagb-video__sticky-apply .uagb-video__sticky-close{
+         display: block;
     }
     .uagb-video__sticky-apply .uagb-video__sticky-infobar {
         display: block;
+        top:100%;
         position: relative;
         width: 100%;
         padding: 5px;
@@ -344,8 +351,8 @@
     }
 }
 
-@keyframes fade-in-up {
+@keyframes uagb-fade-in-up {
   0% { opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }   
 }
 

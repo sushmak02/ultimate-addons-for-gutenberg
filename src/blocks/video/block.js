@@ -134,10 +134,12 @@ registerBlockType( "uagb/video", {
 						{ "uagb-video__sticky-enable" : enableStickyVideo },
 						{ "uagb-video__sticky-infobar-wrap" : enableStickyVideo && enableInfoBar },
 						( enableStickyVideo ? `uagb-video__sticky-${ stickyAlignment }` : '' ),
-					) }	>		
+					) }	>	
+					<div className = { "uagb-video__inner-wrap"} >	
 						{ video_desc }
 						{ enableStickyVideo && close_button	}	
-						{ enableStickyVideo && infobar }			
+						{ enableStickyVideo && infobar }
+					</div>			
 					</div>
 				</div>
 			</Fragment>

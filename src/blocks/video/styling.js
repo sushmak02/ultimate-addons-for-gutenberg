@@ -86,7 +86,7 @@ function VideoStyle( props ) {
 	}
 
 	if( enableStickyVideo ){
-		selectors[" .uagb-video__sticky-apply"] = {
+		selectors[" .uagb-video__sticky-apply .uagb-video__inner-wrap"] = {
 			"width" : videoWidth+"px",
 			"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",
 		}
@@ -95,14 +95,18 @@ function VideoStyle( props ) {
 			"padding-bottom" : videoBgVrSpace+"px",
 			"padding-left" : videoBgHrSpace+"px",
 			"padding-right" : videoBgHrSpace+"px",
-			"background" : stickyBgColor	
+			"background" : stickyBgColor,
+			"width" : videoWidth+"px",
+			"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",	
 		}	
 		selectors[" .uagb-video__sticky-apply iframe.uagb-video__iframe"] = {
 			"padding-top" : videoBgVrSpace+"px",
 			"padding-bottom" : videoBgVrSpace+"px",
 			"padding-left" : videoBgHrSpace+"px",
 			"padding-right" : videoBgHrSpace+"px",
-			"background" : stickyBgColor	
+			"background" : stickyBgColor,
+			"width" : videoWidth+"px",
+			"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",	
 		}	
 
 		selectors[" .uagb-video__sticky-close svg"] = {			

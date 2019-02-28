@@ -62,8 +62,7 @@
 		if( $video.hasClass("uagb-video__sticky-enable") ){			
 			var videoHeight = $video.outerHeight();
 			var windowScrollTop = $window.scrollTop();
-			var videoBottom = videoHeight + $videoWrap.offset().top;
-
+			var videoBottom = $videoWrap.offset().top;			
 			if (windowScrollTop > videoBottom) {
 				var check_class_exist = $video.hasClass( "uagb-video__sticky-apply" );	
 				if( check_class_exist == false ){				

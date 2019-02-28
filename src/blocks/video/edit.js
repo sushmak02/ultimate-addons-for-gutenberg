@@ -643,7 +643,7 @@ class UAGBVideo extends Component {
 						value = { videoBgVrSpace }
 						onChange = { ( value ) => setAttributes( { videoBgVrSpace: value } ) }
 						min = { 0 }
-						max = { 1000 }
+						max = { 100 }
 						beforeIcon = ""
 						allowReset
 					/>	
@@ -653,7 +653,7 @@ class UAGBVideo extends Component {
 						value = { videoBgHrSpace }
 						onChange = { ( value ) => setAttributes( { videoBgHrSpace: value } ) }
 						min = { 0 }
-						max = { 1000 }
+						max = { 100 }
 						beforeIcon = ""
 						allowReset
 					/>	
@@ -912,7 +912,7 @@ class UAGBVideo extends Component {
 		if( $video.hasClass("uagb-video__sticky-enable") ){
 			var videoHeight = $video.outerHeight();
 			var windowScrollTop = $window.scrollTop();
-			var videoBottom = videoHeight + $videoWrap.offset().top;
+			var videoBottom = $videoWrap.offset().top;
 			if (windowScrollTop > videoBottom) {
 				var check_class_exist = $video.hasClass( "uagb-video__sticky-apply" );	
 				if( check_class_exist == false ){				
