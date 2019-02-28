@@ -18,6 +18,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 
 
+
 		/**
 		 * Get Section Block CSS
 		 *
@@ -3640,6 +3641,32 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					"width" => $attr['videoWidth']."px",
 					"height" => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",					
 				);
+				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-top_left .uagb-video__inner-wrap"] = array(
+					"left" => $attr['videoLeftSpace']. $attr['videoSpaceType'],
+					"top" => $attr['videoTopSpace'].$attr['videoSpaceType'],
+				);
+
+				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-top_right .uagb-video__inner-wrap"] = array(
+					"right" => $attr['videoRightSpace'].$attr['videoSpaceType'],
+					"top" => $attr['videoTopSpace'].$attr['videoSpaceType'],
+				);
+				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-center_left .uagb-video__inner-wrap"] = array(
+					"left" => $attr['videoLeftSpace'].$attr['videoSpaceType'],
+				);
+
+				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-bottom_left .uagb-video__inner-wrap"] = array(
+					"left" => $attr['videoLeftSpace'].$attr['videoSpaceType'],
+					"top" => $attr['videoBottomSpace'].$attr['videoSpaceType'],
+				);
+
+				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-bottom_right .uagb-video__inner-wrap"] = array(
+					"right" => $attr['videoRightSpace'].$attr['videoSpaceType'],
+					"top" => $attr['videoBottomSpace'].$attr['videoSpaceType'],
+				);
+				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-center_right .uagb-video__inner-wrap"] = array(
+					"left" => $attr['videoRightSpace'].$attr['videoSpaceType'],
+				);
+
 				$selectors[" .uagb-video__sticky-apply img.uagb-video__thumb"] = array(
 					"padding-top" => $attr['videoBgVrSpace']."px",
 					"padding-bottom" => $attr['videoBgVrSpace']."px",

@@ -178,6 +178,10 @@ const attributes = {
 		type: "string",
 		default : "top_left"
 	},
+	videoSpaceType: {
+		type: "string",
+		default : "%"
+	},
 	videoTopSpace: {
 		type: "number",
 		default : ""

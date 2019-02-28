@@ -32,7 +32,8 @@ const {
 	Button,
 	BaseControl,
 	ToggleControl,
-	TextControl
+	TextControl,
+	ButtonGroup
 } = wp.components
 
 // Extend component
@@ -163,6 +164,7 @@ class UAGBVideo extends Component {
 			enableStickyVideo,
 			videoWidth,
 			stickyAlignment,
+			videoSpaceType,
 			videoTopSpace,
 			videoBottomSpace,
 			videoLeftSpace,
@@ -594,47 +596,63 @@ class UAGBVideo extends Component {
 						] }
 					/>
 					<hr className="uagb-editor__separator" />
-					<h2>{ __(" Spacing from Edges") }</h2>
-					<RangeControl
-						label={ UAGB_Block_Icons.left_margin }
-						className={ "uagb-margin-control" }
-						value = { videoLeftSpace }
-						onChange = { ( value ) => setAttributes( { videoLeftSpace: value } ) }
-						min = { 0 }
-						max = { 1000 }
-						beforeIcon = ""
-						allowReset
-					/>	
-					<RangeControl
-						label={ UAGB_Block_Icons.right_margin }
-						className={ "uagb-margin-control" }
-						value = { videoRightSpace }
-						onChange = { ( value ) => setAttributes( { videoRightSpace: value } ) }
-						min = { 0 }
-						max = { 1000 }
-						beforeIcon = ""
-						allowReset
-					/>	
-					<RangeControl
-						label={ UAGB_Block_Icons.top_margin }
-						className={ "uagb-margin-control" }
-						value = { videoTopSpace }
-						onChange = { ( value ) => setAttributes( { videoTopSpace: value } ) }
-						min = { 0 }
-						max = { 1000 }
-						beforeIcon = ""
-						allowReset
-					/>	
-					<RangeControl
-						label={ UAGB_Block_Icons.bottom_margin }
-						className={ "uagb-margin-control" }
-						value = { videoBottomSpace }
-						onChange = { ( value ) => setAttributes( { videoBottomSpace: value } ) }
-						min = { 0 }
-						max = { 1000 }
-						beforeIcon = ""
-						allowReset
-					/>	
+					<h2 class="uagb-display-heading">{ __(" Spacing from Edges") }</h2>
+					<p className="uagb-settings-notice">{ __( "Note: This styling can be only seen at frontend" ) }</p>
+					<ButtonGroup className="uagb-size-type-field uagb-common-spacing" aria-label={ __( "Size Type" ) }>
+						<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ videoSpaceType === "px" } aria-pressed={ videoSpaceType === "px" } onClick={ () => setAttributes( { videoSpaceType: "px" } ) }>{ "px" }</Button>
+						<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ videoSpaceType === "%" } aria-pressed={ videoSpaceType === "%" } onClick={ () => setAttributes( { videoSpaceType: "%" } ) }>{ "%" }</Button>
+					</ButtonGroup>
+					{ ( stickyAlignment == 'top_left' || stickyAlignment == 'center_left' || stickyAlignment == 'bottom_left' ) && 
+						<RangeControl
+							label={ UAGB_Block_Icons.left_margin }
+							className={ "uagb-margin-control" }
+							value = { videoLeftSpace }
+							onChange = { ( value ) => setAttributes( { videoLeftSpace: value } ) }
+							min = { 0 }
+							max = { 1000 }
+							beforeIcon = ""
+							allowReset
+						/>	
+					}
+
+					{ ( stickyAlignment == 'top_right' || stickyAlignment == 'center_right' || stickyAlignment == 'bottom_right' ) && 
+						<RangeControl
+							label={ UAGB_Block_Icons.right_margin }
+							className={ "uagb-margin-control" }
+							value = { videoRightSpace }
+							onChange = { ( value ) => setAttributes( { videoRightSpace: value } ) }
+							min = { 0 }
+							max = { 1000 }
+							beforeIcon = ""
+							allowReset
+						/>
+					}	
+
+					{ ( stickyAlignment == 'top_left' ||  stickyAlignment == 'top_right' ) && 
+						<RangeControl
+							label={ UAGB_Block_Icons.top_margin }
+							className={ "uagb-margin-control" }
+							value = { videoTopSpace }
+							onChange = { ( value ) => setAttributes( { videoTopSpace: value } ) }
+							min = { 0 }
+							max = { 1000 }
+							beforeIcon = ""
+							allowReset
+						/>
+					}	
+
+					{ ( stickyAlignment == 'bottom_right' ||  stickyAlignment == 'bottom_left' ) && 
+						<RangeControl
+							label={ UAGB_Block_Icons.bottom_margin }
+							className={ "uagb-margin-control" }
+							value = { videoBottomSpace }
+							onChange = { ( value ) => setAttributes( { videoBottomSpace: value } ) }
+							min = { 0 }
+							max = { 1000 }
+							beforeIcon = ""
+							allowReset
+						/>
+					}	
 					<hr className="uagb-editor__separator" />
 					<h2>{ __("Background Size") } </h2>
 					<RangeControl
@@ -666,6 +684,7 @@ class UAGBVideo extends Component {
 				        onChange={ ( colorValue ) => setAttributes( { stickyBgColor: colorValue } ) }
 				        allowReset
 				    />
+				    <hr className="uagb-editor__separator" />
 				    <SelectControl
 						label={ __( "Hide Sticky Video On" ) }
 						value={ hideStickyVideo }
