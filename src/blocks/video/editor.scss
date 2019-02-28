@@ -8,12 +8,10 @@
 @media (min-width: 768px){
 	.folded #wpwrap{
 		.uagb-video__sticky-top_left.uagb-video__sticky-apply .uagb-video__inner-wrap {	    
-			left: 4%;	    
+			left: 4%;	 
+			top:20%;   
 		}
-		.uagb-video__sticky-bottom_left.uagb-video__sticky-apply .uagb-video__inner-wrap {
-		    left: 4%;
-		 }
-
+		.uagb-video__sticky-bottom_left.uagb-video__sticky-apply .uagb-video__inner-wrap,
 		.uagb-video__sticky-center_left.uagb-video__sticky-apply .uagb-video__inner-wrap {
 			left: 4%;	
 		}
@@ -22,84 +20,72 @@
 
 @media (min-width: 960px){
  	#wpwrap {
- 	/* Sticky video*/ 	
  		.uagb-video__sticky-top_left.uagb-video__sticky-apply .uagb-video__inner-wrap {	    
-			left: 12%;	    
-		}
-		.uagb-video__sticky-bottom_left.uagb-video__sticky-apply .uagb-video__inner-wrap {
-		    left: 12%;
-		}
-		.uagb-video__sticky-center_left.uagb-video__sticky-apply .uagb-video__inner-wrap {
 			left: 12%;	
+			top: 20%;	    
 		}
-
+		.uagb-video__sticky-bottom_left.uagb-video__sticky-apply .uagb-video__inner-wrap,
+		.uagb-video__sticky-center_left.uagb-video__sticky-apply .uagb-video__inner-wrap {
+		    left: 12%;
+		}	
 		.is-sidebar-opened .uagb-video__sticky-top_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
 			right: 20%;	  
+			top: 20%;	 
 		}
-		.is-sidebar-opened .uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-		    right: 20%;
-		}
+		.is-sidebar-opened .uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap,
 		.is-sidebar-opened .uagb-video__sticky-center_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
 		    right: 20%;
-		}	
-
+		}
+		
 		.uagb-video__sticky-top_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-			right: 4%;	  
+			right: 4%;
+			top: 20%;	 	  
 		}
-		.uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-		    right: 4%;
-		}
+		.uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap,
 		.uagb-video__sticky-center_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
 		    right: 4%;
 		}	
 	}
 }
 
-
 #wpwrap{		
 	.uagb-video__sticky-top_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-		right: 2%;	  
+		right: 2%;	 
+		top: 20%;	  
 	}
-	.uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-	    right: 2%;
-	}
+	.uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap ,
 	.uagb-video__sticky-center_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
 	    right: 2%;
 	}		
 
 	.is-sidebar-opened .uagb-video__sticky-top_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-		right: 22%;	  
+		right: 22%;	
+		top: 20%;	   
 	}
-	.is-sidebar-opened .uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-	    right: 22%;
-	}
+	.is-sidebar-opened .uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap,
 	.is-sidebar-opened .uagb-video__sticky-center_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
 	    right: 22%;
 	}	
 }
 
-
 @media (max-width: 960px){
  	#wpwrap { 	 		
  		.uagb-video__sticky-top_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-			right: 4%;	  
+			right: 4%;	
+			top: 20%;	   
 		}
-		.uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-		    right: 4%;
-		}
+		.uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap,
 		.uagb-video__sticky-center_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
 		    right: 4%;
 		}	
 		.is-sidebar-opened .uagb-video__sticky-top_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-			right: 35%;	  
+			right: 35%;	 
+			top: 20%;	 
 		}
-		.is-sidebar-opened .uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
-		    right: 35%;
-		}
+		.is-sidebar-opened .uagb-video__sticky-bottom_right.uagb-video__sticky-apply .uagb-video__inner-wrap,
 		.is-sidebar-opened .uagb-video__sticky-center_right.uagb-video__sticky-apply .uagb-video__inner-wrap {
 		    right: 35%;
 		}	
-		
 	}
 }
 
