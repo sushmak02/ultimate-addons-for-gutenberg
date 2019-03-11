@@ -177,7 +177,7 @@ class UAGB_Init_Blocks {
 		wp_enqueue_script(
 			'uagb-block-editor-js', // Handle.
 			UAGB_URL . 'dist/blocks.build.js',
-			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor' ), // Dependencies, defined above.
+			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor', 'wp-api-fetch' ), // Dependencies, defined above.
 			UAGB_VER,
 			true // Enqueue the script in the footer.
 		);
@@ -236,9 +236,12 @@ class UAGB_Init_Blocks {
 				'category'          => 'uagb',
 				'ajax_url'          => admin_url( 'admin-ajax.php' ),
 				'cf7_forms'         => $this->get_cf7_forms(),
+				'gf_forms'          => $this->get_gravity_forms(),
 				'tablet_breakpoint' => UAGB_TABLET_BREAKPOINT,
 				'mobile_breakpoint' => UAGB_MOBILE_BREAKPOINT,
 				'image_sizes'       => UAGB_Helper::get_image_sizes(),
+				'post_types'        => UAGB_Helper::get_post_types(),
+				'all_taxonomy'      => UAGB_Helper::get_related_taxonomy(),
 			)
 		);
 	} // End function editor_assets().
@@ -247,7 +250,7 @@ class UAGB_Init_Blocks {
 	/**
 	 * Function to integrate CF7 Forms.
 	 *
-	 * @since x.x.x
+	 * @since 1.10.0
 	 */
 	public function get_cf7_forms() {
 
@@ -275,11 +278,47 @@ class UAGB_Init_Blocks {
 
 		if ( empty( $field_options ) ) {
 			$field_options = array(
-				'-1' => __( 'You have not added any Contact Form 7 yet.', 'uael' ),
+				'-1' => __( 'You have not added any Contact Form 7 yet.', 'ultimate-addons-for-gutenberg' ),
 			);
 		}
 		return $field_options;
 	}
+
+	/**
+	 * Returns all gravity forms with ids
+	 *
+	 * @since x.x.x
+	 * @return array Key Value paired array.
+	 */
+	public function get_gravity_forms() {
+
+		$field_options = array();
+
+		if ( class_exists( 'GFForms' ) ) {
+			$forms            = RGFormsModel::get_forms( null, 'title' );
+			$field_options[0] = array(
+				'value' => -1,
+				'label' => __( 'Select Form', 'ultimate-addons-for-gutenberg' ),
+			);
+			if ( is_array( $forms ) ) {
+				foreach ( $forms as $form ) {
+					$field_options[] = array(
+						'value' => $form->id,
+						'label' => $form->title,
+					);
+				}
+			}
+		}
+
+		if ( empty( $field_options ) ) {
+			$field_options = array(
+				'-1' => __( 'You have not added any Gravity Forms yet.', 'uael' ),
+			);
+		}
+
+		return $field_options;
+	}
+
 }
 
 /**

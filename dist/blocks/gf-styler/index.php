@@ -1,62 +1,44 @@
 <?php
 /**
- * Server-side rendering for the Contact Form 7 Styler.
+ * Server-side rendering for the Gravity Form Styler.
  *
- * @since   1.10.0
+ * @since   x.x.x
  * @package UAGB
  */
 
 /**
- * Renders the Contect Form 7 shortcode.
+ * Renders the Gravity Form shortcode.
  *
- * @since 1.10.0
+ * @since x.x.x
  */
-function uagb_cf7_shortcode() { 	// @codingStandardsIgnoreStart
+function uagb_gf_shortcode() { 	// @codingStandardsIgnoreStart
     $id = intval($_POST['formId']);
-    // @codingStandardsIgnoreEnd
+
+    // @codingStandardsIgnoreEnd    
 	if ( $id && 0 != $id && -1 != $id ) {
-		$data['html'] = do_shortcode( '[contact-form-7 id="' . $id . '" ajax="true"]' );
+		$data['html'] = do_shortcode( '[gravityforms id="' . $id . '" ajax="true"]' );
 	} else {
-		$data['html'] = '<p>' . __( 'Please select a valid Contact Form 7.', 'ultimate-addons-for-gutenberg' ) . '</p>';
+		$data['html'] = '<p>' . __( 'Please select a valid Gravity Form.', 'ultimate-addons-for-gutenberg' ) . '</p>';
 	}
 	wp_send_json_success( $data );
 }
 
-add_action( 'wp_ajax_uagb_cf7_shortcode', 'uagb_cf7_shortcode' );
-add_action( 'wp_ajax_nopriv_uagb_cf7_shortcode', 'uagb_cf7_shortcode' );
-
-
-/**
- * Adds the Contect Form 7 Custom Post Type to REST.
- *
- * @param array  $args Array of arguments.
- * @param string $post_type Post Type.
- * @since 1.10.0
- */
-function uagb_add_cpts_to_api( $args, $post_type ) {
-	if ( 'wpcf7_contact_form' === $post_type ) {
-		$args['show_in_rest'] = true;
-	}
-
-	return $args;
-}
-
-add_filter( 'register_post_type_args', 'uagb_add_cpts_to_api', 10, 2 );
-
+add_action( 'wp_ajax_uagb_gf_shortcode', 'uagb_gf_shortcode' );
+add_action( 'wp_ajax_nopriv_uagb_gf_shortcode', 'uagb_gf_shortcode' );
 
 /**
- * Registers CF7.
+ * Registers Gravity Form.
  *
- * @since 1.10.0
+ * @since x.x.x
  */
-function uagb_blocks_register_cf7_styler() {
+function uagb_blocks_register_gf_styler() {
 	// Check if the register function exists.
 	if ( ! function_exists( 'register_block_type' ) ) {
 		return;
 	}
 
 	register_block_type(
-		'uagb/cf7-styler',
+		'uagb/gf-styler',
 		array(
 			'attributes'      => array(
 				'block_id'                      => array(
@@ -79,6 +61,26 @@ function uagb_blocks_register_cf7_styler() {
 				'formJson'                      => array(
 					'type'    => 'object',
 					'default' => null,
+				),
+				'enableAjax'                    => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
+				'enableTabSupport'              => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
+				'formTabIndex'                  => array(
+					'type'    => 'number',
+					'default' => 0,
+				),
+				'titleDescStyle'                => array(
+					'type'    => 'string',
+					'default' => 'yes',
+				),
+				'titleDescAlignment'            => array(
+					'type'    => 'string',
+					'default' => 'left',
 				),
 				'fieldStyle'                    => array(
 					'type'    => 'string',
@@ -376,10 +378,6 @@ function uagb_blocks_register_cf7_styler() {
 					'type'    => 'boolean',
 					'default' => false,
 				),
-				'validationMsgPosition'         => array(
-					'type'    => 'string',
-					'default' => 'default',
-				),
 				'validationMsgColor'            => array(
 					'type'    => 'string',
 					'default' => '#ff0000',
@@ -388,7 +386,7 @@ function uagb_blocks_register_cf7_styler() {
 					'type'    => 'string',
 					'default' => '',
 				),
-				'enableHighlightBorder'         => array(
+				'advancedValidationSettings'    => array(
 					'type'    => 'boolean',
 					'default' => false,
 				),
@@ -438,14 +436,6 @@ function uagb_blocks_register_cf7_styler() {
 					'default' => false,
 				),
 				'successMsgColor'               => array(
-					'type'    => 'string',
-					'default' => '',
-				),
-				'successMsgBgColor'             => array(
-					'type'    => 'string',
-					'default' => '',
-				),
-				'successMsgBorderColor'         => array(
 					'type'    => 'string',
 					'default' => '',
 				),
@@ -534,45 +524,96 @@ function uagb_blocks_register_cf7_styler() {
 					'type'    => 'string',
 					'default' => 'px',
 				),
+				'successMsgFontSize'            => array(
+					'type'    => 'number',
+					'default' => '',
+				),
+				'successMsgFontSizeType'        => array(
+					'type'    => 'string',
+					'default' => 'px',
+				),
+				'successMsgFontSizeTablet'      => array(
+					'type' => 'number',
+				),
+				'successMsgFontSizeMobile'      => array(
+					'type' => 'number',
+				),
+				'successMsgFontFamily'          => array(
+					'type'    => 'string',
+					'default' => 'Default',
+				),
+				'successMsgFontWeight'          => array(
+					'type' => 'string',
+				),
+				'successMsgFontSubset'          => array(
+					'type' => 'string',
+				),
+				'successMsgLineHeightType'      => array(
+					'type'    => 'string',
+					'default' => 'em',
+				),
+				'successMsgLineHeight'          => array(
+					'type' => 'number',
+				),
+				'successMsgLineHeightTablet'    => array(
+					'type' => 'number',
+				),
+				'successMsgLineHeightMobile'    => array(
+					'type' => 'number',
+				),
+				'successMsgLoadGoogleFonts'     => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
 			),
-			'render_callback' => 'uagb_render_cf7',
+			'render_callback' => 'uagb_render_gf',
 		)
 	);
 }
-add_action( 'init', 'uagb_blocks_register_cf7_styler' );
+add_action( 'init', 'uagb_blocks_register_gf_styler' );
 
 /**
- * Render CF7 HTML.
+ * Render gf HTML.
  *
  * @param array $attributes Array of block attributes.
  *
- * @since 1.10.0
+ * @since x.x.x
  */
-function uagb_render_cf7( $attributes ) {
-	$block_id = 'uagb-cf7-styler-' . $attributes['block_id'];
+function uagb_render_gf( $attributes ) {
+	$block_id = 'uagb-gf-styler-' . $attributes['block_id'];
 	// @codingStandardsIgnoreStart
 	$formId          = $attributes['formId'];
 	$align           = isset( $attributes['align'] ) ? $attributes['align'] : '';
 	$fieldStyle      = isset( $attributes['fieldStyle'] ) ? $attributes['fieldStyle'] : '';
 	$buttonAlignment = isset( $attributes['buttonAlignment'] ) ? $attributes['buttonAlignment'] : '';
 	$enableOveride   = isset( $attributes['enableOveride'] ) ? $attributes['enableOveride'] : '';
-	$validationMsgPosition = isset( $attributes['validationMsgPosition'] ) ? $attributes['validationMsgPosition'] : '';
-	$enableHighlightBorder = isset( $attributes['enableHighlightBorder'] ) ? $attributes['enableHighlightBorder'] : '';
+	$advancedValidationSettings = isset( $attributes['advancedValidationSettings'] ) ? $attributes['advancedValidationSettings'] : '';
+	$enableAjax    	= ( $attributes['enableAjax'] ) ? 'true' : 'false';
+	$formTabIndex 	= ( $attributes['enableTabSupport'] ) ? $attributes['formTabIndex'] : '';
+	$titleDescStyle   = ( isset( $attributes['titleDescStyle'] ) ) ? $attributes['titleDescStyle'] : '';
 
-	$classname  = 'uagb-cf7-styler__align-' . $align . ' ';
-	$classname .= 'uagb-cf7-styler__field-style-' . $fieldStyle . ' ';
-	$classname .= 'uagb-cf7-styler__btn-align-' . $buttonAlignment . ' ';
-	$classname .= 'uagb-cf7-styler__highlight-style-' . $validationMsgPosition . ' ';
-	$classname .= $enableOveride ? ' uagb-cf7-styler__check-style-enabled' : ' ';
-	$classname .= $enableHighlightBorder ? ' uagb-cf7-styler__highlight-border' : '';
+	$classname  = 'uagb-gf-styler__align-' . $align . ' ';
+	$classname .= 'uagb-gf-styler__field-style-' . $fieldStyle . ' ';
+	$classname .= 'uagb-gf-styler__btn-align-' . $buttonAlignment . ' ';
+	$classname .= $enableOveride ? ' uagb-gf-styler__check-style-enabled' : ' ';
+	$classname .= $advancedValidationSettings ? ' uagb-gf-styler__error-yes' : '';
 	$class 		= isset( $attributes['className']) ? $attributes['className'] : '';
+
 	// @codingStandardsIgnoreend
 	ob_start();
+
+	$disableTitleDesc = '';
+
+	if( $titleDescStyle === 'none' ) {
+		$disableTitleDesc = ' title="false" description="false" ';
+	}
+
+
 	if ($formId && 0 != $formId && -1 != $formId) {
 	?>
-		<div class = "<?php echo $class ?> wp-block-uagb-cf7-styler uagb-cf7-styler__outer-wrap" id = "<?php echo $block_id; ?>" >
+		<div class = "<?php echo $class ?> wp-block-uagb-gf-styler uagb-gf-styler__outer-wrap" id = "<?php echo $block_id; ?>" >
 			<div class = "<?php echo $classname; ?>">
-			<?php echo do_shortcode( '[contact-form-7 id="' . $formId . '"]' ); ?>
+			<?php echo do_shortcode( '[gravityforms id="' . $formId . '" ' . $disableTitleDesc . ' ajax="' . $enableAjax . '" tabindex="' . $formTabIndex . '"]' ); ?>
 			</div>
 		</div>
 	<?php
