@@ -164,7 +164,6 @@ class UAGBVideo extends Component {
 			enableStickyVideo,
 			videoWidth,
 			stickyAlignment,
-			videoSpaceType,
 			videoTopSpace,
 			videoBottomSpace,
 			videoLeftSpace,
@@ -596,13 +595,11 @@ class UAGBVideo extends Component {
 						] }
 					/>
 					<hr className="uagb-editor__separator" />
-					<h2 class="uagb-display-heading">{ __(" Spacing from Edges") }</h2>
+					<h2>{ __(" Spacing from Edges (px)") }</h2>
 					<p className="uagb-settings-notice">{ __( "Note: This styling can be only seen at frontend" ) }</p>
-					<ButtonGroup className="uagb-size-type-field uagb-common-spacing" aria-label={ __( "Size Type" ) }>
-						<Button key={ "px" } className="uagb-size-btn" isSmall isPrimary={ videoSpaceType === "px" } aria-pressed={ videoSpaceType === "px" } onClick={ () => setAttributes( { videoSpaceType: "px" } ) }>{ "px" }</Button>
-						<Button key={ "%" } className="uagb-size-btn" isSmall isPrimary={ videoSpaceType === "%" } aria-pressed={ videoSpaceType === "%" } onClick={ () => setAttributes( { videoSpaceType: "%" } ) }>{ "%" }</Button>
-					</ButtonGroup>
+					
 					{ ( stickyAlignment == 'top_left' || stickyAlignment == 'center_left' || stickyAlignment == 'bottom_left' ) && 
+						<Fragment>	
 						<RangeControl
 							label={ UAGB_Block_Icons.left_margin }
 							className={ "uagb-margin-control" }
@@ -612,7 +609,8 @@ class UAGBVideo extends Component {
 							max = { 1000 }
 							beforeIcon = ""
 							allowReset
-						/>	
+						/>							
+						</Fragment>
 					}
 
 					{ ( stickyAlignment == 'top_right' || stickyAlignment == 'center_right' || stickyAlignment == 'bottom_right' ) && 

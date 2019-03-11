@@ -14,6 +14,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 
 
 
+
 		/**
 		 * Block Attributes
 		 *
@@ -1660,7 +1661,6 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'enableStickyVideo'    => false,
 							'videoWidth'           => '300',
 							'stickyAlignment'      => 'top_left',
-							'videoSpaceType'       => '%',
 							'videoTopSpace'        => '',
 							'videoBottomSpace'     => '',
 							'videoLeftSpace'       => '',
