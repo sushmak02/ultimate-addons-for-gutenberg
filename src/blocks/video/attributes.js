@@ -230,9 +230,45 @@ const attributes = {
 		type: "string",
 		default : __("Now Playing: Sticky Video")
 	},
+	infoBarFontFamily: {
+		type: "string",
+		default: "Default",
+	},
+	infoBarFontWeight: {
+		type: "string",
+	},
+	infoBarFontSubset: {
+		type: "string",
+	},
+	infoBarFontSizeType: {
+		type: "string",
+		default: "px"
+	},
+	infoBarLineHeightType: {
+		type: "string",
+		default: "em"
+	},
 	infoBarFontSize: {
 		type: "number",
-		default : ""
+	},
+	infoBarFontSizeTablet: {
+		type: "number",
+	},
+	infoBarFontSizeMobile: {
+		type: "number",
+	},
+	infoBarLineHeight: {
+		type: "number",
+	},
+	infoBarLineHeightTablet: {
+		type: "number",
+	},
+	infoBarLineHeightMobile: {
+		type: "number",
+	},
+	infoBarLoadGoogleFonts: {
+		type: "boolean",
+		default: false	
 	},
 	infoBarTextColor: {
 		type: "string",

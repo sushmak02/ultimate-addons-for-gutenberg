@@ -12,6 +12,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 	 */
 	final class UAGB_Helper {
 
+
 		/**
 		 * Member Variable
 		 *
@@ -294,7 +295,8 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					break;
 					
 				case 'uagb/video':
-					$css .= UAGB_Block_Helper::get_video_css( $blockattr, $block_id );
+					$css .= UAGB_Block_Helper::get_video_css( $blockattr, $block_id );					
+					UAGB_Block_Helper::blocks_video_gfont( $blockattr );
 					break;
 
                 default:
@@ -785,7 +787,6 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			);
 
 			if ( isset( $attributes['categories'] ) && '' != $attributes['categories'] ) {
-
 				$query_args['tax_query'][] = array(
 					'taxonomy' => ( isset( $attributes['taxonomyType'] ) ) ? $attributes['taxonomyType'] : 'category',
 					'field'    => 'id',
@@ -863,7 +864,6 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			$options = array();
 
 			foreach ( $post_types as $post_type ) {
-
 				if ( 'product' == $post_type->name ) {
 					continue;
 				}
@@ -890,14 +890,12 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			$return_array = array();
 
 			foreach ( $post_types as $key => $value ) {
-
 				$post_type = $value['value'];
 
 				$taxonomies = get_object_taxonomies( $post_type, 'objects' );
 				$data       = array();
 
 				foreach ( $taxonomies as $tax_slug => $tax ) {
-
 					if ( ! $tax->public || ! $tax->show_ui ) {
 						continue;
 					}
@@ -909,9 +907,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 					$related_tax = array();
 
 					if ( ! empty( $terms ) ) {
-
 						foreach ( $terms as $t_index => $t_obj ) {
-
 							$related_tax[] = array(
 								'id'   => $t_obj->term_id,
 								'name' => $t_obj->name,
@@ -939,7 +935,6 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 			$posts_created_with_uag = get_option( 'posts-created-with-uagb' );
 
 			if ( false === $posts_created_with_uag ) {
-
 				$query_args = array(
 					'posts_per_page' => -1,
 					'post_status'    => 'publish',
@@ -982,7 +977,7 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 		 * @param  array $is_array Gets an array of the value.
 		 * @since   1.11.0
 		 */
-		static public function hex2rgba( $color, $opacity = false, $is_array = false ) {
+		public static function hex2rgba( $color, $opacity = false, $is_array = false ) {
 
 			$default = $color;
 

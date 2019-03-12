@@ -14,6 +14,12 @@ import CustomImage from "./components/CustomImage"
 import VideoImgSrc from "./VideoImgSrc"
 import VideoStyle from "./styling"
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
+import map from "lodash/map"
+// Import all of our Text Options requirements.
+import TypographyControl from "../../components/typography"
+
+// Import Web font loader for google fonts.
+import WebfontLoader from "../../components/typography/fontloader"
 
 const { __ } = wp.i18n
 
@@ -177,7 +183,18 @@ class UAGBVideo extends Component {
 			closeIconBgColor,
 			enableInfoBar,
 			infoBarText,
-			infoBarFontSize,
+			infoBarFontFamily,	
+			infoBarFontWeight,	
+			infoBarFontSubset,	
+			infoBarFontSizeType,
+			infoBarLineHeightType,
+			infoBarFontSize,	
+			infoBarFontSizeTablet,	
+			infoBarFontSizeMobile,	
+			infoBarLineHeight,	
+			infoBarLineHeightTablet,	
+			infoBarLineHeightMobile,
+			infoBarLoadGoogleFonts,
 			infoBarTextColor,
 			infoBarBgColor,
 			infoBarTextVrSpace,
@@ -191,6 +208,22 @@ class UAGBVideo extends Component {
 			element.innerHTML = VideoStyle( this.props )
 		}
 		const my_block_id = "uagb-video-"+this.props.clientId
+
+		// Load font family.
+		let loadInfoBarGoogleFonts;
+		if( infoBarLoadGoogleFonts == true ) {
+			
+			const hconfig = {
+				google: {
+					families: [ infoBarFontFamily + ( infoBarFontWeight ? ':' + infoBarFontWeight : '' ) ],
+				},
+			};
+
+			loadInfoBarGoogleFonts = (
+				<WebfontLoader config={ hconfig }>
+				</WebfontLoader>
+			)
+		}
 
 		const video_type_setting = (
 			<Fragment>
@@ -745,15 +778,23 @@ class UAGBVideo extends Component {
 							value= { infoBarText }
 							onChange={ value => setAttributes( { infoBarText: value } ) }
 						/>
-						<RangeControl
-							label={ __("Font Size") }
-							value = { infoBarFontSize }
-							onChange = { ( value ) => setAttributes( { infoBarFontSize: value } ) }
-							min = { 0 }
-							max = { 1000 }
-							beforeIcon = ""
-							allowReset
-						/>	
+						<TypographyControl
+							label={ __( "InfoBar Tag" ) }
+							attributes = { attributes }
+							setAttributes = { setAttributes }
+							loadGoogleFonts = { { value: infoBarLoadGoogleFonts, label: __( "infoBarLoadGoogleFonts" ) } }
+							fontFamily = { { value: infoBarFontFamily, label: __( "infoBarFontFamily" ) } }
+							fontWeight = { { value: infoBarFontWeight, label: __( "infoBarFontWeight" ) } }
+							fontSubset = { { value: infoBarFontSubset, label: __( "infoBarFontSubset" ) } }
+							fontSizeType = { { value: infoBarFontSizeType, label: __( "infoBarFontSizeType" ) } }
+							fontSize = { { value: infoBarFontSize, label: __( "infoBarFontSize" ) } }
+							fontSizeMobile = { { value: infoBarFontSizeMobile, label: __( "infoBarFontSizeMobile" ) } }
+							fontSizeTablet= { { value: infoBarFontSizeTablet, label: __( "infoBarFontSizeTablet" ) } }
+							lineHeightType = { { value: infoBarLineHeightType, label: __( "infoBarLineHeightType" ) } }
+							lineHeight = { { value: infoBarLineHeight, label: __( "infoBarLineHeight" ) } }
+							lineHeightMobile = { { value: infoBarLineHeightMobile, label: __( "infoBarLineHeightMobile" ) } }
+							lineHeightTablet= { { value: infoBarLineHeightTablet, label: __( "infoBarLineHeightTablet" ) } }
+						/>
 						<p className="uagb-setting-label">{ __( "Text Color" ) }
 					    <span className="components-base-control__label">
 					    <span className="component-color-indicator" style={{ backgroundColor: infoBarTextColor }} ></span></span></p>
@@ -893,6 +934,7 @@ class UAGBVideo extends Component {
 						</div>
 					</div>
 				</div>
+				{ loadInfoBarGoogleFonts }
 			</Fragment>
 		)
 	}

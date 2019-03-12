@@ -30,14 +30,26 @@ function VideoStyle( props ) {
 		hideStickyVideo,
 		closeIconColor,
 		closeIconBgColor,
-		infoBarFontSize,
 		infoBarTextColor,
 		infoBarBgColor,
 		infoBarTextVrSpace,
 		infoBarTextHrSpace,
+		infoBarFontFamily,	
+		infoBarFontWeight,	
+		infoBarFontSubset,	
+		infoBarFontSizeType,
+		infoBarLineHeightType,
+		infoBarFontSize,	
+		infoBarFontSizeTablet,	
+		infoBarFontSizeMobile,	
+		infoBarLineHeight,	
+		infoBarLineHeightTablet,	
+		infoBarLineHeightMobile,	
 	} = props.attributes
 
 	var selectors = {}	
+	var tablet_selectors = {}
+	var mobile_selectors = {}
 
 	selectors[" .uagb-video__vimeo-wrap a"] = {
 		"color": controlsColor,
@@ -124,11 +136,28 @@ function VideoStyle( props ) {
 			"padding-bottom" : infoBarTextVrSpace+"px",
 			"padding-left" : infoBarTextHrSpace+"px",
 			"padding-right" : infoBarTextHrSpace+"px",
-			"font-size": infoBarFontSize+"px",
+			"font-size": infoBarFontSize+infoBarFontSizeType,
+			"font-family": infoBarFontFamily,
+			"font-weight": infoBarFontWeight,
+			"line-height": infoBarLineHeight + infoBarLineHeightType,
 		}
 	}
 
+	tablet_selectors[" .uagb-video__sticky-infobar"] = {
+		"font-size": infoBarFontSizeTablet + infoBarFontSizeType,
+		"line-height": infoBarLineHeightTablet + infoBarLineHeightType,
+	}	
+
+	mobile_selectors[" .uagb-video__sticky-infobar"] = {
+		"font-size": infoBarFontSizeMobile + infoBarFontSizeType,
+		"line-height": infoBarLineHeightMobile + infoBarLineHeightType,
+	}
+
 	var styling_css = generateCSS( selectors, `.block-editor-page #wpwrap #uagb-video-${ props.clientId }` )
+
+	styling_css += generateCSS( tablet_selectors, `.block-editor-page #wpwrap #uagb-video-${ props.clientId }`, true, "tablet" )
+
+	styling_css += generateCSS( mobile_selectors, `.block-editor-page #wpwrap #uagb-video-${ props.clientId }`, true, "mobile" )
 
 	return styling_css
 

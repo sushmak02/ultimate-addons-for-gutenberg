@@ -14,6 +14,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 
 
+
 		/**
 		 * Get Section Block CSS
 		 *
@@ -3572,7 +3573,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		/**
 		 * Get Video Block CSS
 		 *
-		 * @since 1.4.0
+		 * @since x.x.x
 		 * @param array  $attr The block attributes.
 		 * @param string $id The selector ID.
 		 * @return array The Widget List.
@@ -3695,19 +3696,38 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				);	
 
 				$selectors[" .uagb-video__sticky-infobar"] = array(			
-					"color" => $attr['infoBarTextColor'],
-					"background" => $attr['infoBarBgColor'],
-					"padding-top" => $attr['infoBarTextVrSpace']."px",
+					"color"          => $attr['infoBarTextColor'],
+					"background"     => $attr['infoBarBgColor'],
+					"padding-top"    => $attr['infoBarTextVrSpace']."px",
 					"padding-bottom" => $attr['infoBarTextVrSpace']."px",
-					"padding-left" => $attr['infoBarTextHrSpace']."px",
-					"padding-right" => $attr['infoBarTextHrSpace']."px",
-					"font-size"=> $attr['infoBarFontSize']."px",
+					"padding-left"   => $attr['infoBarTextHrSpace']."px",
+					"padding-right"  => $attr['infoBarTextHrSpace']."px",
+					"font-size"      => $attr['infoBarFontSize'].$attr['infoBarFontSizeType'],
+					'font-family'    => $attr['infoBarFontFamily'],
+					'font-weight'    => $attr['infoBarFontWeight'],
+					'line-height'    => $attr['infoBarLineHeight'] . $attr['infoBarLineHeightType'],
 				);
 			}
 
+			$m_selectors = array(
+				' .uagb-video__sticky-infobar'        => array(
+					'font-size' => $attr['infoBarFontSizeMobile'] . $attr['infoBarFontSizeType'],
+					'line-height' => $attr['infoBarLineHeightMobile'] . $attr['infoBarLineHeightType'],
+				),				
+			);
+
+			$t_selectors = array(
+				' .uagb-video__sticky-infobar'        => array(
+					'font-size' => $attr['infoBarFontSizeTablet'] . $attr['infoBarFontSizeType'],
+					'line-height' => $attr['infoBarLineHeightTablet'] . $attr['infoBarLineHeightType'],
+				),	
+			);
+
 			// @codingStandardsIgnoreEnd
 			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-video-' . $id );
-			return $desktop;
+			$tablet  = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-video-' . $id, 'tablet' );
+			$mobile  = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-video-' . $id, 'mobile' );
+			return $desktop . $tablet . $mobile;
 		}
 
 
@@ -4925,6 +4945,22 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			UAGB_Helper::blocks_google_font( $cta_load_google_font, $cta_font_family, $cta_font_weight, $cta_font_subset );
 			UAGB_Helper::blocks_google_font( $title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset );
 			UAGB_Helper::blocks_google_font( $desc_load_google_font, $desc_font_family, $desc_font_weight, $desc_font_subset );
+		}
+
+		/**
+		 * Adds Google fonts for Video block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_video_gfont( $attr ) {
+
+			$infoBar_load_google_font = isset( $attr['infoBarLoadGoogleFonts'] ) ? $attr['infoBarLoadGoogleFonts'] : '';
+			$infoBar_font_family      = isset( $attr['infoBarFontFamily'] ) ? $attr['infoBarFontFamily'] : '';
+			$infoBar_font_weight      = isset( $attr['infoBarFontWeight'] ) ? $attr['infoBarFontWeight'] : '';
+			$infoBar_font_subset      = isset( $attr['infoBarFontSubset'] ) ? $attr['infoBarFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $infoBar_load_google_font, $infoBar_font_family, $infoBar_font_weight, $infoBar_font_subset );
 		}
 	}
 }
