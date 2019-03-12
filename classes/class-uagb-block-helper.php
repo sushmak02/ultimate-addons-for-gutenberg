@@ -13,6 +13,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 	class UAGB_Block_Helper {
 
 
+
 		/**
 		 * Get Section Block CSS
 		 *
@@ -3583,6 +3584,86 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$attr = array_merge( $defaults, (array) $attr );
 
+			$calc_percetage = 0.67;
+			if( '16_9' === $attr['aspectRatio'] ){
+				$calc_percetage = 0.5625;
+			}else if( '4_3' === $attr['aspectRatio'] ){
+				$calc_percetage = 0.75;
+			}
+
+			$attr['videoBgVrSpace'] = isset( $attr['videoBgVrSpace'] ) ? $attr['videoBgVrSpace'] : 0;
+
+			if( $attr['enableStickyVideo'] ){
+					$selectors = array(
+					' .wpcf7 input:not([type=submit])'    => array(
+						'font-size'   => $attr['inputFontSizeMobile'] . $attr['inputFontSizeType'],
+						'line-height' => $attr['inputLineHeightMobile'] . $attr['inputLineHeightType'],
+					),
+					" .uagb-video__sticky-apply .uagb-video__inner-wrap"=> array(
+						"width"  => $attr['videoWidth']."px",
+						"height" => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",					
+					),
+					" .uagb-video__sticky-apply.uagb-video__sticky-top_left .uagb-video__inner-wrap"=> array(
+						"left" => $attr['videoLeftSpace']. 'px',
+						"top"  => $attr['videoTopSpace'].'px',
+					),
+					" .uagb-video__sticky-apply.uagb-video__sticky-top_right .uagb-video__inner-wrap"=> array(
+						"right" => $attr['videoRightSpace'].'px',
+						"top"   => $attr['videoTopSpace'].'px',
+					),
+					" .uagb-video__sticky-apply.uagb-video__sticky-center_left .uagb-video__inner-wrap"=> array(
+						"left" => $attr['videoLeftSpace'].'px',
+					),
+					" .uagb-video__sticky-apply.uagb-video__sticky-bottom_left .uagb-video__inner-wrap"=> array(
+						"left"   => $attr['videoLeftSpace'].'px',
+						"bottom" => $attr['videoBottomSpace'].'px',
+					),
+					" .uagb-video__sticky-apply.uagb-video__sticky-bottom_right .uagb-video__inner-wrap"=> array(
+						"right"  => $attr['videoRightSpace'].'px',
+						"bottom" => $attr['videoBottomSpace'].'px',
+					),
+					" .uagb-video__sticky-apply.uagb-video__sticky-center_right .uagb-video__inner-wrap"=> array(
+						"left" => $attr['videoRightSpace'].'px',
+					),
+					" .uagb-video__sticky-apply img.uagb-video__thumb"=> array(
+						"padding-top"    => $attr['videoBgVrSpace']."px",
+						"padding-bottom" => $attr['videoBgVrSpace']."px",
+						"padding-left"   => $attr['videoBgHrSpace']."px",
+						"padding-right"  => $attr['videoBgHrSpace']."px",
+						"background"     => $attr['stickyBgColor'],
+						"width"          => $attr['videoWidth']."px",
+						"height"         => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",	
+					),	
+					" .uagb-video__sticky-apply iframe.uagb-video__iframe"=> array(
+						"padding-top"    => $attr['videoBgVrSpace'] ."px",
+						"padding-bottom" => $attr['videoBgVrSpace'] ."px",
+						"padding-left"   => $attr['videoBgHrSpace'] ."px",
+						"padding-right"  => $attr['videoBgHrSpace'] ."px",
+						"background"     => $attr['stickyBgColor'],
+						"width"          => $attr['videoWidth']."px",
+						"height"         => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",	 	
+					),	
+					" .uagb-video__sticky-close svg"=> array(			
+						"fill" => $attr['closeIconColor'],
+					),	
+					" .uagb-video__sticky-close "=> array(			
+						"background" => $attr['closeIconBgColor']
+					),	
+					" .uagb-video__sticky-infobar"=> array(			
+						"color"          => $attr['infoBarTextColor'],
+						"background"     => $attr['infoBarBgColor'],
+						"padding-top"    => $attr['infoBarTextVrSpace']."px",
+						"padding-bottom" => $attr['infoBarTextVrSpace']."px",
+						"padding-left"   => $attr['infoBarTextHrSpace']."px",
+						"padding-right"  => $attr['infoBarTextHrSpace']."px",
+						"font-size"      => $attr['infoBarFontSize'].$attr['infoBarFontSizeType'],
+						'font-family'    => $attr['infoBarFontFamily'],
+						'font-weight'    => $attr['infoBarFontWeight'],
+						'line-height'    => $attr['infoBarLineHeight'] . $attr['infoBarLineHeightType'],
+					),
+				);
+			}
+
 			$selectors[" .uagb-video__vimeo-wrap a"] = array(
 				'color'  => $attr['controlsColor'],
 			);
@@ -3625,87 +3706,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$selectors[" .uagb-video__content-wrap:before"] = array(
 				"background-color"  => $attr['overlayColor'],
 				"opacity" => ( $attr['opacity'] != "" ) ? ( 100 - $attr['opacity'] )/100 : 0.5
-			);
-
-			$calc_percetage = 0.67;
-			if( '16_9' === $attr['aspectRatio'] ){
-				$calc_percetage = 0.5625;
-			}else if( '4_3' === $attr['aspectRatio'] ){
-				$calc_percetage = 0.75;
-			}
-
-			$attr['videoBgVrSpace'] = isset( $attr['videoBgVrSpace'] ) ? $attr['videoBgVrSpace'] : 0;
-
-			if( $attr['enableStickyVideo'] ){
-				$selectors[" .uagb-video__sticky-apply .uagb-video__inner-wrap"] = array(
-					"width" => $attr['videoWidth']."px",
-					"height" => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",					
-				);
-				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-top_left .uagb-video__inner-wrap"] = array(
-					"left" => $attr['videoLeftSpace']. 'px',
-					"top" => $attr['videoTopSpace'].'px',
-				);
-
-				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-top_right .uagb-video__inner-wrap"] = array(
-					"right" => $attr['videoRightSpace'].'px',
-					"top" => $attr['videoTopSpace'].'px',
-				);
-				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-center_left .uagb-video__inner-wrap"] = array(
-					"left" => $attr['videoLeftSpace'].'px',
-				);
-
-				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-bottom_left .uagb-video__inner-wrap"] = array(
-					"left" => $attr['videoLeftSpace'].'px',
-					"bottom" => $attr['videoBottomSpace'].'px',
-				);
-
-				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-bottom_right .uagb-video__inner-wrap"] = array(
-					"right" => $attr['videoRightSpace'].'px',
-					"bottom" => $attr['videoBottomSpace'].'px',
-				);
-				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-center_right .uagb-video__inner-wrap"] = array(
-					"left" => $attr['videoRightSpace'].'px',
-				);
-
-				$selectors[" .uagb-video__sticky-apply img.uagb-video__thumb"] = array(
-					"padding-top" => $attr['videoBgVrSpace']."px",
-					"padding-bottom" => $attr['videoBgVrSpace']."px",
-					"padding-left" => $attr['videoBgHrSpace']."px",
-					"padding-right" => $attr['videoBgHrSpace']."px",
-					"background" => $attr['stickyBgColor'],
-					"width" => $attr['videoWidth']."px",
-					"height" => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",	
-				);	
-				$selectors[" .uagb-video__sticky-apply iframe.uagb-video__iframe"] = array(
-					"padding-top" => $attr['videoBgVrSpace'] ."px",
-					"padding-bottom" => $attr['videoBgVrSpace'] ."px",
-					"padding-left" => $attr['videoBgHrSpace'] ."px",
-					"padding-right" => $attr['videoBgHrSpace'] ."px",
-					"background" => $attr['stickyBgColor'],
-					"width" => $attr['videoWidth']."px",
-					"height" => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",	 	
-				);	
-
-				$selectors[" .uagb-video__sticky-close svg"] = array(			
-					"fill" => $attr['closeIconColor'],
-				);	
-				$selectors[" .uagb-video__sticky-close "] = array(			
-					"background" => $attr['closeIconBgColor']
-				);	
-
-				$selectors[" .uagb-video__sticky-infobar"] = array(			
-					"color"          => $attr['infoBarTextColor'],
-					"background"     => $attr['infoBarBgColor'],
-					"padding-top"    => $attr['infoBarTextVrSpace']."px",
-					"padding-bottom" => $attr['infoBarTextVrSpace']."px",
-					"padding-left"   => $attr['infoBarTextHrSpace']."px",
-					"padding-right"  => $attr['infoBarTextHrSpace']."px",
-					"font-size"      => $attr['infoBarFontSize'].$attr['infoBarFontSizeType'],
-					'font-family'    => $attr['infoBarFontFamily'],
-					'font-weight'    => $attr['infoBarFontWeight'],
-					'line-height'    => $attr['infoBarLineHeight'] . $attr['infoBarLineHeightType'],
-				);
-			}
+			);	
 
 			$m_selectors = array(
 				' .uagb-video__sticky-infobar'        => array(
