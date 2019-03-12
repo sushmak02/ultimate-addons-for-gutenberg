@@ -55,7 +55,6 @@ registerBlockType( "uagb/video", {
 		const {
 			block_id, 
 			className,
-			videoType,
 			autoplay,
 			customThumbnail,
 			sourceType,
@@ -66,7 +65,8 @@ registerBlockType( "uagb/video", {
 			infoBarText,
 			enableInfoBar,
 			stickyAlignment,
-			hideStickyVideo
+			hideStickyVideo,
+			doubleClick
 		} = props.attributes
 
 		const my_block_id = "uagb-video-"+block_id
@@ -107,7 +107,7 @@ registerBlockType( "uagb/video", {
 		if( enableClose ){
 		close_button = <Fragment>
 				<div className="uagb-video__sticky-close">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M14.95 6.46L11.41 10l3.54 3.54-1.41 1.41L10 11.42l-3.53 3.53-1.42-1.42L8.58 10 5.05 6.47l1.42-1.42L10 8.58l3.54-3.53z"></path></svg>
+					<svg className ="uagb-video__close-svg"xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M14.95 6.46L11.41 10l3.54 3.54-1.41 1.41L10 11.42l-3.53 3.53-1.42-1.42L8.58 10 5.05 6.47l1.42-1.42L10 8.58l3.54-3.53z"></path></svg>
 				</div>	
 			</Fragment>
 		}
@@ -132,10 +132,9 @@ registerBlockType( "uagb/video", {
 						`uagb-video__aspect-ratio-${ aspectRatio }`,
 						`uagb-video__${ sourceType }`,
 						{ "uagb-video__autoplay" : autoplay },
-						{ "uagb-video__sticky-enable" : enableStickyVideo },
 						{ "uagb-video__sticky-infobar-wrap" : enableStickyVideo && enableInfoBar },
-						( enableStickyVideo ? `uagb-video__sticky-${ stickyAlignment }` : '' ),
-						( enableStickyVideo ? `uagb-video__hide-sticky-${ hideStickyVideo }` : '' ),
+						( enableStickyVideo ? `uagb-video__sticky-${ stickyAlignment } uagb-video__hide-sticky-${ hideStickyVideo } uagb-video__sticky-enable` : '' ),
+						( doubleClick ? "uagb-video__enable-double-click" : '' ),
 					) }	>	
 					<div className = { "uagb-video__inner-wrap"} >	
 						{ video_desc }

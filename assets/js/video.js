@@ -28,7 +28,7 @@
 					uagbPlayVideo( element)						
 				})
 
-				if (navigator.userAgent.match(/(iPod|iPhone)/)) { 
+				if ( element.find(".uagb-video__enable-double-click").length == 0 && navigator.userAgent.match(/(iPod|iPhone)/)) { 
 					uagbPlayVideo( element)
 				}
 			}else{							

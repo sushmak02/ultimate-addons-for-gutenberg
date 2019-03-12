@@ -13,6 +13,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 	class UAGB_Block_Helper {
 
 
+
 		/**
 		 * Get Section Block CSS
 		 *
@@ -3656,12 +3657,12 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-bottom_left .uagb-video__inner-wrap"] = array(
 					"left" => $attr['videoLeftSpace'].'px',
-					"top" => $attr['videoBottomSpace'].'px',
+					"bottom" => $attr['videoBottomSpace'].'px',
 				);
 
 				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-bottom_right .uagb-video__inner-wrap"] = array(
 					"right" => $attr['videoRightSpace'].'px',
-					"top" => $attr['videoBottomSpace'].'px',
+					"bottom" => $attr['videoBottomSpace'].'px',
 				);
 				$selectors[" .uagb-video__sticky-apply.uagb-video__sticky-center_right .uagb-video__inner-wrap"] = array(
 					"left" => $attr['videoRightSpace'].'px',

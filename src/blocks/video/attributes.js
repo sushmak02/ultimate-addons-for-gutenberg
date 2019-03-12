@@ -250,6 +250,9 @@ const attributes = {
 		type: "number",
 		default : ""
 	},
-
+	doubleClick: {
+		type: "boolean",
+		default: false,
+	},
 }
 export default attributes
