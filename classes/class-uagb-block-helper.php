@@ -13,9 +13,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 	class UAGB_Block_Helper {
 
 
-
-
-
 		/**
 		 * Get Section Block CSS
 		 *
@@ -3199,10 +3196,10 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'border-radius'    => $attr['fieldBorderRadius'] . $attr['fieldBorderRadiusType'],
 					'margin-top'       => $attr['fieldLabelSpacing'] . 'px',
 					'margin-bottom'    => $attr['fieldSpacing'] . 'px',
-					'font-size'        => $attr['labelFontSize'] . $attr['labelFontSizeType'],
-					'font-family'      => $attr['labelFontFamily'],
-					'font-weight'      => $attr['labelFontWeight'],
-					'line-height'      => $attr['labelLineHeight'] . $attr['labelLineHeightType'],
+					'font-size'        => $attr['inputFontSize'] . $attr['inputFontSizeType'],
+					'font-family'      => $attr['inputFontFamily'],
+					'font-weight'      => $attr['inputFontWeight'],
+					'line-height'      => $attr['inputLineHeight'] . $attr['inputLineHeightType'],
 					'text-align'       => $attr['align'],
 				),
 				' .wpcf7 select.wpcf7-form-control.wpcf7-select:not([multiple="multiple"])' => array(
