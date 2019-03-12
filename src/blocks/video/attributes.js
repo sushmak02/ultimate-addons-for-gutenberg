@@ -105,7 +105,7 @@ const attributes = {
 		type: "object",
 		default:{
 			"url": "",
-			"alt": "Video placeholder img",
+			"alt": __("Video placeholder img"),
 		}
 	},
 	imageSize:{
