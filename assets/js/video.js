@@ -28,7 +28,8 @@
 					uagbPlayVideo( element)						
 				})
 
-				if ( element.find(".uagb-video__enable-double-click").length == 0 && navigator.userAgent.match(/(iPod|iPhone)/)) { 
+				var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+				if ( element.find(".uagb-video__enable-double-click").length == 0 && iOS ) { 
 					uagbPlayVideo( element)
 				}
 			}else{							
