@@ -15,6 +15,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 
 
+
 		/**
 		 * Get Section Block CSS
 		 *
@@ -4955,12 +4956,12 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		 */
 		public static function blocks_video_gfont( $attr ) {
 
-			$infoBar_load_google_font = isset( $attr['infoBarLoadGoogleFonts'] ) ? $attr['infoBarLoadGoogleFonts'] : '';
-			$infoBar_font_family      = isset( $attr['infoBarFontFamily'] ) ? $attr['infoBarFontFamily'] : '';
-			$infoBar_font_weight      = isset( $attr['infoBarFontWeight'] ) ? $attr['infoBarFontWeight'] : '';
-			$infoBar_font_subset      = isset( $attr['infoBarFontSubset'] ) ? $attr['infoBarFontSubset'] : '';
+			$info_bar_load_google_font = isset( $attr['infoBarLoadGoogleFonts'] ) ? $attr['infoBarLoadGoogleFonts'] : '';
+			$info_bar_font_family      = isset( $attr['infoBarFontFamily'] ) ? $attr['infoBarFontFamily'] : '';
+			$info_bar_font_weight      = isset( $attr['infoBarFontWeight'] ) ? $attr['infoBarFontWeight'] : '';
+			$info_bar_font_subset      = isset( $attr['infoBarFontSubset'] ) ? $attr['infoBarFontSubset'] : '';
 
-			UAGB_Helper::blocks_google_font( $infoBar_load_google_font, $infoBar_font_family, $infoBar_font_weight, $infoBar_font_subset );
+			UAGB_Helper::blocks_google_font( $info_bar_load_google_font, $info_bar_font_family, $info_bar_font_weight, $info_bar_font_subset );
 		}
 	}
 }
