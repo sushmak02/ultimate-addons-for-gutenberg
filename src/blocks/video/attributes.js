@@ -207,7 +207,7 @@ const attributes = {
 		default : ""
 	},	
 	hideStickyVideo: {
-		type: "number",
+		type: "string",
 		default : "none"
 	},
 	enableClose: {
