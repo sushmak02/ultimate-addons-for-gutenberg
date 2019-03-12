@@ -65,6 +65,7 @@ function VideoStyle( props ) {
 		selectors[" .uagb-video__play-icon img"] = {
 			"max-width" : iconImageWidth+"px",
 			"width" : iconImageWidth+"px",
+			"height" : iconImageWidth+"px",
 			"border-radius": iconimgBorderRadius+"%"
 		}
 		selectors[" .uagb-video__play-icon"] = {

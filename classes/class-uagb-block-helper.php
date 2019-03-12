@@ -12,6 +12,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 	 */
 	class UAGB_Block_Helper {
 
+
 		/**
 		 * Get Section Block CSS
 		 *
@@ -3611,6 +3612,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				$selectors[" .uagb-video__play-icon img"]= array(
 					"max-width" => $attr['iconImageWidth']."px",
 					"width" => $attr['iconImageWidth']."px",
+					"height" => $attr['iconImageWidth']."px",
 					"border-radius"=> $attr['iconimgBorderRadius']."%"
 				);
 				$selectors[" .uagb-video__play-icon"]= array(
