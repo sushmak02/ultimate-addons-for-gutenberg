@@ -27,7 +27,6 @@ function VideoStyle( props ) {
 		videoBgVrSpace,
 		videoBgHrSpace,
 		stickyBgColor,	
-		hideStickyVideo,
 		closeIconColor,
 		closeIconBgColor,
 		infoBarTextColor,
@@ -51,6 +50,60 @@ function VideoStyle( props ) {
 	var tablet_selectors = {}
 	var mobile_selectors = {}
 
+	var calc_percetage = 0.67;
+	if( aspectRatio == '16_9'){
+		calc_percetage = 0.5625
+	}else if( aspectRatio == '4_3' ){
+		calc_percetage = 0.75
+	}
+
+	if( enableStickyVideo ){
+		selectors = {			
+			" .uagb-video__sticky-apply .uagb-video__inner-wrap": {
+				"width" : videoWidth+"px",
+				"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",
+			},
+			" .uagb-video__sticky-apply img.uagb-video__thumb": {
+				"padding-top" : videoBgVrSpace+"px",
+				"padding-bottom" : videoBgVrSpace+"px",
+				"padding-left" : videoBgHrSpace+"px",
+				"padding-right" : videoBgHrSpace+"px",
+				"background" : stickyBgColor,
+				"width" : videoWidth+"px",
+				"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",	
+			},	
+			" .uagb-video__sticky-apply iframe.uagb-video__iframe": {
+				"padding-top" : videoBgVrSpace+"px",
+				"padding-bottom" : videoBgVrSpace+"px",
+				"padding-left" : videoBgHrSpace+"px",
+				"padding-right" : videoBgHrSpace+"px",
+				"background" : stickyBgColor,
+				"width" : videoWidth+"px",
+				"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",	
+			},	
+
+			" .uagb-video__sticky-close svg": {			
+				"fill" : closeIconColor,
+			},	
+			" .uagb-video__sticky-close ": {			
+				"background" : closeIconBgColor
+			},	
+
+			" .uagb-video__sticky-infobar": {			
+				"color" : infoBarTextColor,
+				"background" : infoBarBgColor,
+				"padding-top" : infoBarTextVrSpace+"px",
+				"padding-bottom" : infoBarTextVrSpace+"px",
+				"padding-left" : infoBarTextHrSpace+"px",
+				"padding-right" : infoBarTextHrSpace+"px",
+				"font-size": infoBarFontSize+infoBarFontSizeType,
+				"font-family": infoBarFontFamily,
+				"font-weight": infoBarFontWeight,
+				"line-height": infoBarLineHeight + infoBarLineHeightType,
+			},
+		}
+	}
+
 	selectors[" .uagb-video__vimeo-wrap a"] = {
 		"color": controlsColor,
 	}
@@ -58,7 +111,7 @@ function VideoStyle( props ) {
 		"color": controlsColor,
 	}
 	// Icon css
-	if( sourceType == "icon" ){
+	if( "icon" == sourceType  ){
 		selectors[" .uagb-video__play-icon"] = {
 			"height" : iconSize+"px",
 			"width" : iconSize+"px",			
@@ -89,58 +142,6 @@ function VideoStyle( props ) {
 	selectors[" .uagb-video__content-wrap:before"] = {
 		"background-color" : overlayColor,
 		"opacity": ( typeof opacity != "undefined" ) ? ( 100 - opacity )/100 : 0.5
-	}
-
-	var calc_percetage = 0.67;
-	if( aspectRatio == '16_9'){
-		calc_percetage = 0.5625
-	}else if( aspectRatio == '4_3' ){
-		calc_percetage = 0.75
-	}
-
-	if( enableStickyVideo ){
-		selectors[" .uagb-video__sticky-apply .uagb-video__inner-wrap"] = {
-			"width" : videoWidth+"px",
-			"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",
-		}
-		selectors[" .uagb-video__sticky-apply img.uagb-video__thumb"] = {
-			"padding-top" : videoBgVrSpace+"px",
-			"padding-bottom" : videoBgVrSpace+"px",
-			"padding-left" : videoBgHrSpace+"px",
-			"padding-right" : videoBgHrSpace+"px",
-			"background" : stickyBgColor,
-			"width" : videoWidth+"px",
-			"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",	
-		}	
-		selectors[" .uagb-video__sticky-apply iframe.uagb-video__iframe"] = {
-			"padding-top" : videoBgVrSpace+"px",
-			"padding-bottom" : videoBgVrSpace+"px",
-			"padding-left" : videoBgHrSpace+"px",
-			"padding-right" : videoBgHrSpace+"px",
-			"background" : stickyBgColor,
-			"width" : videoWidth+"px",
-			"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",	
-		}	
-
-		selectors[" .uagb-video__sticky-close svg"] = {			
-			"fill" : closeIconColor,
-		}	
-		selectors[" .uagb-video__sticky-close "] = {			
-			"background" : closeIconBgColor
-		}	
-
-		selectors[" .uagb-video__sticky-infobar"] = {			
-			"color" : infoBarTextColor,
-			"background" : infoBarBgColor,
-			"padding-top" : infoBarTextVrSpace+"px",
-			"padding-bottom" : infoBarTextVrSpace+"px",
-			"padding-left" : infoBarTextHrSpace+"px",
-			"padding-right" : infoBarTextHrSpace+"px",
-			"font-size": infoBarFontSize+infoBarFontSizeType,
-			"font-family": infoBarFontFamily,
-			"font-weight": infoBarFontWeight,
-			"line-height": infoBarLineHeight + infoBarLineHeightType,
-		}
 	}
 
 	tablet_selectors[" .uagb-video__sticky-infobar"] = {
