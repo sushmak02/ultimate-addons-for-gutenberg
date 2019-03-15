@@ -82,6 +82,7 @@ class UAGB_Init_Blocks {
 		wp_enqueue_style(
 			'uagb-block-css', // Handle.
 			UAGB_URL . 'dist/blocks.style.build.css', // Block style CSS.
+			array(),
 			UAGB_VER
 		);
 
@@ -97,6 +98,8 @@ class UAGB_Init_Blocks {
 			( isset( $blocks['post-timeline'] ) && 'disabled' == $blocks['post-timeline'] ) &&
 			( isset( $blocks['content-timeline'] ) && 'disabled' == $blocks['content-timeline'] )
 		) ? false : true;
+
+		$video_flag = ( isset( $blocks['video'] ) && 'disabled' == $blocks['video'] ) ? false : true;
 
 		if ( $masonry_flag ) {
 
@@ -118,6 +121,17 @@ class UAGB_Init_Blocks {
 			);
 		}
 
+		if ( ! ( isset( $blocks['table-of-contents'] ) && 'disabled' == $blocks['table-of-contents'] ) ) {
+
+			wp_enqueue_script(
+				'uagb-table-of-contents', // Handle.
+				UAGB_URL . 'assets/js/table-of-contents.js',
+				array( 'jquery' ), // Dependencies, defined above.
+				UAGB_VER,
+				false // Enqueue the script in the footer.
+			);
+		}
+
 		$value = true;
 
 		if ( did_action( 'elementor/loaded' ) ) {
@@ -132,6 +146,7 @@ class UAGB_Init_Blocks {
 			wp_enqueue_style(
 				'uagb-fontawesome-css', // Handle.
 				$font_awesome, // Block style CSS.
+				array(),
 				UAGB_VER
 			);
 		}
@@ -151,6 +166,7 @@ class UAGB_Init_Blocks {
 			wp_enqueue_style(
 				'uagb-slick-css', // Handle.
 				UAGB_URL . 'assets/css/slick.css', // Block style CSS.
+				array(),
 				UAGB_VER
 			);
 		}
@@ -167,14 +183,16 @@ class UAGB_Init_Blocks {
 			);
 		}
 
-		// Video js.
-		wp_enqueue_script(
-			'uagb-video-js', // Handle.
-			UAGB_URL . 'assets/js/video.js',
-			array( 'jquery' ),
-			UAGB_VER,
-			true // Enqueue the script in the footer.
-		);
+		if ( $video_flag ) {
+			// Video js.
+			wp_enqueue_script(
+				'uagb-video-js', // Handle.
+				UAGB_URL . 'assets/js/video.js',
+				array( 'jquery' ),
+				UAGB_VER,
+				true // Enqueue the script in the footer.
+			);
+		}
 
 		if ( ! wp_script_is( 'jquery', 'enqueued' ) ) {
 			wp_enqueue_script( 'jquery' );
