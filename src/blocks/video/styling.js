@@ -4,12 +4,13 @@
  * @return {object} The inline background type CSS.
  */
 import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
+import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
 
 function VideoStyle( props ) {
 	const {
 		block_id,
 		controlsColor,
-		overlayColor,	
+		overlayColor,
 		sourceType,
 		iconSize,
 		iconHover,
@@ -17,32 +18,32 @@ function VideoStyle( props ) {
 		iconImageWidth,
 		aspectRatio,
 		iconimgBorderRadius,
-		opacity,		
+		opacity,
 		enableStickyVideo,
 		videoWidth,
 		videoBgVrSpace,
 		videoBgHrSpace,
-		stickyBgColor,	
+		stickyBgColor,
 		closeIconColor,
 		closeIconBgColor,
 		infoBarTextColor,
 		infoBarBgColor,
 		infoBarTextVrSpace,
 		infoBarTextHrSpace,
-		infoBarFontFamily,	
-		infoBarFontWeight,	
-		infoBarFontSubset,	
+		infoBarFontFamily,
+		infoBarFontWeight,
+		infoBarFontSubset,
 		infoBarFontSizeType,
 		infoBarLineHeightType,
-		infoBarFontSize,	
-		infoBarFontSizeTablet,	
-		infoBarFontSizeMobile,	
-		infoBarLineHeight,	
-		infoBarLineHeightTablet,	
-		infoBarLineHeightMobile,	
+		infoBarFontSize,
+		infoBarFontSizeTablet,
+		infoBarFontSizeMobile,
+		infoBarLineHeight,
+		infoBarLineHeightTablet,
+		infoBarLineHeightMobile,
 	} = props.attributes
 
-	var selectors = {}	
+	var selectors = {}
 	var tablet_selectors = {}
 	var mobile_selectors = {}
 
@@ -54,48 +55,48 @@ function VideoStyle( props ) {
 	}
 
 	if( enableStickyVideo ){
-		selectors = {			
+		selectors = {
 			" .uagb-video__sticky-apply .uagb-video__inner-wrap": {
-				"width" : videoWidth+"px",
+				"width" : generateCSSUnit(videoWidth , "px"),
 				"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",
 			},
 			" .uagb-video__sticky-apply img.uagb-video__thumb": {
-				"padding-top" : videoBgVrSpace+"px",
-				"padding-bottom" : videoBgVrSpace+"px",
-				"padding-left" : videoBgHrSpace+"px",
-				"padding-right" : videoBgHrSpace+"px",
+				"padding-top" : generateCSSUnit( videoBgVrSpace, "px"),
+				"padding-bottom" : generateCSSUnit( videoBgVrSpace, "px"),
+				"padding-left" : generateCSSUnit( videoBgHrSpace, "px"),
+				"padding-right" : generateCSSUnit( videoBgHrSpace, "px"),
 				"background" : stickyBgColor,
-				"width" : videoWidth+"px",
-				"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",	
-			},	
+				"width" : generateCSSUnit( videoWidth, "px"),
+				"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",
+			},
 			" .uagb-video__sticky-apply iframe.uagb-video__iframe": {
-				"padding-top" : videoBgVrSpace+"px",
-				"padding-bottom" : videoBgVrSpace+"px",
-				"padding-left" : videoBgHrSpace+"px",
-				"padding-right" : videoBgHrSpace+"px",
+				"padding-top" : generateCSSUnit( videoBgVrSpace, "px"),
+				"padding-bottom" : generateCSSUnit( videoBgVrSpace, "px"),
+				"padding-left" : generateCSSUnit( videoBgHrSpace, "px"),
+				"padding-right" : generateCSSUnit( videoBgHrSpace, "px"),
 				"background" : stickyBgColor,
-				"width" : videoWidth+"px",
-				"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",	
-			},	
+				"width" : generateCSSUnit( videoWidth+"px"),
+				"height" : "calc( "+videoWidth+"px *"+calc_percetage+" )",
+			},
 
-			" .uagb-video__sticky-close svg": {			
+			" .uagb-video__sticky-close svg": {
 				"fill" : closeIconColor,
-			},	
-			" .uagb-video__sticky-close ": {			
+			},
+			" .uagb-video__sticky-close ": {
 				"background" : closeIconBgColor
-			},	
+			},
 
-			" .uagb-video__sticky-infobar": {			
+			" .uagb-video__sticky-infobar": {
 				"color" : infoBarTextColor,
 				"background" : infoBarBgColor,
-				"padding-top" : infoBarTextVrSpace+"px",
-				"padding-bottom" : infoBarTextVrSpace+"px",
-				"padding-left" : infoBarTextHrSpace+"px",
-				"padding-right" : infoBarTextHrSpace+"px",
-				"font-size": infoBarFontSize+infoBarFontSizeType,
+				"padding-top" : generateCSSUnit( infoBarTextVrSpace, "px"),
+				"padding-bottom" : generateCSSUnit( infoBarTextVrSpace, "px"),
+				"padding-left" : generateCSSUnit( infoBarTextHrSpace, "px"),
+				"padding-right" : generateCSSUnit( infoBarTextHrSpace, "px"),
+				"font-size": generateCSSUnit( infoBarFontSize, infoBarFontSizeType ),
 				"font-family": infoBarFontFamily,
 				"font-weight": infoBarFontWeight,
-				"line-height": infoBarLineHeight + infoBarLineHeightType,
+				"line-height": generateCSSUnit( infoBarLineHeight, infoBarLineHeightType),
 			},
 		}
 	}
@@ -109,45 +110,45 @@ function VideoStyle( props ) {
 	// Icon css
 	if( "icon" == sourceType  ){
 		selectors[" .uagb-video__play-icon"] = {
-			"height" : iconSize+"px",
-			"width" : iconSize+"px",			
+			"height" : generateCSSUnit( iconSize, "px"),
+			"width" : generateCSSUnit( iconSize, "px"),
 		}
 		selectors[" .uagb-video__play-icon svg"] = {
-			"height" : iconSize+"px",
-			"width" : iconSize+"px",
+			"height" : generateCSSUnit( iconSize, "px"),
+			"width" : generateCSSUnit( iconSize, "px"),
 			"fill": iconColor,
-			"line-height" : iconSize+"px",
+			"line-height" : generateCSSUnit( iconSize, "px"),
 		}
-		
+
 		selectors[" .uagb-video__content-wrap:hover .uagb-video__play-icon svg"] = {
 			"fill" : iconHover,
 		}
 	}else{
 		selectors[" .uagb-video__play-icon img"] = {
-			"max-width" : iconImageWidth+"px",
-			"width" : iconImageWidth+"px",
-			"height" : iconImageWidth+"px",
-			"border-radius": iconimgBorderRadius+"%"
+			"max-width" : generateCSSUnit( iconImageWidth, "px"),
+			"width" : generateCSSUnit( iconImageWidth, "px"),
+			"height" : generateCSSUnit( iconImageWidth, "px"),
+			"border-radius": generateCSSUnit( iconimgBorderRadius,"%"),
 		}
 		selectors[" .uagb-video__play-icon"] = {
-			"height" : iconImageWidth+"px",
-			"width" : iconImageWidth+"px",
+			"height" : generateCSSUnit( iconImageWidth, "px"),
+			"width" : generateCSSUnit( iconImageWidth, "px"),
 		}
 	}
-	
+
 	selectors[" .uagb-video__content-wrap:before"] = {
 		"background-color" : overlayColor,
 		"opacity": ( typeof opacity != "undefined" ) ? ( 100 - opacity )/100 : 0.5
 	}
 
 	tablet_selectors[" .uagb-video__sticky-infobar"] = {
-		"font-size": infoBarFontSizeTablet + infoBarFontSizeType,
-		"line-height": infoBarLineHeightTablet + infoBarLineHeightType,
-	}	
+		"font-size": generateCSSUnit( infoBarFontSizeTablet, infoBarFontSizeType),
+		"line-height": generateCSSUnit( infoBarLineHeightTablet, infoBarLineHeightType),
+	}
 
 	mobile_selectors[" .uagb-video__sticky-infobar"] = {
-		"font-size": infoBarFontSizeMobile + infoBarFontSizeType,
-		"line-height": infoBarLineHeightMobile + infoBarLineHeightType,
+		"font-size": generateCSSUnit( infoBarFontSizeMobile, infoBarFontSizeType),
+		"line-height": generateCSSUnit( infoBarLineHeightMobile, infoBarLineHeightType),
 	}
 
 	var styling_css = generateCSS( selectors, `.block-editor-page #wpwrap #uagb-video-${ props.clientId }` )

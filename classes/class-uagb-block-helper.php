@@ -3730,52 +3730,48 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			if( $attr['enableStickyVideo'] ){
 					$selectors = array(
-					' .wpcf7 input:not([type=submit])'    => array(
-						'font-size'   => $attr['inputFontSizeMobile'] . $attr['inputFontSizeType'],
-						'line-height' => $attr['inputLineHeightMobile'] . $attr['inputLineHeightType'],
-					),
 					" .uagb-video__sticky-apply .uagb-video__inner-wrap"=> array(
-						"width"  => $attr['videoWidth']."px",
+						"width"  => UAGB_Helper::get_css_value( $attr['videoWidth'] , "px"),
 						"height" => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",
 					),
 					" .uagb-video__sticky-apply.uagb-video__sticky-top_left .uagb-video__inner-wrap"=> array(
-						"left" => $attr['videoLeftSpace']. 'px',
-						"top"  => $attr['videoTopSpace'].'px',
+						"left" => UAGB_Helper::get_css_value( $attr['videoLeftSpace'], 'px' ),
+						"top"  => UAGB_Helper::get_css_value( $attr['videoTopSpace'],'px' ),
 					),
 					" .uagb-video__sticky-apply.uagb-video__sticky-top_right .uagb-video__inner-wrap"=> array(
-						"right" => $attr['videoRightSpace'].'px',
-						"top"   => $attr['videoTopSpace'].'px',
+						"right" => UAGB_Helper::get_css_value( $attr['videoRightSpace'], 'px'),
+						"top"   => UAGB_Helper::get_css_value( $attr['videoTopSpace'], 'px'),
 					),
 					" .uagb-video__sticky-apply.uagb-video__sticky-center_left .uagb-video__inner-wrap"=> array(
-						"left" => $attr['videoLeftSpace'].'px',
+						"left" => UAGB_Helper::get_css_value( $attr['videoLeftSpace'], 'px'),
 					),
 					" .uagb-video__sticky-apply.uagb-video__sticky-bottom_left .uagb-video__inner-wrap"=> array(
-						"left"   => $attr['videoLeftSpace'].'px',
-						"bottom" => $attr['videoBottomSpace'].'px',
+						"left"   => UAGB_Helper::get_css_value( $attr['videoLeftSpace'], 'px'),
+						"bottom" => UAGB_Helper::get_css_value( $attr['videoBottomSpace'], 'px'),
 					),
 					" .uagb-video__sticky-apply.uagb-video__sticky-bottom_right .uagb-video__inner-wrap"=> array(
-						"right"  => $attr['videoRightSpace'].'px',
-						"bottom" => $attr['videoBottomSpace'].'px',
+						"right"  => UAGB_Helper::get_css_value( $attr['videoRightSpace'], 'px'),
+						"bottom" => UAGB_Helper::get_css_value( $attr['videoBottomSpace'], 'px'),
 					),
 					" .uagb-video__sticky-apply.uagb-video__sticky-center_right .uagb-video__inner-wrap"=> array(
-						"left" => $attr['videoRightSpace'].'px',
+						"left" => UAGB_Helper::get_css_value( $attr['videoRightSpace'],'px'),
 					),
 					" .uagb-video__sticky-apply img.uagb-video__thumb"=> array(
-						"padding-top"    => $attr['videoBgVrSpace']."px",
-						"padding-bottom" => $attr['videoBgVrSpace']."px",
-						"padding-left"   => $attr['videoBgHrSpace']."px",
-						"padding-right"  => $attr['videoBgHrSpace']."px",
+						"padding-top"    => UAGB_Helper::get_css_value( $attr['videoBgVrSpace'], "px"),
+						"padding-bottom" => UAGB_Helper::get_css_value( $attr['videoBgVrSpace'], "px"),
+						"padding-left"   => UAGB_Helper::get_css_value( $attr['videoBgHrSpace'], "px"),
+						"padding-right"  => UAGB_Helper::get_css_value( $attr['videoBgHrSpace'], "px"),
+						"width"          => UAGB_Helper::get_css_value( $attr['videoWidth'], "px"),
 						"background"     => $attr['stickyBgColor'],
-						"width"          => $attr['videoWidth']."px",
 						"height"         => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",
 					),
 					" .uagb-video__sticky-apply iframe.uagb-video__iframe"=> array(
-						"padding-top"    => $attr['videoBgVrSpace'] ."px",
-						"padding-bottom" => $attr['videoBgVrSpace'] ."px",
-						"padding-left"   => $attr['videoBgHrSpace'] ."px",
-						"padding-right"  => $attr['videoBgHrSpace'] ."px",
+						"padding-top"    => UAGB_Helper::get_css_value( $attr['videoBgVrSpace'], "px"),
+						"padding-bottom" => UAGB_Helper::get_css_value( $attr['videoBgVrSpace'], "px"),
+						"padding-left"   => UAGB_Helper::get_css_value( $attr['videoBgHrSpace'], "px"),
+						"padding-right"  => UAGB_Helper::get_css_value( $attr['videoBgHrSpace'], "px"),
+						"width"          => UAGB_Helper::get_css_value( $attr['videoWidth'], "px"),
 						"background"     => $attr['stickyBgColor'],
-						"width"          => $attr['videoWidth']."px",
 						"height"         => "calc( ".$attr['videoWidth']."px * ".$calc_percetage." )",
 					),
 					" .uagb-video__sticky-close svg"=> array(
@@ -3787,14 +3783,14 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					" .uagb-video__sticky-infobar"=> array(
 						"color"          => $attr['infoBarTextColor'],
 						"background"     => $attr['infoBarBgColor'],
-						"padding-top"    => $attr['infoBarTextVrSpace']."px",
-						"padding-bottom" => $attr['infoBarTextVrSpace']."px",
-						"padding-left"   => $attr['infoBarTextHrSpace']."px",
-						"padding-right"  => $attr['infoBarTextHrSpace']."px",
-						"font-size"      => $attr['infoBarFontSize'].$attr['infoBarFontSizeType'],
+						"padding-top"    => UAGB_Helper::get_css_value( $attr['infoBarTextVrSpace'], "px"),
+						"padding-bottom" => UAGB_Helper::get_css_value( $attr['infoBarTextVrSpace'], "px"),
+						"padding-left"   => UAGB_Helper::get_css_value( $attr['infoBarTextHrSpace'], "px"),
+						"padding-right"  => UAGB_Helper::get_css_value( $attr['infoBarTextHrSpace'], "px"),
+						"font-size"      => UAGB_Helper::get_css_value( $attr['infoBarFontSize'], $attr['infoBarFontSizeType']),
 						'font-family'    => $attr['infoBarFontFamily'],
 						'font-weight'    => $attr['infoBarFontWeight'],
-						'line-height'    => $attr['infoBarLineHeight'] . $attr['infoBarLineHeightType'],
+						'line-height'    => UAGB_Helper::get_css_value( $attr['infoBarLineHeight'], $attr['infoBarLineHeightType']),
 					),
 				);
 			}
@@ -3809,14 +3805,14 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			if( 'icon' === $attr['sourceType'] ){
 				$selectors[" .uagb-video__play-icon"] = array(
-					"height" => $attr['iconSize']."px",
-					"width" => $attr['iconSize']."px",
+					"height" => UAGB_Helper::get_css_value( $attr['iconSize'], "px"),
+					"width"  => UAGB_Helper::get_css_value( $attr['iconSize'], "px"),
 				);
 				$selectors[" .uagb-video__play-icon svg"] = array(
-					"height" => $attr['iconSize']."px",
-					"width" => $attr['iconSize']."px",
-					"fill" => $attr['iconColor'],
-					"line-height" => $attr['iconSize']."px",
+					"height"      => UAGB_Helper::get_css_value( $attr['iconSize'], "px"),
+					"width"       => UAGB_Helper::get_css_value( $attr['iconSize'], "px"),
+					"fill"        => $attr['iconColor'],
+					"line-height" => UAGB_Helper::get_css_value( $attr['iconSize'], "px"),
 				);
 
 				$selectors[" .uagb-video__content-wrap:hover .uagb-video__play-icon svg"] = array(
@@ -3826,14 +3822,14 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			}else{
 
 				$selectors[" .uagb-video__play-icon img"]= array(
-					"max-width" => $attr['iconImageWidth']."px",
-					"width" => $attr['iconImageWidth']."px",
-					"height" => $attr['iconImageWidth']."px",
-					"border-radius"=> $attr['iconimgBorderRadius']."%"
+					"max-width"     => UAGB_Helper::get_css_value( $attr['iconImageWidth'],"px"),
+					"width"         => UAGB_Helper::get_css_value( $attr['iconImageWidth'],"px"),
+					"height"        => UAGB_Helper::get_css_value( $attr['iconImageWidth'],"px"),
+					"border-radius" => UAGB_Helper::get_css_value( $attr['iconimgBorderRadius'],"%"),
 				);
 				$selectors[" .uagb-video__play-icon"]= array(
-					"height" => $attr['iconImageWidth']."px",
-					"width" => $attr['iconImageWidth']."px",
+					"height" => UAGB_Helper::get_css_value( $attr['iconImageWidth'], "px"),
+					"width" => UAGB_Helper::get_css_value( $attr['iconImageWidth'], "px"),
 				);
 
 			}
@@ -3845,23 +3841,34 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$m_selectors = array(
 				' .uagb-video__sticky-infobar'        => array(
-					'font-size' => $attr['infoBarFontSizeMobile'] . $attr['infoBarFontSizeType'],
-					'line-height' => $attr['infoBarLineHeightMobile'] . $attr['infoBarLineHeightType'],
+					'font-size'   => UAGB_Helper::get_css_value( $attr['infoBarFontSizeMobile'], $attr['infoBarFontSizeType']),
+					'line-height' => UAGB_Helper::get_css_value( $attr['infoBarLineHeightMobile'], $attr['infoBarLineHeightType']),
 				),
 			);
 
 			$t_selectors = array(
 				' .uagb-video__sticky-infobar'        => array(
-					'font-size' => $attr['infoBarFontSizeTablet'] . $attr['infoBarFontSizeType'],
-					'line-height' => $attr['infoBarLineHeightTablet'] . $attr['infoBarLineHeightType'],
+					'font-size' => UAGB_Helper::get_css_value( $attr['infoBarFontSizeTablet'], $attr['infoBarFontSizeType']),
+					'line-height' => UAGB_Helper::get_css_value( $attr['infoBarLineHeightTablet'], $attr['infoBarLineHeightType']),
 				),
 			);
 
 			// @codingStandardsIgnoreEnd
+
 			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-video-' . $id );
-			$tablet  = UAGB_Helper::generate_responsive_css( $t_selectors, '#uagb-video-' . $id, 'tablet' );
-			$mobile  = UAGB_Helper::generate_responsive_css( $m_selectors, '#uagb-video-' . $id, 'mobile' );
-			return $desktop . $tablet . $mobile;
+
+			$tablet = UAGB_Helper::generate_css( $t_selectors, '#uagb-video-' . $id );
+
+			$mobile = UAGB_Helper::generate_css( $m_selectors, '#uagb-video-' . $id );
+
+			$generated_css = array(
+				'desktop' => $desktop,
+				'tablet'  => $tablet,
+				'mobile'  => $mobile,
+			);
+
+			return $generated_css;
+
 		}
 
 
@@ -4404,10 +4411,10 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				),
 			);
 
-			$desktop = UAGB_Helper::generate_css( $selectors, '#uagb-gf-styler-' . $id );
-			$tablet  = UAGB_Helper::generate_css( $t_selectors, '#uagb-gf-styler-' . $id );
-			$mobile  = UAGB_Helper::generate_css( $m_selectors, '#uagb-gf-styler-' . $id );
-			$arr     = array(
+			$desktop       = UAGB_Helper::generate_css( $selectors, '#uagb-gf-styler-' . $id );
+			$tablet        = UAGB_Helper::generate_css( $t_selectors, '#uagb-gf-styler-' . $id );
+			$mobile        = UAGB_Helper::generate_css( $m_selectors, '#uagb-gf-styler-' . $id );
+			$generated_css = array(
 				'desktop' => $desktop,
 				'tablet'  => $tablet,
 				'mobile'  => $mobile,
