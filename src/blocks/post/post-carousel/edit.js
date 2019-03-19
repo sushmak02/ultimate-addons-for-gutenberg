@@ -71,12 +71,20 @@ class UAGBPostCarousel extends Component {
 	}
 
 	componentDidMount() {
-
 		this.props.setAttributes( { block_id: this.props.clientId } )
-
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-post-carousel-style-" + this.props.clientId )
 		document.head.appendChild( $style )
+	}
+
+	componentDidUpdate() {
+
+		var equalHeight =  this.props.attributes.equalHeight
+		if( equalHeight ){
+			uagb_carousel_height(this.props.clientId)
+		}else{
+			uagb_carousel_unset_height(this.props.clientId)
+		}
 	}
 
 	render() {
@@ -195,6 +203,7 @@ class UAGBPostCarousel extends Component {
 			linkBox,
 			postType,
 			taxonomyType,
+			equalHeight
 		} = attributes
 
 		const hoverSettings = (
@@ -441,6 +450,11 @@ class UAGBPostCarousel extends Component {
 							}
 						}
 					</TabPanel>
+					<ToggleControl
+						label={ __( "Equal Height" ) }
+						checked={ equalHeight }
+						onChange={ ( value ) => setAttributes( { equalHeight: ! equalHeight } ) }
+					/>
 				</PanelBody>
 				<PanelBody title={ __( "Carousel" ) } initialOpen={ false }>
 					<ToggleControl
@@ -790,31 +804,24 @@ class UAGBPostCarousel extends Component {
 				</PanelBody>
 
 				<PanelBody title={ __( "Colors" ) } initialOpen={ false }>
-					{ imgPosition == "top" &&
-						<Fragment>
-							<p className="uagb-setting-label">{ __( "Blog Background Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: bgColor }} ></span></span></p>
-							<ColorPalette
-								value={ bgColor }
-								onChange={ ( colorValue ) => setAttributes( { bgColor: colorValue } ) }
-								allowReset
-							/>
-						</Fragment>
-					}
-					<Fragment>
-						<p className="uagb-setting-label">{ __( "Title Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: titleColor }} ></span></span></p>
-						<ColorPalette
-							value={ titleColor }
-							onChange={ ( colorValue ) => setAttributes( { titleColor: colorValue } ) }
-							allowReset
-						/>
-					</Fragment>
-					<Fragment>
-						<p className="uagb-setting-label">{ __( "Meta Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: metaColor }} ></span></span></p>
-						<ColorPalette
-							value={ metaColor }
-							onChange={ ( colorValue ) => setAttributes( { metaColor: colorValue } ) }
-						/>
-					</Fragment>
+					<p className="uagb-setting-label">{ __( "Blog Background Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: bgColor }} ></span></span></p>
+					<ColorPalette
+						value={ bgColor }
+						onChange={ ( colorValue ) => setAttributes( { bgColor: colorValue } ) }
+						allowReset
+					/>
+					<p className="uagb-setting-label">{ __( "Title Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: titleColor }} ></span></span></p>
+					<ColorPalette
+						value={ titleColor }
+						onChange={ ( colorValue ) => setAttributes( { titleColor: colorValue } ) }
+						allowReset
+					/>
+					<p className="uagb-setting-label">{ __( "Meta Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: metaColor }} ></span></span></p>
+					<ColorPalette
+						value={ metaColor }
+						onChange={ ( colorValue ) => setAttributes( { metaColor: colorValue } ) }
+					/>
+
 					{ displayPostExcerpt == true &&
 						<Fragment>
 							<p className="uagb-setting-label">{ __( "Excerpt Color" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: excerptColor }} ></span></span></p>
