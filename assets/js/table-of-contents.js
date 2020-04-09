@@ -111,6 +111,8 @@
 
 			$this_scope = $( id );
 
+			// console.log($this_scope);
+
 			if ( $this_scope.find( '.uag-toc__collapsible-wrap' ).length > 0 ) {
 				$this_scope.find( '.uagb-toc__title-wrap' ).addClass( 'uagb-toc__is-collapsible' );
 			}
@@ -134,7 +136,12 @@
 					});
 
 					if ( undefined !== point_header && point_header.length > 0 ) {
+						console.log(point_header);
+						let sel = $( 'body' ).find('.page-links a');
+						// window.open("https://www.geeksforgeeks.org", "_top");
+						console.log(sel[0].href);
 						point_header.before(function (ind) {
+							// console.log(parseTocSlug( $( point_header[ind] ).text() ));
 							var anchor = parseTocSlug( $( point_header[ind] ).text() );
 							return '<span id="' + anchor + '" class="uag-toc__heading-anchor"></span>';
 						});

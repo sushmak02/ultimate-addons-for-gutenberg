@@ -999,7 +999,7 @@ class UAGBTableOfContentsEdit extends Component {
 export default compose(
 	withSelect( ( select, ownProps ) => {
 
-		const getData = ( headerData, a ) => {
+		const getData = ( headerData, a, pageNum, pageBreaks ) => {
 			headerData.map( ( header ) => {
 				let innerBlock = header.innerBlocks;
 				if( innerBlock.length > 0 ) {
@@ -1009,24 +1009,38 @@ export default compose(
 						} else {
 							if( element.name === 'core/heading' ) {
 								a.push( element );
+								pageBreaks.push(pageNum);
 							}
 
 							if( element.name === 'uagb/advanced-heading' ) {
 								a.push( element );
+								pageBreaks.push( pageNum );
+							}
+
+							if ( element.name === 'core/nextpage' ) {
+								pageNum++;
 							}
 						}
 					});
 				} else {
 					if( header.name === 'core/heading' ) {
 						a.push( header );
+						pageBreaks.push(pageNum);
 					}
 
 					if( header.name === 'uagb/advanced-heading' ) {
 						a.push( header );
+						pageBreaks.push(pageNum);
+					}
+
+					if ( header.name === 'core/nextpage' ) {
+					    pageNum++;
 					}
 				}
 
 			});
+			console.log(pageNum);
+			console.log(pageBreaks);
 			return a; 
 		}
 
@@ -1051,8 +1065,10 @@ export default compose(
 			return decodeURI( encodeURIComponent( parsedSlug ) );
 		}
 
+		let pageNum = 1;
+		let pageBreaks = [];
 		let a = [];
-		let all_headers = getData( select( 'core/block-editor' ).getBlocks(), a );
+		let all_headers = getData( select( 'core/block-editor' ).getBlocks(), a, pageNum, pageBreaks );
 		console.log(all_headers);
 		let headers = [];
 
@@ -1060,6 +1076,8 @@ export default compose(
 			all_headers.forEach((heading, key) => {
 
 				let heading_attr = heading.attributes
+
+				console.log(heading.attributes)
 
 				const contentLevel = ( heading.name == 'uagb/advanced-heading' ) ? parseInt( heading_attr.headingTag[1] ) : heading_attr.level
 
