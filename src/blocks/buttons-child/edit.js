@@ -35,7 +35,8 @@ const {
 	TabPanel,
 	ButtonGroup,
 	Button,
-	Dashicon
+	Dashicon,
+	TextControl
 } = wp.components
 
 class UAGBButtonsChild extends Component {
@@ -82,6 +83,7 @@ class UAGBButtonsChild extends Component {
 			lineHeightType,
 			lineHeightMobile,
 			lineHeightTablet,
+			linkRel
 		} = attributes;
         var element = document.getElementById( "uagb-style-buttons-" + this.props.clientId )
 
@@ -111,6 +113,13 @@ class UAGBButtonsChild extends Component {
 						] }
 						onChange={ value => {
 							setAttributes( { target: value } )
+						} }
+					/>
+					<TextControl
+						label= { __( "Link rel" ) }
+						value= { linkRel }
+						onChange={ value => {
+							setAttributes( { linkRel: value } )
 						} }
 					/>
 					<TabPanel className="uagb-size-type-field-tabs" activeClass="active-tab"
@@ -554,7 +563,6 @@ class UAGBButtonsChild extends Component {
 								} }
 								allowedFormats={ [ "bold", "italic", "strikethrough" ] }
 								className='uagb-button__link'
-								rel ="noopener noreferrer"
 								keepPlaceholderOnFocus
 							/>	
 						</div>

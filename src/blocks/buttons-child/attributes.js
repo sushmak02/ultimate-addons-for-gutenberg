@@ -123,6 +123,10 @@ const attributes = {
 		type: "number",
 		default:"" 
 	} ,
+	linkRel: {
+		type: "string",
+		default:"noopener noreferrer" 
+	},
 }
 
 export default attributes

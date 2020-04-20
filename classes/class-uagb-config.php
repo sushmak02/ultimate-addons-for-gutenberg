@@ -1076,6 +1076,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'lineHeightType' => '',
 							'lineHeightMobile' => '',
 							'lineHeightTablet' => '',
+							'linkRel' => 'noopener noreferrer',
 						),
 					),
 					'uagb/post-carousel'     => array(

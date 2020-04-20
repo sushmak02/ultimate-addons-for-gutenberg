@@ -21,8 +21,16 @@ export default function save( props ) {
 		block_id,
 		target,
 		link,
-		label
+		label,
+		linkRel
 	} = props.attributes
+
+	var rel = linkRel;	
+	
+	if ( "_self" === target ) {
+
+		rel = undefined;
+	}
 
 	return (
 		<div className={ classnames(
@@ -37,7 +45,7 @@ export default function save( props ) {
 						tagName='a'
 						className='uagb-button__link'
 						href={ link }
-						rel ="noopener noreferrer"
+						rel ={ rel }
 						target={ target }
 					/>
 				</div>
