@@ -144,24 +144,6 @@ class UAGBButtonsChild extends Component {
 					initialOpen={ true }
 					className="uagb__url-panel-body"
 				>
-					<p className="components-base-control__label">{ __( "Link" ) }</p>
-					<URLInput
-						value={ link }
-						onChange={ value => {
-							setAttributes( { link: value } )
-						} }
-					/>
-					<SelectControl
-						label={ __( "Link Target" ) }
-						value={ target }
-						options={ [
-							{ value: "_self", label: __( "Same Window" ) },
-							{ value: "_blank", label: __( "New Window" ) },
-						] }
-						onChange={ value => {
-							setAttributes( { target: value } )
-						} }
-					/>
 					<TextControl
 						label= { __( "Link rel" ) }
 						value= { linkRel }
