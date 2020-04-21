@@ -699,9 +699,15 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					"margin-bottom" => UAGB_Helper::get_css_value( $attr['gap'], 'px' )
 				);
 
-				$selectors[" .uagb-buttons-layout-wrap"] = array (
-					 "flex-direction" => "column"
-				);
+				if ( $attr['childMigrate'] ) {
+					$selectors[" .uagb-buttons-layout-wrap"] = array (
+						"flex-direction" => "column"
+					);
+				} else {
+					$selectors[" .uagb-buttons__wrap"] = array (
+						"flex-direction" => "column"
+					);
+				}
 
 			} else if ( "tablet" == $attr['stack'] ) {
 
@@ -711,9 +717,15 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					"margin-bottom" => UAGB_Helper::get_css_value( $attr['gap'], 'px' )
 				);
 
-				$t_selectors[" .uagb-buttons-layout-wrap"] = array (
-					 "flex-direction" => "column"
-				);
+				if ( $attr['childMigrate'] ) {
+					$t_selectors[" .uagb-buttons-layout-wrap"] = array (
+						"flex-direction" => "column"
+					);
+				} else {
+					$t_selectors[" .uagb-buttons__wrap"] = array (
+						"flex-direction" => "column"
+					);
+				}
 
 			} else if ( "mobile" == $attr['stack'] ) {
 
@@ -723,40 +735,34 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					"margin-bottom" => UAGB_Helper::get_css_value( $attr['gap'], 'px' )
 				);
 
-				$m_selectors[" .uagb-buttons-layout-wrap"] = array (
-					 "flex-direction" => "column"
-				);
+				if ( $attr['childMigrate'] ) {
+					$m_selectors[" .uagb-buttons-layout-wrap"] = array (
+						"flex-direction" => "column"
+					);
+				} else {
+					$m_selectors[" .uagb-buttons__wrap"] = array (
+						"flex-direction" => "column"
+					);
+				}
 			}
 			$alignment = ( $attr['align'] == 'left' ) ? 'flex-start' : ( ( $attr['align'] == 'right' ) ? 'flex-end' : 'center' );
 
-			if( 'full' === $attr['align'] ) {
-				$selectors[' .uagb-buttons__wrap .uagb-button__wrapper'] = array (
-					'justify-content' => 'center',
-					'-webkit-box-pack'=> 'center',
-					'-ms-flex-pack' => 'center',
-					'justify-content' => 'center',
-					'-webkit-box-align' => 'center',
-					'-ms-flex-align' => 'center',
-					'align-items' => 'center',
-					'width' => '100%',
-					'text-align' => 'center',
-				);
-			} else {
-				$selectors[' .uagb-buttons__wrap'] = array (
-					'justify-content' => $alignment,
-					'-webkit-box-pack'=> $alignment,
-					'-ms-flex-pack' => $alignment,
-					'justify-content' => $alignment,
-					'-webkit-box-align' => $alignment,
-					'-ms-flex-align' => $alignment,
-					'align-items' => $alignment,
+			$selectors[' .uagb-buttons__wrap'] = array (
+				'justify-content' => $alignment,
+				'-webkit-box-pack'=> $alignment,
+				'-ms-flex-pack' => $alignment,
+				'justify-content' => $alignment,
+				'-webkit-box-align' => $alignment,
+				'-ms-flex-align' => $alignment,
+				'align-items' => $alignment,
+			);
+
+			if ( $attr['childMigrate'] ) {
+				$selectors[' .uagb-buttons-repeater'] = array (
+					'font-family'   => $attr['fontFamily'],
+					'font-weight'   => $attr['fontWeight'],
 				);
 			}
-
-			$selectors[' .uagb-buttons-repeater'] = array (
-				'font-family'   => $attr['fontFamily'],
-				'font-weight'   => $attr['fontWeight'],
-			);
 
 			if ( ! $attr['childMigrate'] ) {
 				
@@ -843,9 +849,12 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$m_selectors = array();
 			$t_selectors = array();
 
+			$attr['sizeType'] = isset( $attr['sizeType'] ) ? $attr['sizeType'] : 'px';
+			$attr['lineHeightType'] = isset( $attr['lineHeightType'] ) ? $attr['lineHeightType'] : 'em';
+			
 			$selectors[$wrapper] = array (
-				'font-size'     => $attr['size'] . $attr['sizeType'],
-				'line-height'   => $attr['lineHeight'] . $attr['lineHeightType'],
+				'font-size'     => UAGB_Helper::get_css_value( $attr['size'], $attr['sizeType'] ),
+				'line-height'   => UAGB_Helper::get_css_value( $attr['lineHeight'], $attr['lineHeightType'] ),
 				'border-width'  => UAGB_Helper::get_css_value( $attr['borderWidth'], 'px' ),
 				'border-color'  => $attr['borderColor'],
 				'border-style'  => $attr['borderStyle'],
@@ -859,9 +868,9 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				'border-color' => $attr['borderHColor'],
 				'border-style' => $attr['borderStyle'],
 			);
-
+			
 			$selectors[$wrapper . ' a.uagb-button__link'] = array (
-				'padding' => $attr['vPadding'] . 'px ' . $attr['hPadding'] . 'px',
+				'padding' => UAGB_Helper::get_css_value( $attr['vPadding'], 'px' ) .' '. UAGB_Helper::get_css_value( $attr['hPadding'], 'px' ),
 				'color'   => $attr['color']
 			);
 
@@ -1653,7 +1662,12 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$m_selectors = array();
 			$t_selectors = array();
 
+			$selectors[" .uagb-social-share__wrap .block-editor-inner-blocks"] = array(
+			"text-align" => UAGB_Helper::get_css_value( $attr['align'] ),
+			);
+
 			$selectors[".uagb-social-share__layout-vertical .uagb-ss__wrapper"] = array(
+				"padding"  => UAGB_Helper::get_css_value( $attr['bgSize'], 'px' ),
 				"margin-left"  => 0,
 				"margin-right"  => 0,
 				"margin-bottom"  => UAGB_Helper::get_css_value( $attr['gap'], 'px' )
@@ -1663,21 +1677,10 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				"flex-direction" => "column"
 			);
 
-			$selectors[".uagb-social-share__layout-vertical .uagb-ss__wrapper:last-child"] = array(
-				"margin-bottom"  => 0
-			);
-
 			$selectors[".uagb-social-share__layout-horizontal .uagb-ss__wrapper"] = array(
+				"padding"  => UAGB_Helper::get_css_value( $attr['bgSize'], 'px' ),
 				"margin-left"  => UAGB_Helper::get_css_value( ( $attr['gap']/2 ), 'px' ),
 				"margin-right"  => UAGB_Helper::get_css_value( ( $attr['gap']/2 ), 'px' )
-			);
-
-			$selectors[".uagb-social-share__layout-horizontal .uagb-ss__wrapper:first-child"] = array(
-				"margin-left"  => 0
-			);
-
-			$selectors[".uagb-social-share__layout-horizontal .uagb-ss__wrapper:last-child"] = array(
-				"margin-right"  => 0
 			);
 
 			$selectors[" .uagb-ss__wrapper"] = array(
@@ -1758,52 +1761,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				"margin-right"  => 0
 			);
 
-
-			foreach ( $attr['socials'] as $key => $social ) {
-
-				$social['icon_color'] = ( isset( $social['icon_color'] ) ) ? $social['icon_color'] : '';
-				$social['icon_bg_color'] = ( isset( $social['icon_bg_color'] ) ) ? $social['icon_bg_color'] : '';		
-				$social['icon_hover_color'] = ( isset( $social['icon_hover_color'] ) ) ? $social['icon_hover_color'] : '';
-				$social['icon_bg_hover_color'] = ( isset( $social['icon_bg_hover_color'] ) ) ? $social['icon_bg_hover_color'] : '';
-
-				if ( $attr['social_count'] <= $key ) {
-					break;
-				}
-
-				$selectors[" .uagb-ss-repeater-" . $key . " a.uagb-ss__link"] = array (
-					"color" => $social['icon_color'],
-					"padding" => UAGB_Helper::get_css_value( $attr['bgSize'], $attr['bgSizeType'] )
-				);
-
-				$m_selectors[" .uagb-ss-repeater-" . $key . " a.uagb-ss__link"] = array (
-					"padding" => UAGB_Helper::get_css_value( $attr['bgSizeMobile'], $attr['bgSizeType'] )
-				);
-
-				$t_selectors[" .uagb-ss-repeater-" . $key . " a.uagb-ss__link"] = array (
-					"padding" => UAGB_Helper::get_css_value( $attr['bgSizeTablet'], $attr['bgSizeType'] )
-				);
-
-				$selectors[" .uagb-ss-repeater-" . $key . " a.uagb-ss__link svg"] = array (
-					"fill" => $social['icon_color'],
-				);
-
-				$selectors[" .uagb-ss-repeater-" . $key . ":hover a.uagb-ss__link"] = array (
-					"color" => $social['icon_hover_color']
-				);
-
-				$selectors[" .uagb-ss-repeater-" . $key . ":hover a.uagb-ss__link svg"] = array (
-					"fill" => $social['icon_hover_color']
-				);
-
-				$selectors[" .uagb-ss-repeater-" . $key] = array (
-					"background" => $social['icon_bg_color']
-				);
-
-				$selectors[" .uagb-ss-repeater-" . $key . ":hover"] = array (
-					"background" => $social['icon_bg_hover_color']
-				);
-			}
-
 			$selectors[" .uagb-social-share__wrap"] = array(
 				"justify-content"  => $alignment,
 				"-webkit-box-pack" => $alignment,
@@ -1813,6 +1770,24 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 				"-ms-flex-align" => $alignment,
 				"align-items" => $alignment,
 			);
+
+			if ( ! $attr['childMigrate'] ) {
+
+				foreach ( $attr['socials'] as $key => $socials ) {
+					
+					$socials['icon_color'] = ( isset( $socials['icon_color'] ) ) ? $socials['icon_color'] : '';
+					$socials['icon_hover_color'] = ( isset( $socials['icon_hover_color'] ) ) ? $socials['icon_hover_color'] : '';
+					$socials['icon_bg_color'] = ( isset( $socials['icon_bg_color'] ) ) ? $socials['icon_bg_color'] : '';
+					$socials['icon_bg_hover_color'] = ( isset( $socials['icon_bg_hover_color'] ) ) ? $socials['icon_bg_hover_color'] : '';
+
+					if ( $attr['social_count'] <= $key ) {
+						break;
+					}
+
+					$child_selectors = self::get_social_share_child_selectors( $socials, $key, $attr['childMigrate'] );
+					$selectors = array_merge( $selectors, (array) $child_selectors );
+				}
+			}
 
 			if ( 'horizontal' == $attr['social_layout'] ) {
 
@@ -1825,11 +1800,14 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					);
 
 					$selectors[" .uagb-social-share__wrap"] = array (
-						"flex-direction" => "column"
-					);
-
-					$selectors[" .uagb-ss__wrapper:last-child"] = array (
-						"margin-bottom" => 0
+						"flex-direction" => "column",
+						"justify-content"  => $alignment,
+						"-webkit-box-pack" => $alignment,
+						"-ms-flex-pack" => $alignment,
+						"justify-content" => $alignment,
+						"-webkit-box-align" => $alignment,
+						"-ms-flex-align" => $alignment,
+						"align-items" => $alignment,
 					);
 
 				} else if ( "tablet" == $attr['stack'] ) {
@@ -1841,11 +1819,14 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					);
 
 					$t_selectors[" .uagb-social-share__wrap"] = array (
-						"flex-direction" => "column"
-					);
-
-					$t_selectors[" .uagb-ss__wrapper:last-child"] = array (
-						"margin-bottom" => 0
+						"flex-direction" => "column",
+						"justify-content"  => $alignment,
+						"-webkit-box-pack" => $alignment,
+						"-ms-flex-pack" => $alignment,
+						"justify-content" => $alignment,
+						"-webkit-box-align" => $alignment,
+						"-ms-flex-align" => $alignment,
+						"align-items" => $alignment,
 					);
 
 				} else if ( "mobile" == $attr['stack'] ) {
@@ -1857,14 +1838,18 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					);
 
 					$m_selectors[" .uagb-social-share__wrap"] = array (
-						"flex-direction" => "column"
-					);
-
-					$m_selectors[" .uagb-ss__wrapper:last-child"] = array (
-						"margin-bottom" => 0
+						"flex-direction" => "column",
+						"justify-content"  => $alignment,
+						"-webkit-box-pack" => $alignment,
+						"-ms-flex-pack" => $alignment,
+						"justify-content" => $alignment,
+						"-webkit-box-align" => $alignment,
+						"-ms-flex-align" => $alignment,
+						"align-items" => $alignment,
 					);
 				}
 			}
+			
 
 			// @codingStandardsIgnoreEnd
 
@@ -1884,6 +1869,75 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			return $generated_css;
 		}
+
+		/**
+		 * Get social share Block CSS
+		 *
+		 * @since x.x.x
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
+		public static function get_social_share_child_css( $attr, $id ) { 			// @codingStandardsIgnoreStart
+
+			$defaults = UAGB_Helper::$block_list['uagb/social-share-child']['attributes'];
+
+			$attr = array_merge( $defaults, (array) $attr );
+
+			$selectors = self::get_social_share_child_selectors( $attr, $id, true );
+
+			// @codingStandardsIgnoreEnd
+
+			$desktop = UAGB_Helper::generate_css( $selectors, '.uagb-block-' . $id );
+
+			$generated_css = array(
+				'desktop' => $desktop,
+				'tablet'  => '',
+				'mobile'  => '',
+			);
+
+			return $generated_css;
+		}
+
+		/**
+		 * Get Social share Block CSS
+		 *
+		 * @since x.x.x
+		 * @param array  $attr The block attributes.
+		 * @param string $id The key for the Icon List Item.
+		 * @param string $childMigrate The child migration flag.
+		 * @return array The Widget List.
+		 */
+		public static function get_social_share_child_selectors( $attr, $id, $childMigrate ) { 			// @codingStandardsIgnoreStart
+
+			$wrapper = ( ! $childMigrate ) ? " .uagb-ss-repeater-" . $id : ".uagb-ss-repeater";
+
+			$selectors[$wrapper . " a.uagb-ss__link"] = array(
+				"color" => $attr['icon_color']
+			);
+			$selectors[$wrapper . " a.uagb-ss__link"] = array(
+				"color" => $attr['icon_color']
+			);
+			$selectors[$wrapper . " a.uagb-ss__link svg"] = array(
+				"fill" => $attr['icon_color']
+			);
+			$selectors[$wrapper . ":hover a.uagb-ss__link"] = array (
+				"color" => $attr['icon_hover_color']
+			);
+			$selectors[$wrapper . ":hover a.uagb-ss__link svg"] = array (
+				"fill" => $attr['icon_hover_color']
+			);
+			
+			$selectors[$wrapper . ".uagb-ss__wrapper"] = array (
+				"background" => $attr['icon_bg_color'],
+			);
+			$selectors[$wrapper . ".uagb-ss__wrapper:hover"] = array (
+				"background" => $attr['icon_bg_hover_color'],
+			);
+
+			return $selectors;
+		}
+
 
 		/**
 		 * Get Icon List Block CSS
@@ -2618,7 +2672,48 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$attr = array_merge( $defaults, (array) $attr );
 
 			$selectors = self::get_post_selectors( $attr );
+			
+			// Pagination CSS
+			$selectors[" .uagb-post-pagination-wrap"] = array (
 
+				"margin-top" => UAGB_Helper::get_css_value( $attr['paginationSpacing'], "px" ),
+				"text-align" => $attr['paginationAlignment'],
+			);
+			if ( 'filled' === $attr['paginationLayout'] ) {
+				$selectors[" .uagb-post-pagination-wrap .page-numbers.current"] = array ( 
+					
+					"background-color" =>  $attr['paginationBgActiveColor'],
+					"color" =>  $attr['paginationActiveColor'],
+				);
+				$selectors[" .uagb-post-pagination-wrap a"] = array ( 
+					
+					"background-color" =>  $attr['paginationBgColor'],
+					"color" =>  $attr['paginationColor'],
+				);
+			} else  {
+
+				$selectors[" .uagb-post-pagination-wrap .page-numbers.current"] = array ( 
+					
+					"border-style" => "solid",
+					"background-color"=> "transparent",
+					"border-width" =>  UAGB_Helper::get_css_value( $attr['paginationBorderSize'], "px" ),
+					"border-color" =>  $attr['paginationBorderActiveColor'],
+					"border-radius" => UAGB_Helper::get_css_value( $attr['paginationBorderRadius'], "px" ),
+					"color" =>  $attr['paginationActiveColor'],
+				);
+
+				$selectors[" .uagb-post-pagination-wrap a"] = array ( 
+					
+					"border-style" => "solid",
+					"background-color"=> "transparent",
+					"border-width" =>  UAGB_Helper::get_css_value( $attr['paginationBorderSize'], "px" ),
+					"border-color" =>  $attr['paginationBorderColor'],
+					"border-radius" => UAGB_Helper::get_css_value( $attr['paginationBorderRadius'], "px" ),
+					"color" =>  $attr['paginationColor'],
+				);
+
+			}
+			
 			$m_selectors = self::get_post_mobile_selectors( $attr );
 
 			$t_selectors = self::get_post_tablet_selectors( $attr );
@@ -4765,7 +4860,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			}
 
 			if ( '' !== $attr['scrollToTopBgColor'] ) {
-				$desktop .= '.uagb-toc__scroll-top { background: ' . $attr['scrollToTopBgColor'] . '; }';
+				$desktop .= '.uagb-toc__scroll-top.uagb-toc__show-scroll { background: ' . $attr['scrollToTopBgColor'] . '; }';
 			}
 
 			$generated_css = array(
@@ -4887,7 +4982,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$selector      = $base_selector . $id;
 			$js            = 'var ssLinks = document.querySelectorAll( "' . $selector . '" ); for (let j = 0; j < ssLinks.length; j++) { var ssLink = ssLinks[j].querySelectorAll( ".uagb-ss__link" );';
 			$js           .= 'for (let i = 0; i < ssLink.length; i++) { ssLink[i].addEventListener( "click", function() {' .
-					'var social_url = this.dataset.href; ' .
+					'var social_url = this.dataset.href;' .
 					'var target = ""; ' .
 					'if( social_url == "mailto:?body=" ){ ' .
 						'target = "_self";' .
@@ -4895,7 +4990,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'var request_url = social_url + window.location.href ;' .
 					'window.open( request_url,target );' .
 				'}); }}';
-
 			return $js;
 		}
 

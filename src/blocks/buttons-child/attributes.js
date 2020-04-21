@@ -42,7 +42,7 @@ const attributes = {
 	} ,
 	link: {
 		type: "string",
-		default:"#" 
+		default:"" 
 	} ,
 	target: {
 		type: "string",
@@ -127,6 +127,9 @@ const attributes = {
 		type: "string",
 		default:"noopener noreferrer" 
 	},
+	opensInNewTab: {
+		type: "boolean"
+	}
 }
 
 export default attributes

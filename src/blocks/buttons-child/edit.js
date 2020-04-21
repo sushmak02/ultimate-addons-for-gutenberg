@@ -9,6 +9,7 @@ import FontIconPicker from "@fonticonpicker/react-fonticonpicker"
 import styling from "./styling"
 import renderSVG from "../../../dist/blocks/uagb-controls/renderIcon"
 import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
+
 const { __ } = wp.i18n
 
 const {
@@ -17,15 +18,11 @@ const {
 } = wp.element
 
 const {
-	AlignmentToolbar,
 	BlockControls,
-	BlockAlignmentToolbar,
 	InspectorControls,
 	RichText,
-	PanelColorSettings,
-	URLInput,
 	ColorPalette,
-	InnerBlocks
+	__experimentalLinkControl
 } = wp.blockEditor
 
 const {
@@ -37,16 +34,22 @@ const {
 	Button,
 	Dashicon,
 	TextControl
+	Popover,
+	ToolbarButton,
+	ToolbarGroup,
 } = wp.components
-
 class UAGBButtonsChild extends Component {
 	
 	constructor() {
 		super( ...arguments )
-		
+		this.onClickLinkSettings = this.onClickLinkSettings.bind(this)
+		this.onChangeOpensInNewTab = this.onChangeOpensInNewTab.bind(this)
+		this.state = {
+			isURLPickerOpen:false,
+		}
 	}
 	componentDidMount() {
-
+		
 		// Assigning block_id in the attribute.
 		this.props.setAttributes( { block_id: this.props.clientId } )
         this.props.setAttributes( { classMigrate: true } )
@@ -54,6 +57,27 @@ class UAGBButtonsChild extends Component {
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-style-buttons-" + this.props.clientId )
 		document.head.appendChild( $style )
+	}
+	onClickLinkSettings () {
+		
+		const { attributes, setAttributes } = this.props
+		const { target } = attributes 
+		if ( "_self" === target ) {
+			setAttributes( { opensInNewTab: false } )
+		} else if ( "_blank" === target ) {
+			setAttributes( { opensInNewTab: true } )
+		}
+
+		this.setState( {
+			isURLPickerOpen: true
+		}) 
+	}
+	onChangeOpensInNewTab ( value ) {
+		if ( true === value ) {
+			this.props.setAttributes( { target: '_blank' } )
+		} else {
+			this.props.setAttributes( { target: '_self' } )
+		}
 	}
 	render() {
 		
@@ -63,7 +87,6 @@ class UAGBButtonsChild extends Component {
 			className,
 			label,
 			link,
-			target,
 			size,
 			vPadding,
 			hPadding,
@@ -84,12 +107,36 @@ class UAGBButtonsChild extends Component {
 			lineHeightMobile,
 			lineHeightTablet,
 			linkRel
+			opensInNewTab
 		} = attributes;
         var element = document.getElementById( "uagb-style-buttons-" + this.props.clientId )
 
 		if( null != element && "undefined" != typeof element ) {
 			element.innerHTML = styling( this.props )
 		}
+
+		const linkControl = this.state.isURLPickerOpen && (
+
+			<Popover
+				position="bottom center"
+				onClose={ () => this.setState( {
+					isURLPickerOpen: false
+				}) }
+			>
+				<__experimentalLinkControl
+					value={ { url:link, opensInNewTab:opensInNewTab }  }
+					onChange={( {
+					url: newURL = '',
+					opensInNewTab: newOpensInNewTab,
+					} ) => {
+						setAttributes( { link: newURL } );
+						setAttributes( { opensInNewTab: newOpensInNewTab } );
+						this.onChangeOpensInNewTab( newOpensInNewTab );
+						
+					} }
+				/>
+			</Popover>
+		);
 		const buttonControls = () => {
 			return (
 				<PanelBody
@@ -544,6 +591,18 @@ class UAGBButtonsChild extends Component {
 
         return (
             <Fragment>
+
+				<BlockControls>
+					<ToolbarGroup>
+						<ToolbarButton
+							icon = 'admin-links'
+							name="link"
+							title={ __( 'Link' ) }
+							onClick={ this.onClickLinkSettings }
+						/>
+					</ToolbarGroup>
+				</BlockControls>
+				{ linkControl }
 				<InspectorControls>
 					{ buttonControls }
 				</InspectorControls>
