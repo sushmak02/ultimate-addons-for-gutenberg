@@ -33,7 +33,7 @@ const {
 	ButtonGroup,
 	Button,
 	Dashicon,
-	TextControl
+	TextControl,
 	Popover,
 	ToolbarButton,
 	ToolbarGroup,
@@ -106,7 +106,7 @@ class UAGBButtonsChild extends Component {
 			lineHeightType,
 			lineHeightMobile,
 			lineHeightTablet,
-			linkRel
+			linkRel,
 			opensInNewTab
 		} = attributes;
         var element = document.getElementById( "uagb-style-buttons-" + this.props.clientId )
