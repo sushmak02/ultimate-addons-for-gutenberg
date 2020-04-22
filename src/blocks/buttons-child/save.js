@@ -24,14 +24,7 @@ export default function save( props ) {
 		label,
 		linkRel
 	} = props.attributes
-
-	var rel = linkRel;	
 	
-	if ( "_self" === target ) {
-
-		rel = undefined;
-	}
-
 	return (
 		<div className={ classnames(
 			className,
@@ -45,7 +38,7 @@ export default function save( props ) {
 						tagName='a'
 						className='uagb-button__link'
 						href={ link }
-						rel ={ rel }
+						rel ={ linkRel }
 						target={ target }
 					/>
 				</div>
