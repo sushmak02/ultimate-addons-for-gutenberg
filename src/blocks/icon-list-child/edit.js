@@ -305,7 +305,7 @@ class UAGBIconListChild extends Component {
 				<InspectorControls>
 					<PanelBody title={ __( "Icon Settings" ) } initialOpen={ true } >
 						<SelectControl
-							label={ __( "Image / Icon" ) }
+							label={ __( "Image / Icon", "ultimate-addons-for-gutenberg" ) }
 							value={ image_icon }
 							options={ [
 								{ value: "icon", label: __( "Icon" ) },
