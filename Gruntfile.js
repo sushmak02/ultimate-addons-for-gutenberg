@@ -138,7 +138,16 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-
+			languages: {
+				src: 'languages/ultimate-addons-for-gutenberg.pot',
+				overwrite: true,
+				replacements: [
+					{
+						from: /(Project-Id-Version: Ultimate Addons for Gutenberg )[0-9\.]+/,
+						to: '$1 <%= pkg.version %>',
+					},
+				],
+			},
 			
 		},
 		wp_readme_to_markdown: {
@@ -148,6 +157,9 @@ module.exports = function(grunt) {
 				}
 			},
 		},
+		shell: {
+			translations: [ 'npm run makepot' ].join( ' && ' ),
+		},
 	})
 
 	/* Load Tasks */
@@ -156,6 +168,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( "grunt-contrib-clean" )
 
 	grunt.loadNpmTasks( "grunt-wp-i18n" )
+	grunt.loadNpmTasks( "grunt-shell" )
 
 	/* Version Bump Task */
 	grunt.loadNpmTasks( "grunt-bumpup" )
@@ -168,10 +181,7 @@ module.exports = function(grunt) {
 
 	/* Register task started */
 	grunt.registerTask("release", ["clean:zip", "copy","compress","clean:main"])
-	grunt.registerTask("i18n", ["addtextdomain", "makepot"])
-
-	// Default
-	//grunt.registerTask('default', ['style']);
+	grunt.registerTask("i18n", [ 'shell:translations', 'replace:languages' ])
 
 	// Version Bump `grunt bump-version --ver=<version-number>`
 	grunt.registerTask( "bump-version", function() {

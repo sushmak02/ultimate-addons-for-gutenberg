@@ -9,7 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "package": "rm *.zip && wp dist-archive . ultimate-addons-for-gutenberg"
+    "translate": "node scripts/translate.js",
+    "package": "rm *.zip && wp dist-archive . ultimate-addons-for-gutenberg",
+    "makepot": "wp i18n make-pot . --skip-audit --exclude=\".github,.wordpress-org,scripts,config,assets,node_modules,vendor,wordpress\" --headers='{\"Last-Translator\":\"support@bsf.io\",\"Report-Msgid-Bugs-To\":\"https://wordpress.org/support/plugin/ultimate-addons-for-gutenberg\"}' --file-comment=\"Copyright (c) $(date +'%Y') Brainstorm Force, LLC. All Rights Reserved.\" languages/ultimate-addons-for-gutenberg.pot"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-text-replace": "^0.4.0",
     "grunt-wp-i18n": "^1.0.3",
+    "grunt-shell": "^2.1.0",
     "gzip-size": "^4.1.0",
     "jquery": "^3.5.0",
     "kind-of": ">=6.0.3",
