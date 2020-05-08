@@ -54,6 +54,12 @@ class UAGB_Init_Blocks {
 
 		add_action( 'wp_ajax_uagb_cf7_shortcode', array( $this, 'cf7_shortcode' ) );
 		add_action( 'wp_ajax_nopriv_uagb_cf7_shortcode', array( $this, 'cf7_shortcode' ) );
+
+		add_action( 'init', array( $this, 'set_script_translations' ) );
+	}
+
+	public function set_script_translations() {
+		wp_set_script_translations( 'uagb-block-editor-js', 'ultimate-addons-for-gutenberg' );
 	}
 
 	/**

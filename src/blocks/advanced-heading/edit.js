@@ -216,7 +216,7 @@ class UAGBAdvancedHeading extends Component {
 					/>
 				</BlockControls>
 				<InspectorControls>
-					<PanelBody title={ __( "Advanced Heading" ) }>
+					<PanelBody title={ __( "Advanced Heading", "ultimate-addons-for-gutenberg" ) }>
 						<h2>{ __( "Heading" ) }</h2>
 						<SelectControl
 							label={ __( "Heading Tag" ) }
