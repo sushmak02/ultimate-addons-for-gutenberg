@@ -1,0 +1,28 @@
+.block-editor-block-settings-menu__popover {
+
+	.components-popover__content {
+
+		.components-button {
+			position: relative;
+
+			.components-clipboard-button {
+				background: #fff;
+				width: 100%;
+				text-align: left;
+				padding: 0;
+				color: #40464d;
+				box-shadow: none !important;
+				border: 0;
+
+				svg {
+					width: 20px;
+					height: 20px;
+				}
+
+				&:hover {
+					background: #f3f4f5 !important;
+				}
+			}
+		}
+	}
+}
