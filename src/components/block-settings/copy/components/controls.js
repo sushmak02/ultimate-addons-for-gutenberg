@@ -17,7 +17,7 @@ const { serialize } = wp.blocks;
 /**
  * Render plugin
  */
-class CopyBlocks extends Component {
+class Copy extends Component {
 	constructor() {
 		super( ...arguments );
 
@@ -61,17 +61,18 @@ class CopyBlocks extends Component {
 				<PluginBlockSettingsMenuItem
 					icon={ "editor-paste-text" }
 					label={
-						<ClipboardButton
-							text={ this.getSelection() }
-							onCopy={ onCopy }
-						>
-							{ __( 'UAG Copy', 'ultimate-addons-for-gutenberg' ) }
-						</ClipboardButton>
+						<div className="uag-block-settings__copy-wrap">
+							<ClipboardButton
+								text={ this.getSelection() }
+								onCopy={ onCopy }
+							>
+								{ __( 'UAG Copy', 'ultimate-addons-for-gutenberg' ) }
+							</ClipboardButton>
+						</div>
 					}
 					onClick={ () => {
 
 					} }
-					className="uag-copy"
 				>
 				</PluginBlockSettingsMenuItem>
 
@@ -120,4 +121,4 @@ export default compose(
 		return ! props.isDisabled;
 	} ),
 	withSpokenMessages,
-)( CopyBlocks );
+)( Copy );

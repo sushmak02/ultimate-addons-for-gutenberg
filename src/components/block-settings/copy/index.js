@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import CopyBlocks from './components/controls';
+import Copy from './components/controls';
 import "./styles/editor.scss"
 
 /**
@@ -11,5 +11,5 @@ const { registerPlugin } = wp.plugins;
 
 registerPlugin( 'uagb-copy', {
 	icon: "editor-paste-text",
-	render: CopyBlocks,
+	render: Copy,
 } );
