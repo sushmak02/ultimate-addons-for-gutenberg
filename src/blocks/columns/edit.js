@@ -1272,7 +1272,8 @@ class UAGBColumns extends Component {
 					) }>
 						<InnerBlocks
 							template={ getColumnsTemplate( columns ) }
-							templateLock="all"
+							__experimentalMoverDirection="horizontal"
+							templateLock={ false }
 							allowedBlocks={ ALLOWED_BLOCKS }
 						/>
 					</div>

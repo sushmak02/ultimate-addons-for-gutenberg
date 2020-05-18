@@ -11,7 +11,6 @@ import shapes from "./shapes"
 import "./style.scss"
 import "./editor.scss"
 
-
 const { __ } = wp.i18n
 
 const {
@@ -36,7 +35,6 @@ registerBlockType( "uagb/columns", {
 	edit,
 	getEditWrapperProps( attributes ) {
 		return { "data-align": attributes.align }
-		return { "data-valign": attributes.vAlign }
 	},
 	supports: {
 		// Add EditorsKit block navigator toolbar
@@ -52,7 +50,6 @@ registerBlockType( "uagb/columns", {
 			tag,
 			backgroundType,
 			backgroundVideo,
-			contentWidth,
 			align,
 			columns,
 			stack,
@@ -66,7 +63,7 @@ registerBlockType( "uagb/columns", {
 			reverseMobile,
 			topContentAboveShape,
 			bottomContentAboveShape
-		} = props.attributes
+		} = attributes
 
 		const CustomTag = `${tag}`
 
