@@ -5,7 +5,7 @@ Tags: gutenberg, blocks, gutenberg blocks, editor, block
 Requires at least: 4.7
 Requires PHP: 5.6
 Tested up to: 5.4
-Stable tag: 1.14.10
+Stable tag: 1.14.11
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -155,17 +155,35 @@ When you use the Ultimate Addons for Gutenberg along with the free Astra theme, 
 
 == Changelog ==
 
-= 1.14.10.1 =
+= 1.15.0 =
+* New: FAQ - Schema
+* New: How-To Schema
+* Improvement: Advanced Columns : UI Improvements (Column Gap option).
+* Fix: Icon List - Accessibility issue when link is enabled.
+* Fix: Info Box - Hide margin option for Separator.
+* Fix: Post Grid - Multiple AJAX requests generated if Pagination Markup is returned empty.
+* Fix: Post Grid - Pagination not calculating Pages properly.
+* Fix: Settings Icon overlapping on the Label when Gutenberg plugin is active.
+* Fix: 404 error because of empty Font Family passed to link tag.
+* Fix: Advanced Columns - Active state of Vertical alignment option not visible in editor.
+* Fix: Table of Contents - Bullets not showing.
+
+= 1.14.11 =
+* Fix: File Generation issue on WooCommerce Pages.
 * Fix: Advanced Columns - Handled background image attachment type on smaller devices.
 * Fix: Section - Handled background image attachment type on smaller devices.
 * Fix: Icon List - Links overlapping on the Label text.
+* Fix: Icon List - Label length mismatch issue when Image is used for the Icon List.
+* Fix: Multi Buttons - Spacing not working in the editor.
+* Fix: Multi Buttons - Full-Width feature glitch fixed.
+* Fix: Multi Buttons - Alignment option shifted to the side panel.
+* Fix: Table of Content - Extra space at the bottom in the Safari Browser when the Column count is more than 1.
 
 = 1.14.10 =
 * Fix: Icon List - Typography not working on front-end.
 * Fix: Multi Buttons - Changed default alignment to center.
 * Fix: Social Share - Changed default alignment to center.
 * Fix: Team - Fixed the Margin issue in Social Share icons.
-
 
 = 1.14.9 =
 * Improvement: Better options for delete/edit/duplicate action of each item in Icon List, Multi Buttons and Social Share blocks.
