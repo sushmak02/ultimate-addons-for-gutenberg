@@ -132,6 +132,7 @@ class UAGBPostGrid extends Component {
 			displayPostDate,
 			displayPostComment,
 			displayPostExcerpt,
+			displayFullPost,
 			displayPostAuthor,
 			displayPostImage,
 			displayPostTaxonomy,
@@ -701,6 +702,11 @@ class UAGBPostGrid extends Component {
 						label={ __( "Show Excerpt" ) }
 						checked={ displayPostExcerpt }
 						onChange={ ( value ) => setAttributes( { displayPostExcerpt: ! displayPostExcerpt } ) }
+					/>
+					<ToggleControl
+						label={ __( "Show Full Post" ) }
+						checked={ displayFullPost }
+						onChange={ ( value ) => setAttributes( { displayFullPost: ! displayFullPost } ) }
 					/>
 					{ displayPostExcerpt &&
 						<RangeControl

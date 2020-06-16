@@ -257,6 +257,10 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 					'type'    => 'boolean',
 					'default' => true,
 				),
+				'displayFullPost'      => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
 				'excerptLength'           => array(
 					'type'    => 'number',
 					'default' => 25,
@@ -746,6 +750,7 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 								<?php $this->render_title( $attributes ); ?>
 								<?php $this->render_meta( $attributes ); ?>
 								<?php $this->render_excerpt( $attributes ); ?>
+								<?php $this->render_full_post( $attributes ); ?>
 								<?php $this->render_button( $attributes ); ?>
 							</div>
 						</div>
@@ -1161,6 +1166,33 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 			</div>
 			<?php
 			do_action( "uagb_single_post_after_excerpt_{$attributes['post_type']}", get_the_ID(), $attributes );
+		}
+		/**
+		 * Render Full Post HTML.
+		 *
+		 * @param array $attributes Array of block attributes.
+		 *
+		 * @since x.x.x
+		 */
+		public function render_full_post( $attributes ) {
+			if ( ! $attributes['displayFullPost'] ) {
+				return;
+			}
+
+			$length = ( isset( $attributes['excerptLength'] ) ) ? $attributes['excerptLength'] : 25;
+
+			$post = wp_trim_words( the_content() );
+			if ( ! $post ) {
+				$post = null;
+			}
+			$post = apply_filters( "uagb_single_post_full_post_{$attributes['post_type']}", $post, get_the_ID(), $attributes );
+			do_action( "uagb_single_post_before_full_post_{$attributes['post_type']}", get_the_ID(), $attributes );
+			?>
+			<div class="uagb-post__excerpt">
+				<?php echo wp_kses_post( $post ); ?>
+			</div>
+			<?php
+			do_action( "uagb_single_post_after_full_post_{$attributes['post_type']}", get_the_ID(), $attributes );
 		}
 
 		/**
