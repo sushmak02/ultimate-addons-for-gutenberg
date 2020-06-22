@@ -1768,7 +1768,6 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 						'title'       => __( 'Ratings Review', 'ultimate-addons-for-gutenberg' ),
 						'description' => __( 'This block helps you add ratings-review.', 'ultimate-addons-for-gutenberg' ),
 						'default'     => true,
-						//'js_assets'   => array( 'uagb-inline-notice-js', 'uagb-cookie-lib' ),
 						'attributes'  => array(
 							'block_id'              => '',
 							'c_id'                  => null,
