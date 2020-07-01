@@ -10,13 +10,20 @@ import parseSVG from "./parseIcon"
 function renderSVG ( svg ) {
 
 	svg = parseSVG( svg )
+	
 
-	var fontAwesome = UAGB_SVG_Icon[svg]
+	var fontAwesome = UAGB_SVG_Icon[svg['svg']]
+	var style = svg['styles']
+
+	if ( undefined === fontAwesome["svg"][style] ) {
+		style = fontAwesome["styles"]
+		style = style[0]
+	}
 
 	if ( "undefined" != typeof fontAwesome ) {
 
-		var viewbox_array = ( fontAwesome["svg"].hasOwnProperty("brands") ) ? fontAwesome["svg"]["brands"]["viewBox"] : fontAwesome["svg"]["solid"]["viewBox"]
-		var path = ( fontAwesome["svg"].hasOwnProperty("brands") ) ? fontAwesome["svg"]["brands"]["path"] : fontAwesome["svg"]["solid"]["path"]
+		var viewbox_array = fontAwesome["svg"][style]["viewBox"]
+		var path = fontAwesome["svg"][style]["path"]
 		var viewBox = viewbox_array.join( " " )
 
 		return (
