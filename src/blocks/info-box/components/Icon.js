@@ -1,9 +1,5 @@
 import renderSVG from "../../../../dist/blocks/uagb-controls/renderIcon"
 
-const {
-	RichText,
-} = wp.blockEditor
-
 const { __ } = wp.i18n
 
 class Icon extends React.Component {

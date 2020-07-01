@@ -6,12 +6,12 @@
 import classnames from "classnames"
 import Prefix from "./components/Prefix"
 import Title from "./components/Title"
-import InfoBoxDesc from "./components/InfoBoxDesc"
+import Description from "./components/Description"
 import Icon from "./components/Icon"
 import InfoBoxPositionClasses from "./classes"
-import InfoBoxSeparator from "./components/InfoBoxSeparator"
+import Separator from "./components/Separator"
 import CallToAction from "./components/CallToAction"
-import InfoBoxIconImage from "./components/InfoBoxIconImage"
+import Image from "./components/Image"
 
 const {
 	RichText
@@ -46,12 +46,12 @@ export default function save( props ) {
 	if( source_type === "icon" && icon !=="" ) {
 		is_image = <Icon attributes={ props.attributes }/>
 	}else{
-		is_image = <InfoBoxIconImage attributes={ props.attributes } />
+		is_image = <Image attributes={ props.attributes } />
 	}
 
 	var icon_image_html = is_image
 	var seperator_position = seperatorPosition
-	var seperator_html = <InfoBoxSeparator attributes={props.attributes} />
+	var seperator_html = <Separator attributes={props.attributes} />
 	var show_seperator = true
 
 	if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
@@ -82,7 +82,7 @@ export default function save( props ) {
 		<Fragment>
 			{ "none" !== seperatorStyle && ( seperator_position == "after_title"  && show_seperator )&& seperator_html }
 			<div className = "uagb-ifb-text-wrap">
-				{ showDesc && "" !== headingDesc && <InfoBoxDesc attributes={props.attributes} setAttributes = "not_set"/> }
+				{ showDesc && "" !== headingDesc && <Description attributes={props.attributes} setAttributes = "not_set"/> }
 				{ "none" !== seperatorStyle && seperator_position == "after_desc" && seperator_html }
 				{ ctaType !== "none" && <CallToAction attributes={props.attributes} />}
 			</div>

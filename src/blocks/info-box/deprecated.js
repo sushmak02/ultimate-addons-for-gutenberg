@@ -6,15 +6,14 @@
 import classnames from "classnames"
 import Prefix from "./components/Prefix"
 import Title from "./components/Title"
-import InfoBoxDesc from "./components/InfoBoxDesc"
-import InfoBoxIcon from "./components/InfoBoxIcon"
+import Description from "./components/Description"
+import InfoBoxIcon from "./components/deprecated/InfoBoxIcon"
 import Icon from "./components/Icon"
 import InfoBoxPositionClasses from "./classes"
-import InfoBoxSeparator from "./components/InfoBoxSeparator"
-import InfoBoxCta from "./components/InfoBoxCta"
+import Separator from "./components/Separator"
+import InfoBoxCta from "./components/deprecated/InfoBoxCta"
 import CallToAction from "./components/CallToAction"
-import InfoBoxStyle from "./inline-styles"
-import InfoBoxIconImage from "./components/InfoBoxIconImage"
+import Image from "./components/Image"
 
 // Import icon.
 import attributes from "./attributes"
@@ -49,15 +48,15 @@ const deprecated = [
 			if( source_type === "icon" ) {
 				is_image = <InfoBoxIcon attributes={ props.attributes }/>
 			}else{
-				is_image = <InfoBoxIconImage attributes={ props.attributes } />
+				is_image = <Image attributes={ props.attributes } />
 			}
 
 			// Get description and seperator components.
 			const desc = (
 				<Fragment>
-					{ "none" !== seperatorStyle && <InfoBoxSeparator attributes={props.attributes} /> }
+					{ "none" !== seperatorStyle && <Separator attributes={props.attributes} /> }
 					<div className = "uagb-ifb-text-wrap">
-						<InfoBoxDesc attributes={props.attributes} setAttributes = "not_set"/>
+						<Description attributes={props.attributes} setAttributes = "not_set"/>
 						<InfoBoxCta attributes={props.attributes} />
 					</div>
 				</Fragment>
@@ -184,15 +183,15 @@ const deprecated = [
 			if( source_type === "icon" && icon !=="" ) {
 				is_image = <InfoBoxIcon attributes={ props.attributes }/>
 			}else{
-				is_image = <InfoBoxIconImage attributes={ props.attributes } />
+				is_image = <Image attributes={ props.attributes } />
 			}
 
 			// Get description and seperator components.
 			const desc = (
 				<Fragment>
-					{ "none" !== seperatorStyle && <InfoBoxSeparator attributes={props.attributes} /> }
+					{ "none" !== seperatorStyle && <Separator attributes={props.attributes} /> }
 					<div className = "uagb-ifb-text-wrap">
-						{ showDesc && "" !== headingDesc && <InfoBoxDesc attributes={props.attributes} setAttributes = "not_set"/> }
+						{ showDesc && "" !== headingDesc && <Description attributes={props.attributes} setAttributes = "not_set"/> }
 						{ ctaType !== "none" && <InfoBoxCta attributes={props.attributes} />}
 					</div>
 				</Fragment>
@@ -319,15 +318,15 @@ const deprecated = [
 			if( source_type === "icon" && icon !=="" ) {
 				is_image = <Icon attributes={ props.attributes }/>
 			}else{
-				is_image = <InfoBoxIconImage attributes={ props.attributes } />
+				is_image = <Image attributes={ props.attributes } />
 			}
 
 			// Get description and seperator components.
 			const desc = (
 				<Fragment>
-					{ "none" !== seperatorStyle && <InfoBoxSeparator attributes={props.attributes} /> }
+					{ "none" !== seperatorStyle && <Separator attributes={props.attributes} /> }
 					<div className = "uagb-ifb-text-wrap">
-						{ showDesc && "" !== headingDesc && <InfoBoxDesc attributes={props.attributes} setAttributes = "not_set"/> }
+						{ showDesc && "" !== headingDesc && <Description attributes={props.attributes} setAttributes = "not_set"/> }
 						{ ctaType !== "none" && <CallToAction attributes={props.attributes} />}
 					</div>
 				</Fragment>
@@ -455,12 +454,12 @@ const deprecated = [
 			if( source_type === "icon" && icon !=="" ) {
 				is_image = <Icon attributes={ props.attributes }/>
 			}else{
-				is_image = <InfoBoxIconImage attributes={ props.attributes } />
+				is_image = <Image attributes={ props.attributes } />
 			}
 
 			var icon_image_html = is_image
 			var seperator_position = seperatorPosition
-			var seperator_html = <InfoBoxSeparator attributes={props.attributes} />
+			var seperator_html = <Separator attributes={props.attributes} />
 			var show_seperator = true
 
 			if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
@@ -491,7 +490,7 @@ const deprecated = [
 				<Fragment>
 					{ "none" !== seperatorStyle && ( seperator_position == "after_title"  && show_seperator )&& seperator_html }
 					<div className = "uagb-ifb-text-wrap">
-						{ showDesc && "" !== headingDesc && <InfoBoxDesc attributes={props.attributes} setAttributes = "not_set"/> }
+						{ showDesc && "" !== headingDesc && <Description attributes={props.attributes} setAttributes = "not_set"/> }
 						{ "none" !== seperatorStyle && seperator_position == "after_desc" && seperator_html }
 						{ ctaType !== "none" && <CallToAction attributes={props.attributes} />}
 					</div>
@@ -621,12 +620,12 @@ const deprecated = [
 			if( source_type === "icon" && icon !=="" ) {
 				is_image = <Icon attributes={ props.attributes }/>
 			}else{
-				is_image = <InfoBoxIconImage attributes={ props.attributes } />
+				is_image = <Image attributes={ props.attributes } />
 			}
 		
 			var icon_image_html = is_image
 			var seperator_position = seperatorPosition
-			var seperator_html = <InfoBoxSeparator attributes={props.attributes} />
+			var seperator_html = <Separator attributes={props.attributes} />
 			var show_seperator = true
 		
 			if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition == "below-title" ) ){
@@ -657,7 +656,7 @@ const deprecated = [
 				<Fragment>
 					{ "none" !== seperatorStyle && ( seperator_position == "after_title"  && show_seperator )&& seperator_html }
 					<div className = "uagb-ifb-text-wrap">
-						{ showDesc && "" !== headingDesc && <InfoBoxDesc attributes={props.attributes} setAttributes = "not_set"/> }
+						{ showDesc && "" !== headingDesc && <Description attributes={props.attributes} setAttributes = "not_set"/> }
 						{ "none" !== seperatorStyle && seperator_position == "after_desc" && seperator_html }
 						{ ctaType !== "none" && <CallToAction attributes={props.attributes} />}
 					</div>

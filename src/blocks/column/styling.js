@@ -3,8 +3,7 @@
  */
 
 import inlineStyles from "./inline-styles"
-import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
-import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
+import { generateCSS, generateCSSUnit } from "../../components/build-css"
 
 function styling( props ) {
 

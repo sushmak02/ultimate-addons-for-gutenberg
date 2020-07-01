@@ -3,9 +3,7 @@
  */
 
 import inlineStyles from "./inline-styles"
-import generateCSS from "../../../dist/blocks/uagb-controls/generateCSS"
-import hexToRgba from "../../../dist/blocks/uagb-controls/hexToRgba"
-import generateCSSUnit from "../../../dist/blocks/uagb-controls/generateCSSUnit"
+import { generateCSS, generateCSSUnit, hexToRgba } from "../../components/build-css"
 
 function styling( props ) {
 

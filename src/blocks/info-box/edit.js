@@ -3,19 +3,22 @@
  */
 
 import classnames from "classnames"
-import UAGBIcon from "../../../dist/blocks/uagb-controls/UAGBIcon.json"
 import FontIconPicker from "@fonticonpicker/react-fonticonpicker"
 import Prefix from "./components/Prefix"
 import Title from "./components/Title"
 import Icon from "./components/Icon"
-import InfoBoxDesc from "./components/InfoBoxDesc"
+import Description from "./components/Description"
 import InfoBoxPositionClasses from "./classes"
-import InfoBoxSeparator from "./components/InfoBoxSeparator"
+import Separator from "./components/Separator"
 import CallToAction from "./components/CallToAction"
 import InfoBoxStyle from "./inline-styles"
-import InfoBoxIconImage from "./components/InfoBoxIconImage"
-import renderSVG from "../../../dist/blocks/uagb-controls/renderIcon"
-import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
+import Image from "./components/Image"
+
+import {
+	renderSVG,
+	FontAwesomeIcons,
+	BlockIcons
+} from "../../components/icon-picker"
 
 // Import all of our Text Options requirements.
 import TypographyControl from "../../components/typography"
@@ -23,7 +26,7 @@ import TypographyControl from "../../components/typography"
 // Import Web font loader for google fonts.
 import WebfontLoader from "../../components/typography/fontloader"
 
-let svg_icons = Object.keys( UAGBIcon )
+let svg_icons = Object.keys( FontAwesomeIcons )
 
 const { __ } = wp.i18n
 
@@ -548,7 +551,7 @@ class UAGBinfoBox extends Component {
 					<Fragment>
 						<h2>{ __( "Button Padding" ) }</h2>
 						<RangeControl
-							label={ UAGB_Block_Icons.vertical_spacing }
+							label={ BlockIcons.vertical_spacing }
 							value={ ctaBtnVertPadding }
 							onChange={ ( value ) => setAttributes( { ctaBtnVertPadding: value } ) }
 							min={ 0 }
@@ -557,7 +560,7 @@ class UAGBinfoBox extends Component {
 							allowReset
 						/>
 						<RangeControl
-							label={ UAGB_Block_Icons.horizontal_spacing }
+							label={ BlockIcons.horizontal_spacing }
 							value={ ctaBtnHrPadding }
 							onChange={ ( value ) => setAttributes( { ctaBtnHrPadding: value } ) }
 							min={ 0 }
@@ -900,7 +903,7 @@ class UAGBinfoBox extends Component {
 				<hr className="uagb-editor__separator" />
 				<h2>{ __( "Image/Icon Margin (px)" ) }</h2>
 				<RangeControl
-					label={ UAGB_Block_Icons.left_margin }
+					label={ BlockIcons.left_margin }
 					className={ "uagb-margin-control" }
 					value={ iconLeftMargin }
 					onChange={ ( value ) => setAttributes( { iconLeftMargin: value } ) }
@@ -909,7 +912,7 @@ class UAGBinfoBox extends Component {
 					allowReset
 				/>
 				<RangeControl
-					label={ UAGB_Block_Icons.right_margin }
+					label={ BlockIcons.right_margin }
 					className={ "uagb-margin-control" }
 					value={ iconRightMargin }
 					onChange={ ( value ) => setAttributes( { iconRightMargin: value } ) }
@@ -918,7 +921,7 @@ class UAGBinfoBox extends Component {
 					allowReset
 				/>
 				<RangeControl
-					label={ UAGB_Block_Icons.top_margin }
+					label={ BlockIcons.top_margin }
 					className={ "uagb-margin-control" }
 					value={ iconTopMargin }
 					onChange={ ( value ) => setAttributes( { iconTopMargin: value } ) }
@@ -927,7 +930,7 @@ class UAGBinfoBox extends Component {
 					allowReset
 				/>
 				<RangeControl
-					label={ UAGB_Block_Icons.bottom_margin }
+					label={ BlockIcons.bottom_margin }
 					className={ "uagb-margin-control" }
 					value={ iconBottomMargin }
 					onChange={ ( value ) => setAttributes( { iconBottomMargin: value } ) }
@@ -1078,12 +1081,12 @@ class UAGBinfoBox extends Component {
 		if( source_type === "icon" && icon !== "" ) {
 			is_image =  <Icon attributes={attributes}/>
 		}else{
-			is_image = <InfoBoxIconImage attributes={attributes} />
+			is_image = <Image attributes={attributes} />
 		}
 
 		var icon_image_html = is_image
 		var seperator_position = seperatorPosition
-		var seperator_html = <InfoBoxSeparator attributes={attributes} />
+		var seperator_html = <Separator attributes={attributes} />
 		var show_seperator = true
 
 		if( seperatorPosition == "after_icon" && ( iconimgPosition == "above-title" || iconimgPosition =="below-title" ) ){
@@ -1115,7 +1118,7 @@ class UAGBinfoBox extends Component {
 			<Fragment>
 				{ "none" !== seperatorStyle && ( seperator_position == "after_title"  && show_seperator )&& seperator_html }
 				<div className = "uagb-ifb-text-wrap">
-					{ showDesc && <InfoBoxDesc attributes={attributes} setAttributes = { setAttributes } props = { this.props } />}
+					{ showDesc && <Description attributes={attributes} setAttributes = { setAttributes } props = { this.props } />}
 					{ "none" !== seperatorStyle && seperator_position == "after_desc" && seperator_html }
 					<CallToAction attributes={attributes} setAttributes = { setAttributes } />
 				</div>
