@@ -2247,6 +2247,15 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'inputSizeType'           => '%',
 						),
 					),
+					'uagb/taxonomy-list'          => array(
+						'slug'        => '',
+						'title'       => __( 'taxonomy-list', 'ultimate-addons-for-gutenberg' ),
+						'description' => __( 'This block lists taxonomies from your posts, pages, CPTs.', 'ultimate-addons-for-gutenberg' ),
+						'default'     => true,
+						'attributes'  => array(
+							'block_id'                => '',
+						),
+					),
 				);
 			}
 			return self::$block_attributes;
