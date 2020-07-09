@@ -3,8 +3,9 @@
  */
 
 // Import block dependencies and components
-import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
+//import UAGB_Block_Icons from "../../../dist/blocks/uagb-controls/block-icons"
 import edit from "./edit"
+//import attributes from "./attributes"
 
 //  Import CSS.
 import "./style.scss"
@@ -27,8 +28,10 @@ registerBlockType( "uagb/taxonomy-list", {
 		__( "list" ),
 		__( "uag" ),
 	],
+	//attributes,
 	edit,
+	//Render via PHP
     save() {
-        return <div>Hello World, step 1 (from the frontend).</div>
+        return null
     },
 } )

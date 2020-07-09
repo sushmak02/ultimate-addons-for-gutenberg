@@ -70,6 +70,25 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 			$common_attributes = $this->get_post_attributes();
 
 			register_block_type(
+			'uagb/taxonomy-list',
+				array(
+					'attributes'      => array(
+						'block_id'    		=> array(
+							'type'    => 'string',
+						),
+						'postType'   		=> array(
+							'type'    => 'string',
+							'default' => 'post',
+						),
+						'taxonomyCount'  	=>array(
+							'type'	 => 'string',
+						)
+					),
+				
+				'render_callback' => array( $this, 'taxonomy_list_callback' ),
+				)
+			);
+			register_block_type(
 				'uagb/post-grid',
 				array(
 					'attributes'      => array_merge(
@@ -700,6 +719,27 @@ if ( ! class_exists( 'UAGB_Post' ) ) {
 					'default' => false,
 				),
 			);
+		}
+
+		/**
+		 * Renders the taxonomy list block on server.
+		 *
+		 * @param array $attributes Array of block attributes.
+		 *
+		 * @since 0.0.1
+		 */
+		public function taxonomy_list_callback( $attributes ) {
+			//var_dump($attributes);	
+			// Render query.
+			$query = UAGB_Helper::get_query( $attributes, 'taxonomy-list' );
+
+			// Cache the settings.
+			self::$settings['taxonomy-list'][ $attributes['block_id'] ] = $attributes;
+
+			ob_start();
+			$this->get_post_html( $attributes, $query, 'taxonomy-list' );
+			// Output the post markup.
+			return ob_get_clean();
 		}
 
 		/**

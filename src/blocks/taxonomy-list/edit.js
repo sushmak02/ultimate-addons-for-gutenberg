@@ -16,16 +16,34 @@ const { __ } = wp.i18n
 const {
     PanelBody,
     SelectControl,
-	ToggleControl,
+	RangeControl,
 } = wp.components
 const {
 	InspectorControls,
 } = wp.blockEditor
  
-const { Component, Fragment } = wp.element
+const { Component } = wp.element
+const { withSelect } = wp.data
 
 class UAGBTaxonomyList extends Component {
 
+    constructor() {
+		super( ...arguments )
+        this.onSelectPostType = this.onSelectPostType.bind( this )
+        this.onChangePostsPerPage = this.onChangePostsPerPage.bind( this )
+	}
+    onSelectPostType( value ) {
+		const { setAttributes } = this.props
+
+		setAttributes( { postType: value } )
+		setAttributes( { categories: "" } )
+    }
+    onChangePostsPerPage( value ) {
+		const { setAttributes } = this.props
+
+		setAttributes( { postsToShow: value } )
+		setAttributes( { paginationMarkup: "empty" } )
+	}
     componentDidMount() {
         this.props.setAttributes( { block_id: this.props.clientId.substr( 0, 8 ) } )
     }
@@ -36,24 +54,46 @@ class UAGBTaxonomyList extends Component {
 			attributes,
 			setAttributes
 		} = this.props
-
 		// Caching all attributes.
 		const {
             block_id,
+            postType,
+            postToShow
         } = attributes
 
         // All Controls.
-		const inspectorControls = (
+        const generalSettings = () => {
+            return (
 			<InspectorControls>
 				<PanelBody title={ __( "General" ) }>
-					<SelectControl
+                    <SelectControl
 						label={ __( "Post Type" ) }
-						
+						value={ postType }
+						onChange={ ( value ) => this.onSelectPostType( value ) }
+						options={ uagb_blocks_info.post_types }
 					/>
+                    <RangeControl
+                        label={ __( "Max. Taxonomy count" ) }
+                        value={ postToShow }
+                        onChange={ this.onChangePostsPerPage }
+                        min={ 0 }
+                        max={ 500 }
+                    />
                 </PanelBody>
             </InspectorControls>
-        ); 
-        return <div>Hello World, step 1 (from the editor).</div>
+            )
+        } 
+        return (
+            <InspectorControls>
+                { generalSettings() }
+            </InspectorControls>
+        )
     }
 }
-export default UAGBTaxonomyList
+
+export default withSelect( ( select, props ) => {
+    return {
+        posts: select( 'core' ).getEntityRecords( 'postType', 'post' ),
+    };
+} )( UAGBTaxonomyList )
+
