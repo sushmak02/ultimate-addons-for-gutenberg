@@ -120,16 +120,68 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 		 */
 		public static function get_social_share_js( $attr, $id ) {
 
-			$base_selector = ( isset( $attr['classMigrate'] ) && $attr['classMigrate'] ) ? '.uagb-block-' : '#uagb-social-share-';
-			$selector      = $base_selector . $id;
+			$defaults = UAGB_Helper::$block_list['uagb/social-share-child']['attributes'];
+			//var_dump($attr);
+			
+			if(!$attr['current_url']){
+				if( isset( $attr["type"] ) ){
+					
+					$type =  ( isset( $attr["type"] ) ? $attr["type"] : '' );
+				}	
+			}
+			
+		
+			$links = array(
+			    "facebook" => "https://www.facebook.com/sharer.php?u=",
+			    "twitter"  => "https://twitter.com/share?url=",
+			    "google"  => "https://plus.google.com/share?url=",
+			    "pinterest"  => "https://pinterest.com/pin/create/link/?url=",
+			    "linkedin"  => "https://www.linkedin.com/shareArticle?url=",
+			    "digg"  => "http://digg.com/submit?url=",
+			    "blogger"  => "https://www.blogger.com/blog_this.pyra?t&amp;u=",
+			    "reddit"  => "https://reddit.com/submit?url=",
+			    "stumbleupon"  => "https://www.stumbleupon.com/submit?url=",
+			    "tumblr"  => "https://www.tumblr.com/widgets/share/tool?canonicalUrl=",
+			    "myspace"  => "https://myspace.com/post?u=",
+			    "email"  => "mailto:?body=",
+			);
+
+			if( isset($links[$type]) ){
+				$share_url = $links[$type];
+				
+			}
+
+			// if( $attr['block_id'] ==  $id ){
+			// 	//var_dump($id);
+			// 	$base_selector     = '.uagb-social-share-' . $id;
+			// }else{
+				$base_selector = ( isset( $attr['classMigrate'] ) && $attr['classMigrate'] ) ? '.uagb-block-' : '#uagb-social-share-';
+			// }
+
+			$selector      = $base_selector. $id;
+
+			//var_dump($selector);
+
 			ob_start();
 			?>
-			var ssLinks = document.querySelectorAll( '<?php echo esc_attr( $selector ); ?>' );
+
+			var link_url = "<?php echo esc_url_raw( $share_url ); ?>";
+			
+			var ssLinks = document.querySelectorAll( '<?php echo esc_attr( $selector ); ?>'  );
+			
 			for ( var j = 0; j < ssLinks.length; j++ ) {
 				var ssLink = ssLinks[j].querySelectorAll( ".uagb-ss__link" );
+				if( '' === ssLink[j].dataset.href ){
+						console.log(link_url);
+						ssLink[j].dataset.href = link_url;
+				}
 				for ( var i = 0; i < ssLink.length; i++ ) {
-					ssLink[i].addEventListener( "click", function() {
+				
+					
+
+					ssLink[i].addEventListener( "click", function() {				
 						var social_url = this.dataset.href;
+						
 						var target = "";
 						if( social_url == "mailto:?body=" ) {
 							target = "_self";

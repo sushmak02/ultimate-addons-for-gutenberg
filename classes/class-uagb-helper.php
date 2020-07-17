@@ -465,11 +465,14 @@ if ( ! class_exists( 'UAGB_Helper' ) ) {
 
 				case 'uagb/social-share':
 					$css += UAGB_Block_Helper::get_social_share_css( $blockattr, $block_id );
+					//var_dump($blockattr);
 					$js  .= UAGB_Block_JS::get_social_share_js( $blockattr, $block_id );
 					break;
 
 				case 'uagb/social-share-child':
 					$css += UAGB_Block_Helper::get_social_share_child_css( $blockattr, $block_id );
+					//var_dump($blockattr);
+					$js  .= UAGB_Block_JS::get_social_share_js( $blockattr, $block_id );
 					break;
 
 				case 'uagb/content-timeline':
