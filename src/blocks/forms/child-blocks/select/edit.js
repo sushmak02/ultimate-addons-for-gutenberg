@@ -25,7 +25,11 @@ class UAGBFormsSelectEdit extends Component {
 
 	constructor() {
 		super( ...arguments )
-		this.state = { optionsstate: null };
+		this.state = { optionsstate:  [
+            {
+                "optiontitle": "Option Name 1"
+            },           
+        ] };
 		
 	}
 
@@ -74,36 +78,97 @@ class UAGBFormsSelectEdit extends Component {
 		}
 
 		const addOption = () => {
-			
-			options[options.length] = "Option Name"; 
+			var newOption ={ "optiontitle": `Option Name ${options.length + 1}` }
+			options[options.length] = newOption; 
 			setAttributes({ options:options });
 			this.setState({optionsstate : options});
 		};
 
-		const changeOption = (e, index) => {
-			options[index] =  e.target.value;
-			setAttributes({ options: options });
-			this.setState({optionsstate : options});
-
+		const changeOption = (e, index) => {			
+			const editOptions = options.map( ( item, thisIndex ) => {
+				if ( index === thisIndex ) {
+					item = { ...item, ...e }
+				}
+				return item
+			} )
+			
+			setAttributes({ options: editOptions });
+			this.setState({ optionsstate : editOptions });
+			
 		};
+
 		const deleteOption = index => {
 		
 			options.splice(index, 1);
-			setAttributes({ options });
-			
+			setAttributes({ options });			
 			this.setState({optionsstate : options});
-		};
 
+		};
+		const movedownOption = index => {
+			const updated_current_value = options[index+1];
+			const updated_next_value = options[index];
+			options[index] =updated_current_value;
+			options[index+1] =updated_next_value;
+
+			setAttributes({ options });			
+			this.setState({optionsstate : options});
+			
+
+		};
+		const moveupOption = index => {
+			const updated_current_value = options[index-1];
+			const updated_previous_value = options[index];
+			options[index] =updated_current_value;
+			options[index-1] =updated_previous_value;
+
+			setAttributes({ options });			
+			this.setState({optionsstate : options});
+
+			
+
+		};
+		const option_length = options.length;
 		const editView = options.map((s, index) => {
+			let upbutton;
+			let downbutton;
+			
+			if (index === 0) {
+				upbutton = <Button 
+				className="uagb-form-select-option-delete"
+				icon="arrow-up-alt2"
+				label="Move Up" disabled
+				/>
+			} else {
+				upbutton = <Button 
+				className="uagb-form-select-option-delete"
+				icon="arrow-up-alt2"
+				label="Move Up" onClick={() => moveupOption(index)}
+				/>
+			} 
+
+			if (option_length === index + 1) {
+				downbutton = <Button 
+				className="uagb-form-select-option-delete"
+				icon="arrow-down-alt2"
+				label="Move Down" disabled
+				/>
+			} else {
+				downbutton = <Button 
+				className="uagb-form-select-option-delete"
+				icon="arrow-down-alt2"
+				label="Move Down" onClick={() => movedownOption(index)}
+				/>
+			} 
 			return (
 				<div className="uagb-form-select-option">
 					<input
-						aria-label={s}
-						onChange={e => changeOption(e, index)}
+						aria-label={s.optiontitle}
+						onChange={e => changeOption( { optiontitle: e.target.value }, index)}
 						type="text"
-						value={s}
-						
-					/>					
+						value={s.optiontitle}						
+					/>		
+					{upbutton}
+					{downbutton}					
 					<Button 
 						className="uagb-form-select-option-delete"
         				icon="trash"
@@ -112,11 +177,13 @@ class UAGBFormsSelectEdit extends Component {
 				</div>
 			);
 		});
+
 		const SelectView = () => {
 
 			var showoptionsField =  options.map((o, index) => {
-				var optionvalue = o.replace(/\s+/g, '-').toLowerCase();
-				return <option value={optionvalue}>{o}</option>;
+				var optiontitle = o.optiontitle;
+				var optionvalue = optiontitle.replace(/\s+/g, '-').toLowerCase();
+				return <option value={optionvalue}>{o.optiontitle}</option>;
 			})
 
 			return  (

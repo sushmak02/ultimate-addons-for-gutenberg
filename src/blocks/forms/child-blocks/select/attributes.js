@@ -14,7 +14,11 @@ const attributes = {
     },
     options: {
         type: "array",
-        default: ["Option Name"],
+        default: [
+            {
+                "optiontitle": "Option Name 1"
+            },           
+        ],
         
     },
     
