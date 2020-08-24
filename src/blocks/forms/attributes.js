@@ -42,5 +42,19 @@ const attributes = {
 	afterSubmitBccEmail : {
 		type: "string",
 	},
+	reCaptchaType : {
+		type: "string",
+		default: "v3",
+	},
+	reCaptchaEnable: {
+		type: "boolean",
+		default: false
+	},
+	reCaptchaSiteKey : {
+		type: "string",
+	},
+	reCaptchaSecretKey : {
+		type: "string",
+	},
 }
 export default attributes

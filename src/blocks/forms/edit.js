@@ -31,7 +31,8 @@ const {
 	Dashicon,
 	IconButton,
 	TextareaControl,
-	CheckboxControl
+	CheckboxControl,
+	ExternalLink
 } = wp.components
 
 const { __ } = wp.i18n
@@ -65,6 +66,14 @@ class UAGBFormsEdit extends Component {
 		if( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props )
 		}
+
+		const { attributes, setAttributes } = this.props
+		var s = document.createElement("script");
+		s.type = "text/javascript";
+		s.src = "https://www.google.com/recaptcha/api.js";
+		console.log(s);
+		document.head.appendChild( s )
+
     }
 	
 	onSubmitClick ( e ) {
@@ -88,6 +97,10 @@ class UAGBFormsEdit extends Component {
 			afterSubmitToEmail,
 			afterSubmitCcEmail,
 			afterSubmitBccEmail,
+			reCaptchaType,
+			reCaptchaSiteKey,
+			reCaptchaSecretKey,
+			reCaptchaEnable
         } = attributes
 
 		const generalSettings = () => {
@@ -187,6 +200,60 @@ class UAGBFormsEdit extends Component {
 				</PanelBody>
 			)
 		}
+
+		const googleReCaptcha = () => {
+			return (
+				<PanelBody
+					title={ __( "Google reCaptcha" ) }
+					initialOpen={ false }
+					className="uagb__url-panel-body"
+				>
+
+					<ToggleControl
+						label={ __( "Enable reCaptcha " ) }
+						checked={ reCaptchaEnable }
+						onChange={ ( value ) => setAttributes( { reCaptchaEnable: ! reCaptchaEnable } ) }
+					/>
+					{reCaptchaEnable && (
+						<Fragment>
+						<h2> { __( "reCaptcha Type" ) }</h2>
+						<ButtonGroup className="uagb-forms-button-group" aria-label={ __( "reCaptcha Type" ) }>
+							<Button 
+									key={ "v3" }
+									isPrimary={ reCaptchaType === "v3" } 
+									aria-pressed={ reCaptchaType === "v3" } 
+									onClick={ () => setAttributes( { reCaptchaType: "v3" } ) }
+								>v3
+							</Button>
+							<Button 
+									key={ "v2" } 
+									isPrimary={ reCaptchaType === "v2" } 
+									aria-pressed={ reCaptchaType === "v2" } 
+									onClick={ () => setAttributes( { reCaptchaType: "v2" } ) }
+								>v2
+							</Button>
+						</ButtonGroup>
+	
+						<TextControl
+							label="Site Key"
+							value={ reCaptchaSiteKey }
+							onChange={ ( value ) => setAttributes( { reCaptchaSiteKey: value } ) }
+						/>
+						<TextControl
+							label="Secret Key"
+							value={ reCaptchaSecretKey }
+							onChange={ ( value ) => setAttributes( { reCaptchaSecretKey: value } ) }
+						/>
+	
+						<ExternalLink href="https://www.google.com/recaptcha/admin/create">{__("Get Keys")}</ExternalLink>
+						<ExternalLink href="https://developers.google.com/recaptcha/intro">{__(" | Documentation")}</ExternalLink>
+					</Fragment>
+					)}
+					
+				</PanelBody>
+			)
+		}
+
 		const emailSettings = () => {
 			if ( true === sendAfterSubmitEmail ) {
 
@@ -270,6 +337,7 @@ class UAGBFormsEdit extends Component {
 				<InspectorControls>
 					{ generalSettings() }
 					{ afterSubmitActions() }
+					{ googleReCaptcha() }
 					{ emailSettings() }
 				</InspectorControls>
 				<div className={ classnames(
