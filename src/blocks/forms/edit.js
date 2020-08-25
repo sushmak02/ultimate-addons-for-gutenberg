@@ -66,14 +66,6 @@ class UAGBFormsEdit extends Component {
 		if( null !== element && undefined !== element ) {
 			element.innerHTML = styling( this.props )
 		}
-
-		const { attributes, setAttributes } = this.props
-		var s = document.createElement("script");
-		s.type = "text/javascript";
-		s.src = "https://www.google.com/recaptcha/api.js";
-		console.log(s);
-		document.head.appendChild( s )
-
     }
 	
 	onSubmitClick ( e ) {
@@ -332,6 +324,39 @@ class UAGBFormsEdit extends Component {
 			return '';
 		}
 
+		const renderButtonHtml = () => {
+
+			if ( reCaptchaEnable && 'v3' === reCaptchaType ) {			
+				return (
+					<button onClick={ this.onSubmitClick } className="uagb-forms-main-submit-button g-recaptcha" data-sitekey={reCaptchaSiteKey}>
+						<RichText
+							tagName="div"
+							placeholder={ __( "Submit" ) }
+							value={ submitButtonText }
+							onChange={ ( value ) => setAttributes( { submitButtonText: value } ) }
+							className='uagb-forms-main-submit-button-text'
+							multiline={ false }
+							allowedFormats={[ 'core/bold', 'core/italic', 'core/strikethrough' ]}
+						/>
+					</button>
+				)
+			}
+	
+			return (
+				<button onClick={ this.onSubmitClick } className="uagb-forms-main-submit-button" >
+					<RichText
+						tagName="div"
+						placeholder={ __( "Submit" ) }
+						value={ submitButtonText }
+						onChange={ ( value ) => setAttributes( { submitButtonText: value } ) }
+						className='uagb-forms-main-submit-button-text'
+						multiline={ false }
+						allowedFormats={[ 'core/bold', 'core/italic', 'core/strikethrough' ]}
+					/>
+				</button>
+			);
+		}
+
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -353,18 +378,13 @@ class UAGBFormsEdit extends Component {
 							<input type="hidden" name="uagb_forms_form_label" value={ formLabel }/>
 							<input type="hidden" name="uagb_forms_form_id" value= { `uagb-form-${ block_id }` }/>
 						</div>
+						
+						{reCaptchaEnable && "v2" === reCaptchaType && (
+							<div class="g-recaptcha uagb-forms-field-set" data-sitekey={reCaptchaSiteKey}></div>
+						)}
+
 						<div className="uagb-forms-main-submit-button-wrap">
-							<button onClick={ this.onSubmitClick } className="uagb-forms-main-submit-button">
-								<RichText
-									tagName="div"
-									placeholder={ __( "Submit" ) }
-									value={ submitButtonText }
-									onChange={ ( value ) => setAttributes( { submitButtonText: value } ) }
-									className='uagb-forms-main-submit-button-text'
-									multiline={ false }
-									allowedFormats={[ 'core/bold', 'core/italic', 'core/strikethrough' ]}
-								/>
-							</button>
+							{renderButtonHtml()}
 						</div>
 					</form>
 				</div>

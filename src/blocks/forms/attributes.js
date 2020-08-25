@@ -42,13 +42,13 @@ const attributes = {
 	afterSubmitBccEmail : {
 		type: "string",
 	},
-	reCaptchaType : {
-		type: "string",
-		default: "v3",
-	},
 	reCaptchaEnable: {
 		type: "boolean",
 		default: false
+	},
+	reCaptchaType : {
+		type: "string",
+		default: "v3",
 	},
 	reCaptchaSiteKey : {
 		type: "string",

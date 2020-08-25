@@ -3,7 +3,7 @@
 	UAGBForms = {
 
         init: function( attr, id ) {
-
+            
             $scope = $( id );
 
             $form = $scope.find( '.uagb-forms-main-form' );
@@ -22,8 +22,12 @@
                 return true;
             } );
 
+            //append recaptcha js when enabled.
+            if(attr['reCaptchaEnable'] == true){
+                $('head').append(' <script src="https://www.google.com/recaptcha/api.js"></script>');
+            }
+    
             $form.on( 'submit', function( e ) {
-
                 UAGBForms._formSubmit( e, $( this ), attr )
             } );
         },

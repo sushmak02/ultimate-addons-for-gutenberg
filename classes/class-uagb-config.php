@@ -2238,6 +2238,11 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'confirmationType'    => 'message',
 							'confirmationMessage' => 'The form has been submitted Successfully!',
 							'confirmationUrl'     => '',
+							'reCaptchaEnable'     => '',
+							'reCaptchaType'       => 'v3',
+							'reCaptchaSiteKey'    => '',
+							'reCaptchaSecretKey'  => '',
+
 						),
 					),
 					'uagb/forms-name'         => array(
