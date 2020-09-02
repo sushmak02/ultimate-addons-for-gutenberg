@@ -295,6 +295,10 @@ const attributes = {
 		type: "string",
 		default: "",
 	},
+	enableOldGradient: {
+		type: "boolean",
+		default: false
+	},
 }
 
 export default attributes
