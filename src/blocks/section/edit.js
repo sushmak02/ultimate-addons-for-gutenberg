@@ -835,9 +835,11 @@ class UAGBSectionEdit extends Component {
 									checked={ enableOldGradient }
 									onChange={ this.enableOldGradient }
 								/>
+								
 								{!enableOldGradient && (
 								<GradientSettings attributes={ attributes }	setAttributes={ setAttributes }/>
 								)}
+
 								{enableOldGradient && (
 									<Fragment>
 									<p className="uagb-setting-label">{ __( "Color 1" ) }<span className="components-base-control__label"><span className="component-color-indicator" style={{ backgroundColor: backgroundVideoColor }} ></span></span></p>
