@@ -289,16 +289,15 @@ class UAGB_Init_Blocks {
 				'deactivated_blocks' => $blocks,
 			)
 		);
-		
 
 		$enable_old_gradient_array = array(
 			'enable_old_gradient' => false,
 		);
 
-		wp_localize_script( 
-			'uagb-block-editor-js', 
+		wp_localize_script(
+			'uagb-block-editor-js',
 			'uagb_enable_old_gradient',
-		 	apply_filters( 'uagb_enable_old_gradient_settings', $enable_old_gradient_array ) 
+			apply_filters( 'uagb_enable_old_gradient_settings', $enable_old_gradient_array )
 		);
 
 		wp_localize_script(
