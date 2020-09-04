@@ -48,7 +48,6 @@ class UAGBSectionEdit extends Component {
 		this.onRemoveImage = this.onRemoveImage.bind( this )
 		this.onSelectImage = this.onSelectImage.bind( this )
 		this.onSelectVideo = this.onSelectVideo.bind( this )
-		this.enableOldGradient = this.enableOldGradient.bind( this )
 
 	}
 
@@ -126,17 +125,7 @@ class UAGBSectionEdit extends Component {
 		setAttributes( { backgroundVideo: media } )
 	}
 
-	enableOldGradient() {
-		const { setAttributes } = this.props
-		const { enableOldGradient} = this.props.attributes
-		
-		setAttributes( { enableOldGradient: ! enableOldGradient } )
-		if (! enableOldGradient ){
-			setAttributes( { gradientValue: null } )
-			setAttributes({ gradientAngle: 90 ,gradientLocation1: 50,gradientLocation2: 50});
-		}
-
-	}
+	
 
 	render() {
 
@@ -218,8 +207,7 @@ class UAGBSectionEdit extends Component {
 			boxShadowBlur,
 			boxShadowSpread,
 			boxShadowPosition,
-			gradientValue,
-			enableOldGradient
+			gradientValue,			
 		} = attributes
 
 		const CustomTag = `${tag}`
@@ -235,6 +223,13 @@ class UAGBSectionEdit extends Component {
 			if ( align == "wide" || align == "full" ) {
 				block_controls_class = "align" + align
 			}
+		}
+				
+		var enableOldGradient = uagb_enable_old_gradient.enable_old_gradient 
+
+		if ( enableOldGradient ){
+					setAttributes( { gradientValue: null } )
+					setAttributes({ gradientAngle: 90 ,gradientLocation1: 50,gradientLocation2: 50});
 		}
 
 		return (
@@ -829,12 +824,7 @@ class UAGBSectionEdit extends Component {
 							</Fragment> )
 						}
 						{ "gradient" == backgroundType &&
-							( <Fragment>
-								<ToggleControl
-									label={ __( "Enable old gradient pallete" ) }
-									checked={ enableOldGradient }
-									onChange={ this.enableOldGradient }
-								/>
+							( <Fragment>							
 								
 								{!enableOldGradient && (
 								<GradientSettings attributes={ attributes }	setAttributes={ setAttributes }/>
