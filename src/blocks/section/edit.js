@@ -70,6 +70,14 @@ class UAGBSectionEdit extends Component {
 		const $style = document.createElement( "style" )
 		$style.setAttribute( "id", "uagb-section-style-" + this.props.clientId.substr( 0, 8 ) )
 		document.head.appendChild( $style )
+
+		if ( uagb_enable_old_gradient.enable_old_gradient ){
+			this.props.setAttributes( { gradientValue: null } )
+			this.props.setAttributes( { enableOldGradient: true } )
+			this.props.setAttributes({ gradientAngle: 90 ,gradientLocation1: 50,gradientLocation2: 50});
+		}else{
+			this.props.setAttributes( { enableOldGradient: false } )
+		}
 	}
 
 	/*
@@ -207,7 +215,8 @@ class UAGBSectionEdit extends Component {
 			boxShadowBlur,
 			boxShadowSpread,
 			boxShadowPosition,
-			gradientValue,			
+			gradientValue,
+			enableOldGradient			
 		} = attributes
 
 		const CustomTag = `${tag}`
@@ -223,13 +232,6 @@ class UAGBSectionEdit extends Component {
 			if ( align == "wide" || align == "full" ) {
 				block_controls_class = "align" + align
 			}
-		}
-				
-		var enableOldGradient = uagb_enable_old_gradient.enable_old_gradient 
-
-		if ( enableOldGradient ){
-					setAttributes( { gradientValue: null } )
-					setAttributes({ gradientAngle: 90 ,gradientLocation1: 50,gradientLocation2: 50});
 		}
 
 		return (

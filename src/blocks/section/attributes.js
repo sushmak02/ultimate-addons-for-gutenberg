@@ -294,7 +294,11 @@ const attributes = {
 	gradientValue: {
 		type: "string",
 		default: "",
-	}	
+	},
+	enableOldGradient: {
+		type: "boolean",
+		default: false
+	},	
 }
 
 export default attributes
