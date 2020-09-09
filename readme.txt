@@ -159,7 +159,7 @@ When you use the Ultimate Addons for Gutenberg along with the free Astra theme, 
 
 == Changelog ==
 = 1.17.1 =
-* Improvement: Added language option to google map block.
+* New: Added language option to google map block.
 
 = 1.17.0 =
 * Improvement: Compatibility with WordPress 5.5.
