@@ -50,11 +50,21 @@ const attributes = {
 		type: "string",
 		default: "v3",
 	},
-	reCaptchaSiteKey : {
+	reCaptchaSiteKeyV2 : {
 		type: "string",
+		default: "",
 	},
-	reCaptchaSecretKey : {
+	reCaptchaSecretKeyV2 : {
 		type: "string",
+		default: "",
+	},
+	reCaptchaSiteKeyV3 : {
+		type: "string",
+		default: "",
+	},
+	reCaptchaSecretKeyV3 : {
+		type: "string",
+		default: "",
 	},
 }
 export default attributes

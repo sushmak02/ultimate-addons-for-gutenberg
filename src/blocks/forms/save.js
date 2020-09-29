@@ -23,8 +23,9 @@ export default function save( props ) {
 		confirmationType,
 		confirmationMessage,
 		reCaptchaEnable,
-		reCaptchaType,
-		reCaptchaSiteKey
+		reCaptchaType,			
+		reCaptchaSiteKeyV2,
+		reCaptchaSiteKeyV3
 	} = attributes
 
 	const renderConfirmationMessage = () => {
@@ -49,7 +50,7 @@ export default function save( props ) {
 
 		if ( reCaptchaEnable && 'v3' === reCaptchaType ) {			
 			return (
-				<button className="uagb-forms-main-submit-button g-recaptcha" data-sitekey={ reCaptchaSiteKey }>
+				<button className="uagb-forms-main-submit-button g-recaptcha" data-sitekey={ reCaptchaSiteKeyV3 }>
 						<RichText.Content
 							tagName='div'
 							value={ submitButtonText }
@@ -84,7 +85,7 @@ export default function save( props ) {
 				</div>
 				
 				{reCaptchaEnable && "v2" === reCaptchaType && (
-					<div class="g-recaptcha uagb-forms-field-set" data-sitekey={reCaptchaSiteKey}></div>
+					<div class="g-recaptcha uagb-forms-field-set" data-sitekey={reCaptchaSiteKeyV2}></div>
 				)}
 
 				<div className="uagb-forms-main-submit-button-wrap">
