@@ -25,6 +25,13 @@ registerBlockType( "uagb/inline-notice", {
 		__( "notice" ),
 		__( "uag" ),
 	],
+	example: {
+		attributes: {
+			className: 'is-style-fill',
+			backgroundColor: 'vivid-green-cyan',
+			text: __( 'Inline Notice' ),
+		},
+	},
 	supports: {
 		anchor: true,
 	},
