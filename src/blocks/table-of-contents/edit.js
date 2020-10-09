@@ -1011,6 +1011,10 @@ export default compose(
 							if( element.name === 'uagb/advanced-heading' ) {
 								a.push( element );
 							}
+
+							if( element.name === 'uagb/faq-child' ) {
+								a.push( element );
+							}
 						}
 					});
 				} else {
@@ -1019,6 +1023,10 @@ export default compose(
 					}
 
 					if( header.name === 'uagb/advanced-heading' ) {
+						a.push( header );
+					}
+
+					if( header.name === 'uagb/faq-child' ) {
 						a.push( header );
 					}
 				}
@@ -1057,10 +1065,17 @@ export default compose(
 			all_headers.forEach((heading, key) => {
 
 				let heading_attr = heading.attributes
-
-				const contentLevel = ( heading.name == 'uagb/advanced-heading' ) ? parseInt( heading_attr.headingTag[1] ) : heading_attr.level
-
-				const contentName = ( heading.name == 'uagb/advanced-heading' ) ? 'headingTitle' : 'content'
+				const contentLevel = ( heading.name == 'uagb/advanced-heading' || heading.name == 'uagb/faq-child' ) ? parseInt( heading_attr.headingTag[1] ) : heading_attr.level				
+				// const contentName = ( heading.name == 'uagb/advanced-heading' ) ? 'headingTitle' : 'content'
+				
+				var contentName = "";
+				if ( heading.name == 'uagb/advanced-heading') {
+					contentName = 'headingTitle'
+				} else if( heading.name == 'uagb/faq-child') {
+					contentName = 'question'					
+				} else {
+					contentName = 'content'
+				}
 
 				const headingContentEmpty = typeof heading_attr[contentName] === 'undefined' || heading_attr[contentName] === '';
 

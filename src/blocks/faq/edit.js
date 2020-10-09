@@ -170,12 +170,15 @@ class UAGBFaqEdit extends Component {
 	onchangeTag ( value ) {
 		const { setAttributes } = this.props
 		const getChildBlocks = select('core/block-editor').getBlocks( this.props.clientId );
-
+		let level_val = parseInt( value.replace( 'h' , '' ) )
+		
 		getChildBlocks.forEach((faqChild, key) => {
 			faqChild.attributes.headingTag = value
+			faqChild.attributes.level = level_val
 		});
 
 		setAttributes( { headingTag: value } )
+		setAttributes( { level: level_val } )
 	}
  
 	render() {
