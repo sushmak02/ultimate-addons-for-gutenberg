@@ -1066,7 +1066,6 @@ export default compose(
 
 				let heading_attr = heading.attributes
 				const contentLevel = ( heading.name == 'uagb/advanced-heading' || heading.name == 'uagb/faq-child' ) ? parseInt( heading_attr.headingTag[1] ) : heading_attr.level				
-				// const contentName = ( heading.name == 'uagb/advanced-heading' ) ? 'headingTitle' : 'content'
 				
 				var contentName = "";
 				if ( heading.name == 'uagb/advanced-heading') {
