@@ -330,8 +330,7 @@ const attributes = {
 		default: "span"
 	},
 	level: {
-		type: "number",
-		
+		type: "number",		
 	},
 }
 export default attributes
