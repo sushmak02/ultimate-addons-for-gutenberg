@@ -2625,8 +2625,6 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 			$selectors = array(
 				' .uagb-progress-bar__text'   => array(
 					'color'         => $attr['textColor'],
-					'font-family'  	=> $attr['titleTextFontFamily'],
-					'font-weight'  	=> $attr['titleTextFontWeight'],
 					'font-size'  	=> UAGB_Helper::get_css_value( $attr['titleTextFontSize'], $attr['titleTextFontSizeType'] ),
 					'line-height'  	=> UAGB_Helper::get_css_value( $attr['titleTextLineHeight'], $attr['titleTextLineHeightType'] ),
 				),
