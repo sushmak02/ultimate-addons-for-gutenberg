@@ -2606,6 +2606,68 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 		}
 
 		/**
+		 * Get Progress Bar Block CSS
+		 *
+		 * @since x.x.x
+		 * @param array  $attr The block attributes.
+		 * @param string $id The selector ID.
+		 * @return array The Widget List.
+		 */
+		public static function get_progress_bar_css( $attr, $id ) {
+
+			$defaults = UAGB_Helper::$block_list['uagb/progress-bar']['attributes'];
+
+			$attr = array_merge( $defaults, (array) $attr );
+
+			$m_selectors = array();
+			$t_selectors = array();
+
+			$selectors = array(
+				' .uagb-progress-bar__text'   => array(
+					'color'         => $attr['textColor'],
+				),
+				' .uagb-progress-bar' => array(
+					'height' => UAGB_Helper::get_css_value( $attr['thickness'], 'px' ),
+				),
+				' .uagb-progress-bar__wrapper' => array(
+					'background-color' => $attr['backgroundColor'],
+					'height' => UAGB_Helper::get_css_value( $attr['thickness'], 'px' ),
+				),
+				' .uagb-progress-bar__text-wrap' => array(
+					'margin-bottom' => UAGB_Helper::get_css_value( $attr['textSpacing'], 'px' ),
+				),
+
+			);
+
+			if ( 'color' === $attr['backgroundType'] ) {
+
+				$selectors[' .uagb-progress-bar']['background'] = UAGB_Helper::hex2rgba( $attr['progressColor'], $attr['backgroundOpacity'] );
+				
+			} elseif ( 'gradient' === $attr['backgroundType'] ) {
+			
+				$selectors[' .uagb-progress-bar']['background-color'] = 'transparent';
+				
+				if ( 'linear' === $attr['gradientType'] ) {
+				
+					$selectors[' .uagb-progress-bar']['background-image'] = 'linear-gradient(' . $attr['gradientAngle'] . 'deg, ' . UAGB_Helper::hex2rgba( $attr['gradientColor1'], $attr['backgroundOpacity'] ) . ' ' . $attr['gradientLocation1'] . '%, ' . UAGB_Helper::hex2rgba( $attr['gradientColor2'], $attr['backgroundOpacity'] ) . ' ' . $attr['gradientLocation2'] . '%)';
+				} else {
+				
+					$selectors[' .uagb-progress-bar']['background-image'] = 'radial-gradient( at center center, ' . UAGB_Helper::hex2rgba( $attr['gradientColor1'], $attr['backgroundOpacity'] ) . ' ' . $attr['gradientLocation1'] . '%, ' . UAGB_Helper::hex2rgba( $attr['gradientColor2'], $attr['backgroundOpacity'] ) . ' ' . $attr['gradientLocation2'] . '%)';
+				}
+			}
+
+			$combined_selectors = array(
+				'desktop' => $selectors,
+				'tablet'  => $t_selectors,
+				'mobile'  => $m_selectors,
+			);
+
+			$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'titleText', ' .uagb-progress-bar__text', $combined_selectors );
+
+			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
+		}
+
+		/**
 		 * Get Post Grid Block CSS
 		 *
 		 * @since 1.4.0
@@ -4565,6 +4627,12 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 					'grid-column-gap'       => UAGB_Helper::get_css_value( $attr['columnsGap'], 'px' ),
 					'grid-row-gap'          => UAGB_Helper::get_css_value( $attr['rowsGap'], 'px' ),
 					'display'               => 'grid',
+				);
+				$t_selectors['.uagb-faq-layout-grid .uagb-faq__wrap.uagb-buttons-layout-wrap ']  = array(
+					'grid-template-columns' => 'repeat(' . $attr['tcolumns'] . ', 1fr)',
+				);
+				$m_selectors['.uagb-faq-layout-grid .uagb-faq__wrap.uagb-buttons-layout-wrap ']  = array(
+					'grid-template-columns' => 'repeat(' . $attr['mcolumns'] . ', 1fr)',
 				);
 			}
 

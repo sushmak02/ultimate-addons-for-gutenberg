@@ -392,6 +392,22 @@ if ( ! class_exists( 'UAGB_Block_JS' ) ) {
 		}
 
 		/**
+		 * Adds Google fonts for Progress Bar block.
+		 *
+		 * @since x.x.x
+		 * @param array $attr the blocks attr.
+		 */
+		public static function blocks_progress_bar_gfont( $attr ) {
+
+			$title_load_google_font = isset( $attr['titleTextLoadGoogleFonts'] ) ? $attr['titleTextLoadGoogleFonts'] : '';
+			$title_font_family      = isset( $attr['titleTextFontFamily'] ) ? $attr['titleTextFontFamily'] : '';
+			$title_font_weight      = isset( $attr['titleTextFontWeight'] ) ? $attr['titleTextFontWeight'] : '';
+			$title_font_subset      = isset( $attr['titleTextFontSubset'] ) ? $attr['titleTextFontSubset'] : '';
+
+			UAGB_Helper::blocks_google_font( $title_load_google_font, $title_font_family, $title_font_weight, $title_font_subset );
+		}
+
+		/**
 		 * Adds Google fonts for Table Of Contents block.
 		 *
 		 * @since 1.13.0
