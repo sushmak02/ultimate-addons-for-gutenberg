@@ -567,6 +567,7 @@ if ( ! class_exists( 'UAGB_Config' ) ) {
 							'backgroundOpacity'      		=> '',
 							'titleText'						=> 'My Skill',
 							'textColor'						=> '',
+							'textSpacing'					=> '',
 							'titleTextLoadGoogleFonts'		=> false,
 							'titleTextFontFamily'			=> '',
 							'titleTextFontWeight'			=> '',
