@@ -2664,9 +2664,7 @@ if ( ! class_exists( 'UAGB_Block_Helper' ) ) {
 
 			$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'titleText', ' .uagb-progress-bar__text', $combined_selectors );
 
-			$base_selector = ( $attr['classMigrate'] ) ? '.uagb-block-' : '#uagb-progress-bar-';
-
-			return UAGB_Helper::generate_all_css( $combined_selectors, $base_selector . $id );
+			return UAGB_Helper::generate_all_css( $combined_selectors, '.uagb-block-' . $id );
 		}
 
 		/**
