@@ -1,0 +1,30 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-uagb-progress-bar .uagb-progress-bar__wrapper {
+    width: 100%;
+}
+
+.wp-block-uagb-progress-bar .uagb-progress-bar {
+    width: 0%;
+}
+
+.wp-block-uagb-progress-bar .uagb-progress-bar__text-wrap {
+    display: table;
+    width: 100%;
+    min-width: 0;
+}
+
+.wp-block-uagb-progress-bar .uagb-progress-bar__progress-text {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.wp-block-uagb-progress-bar .uagb-progress-bar__title-text {
+    display: table-cell;
+    vertical-align: middle;
+}
